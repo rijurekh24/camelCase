@@ -7,10 +7,10 @@ import {
   IconButton,
   InputAdornment,
   TextField,
+  Typography,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Signin = () => {
@@ -221,7 +221,7 @@ const Signin = () => {
                       ></i>
                     </Button>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sx={{ textAlign: "center" }}>
                     <Typography sx={{ color: "white" }}>
                       Already have an account?{" "}
                       <Link

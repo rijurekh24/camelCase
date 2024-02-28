@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/signup.css";
-import { Box, Button, Grid, TextField } from "@mui/material";
-import { Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Textfield from "./Textfield";
+import axios from "axios";
 
 const Signup = () => {
+  const [err, setErr] = useState(null);
+  const [user, setUser] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+    con_password: "",
+  });
+
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+
+    if (name == "con_password") setErr(null);
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    if (user.password !== user.con_password)
+      return setErr("password should match");
+
+    axios
+      .post("http://192.168.29.56:3000/register/", user)
+      .then((response) => {
+        console.log("Response from API:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error.response);
+      });
+  };
+
+  console.log(err);
   return (
     <Box
       className="signupPage"
@@ -73,189 +108,47 @@ const Signup = () => {
                 </Typography>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={6}>
-                    <TextField
-                      id="filled-basic"
-                      label="First Name"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
+                    <Textfield
+                      label={"First name"}
+                      name="first_name"
+                      handleChange={handleInputs}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <TextField
-                      id="filled-basic"
-                      label="Last Name"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
+                    <Textfield
+                      label={"Last name"}
+                      name="last_name"
+                      handleChange={handleInputs}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      id="filled-basic"
-                      label="Username"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
+                    <Textfield
+                      label={"Username"}
+                      name="username"
+                      handleChange={handleInputs}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      id="filled-basic"
-                      label="Email address"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
+                    <Textfield
+                      label={"Email address"}
+                      name="email"
+                      handleChange={handleInputs}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <TextField
-                      id="filled-basic"
-                      label="Password"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
+                    <Textfield
+                      label={"Password"}
+                      name="password"
+                      handleChange={handleInputs}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <TextField
-                      id="filled-basic"
-                      label="Confirm Password"
-                      variant="filled"
-                      fullWidth
-                      sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
-                        borderRadius: 1,
-                        bgcolor: "#232323",
-                        "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: { color: "#888" },
-                      }}
-                      InputProps={{
-                        style: { color: "white" },
-                      }}
+                    <Textfield
+                      label={"Confirm Password"}
+                      name="con_password"
+                      handleChange={handleInputs}
+                      err={err != null}
+                      helperTxt={err}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -270,6 +163,7 @@ const Signup = () => {
                           backgroundColor: "#007d5e",
                         },
                       }}
+                      onClick={handleClick}
                     >
                       Sign Up
                     </Button>
@@ -288,7 +182,7 @@ const Signup = () => {
                     >
                       Continue with Google{" "}
                       <i
-                        className="fa-brands fa-google fa-2xl"
+                        className="fa-brands fa-google fa-xl"
                         style={{ marginLeft: "4%" }}
                       ></i>
                     </Button>
@@ -306,15 +200,16 @@ const Signup = () => {
                           backgroundColor: "#191919",
                         },
                       }}
+                      onClick={handleClick}
                     >
                       Continue with Github{" "}
                       <i
-                        className="fa-brands fa-github fa-2xl"
+                        className="fa-brands fa-github fa-xl"
                         style={{ marginLeft: "4%" }}
                       ></i>
                     </Button>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sx={{ textAlign: "center" }}>
                     <Typography sx={{ color: "white" }}>
                       Already have an account?{" "}
                       <Link
