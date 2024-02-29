@@ -11,28 +11,28 @@ import {
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
 
-// const AuthView = () => {
-//   const [auth, setAuth] = useState(false);
-//   const navigate = useNavigate();
+const AuthView = () => {
+  const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (!auth) {
-//       navigate("/signin");
-//     }
-//   }, []);
+  useEffect(() => {
+    if (!auth) {
+      navigate("/signin");
+    }
+  }, []);
 
-//   return <Outlet />;
-// };
+  return <Outlet />;
+};
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route>
-          <Route index element={<Home />} />
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
+        <Route path="/" element={<AuthView />}>
+          <Route element={<Home />} index />
         </Route>
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

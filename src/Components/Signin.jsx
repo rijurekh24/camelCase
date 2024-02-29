@@ -12,9 +12,14 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";
+import Api from "../Utils/api";
 
 const Signin = () => {
   const [visible, setVisible] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const EndAdorment = ({ visible, setVisible }) => {
     return (
       <InputAdornment position="end" sx={{ color: "white" }}>
@@ -27,6 +32,19 @@ const Signin = () => {
         </IconButton>
       </InputAdornment>
     );
+  };
+
+  const handleSignIn = () => {
+    Api.post("/login/", {
+      username,
+      password,
+    })
+      .then((response) => {
+        console.log(response.data.user);
+      })
+      .catch((error) => {
+        console.log(error.response.data.msg);
+      });
   };
   return (
     <Box
@@ -59,11 +77,15 @@ const Signin = () => {
                 variant="h5"
                 sx={{
                   color: "white",
-                  mx: 2,
+                  m: 2,
                   fontWeight: "bold",
                 }}
                 display={{ md: "none", lg: "block" }}
               >
+                <i
+                  className="fa-regular fa-square"
+                  style={{ color: "#ffffff", marginRight: "1%" }}
+                ></i>{" "}
                 CoderDost
               </Typography>
             </Box>
@@ -81,6 +103,10 @@ const Signin = () => {
                   }}
                   display={{ sm: "block", md: "none" }}
                 >
+                  <i
+                    className="fa-regular fa-square"
+                    style={{ color: "#01ab81", marginRight: "1%" }}
+                  ></i>
                   CoderDost
                 </Typography>
                 <Typography
@@ -98,7 +124,7 @@ const Signin = () => {
                   <Grid item xs={12}>
                     <TextField
                       id="filled-basic"
-                      label="Email address or Username"
+                      label="Enter Username"
                       variant="filled"
                       fullWidth
                       sx={{
@@ -124,14 +150,16 @@ const Signin = () => {
                       InputProps={{
                         style: { color: "white" },
                       }}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
                       id="filled-basic"
-                      label="Password"
+                      label="Enter Password"
                       variant="filled"
-                      type={!visible ? "text" : "password"}
+                      type={!visible ? "password" : "text"}
                       fullWidth
                       sx={{
                         ":hover": {
@@ -162,6 +190,8 @@ const Signin = () => {
                           />
                         ),
                       }}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </Grid>
 
@@ -177,6 +207,7 @@ const Signin = () => {
                           backgroundColor: "#007d5e",
                         },
                       }}
+                      onClick={handleSignIn}
                     >
                       Sign in
                     </Button>

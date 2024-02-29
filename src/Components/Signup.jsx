@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../assets/signup.css";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Textfield from "./Textfield";
-import axios from "axios";
+import Api from "../Utils/api";
 
 const Signup = () => {
   const [err, setErr] = useState(null);
@@ -16,6 +16,7 @@ const Signup = () => {
     con_password: "",
   });
 
+  console.log(user);
   const handleInputs = (e) => {
     const { name, value } = e.target;
 
@@ -29,8 +30,7 @@ const Signup = () => {
     if (user.password !== user.con_password)
       return setErr("password should match");
 
-    axios
-      .post("http://192.168.29.56:3000/register/", user)
+    Api.post("/register/", user)
       .then((response) => {
         console.log("Response from API:", response.data);
       })
@@ -71,13 +71,31 @@ const Signup = () => {
                 variant="h5"
                 sx={{
                   color: "white",
-                  mx: 2,
                   fontWeight: "bold",
+                  m: 2,
                 }}
                 display={{ md: "none", lg: "block" }}
               >
+                <i
+                  className="fa-regular fa-square"
+                  style={{ color: "#ffffff", marginRight: "1%" }}
+                ></i>
                 CoderDost
               </Typography>
+              <Grid
+                container
+                justifyContent={"center"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                mt={10}
+              >
+                <Typography sx={{ color: "white", fontSize: "1.2rem" }}>
+                  Latest Realease
+                </Typography>
+                <Typography sx={{ color: "#ddd", fontSize: "0.9em" }}>
+                  Explore latest additional features
+                </Typography>
+              </Grid>
             </Box>
           </Box>
         </Grid>
@@ -93,6 +111,10 @@ const Signup = () => {
                   }}
                   display={{ sm: "block", md: "none" }}
                 >
+                  <i
+                    className="fa-regular fa-square"
+                    style={{ color: "#01ab81", marginRight: "1%" }}
+                  ></i>{" "}
                   CoderDost
                 </Typography>
                 <Typography
