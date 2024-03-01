@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "http://192.168.29.56:3000",
+  baseURL: "https://idemedia-production.up.railway.app",
   withCredentials: true,
 });
 
