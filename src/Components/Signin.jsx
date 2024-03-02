@@ -8,17 +8,21 @@ import {
   InputAdornment,
   TextField,
   Typography,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Api from "../Utils/api";
 
 const Signin = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [err, setErr] = useState(null);
+  const navigate = useNavigate();
 
   const EndAdorment = ({ visible, setVisible }) => {
     return (
@@ -35,15 +39,20 @@ const Signin = () => {
   };
 
   const handleSignIn = () => {
-    Api.post("/login/", {
+    setIsLoading(true);
+    setErr(null);
+    Api.post("/auth/login/", {
       username,
       password,
     })
       .then((response) => {
-        console.log(response.data.user);
+        navigate("/");
+        console.log(response);
       })
-      .catch((error) => {
-        console.log(error.response.data.msg);
+      .catch((err) => {
+        console.log(err.response);
+        setErr(err.response.data.msg);
+        setIsLoading(false);
       });
   };
   return (
@@ -199,18 +208,32 @@ const Signin = () => {
                     <Button
                       variant="contained"
                       fullWidth
+                      disabled={isLoading}
                       sx={{
-                        mt: 2,
+                        my: 2,
                         p: 1,
+
                         backgroundColor: "#01ab81",
                         "&:hover": {
+                          backgroundColor: "#007d5e",
+                        },
+                        "&:disabled": {
                           backgroundColor: "#007d5e",
                         },
                       }}
                       onClick={handleSignIn}
                     >
-                      Sign in
+                      {isLoading ? (
+                        <CircularProgress sx={{ color: "white" }} />
+                      ) : (
+                        "Sign in"
+                      )}
                     </Button>
+                    {err && (
+                      <Alert variant="filled" severity="error">
+                        {err}
+                      </Alert>
+                    )}
                   </Grid>
                   <Grid item xs={12}>
                     <Button
@@ -231,6 +254,7 @@ const Signin = () => {
                       ></i>
                     </Button>
                   </Grid>
+
                   <Grid item xs={12}>
                     <Button
                       variant="contained"

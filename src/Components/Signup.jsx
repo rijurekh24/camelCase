@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import "../assets/signup.css";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Textfield from "./Textfield";
 import Api from "../Utils/api";
+import { LoadingButton } from "@mui/lab";
 
 const Signup = () => {
-  const [err, setErr] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState({
+    first_name_err: "",
+    last_name_err: "",
+    username_err: "",
+    email_err: "",
+    password_err: "",
+    con_password_err: "",
+  });
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -16,30 +25,106 @@ const Signup = () => {
     con_password: "",
   });
 
-  console.log(user);
+  function checkValidPassword(obj) {
+    if (
+      obj.includes("@") ||
+      obj.includes("!") ||
+      obj.includes("#") ||
+      obj.includes("&") ||
+      obj.includes("*") ||
+      obj.includes(")") ||
+      obj.includes("_") ||
+      obj.includes("-") ||
+      obj.includes("+") ||
+      obj.includes("=") ||
+      obj.includes("/") ||
+      obj.includes(".") ||
+      obj.includes("^") ||
+      obj.includes("(")
+    )
+      return false;
+
+    return true;
+  }
   const handleInputs = (e) => {
     const { name, value } = e.target;
+    if (user.first_name !== null)
+      setErr((prev) => ({ ...prev, first_name_err: null }));
 
-    if (name == "con_password") setErr(null);
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (user.password !== user.con_password)
-      return setErr("password should match");
+    setIsLoading(true);
+    if (user.first_name.length === 0) {
+      setErr((prev) => ({
+        ...prev,
+        first_name_err: "first name is required",
+      }));
+    }
+    if (user.last_name.length === 0) {
+      setErr((prev) => ({
+        ...prev,
+        last_name_err: "last name is required",
+      }));
+    }
 
-    Api.post("/register/", user)
+    if (user.email.length === 0) {
+      setErr((prev) => ({
+        ...prev,
+        email_err: "email is required",
+      }));
+    }
+    if (user.password.length === 0) {
+      setErr((prev) => ({
+        ...prev,
+        password_err: "password is required",
+      }));
+    }
+
+    if (user.con_password.length === 0) {
+      setErr((prev) => ({
+        ...prev,
+        con_password_err: "cannot be empty",
+      }));
+    }
+
+    if (user.username.length < 6) {
+      setErr((prev) => ({
+        ...prev,
+        username_err: "username must have atleast 6 characters",
+      }));
+    }
+
+    if (user.password.length < 8)
+      setErr((prev) => ({
+        ...prev,
+        password_err: "length should be minimum 8",
+      }));
+    if (user.password.length !== 0 && checkValidPassword(user.password))
+      setErr((prev) => ({
+        ...prev,
+        password_err: "password is not strong",
+      }));
+
+    if (user.con_password.length !== 0 && user.password !== user.con_password)
+      setErr((prev) => ({
+        ...prev,
+        con_password_err: "password is not matching",
+      }));
+
+    Api.post("/auth/register/", user)
       .then((response) => {
         console.log("Response from API:", response.data);
       })
       .catch((error) => {
         console.error("Error:", error.response);
+        setIsLoading(false);
       });
   };
 
-  console.log(err);
   return (
     <Box
       className="signupPage"
@@ -71,8 +156,8 @@ const Signup = () => {
                 variant="h5"
                 sx={{
                   color: "white",
-                  fontWeight: "bold",
                   m: 2,
+                  fontWeight: "bold",
                 }}
                 display={{ md: "none", lg: "block" }}
               >
@@ -113,8 +198,8 @@ const Signup = () => {
                 >
                   <i
                     className="fa-regular fa-square"
-                    style={{ color: "#01ab81", marginRight: "1%" }}
-                  ></i>{" "}
+                    style={{ color: "#ffffff", marginRight: "1%" }}
+                  ></i>
                   CoderDost
                 </Typography>
                 <Typography
@@ -134,6 +219,8 @@ const Signup = () => {
                       label={"First name"}
                       name="first_name"
                       handleChange={handleInputs}
+                      err={!!err.first_name_err}
+                      helperTxt={err.first_name_err}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -141,6 +228,8 @@ const Signup = () => {
                       label={"Last name"}
                       name="last_name"
                       handleChange={handleInputs}
+                      err={!!err.last_name_err}
+                      helperTxt={err.last_name_err}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -148,6 +237,8 @@ const Signup = () => {
                       label={"Username"}
                       name="username"
                       handleChange={handleInputs}
+                      err={!!err.username_err}
+                      helperTxt={err.username_err}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -155,6 +246,8 @@ const Signup = () => {
                       label={"Email address"}
                       name="email"
                       handleChange={handleInputs}
+                      err={!!err.email_err}
+                      helperTxt={err.email_err}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -162,6 +255,8 @@ const Signup = () => {
                       label={"Password"}
                       name="password"
                       handleChange={handleInputs}
+                      err={!!err.password_err}
+                      helperTxt={err.password_err}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -169,14 +264,15 @@ const Signup = () => {
                       label={"Confirm Password"}
                       name="con_password"
                       handleChange={handleInputs}
-                      err={err != null}
-                      helperTxt={err}
+                      err={!!err.con_password_err}
+                      helperTxt={err.con_password_err}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
                       fullWidth
+                      disabled={isLoading}
                       sx={{
                         mt: 2,
                         p: 1,
@@ -184,10 +280,17 @@ const Signup = () => {
                         "&:hover": {
                           backgroundColor: "#007d5e",
                         },
+                        "&:disabled": {
+                          backgroundColor: "#007d5e",
+                        },
                       }}
                       onClick={handleClick}
                     >
-                      Sign Up
+                      {isLoading ? (
+                        <CircularProgress sx={{ color: "white" }} />
+                      ) : (
+                        "Sign up"
+                      )}
                     </Button>
                   </Grid>
                   <Grid item xs={12}>

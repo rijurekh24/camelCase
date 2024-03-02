@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://idemedia-production.up.railway.app",
+  baseURL: "https://camelcase.up.railway.app/api",
   withCredentials: true,
 });
 

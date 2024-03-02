@@ -10,15 +10,19 @@ import {
 } from "react-router-dom";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
+import Api from "./Utils/api";
 
 const AuthView = () => {
   const [auth, setAuth] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!auth) {
-      navigate("/signin");
-    }
+    Api.get("/auth/accounts/me/").then((res) => {
+      console.log(res.data);
+    });
+    // if (!auth) {
+    //   navigate("/signin");
+    // }
   }, []);
 
   return <Outlet />;
