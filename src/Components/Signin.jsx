@@ -94,7 +94,7 @@ const Signin = () => {
                 <i
                   className="fa-regular fa-square"
                   style={{ color: "#ffffff", marginRight: "1%" }}
-                ></i>{" "}
+                ></i>
                 CoderDost
               </Typography>
             </Box>
