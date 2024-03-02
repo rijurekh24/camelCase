@@ -47,10 +47,8 @@ const Signin = () => {
     })
       .then((response) => {
         navigate("/");
-        console.log(response);
       })
       .catch((err) => {
-        console.log(err.response);
         setErr(err.response.data.msg);
         setIsLoading(false);
       });
@@ -137,20 +135,11 @@ const Signin = () => {
                       variant="filled"
                       fullWidth
                       sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
+                        ":hover": {},
                         borderRadius: 1,
                         bgcolor: "#232323",
                         "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
+                          borderBottomColor: "#01ab81",
                         },
                       }}
                       InputLabelProps={{
@@ -171,20 +160,11 @@ const Signin = () => {
                       type={!visible ? "password" : "text"}
                       fullWidth
                       sx={{
-                        ":hover": {
-                          border: 0,
-                          outline: 0,
-                        },
+                        ":hover": {},
                         borderRadius: 1,
                         bgcolor: "#232323",
                         "& .MuiFilledInput-underline:after": {
-                          border: 0,
-                          borderBottomColor: "red",
-                        },
-
-                        "&:hover .MuiFilledInput-underline:before": {
-                          border: 0,
-                          borderColor: "transparent",
+                          borderBottomColor: "#01ab81",
                         },
                       }}
                       InputLabelProps={{

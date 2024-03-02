@@ -29,7 +29,6 @@ const AuthView = () => {
       })
       .finally(() => {
         setloading(false);
-        console.log("riju");
       });
   }, []);
 

@@ -198,7 +198,7 @@ const Signup = () => {
                 >
                   <i
                     className="fa-regular fa-square"
-                    style={{ color: "#ffffff", marginRight: "1%" }}
+                    style={{ color: "#01ab81", marginRight: "1%" }}
                   ></i>
                   CoderDost
                 </Typography>
