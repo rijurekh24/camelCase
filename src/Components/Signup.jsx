@@ -287,7 +287,10 @@ const Signup = () => {
                       onClick={handleClick}
                     >
                       {isLoading ? (
-                        <CircularProgress sx={{ color: "white" }} />
+                        <CircularProgress
+                          size={"2em"}
+                          sx={{ color: "white" }}
+                        />
                       ) : (
                         "Sign up"
                       )}

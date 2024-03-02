@@ -49,6 +49,8 @@ const Signin = () => {
         navigate("/");
       })
       .catch((err) => {
+        setUsername("");
+        setPassword("");
         setErr(err.response.data.msg);
         setIsLoading(false);
       });
@@ -134,6 +136,7 @@ const Signin = () => {
                       label="Enter Username"
                       variant="filled"
                       fullWidth
+                      required
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -159,6 +162,7 @@ const Signin = () => {
                       variant="filled"
                       type={!visible ? "password" : "text"}
                       fullWidth
+                      required
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -204,13 +208,16 @@ const Signin = () => {
                       onClick={handleSignIn}
                     >
                       {isLoading ? (
-                        <CircularProgress sx={{ color: "white" }} />
+                        <CircularProgress
+                          size={"2em"}
+                          sx={{ color: "white" }}
+                        />
                       ) : (
                         "Sign in"
                       )}
                     </Button>
                     {err && (
-                      <Alert variant="filled" severity="error">
+                      <Alert variant="standard" severity="error">
                         {err}
                       </Alert>
                     )}
