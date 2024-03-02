@@ -1,31 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Home from "./Components/Home";
 import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
   Outlet,
   useNavigate,
 } from "react-router-dom";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
 import Api from "./Utils/api";
+import { Box } from "@mui/system";
+import LoadingPage from "./Components/LoadingPage";
+import { authContext } from "./Context/AuthContext";
 
 const AuthView = () => {
-  const [auth, setAuth] = useState(false);
+  const ctx = useContext(authContext);
+  const [loading, setloading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    Api.get("/auth/accounts/me/").then((res) => {
-      console.log(res.data);
-    });
-    // if (!auth) {
-    //   navigate("/signin");
-    // }
+    Api.get("/auth/accounts/me/")
+      .then((res) => {
+        ctx.setUser(res.data.user);
+        // console.log(res.data);
+      })
+      .catch(() => {
+        navigate("/signin");
+      })
+      .finally(() => {
+        setloading(false);
+      });
   }, []);
 
-  return <Outlet />;
+  return loading ? (
+    <Box>
+      <LoadingPage />
+    </Box>
+  ) : (
+    <Outlet />
+  );
 };
 
 const App = () => {
