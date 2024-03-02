@@ -23,7 +23,6 @@ const AuthView = () => {
     Api.get("/auth/accounts/me/")
       .then((res) => {
         ctx.setUser(res.data.user);
-        // console.log(res.data);
       })
       .catch(() => {
         navigate("/signin");
