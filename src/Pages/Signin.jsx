@@ -193,7 +193,7 @@ const Signin = () => {
                       label="Enter Username"
                       variant="filled"
                       fullWidth
-                      autoComplete="off"
+                      autoComplete
                       name="username"
                       onChange={handleInputs}
                       error={!!errors.username}
