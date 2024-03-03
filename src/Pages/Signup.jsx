@@ -4,6 +4,7 @@ import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Textfield from "../Components/Textfield";
 import Api from "../Utils/api";
+import validator from "validator";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -91,6 +92,14 @@ const Signup = () => {
       setErrors((prev) => ({
         ...prev,
         con_password: "Passwords do not match.",
+      }));
+      hasErrors = true;
+    }
+
+    if (!validator.isEmail(user.email)) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "email is not valid",
       }));
       hasErrors = true;
     }
