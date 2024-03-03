@@ -138,7 +138,7 @@ const Signin = () => {
                   className="fa-regular fa-square"
                   style={{ color: "#ffffff", marginRight: "1%" }}
                 ></i>
-                CoderDost
+                camelCase
               </Typography>
               <Grid
                 container
@@ -173,7 +173,7 @@ const Signin = () => {
                     className="fa-regular fa-square"
                     style={{ color: "#01ab81", marginRight: "1%" }}
                   ></i>
-                  CoderDost
+                  camelCase
                 </Typography>
                 <Typography
                   variant="h5"

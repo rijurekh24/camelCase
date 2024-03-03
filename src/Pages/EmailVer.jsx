@@ -77,7 +77,7 @@ const EmailVer = () => {
               className="fa-regular fa-square"
               style={{ color: "#01ab81", marginRight: "2%" }}
             ></i>
-            CoderDost
+            camelCase
           </Typography>
 
           <Typography
