@@ -145,7 +145,6 @@ const Signup = () => {
 
   return (
     <Box
-      className="signupPage"
       sx={{
         backgroundColor: "#181818",
         minHeight: " 100vh",

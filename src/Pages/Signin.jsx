@@ -92,7 +92,6 @@ const Signin = () => {
   };
   return (
     <Box
-      className="signupPage"
       style={{
         backgroundColor: "#181818",
         minHeight: " 100vh",
@@ -132,6 +131,20 @@ const Signin = () => {
                 ></i>
                 CoderDost
               </Typography>
+              <Grid
+                container
+                justifyContent={"center"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                mt={10}
+              >
+                <Typography sx={{ color: "white", fontSize: "1.2rem" }}>
+                  Latest Realease
+                </Typography>
+                <Typography sx={{ color: "#ddd", fontSize: "0.9em" }}>
+                  Explore latest additional features
+                </Typography>
+              </Grid>
             </Box>
           </Box>
         </Grid>
