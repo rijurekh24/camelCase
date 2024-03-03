@@ -11,6 +11,7 @@ const Textfield = (props) => {
       helperText={props.helperTxt}
       onChange={(e) => props.handleChange(e)}
       variant="filled"
+      autoComplete="off"
       fullWidth
       sx={{
         ":hover": {},

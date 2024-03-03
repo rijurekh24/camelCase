@@ -84,6 +84,7 @@ const Signin = () => {
     Api.post("/auth/login/", user)
       .then((response) => {
         navigate("/");
+        setIsLoading(false);
       })
       .catch((err) => {
         setErr(err.response.data.msg);
@@ -184,6 +185,11 @@ const Signin = () => {
                       label="Enter Username"
                       variant="filled"
                       fullWidth
+                      autoComplete="off"
+                      name="username"
+                      onChange={handleInputs}
+                      error={!!errors.username}
+                      helperText={errors.username}
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -198,10 +204,6 @@ const Signin = () => {
                       InputProps={{
                         style: { color: "white" },
                       }}
-                      name="username"
-                      onChange={handleInputs}
-                      error={!!errors.username}
-                      helperText={errors.username}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -209,8 +211,13 @@ const Signin = () => {
                       id="filled-basic"
                       label="Enter Password"
                       variant="filled"
+                      autoComplete="off"
                       type={!visible ? "password" : "text"}
                       fullWidth
+                      name="password"
+                      onChange={handleInputs}
+                      error={!!errors.password}
+                      helperText={errors.password}
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -231,10 +238,6 @@ const Signin = () => {
                           />
                         ),
                       }}
-                      name="password"
-                      onChange={handleInputs}
-                      error={!!errors.password}
-                      helperText={errors.password}
                     />
                     <Link
                       to=""
