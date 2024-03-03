@@ -95,7 +95,7 @@ const Signup = () => {
 
     Api.post("/auth/register/", user)
       .then((response) => {
-        console.log("Response from API:", response.data);
+        // console.log("Response from API:", response.data);
         if (response.data && response.data.msg === "username already exists") {
           setErrors((prev) => ({
             ...prev,
@@ -109,7 +109,6 @@ const Signup = () => {
         setIsLoading(false);
       });
   };
-  console.log(errors);
 
   return (
     <Box
