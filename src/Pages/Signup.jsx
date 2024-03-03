@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../assets/signup.css";
 import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Textfield from "../Components/Textfield";
 import Api from "../Utils/api";
 import validator from "validator";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({
     first_name: "",
     last_name: "",
@@ -112,7 +112,8 @@ const Signup = () => {
 
     Api.post("/auth/register/", user)
       .then((response) => {
-        //console.log("Response from API:", response.data);
+        console.log("Response from API:", response.data);
+        navigate(`/emailverification?email=${user.email}`);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -166,7 +167,7 @@ const Signup = () => {
                 width: "97%",
                 background: "linear-gradient(135deg, #01ab81, #104f3f)",
                 height: "97vh",
-                borderRadius: "15px",
+                borderRadius: "10px",
               }}
             >
               <Typography
@@ -313,7 +314,7 @@ const Signup = () => {
                       )}
                     </Button>
                   </Grid>
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <Button
                       variant="contained"
                       fullWidth
@@ -331,7 +332,7 @@ const Signup = () => {
                         style={{ marginLeft: "4%" }}
                       ></i>
                     </Button>
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12}>
                     <Button
                       variant="contained"

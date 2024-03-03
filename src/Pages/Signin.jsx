@@ -88,6 +88,13 @@ const Signin = () => {
       })
       .catch((err) => {
         console.log(err.response);
+        if (
+          err.response &&
+          err.response.data &&
+          err.response.data.msg === "email not verified"
+        ) {
+          navigate(`/emailverification?email=${err.response.data.email}`);
+        }
         setErr(err.response.data.msg);
         setIsLoading(false);
       });
@@ -115,7 +122,7 @@ const Signin = () => {
                 width: "97%",
                 background: "linear-gradient(135deg, #01ab81, #104f3f)",
                 height: "97vh",
-                borderRadius: "15px",
+                borderRadius: "10px",
               }}
             >
               <Typography
@@ -287,7 +294,7 @@ const Signin = () => {
                       </Alert>
                     )}
                   </Grid>
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <Button
                       variant="contained"
                       fullWidth
@@ -305,7 +312,7 @@ const Signin = () => {
                         style={{ marginLeft: "4%" }}
                       ></i>
                     </Button>
-                  </Grid>
+                  </Grid> */}
 
                   <Grid item xs={12}>
                     <Button

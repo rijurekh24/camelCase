@@ -13,6 +13,7 @@ import Api from "./Utils/api";
 import { Box } from "@mui/system";
 import LoadingPage from "./Components/LoadingPage";
 import { authContext } from "./Context/AuthContext";
+import EmailVer from "./Pages/EmailVer";
 
 const AuthView = () => {
   const ctx = useContext(authContext);
@@ -57,6 +58,7 @@ const App = () => {
         </Route>
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="emailverification" element={<EmailVer />} />
       </Routes>
     </BrowserRouter>
   );
