@@ -21,11 +21,11 @@ const EmailVer = () => {
     setIsDisabled(true);
     Api.post("/auth/accounts/activation/", { email: userEmail })
       .then((res) => {
-        console.log("success");
+        // console.log("success");
         handleOpenSnackbar();
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       });
   };
 
