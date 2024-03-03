@@ -96,7 +96,7 @@ const Signup = () => {
       hasErrors = true;
     }
 
-    if (!validator.isEmail(user.email)) {
+    if (user.email && !validator.isEmail(user.email)) {
       setErrors((prev) => ({
         ...prev,
         email: "email is not valid",
