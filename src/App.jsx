@@ -42,16 +42,29 @@ const AuthView = () => {
 };
 
 const App = () => {
+  const [loader, setLoader] = useState(false);
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AuthView />}>
-          <Route element={<Home />} index />
-        </Route>
-        <Route path="signin" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      {loader ? (
+        <LoadingPage />
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AuthView />}>
+              <Route element={<Home />} index />
+            </Route>
+            <Route path="signin" element={<Signin />} />
+            <Route path="signup" element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </div>
   );
 };
 

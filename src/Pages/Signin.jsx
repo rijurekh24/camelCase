@@ -204,6 +204,7 @@ const Signin = () => {
                       }}
                       InputProps={{
                         style: { color: "white" },
+                        disableUnderline: true,
                       }}
                     />
                   </Grid>
@@ -232,6 +233,7 @@ const Signin = () => {
                       }}
                       InputProps={{
                         style: { color: "white" },
+                        disableUnderline: true,
                         endAdornment: (
                           <EndAdorment
                             visible={visible}
