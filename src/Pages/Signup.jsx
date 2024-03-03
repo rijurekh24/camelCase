@@ -95,17 +95,33 @@ const Signup = () => {
 
     Api.post("/auth/register/", user)
       .then((response) => {
-        // console.log("Response from API:", response.data);
-        if (response.data && response.data.msg === "username already exists") {
+        //console.log("Response from API:", response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        //console.log(error.response.data);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.msg === "username already exists"
+        ) {
           setErrors((prev) => ({
             ...prev,
             username: "Username already exists.",
           }));
         }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error.response);
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.msg === "email already exists"
+        ) {
+          setErrors((prev) => ({
+            ...prev,
+            email: "Email already exists.",
+          }));
+        }
+
         setIsLoading(false);
       });
   };
