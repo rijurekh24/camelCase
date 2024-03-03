@@ -73,8 +73,16 @@ const Signup = () => {
     if (user.password && !passwordCheck.test(user.password)) {
       setErrors((prev) => ({
         ...prev,
-        password:
-          "Password must contain at least one uppercase letter, one lowercase letter, one special character, and have a minimum length of 8 characters.",
+        password: (
+          <ul>
+            <li>Password must contain at least one uppercase letter (A-Z)</li>
+            <li>Password must contain at least one lowercase letter (a-z)</li>
+            <li>
+              Password must contain at least one special character (@$!%*?&)
+            </li>
+            <li>Minimum length should be 8</li>
+          </ul>
+        ),
       }));
       hasErrors = true;
     }
@@ -187,7 +195,7 @@ const Signup = () => {
         </Grid>
         <Grid item xs={12} lg={6} md={6} py={4}>
           <Grid container justifyContent={"center"} alignItems={"center"}>
-            <Grid item md={6} xs={10}>
+            <Grid item md={9} xs={10}>
               <Box>
                 <Typography
                   variant="h5"

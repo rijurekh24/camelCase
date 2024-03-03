@@ -19,10 +19,17 @@ import Api from "../Utils/api";
 const Signin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
   const EndAdorment = ({ visible, setVisible }) => {
     return (
@@ -38,19 +45,47 @@ const Signin = () => {
     );
   };
 
-  const handleSignIn = () => {
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    setErrors({
+      username: "",
+      password: "",
+    });
+
+    let hasErrors = false;
+
+    const requiredFields = ["username", "password"];
+    requiredFields.forEach((textField) => {
+      if (!user[textField]) {
+        setErrors((prev) => ({
+          ...prev,
+          [textField]: "This field is required.",
+        }));
+        hasErrors = true;
+      }
+    });
+
+    if (hasErrors) {
+      return;
+    }
     setIsLoading(true);
     setErr(null);
-    Api.post("/auth/login/", {
-      username,
-      password,
-    })
+    Api.post("/auth/login/", user)
       .then((response) => {
         navigate("/");
       })
       .catch((err) => {
-        setUsername("");
-        setPassword("");
         setErr(err.response.data.msg);
         setIsLoading(false);
       });
@@ -102,7 +137,7 @@ const Signin = () => {
         </Grid>
         <Grid item xs={12} lg={6} md={6} py={4}>
           <Grid container justifyContent={"center"} alignItems={"center"}>
-            <Grid item xs={10} md={6}>
+            <Grid item xs={10} md={7}>
               <Box>
                 <Typography
                   variant="h5"
@@ -136,7 +171,6 @@ const Signin = () => {
                       label="Enter Username"
                       variant="filled"
                       fullWidth
-                      required
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -151,8 +185,10 @@ const Signin = () => {
                       InputProps={{
                         style: { color: "white" },
                       }}
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      name="username"
+                      onChange={handleInputs}
+                      error={!!errors.username}
+                      helperText={errors.username}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -162,7 +198,6 @@ const Signin = () => {
                       variant="filled"
                       type={!visible ? "password" : "text"}
                       fullWidth
-                      required
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
@@ -183,18 +218,29 @@ const Signin = () => {
                           />
                         ),
                       }}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      name="password"
+                      onChange={handleInputs}
+                      error={!!errors.password}
+                      helperText={errors.password}
                     />
+                    <Link
+                      to=""
+                      style={{
+                        color: "#01ab81",
+                        cursor: "pointer",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <Typography mt={1}>Forget Password?</Typography>
+                    </Link>
                   </Grid>
-
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
                       fullWidth
                       disabled={isLoading}
                       sx={{
-                        my: 2,
+                        mt: 1,
                         p: 1,
 
                         backgroundColor: "#01ab81",
@@ -217,7 +263,7 @@ const Signin = () => {
                       )}
                     </Button>
                     {err && (
-                      <Alert variant="standard" severity="error">
+                      <Alert variant="standard" severity="error" sx={{ mt: 1 }}>
                         {err}
                       </Alert>
                     )}
