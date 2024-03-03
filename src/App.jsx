@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Home from "./Components/Home";
+import Home from "./Pages/Home";
+import Signin from "./Pages/Signin";
+import Signup from "./Pages/Signup";
 import {
   BrowserRouter,
   Routes,
@@ -7,8 +9,6 @@ import {
   Outlet,
   useNavigate,
 } from "react-router-dom";
-import Signin from "./Components/Signin";
-import Signup from "./Components/Signup";
 import Api from "./Utils/api";
 import { Box } from "@mui/system";
 import LoadingPage from "./Components/LoadingPage";

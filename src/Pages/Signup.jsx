@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import "../assets/signup.css";
 import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import Textfield from "./Textfield";
+import Textfield from "../Components/Textfield";
 import Api from "../Utils/api";
-import { LoadingButton } from "@mui/lab";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState({
-    first_name_err: "",
-    last_name_err: "",
-    username_err: "",
-    email_err: "",
-    password_err: "",
-    con_password_err: "",
+
+  const [errors, setErrors] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+    con_password: "",
   });
+
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -25,105 +26,90 @@ const Signup = () => {
     con_password: "",
   });
 
-  function checkValidPassword(obj) {
-    if (
-      obj.includes("@") ||
-      obj.includes("!") ||
-      obj.includes("#") ||
-      obj.includes("&") ||
-      obj.includes("*") ||
-      obj.includes(")") ||
-      obj.includes("_") ||
-      obj.includes("-") ||
-      obj.includes("+") ||
-      obj.includes("=") ||
-      obj.includes("/") ||
-      obj.includes(".") ||
-      obj.includes("^") ||
-      obj.includes("(")
-    )
-      return false;
-
-    return true;
-  }
   const handleInputs = (e) => {
     const { name, value } = e.target;
-    if (user.first_name !== null)
-      setErr((prev) => ({ ...prev, first_name_err: null }));
-
     setUser((prev) => ({ ...prev, [name]: value }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
   };
 
   const handleClick = (e) => {
     e.preventDefault();
 
+    setErrors({
+      first_name: "",
+      last_name: "",
+      username: "",
+      email: "",
+      password: "",
+      con_password: "",
+    });
+
+    let hasErrors = false;
+
+    const requiredFields = [
+      "first_name",
+      "last_name",
+      "username",
+      "email",
+      "password",
+      "con_password",
+    ];
+    requiredFields.forEach((textField) => {
+      if (!user[textField]) {
+        setErrors((prev) => ({
+          ...prev,
+          [textField]: "This field is required.",
+        }));
+        hasErrors = true;
+      }
+    });
+
+    const passwordCheck =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (user.password && !passwordCheck.test(user.password)) {
+      setErrors((prev) => ({
+        ...prev,
+        password:
+          "Password must contain at least one uppercase letter, one lowercase letter, one special character, and have a minimum length of 8 characters.",
+      }));
+      hasErrors = true;
+    }
+
+    if (user.password !== user.con_password) {
+      setErrors((prev) => ({
+        ...prev,
+        con_password: "Passwords do not match.",
+      }));
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      return;
+    }
+
     setIsLoading(true);
-    if (user.first_name.length === 0) {
-      setErr((prev) => ({
-        ...prev,
-        first_name_err: "first name is required",
-      }));
-    }
-    if (user.last_name.length === 0) {
-      setErr((prev) => ({
-        ...prev,
-        last_name_err: "last name is required",
-      }));
-    }
-
-    if (user.email.length === 0) {
-      setErr((prev) => ({
-        ...prev,
-        email_err: "email is required",
-      }));
-    }
-    if (user.password.length === 0) {
-      setErr((prev) => ({
-        ...prev,
-        password_err: "password is required",
-      }));
-    }
-
-    if (user.con_password.length === 0) {
-      setErr((prev) => ({
-        ...prev,
-        con_password_err: "cannot be empty",
-      }));
-    }
-
-    if (user.username.length < 6) {
-      setErr((prev) => ({
-        ...prev,
-        username_err: "username must have atleast 6 characters",
-      }));
-    }
-
-    if (user.password.length < 8)
-      setErr((prev) => ({
-        ...prev,
-        password_err: "length should be minimum 8",
-      }));
-    if (user.password.length !== 0 && checkValidPassword(user.password))
-      setErr((prev) => ({
-        ...prev,
-        password_err: "password is not strong",
-      }));
-
-    if (user.con_password.length !== 0 && user.password !== user.con_password)
-      setErr((prev) => ({
-        ...prev,
-        con_password_err: "password is not matching",
-      }));
 
     Api.post("/auth/register/", user)
       .then((response) => {
         console.log("Response from API:", response.data);
+        if (response.data && response.data.msg === "username already exists") {
+          setErrors((prev) => ({
+            ...prev,
+            username: "Username already exists.",
+          }));
+        }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error.response);
         setIsLoading(false);
       });
   };
+  console.log(errors);
 
   return (
     <Box
@@ -219,8 +205,8 @@ const Signup = () => {
                       label={"First name"}
                       name="first_name"
                       handleChange={handleInputs}
-                      err={!!err.first_name_err}
-                      helperTxt={err.first_name_err}
+                      err={!!errors.first_name}
+                      helperTxt={errors.first_name}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -228,8 +214,8 @@ const Signup = () => {
                       label={"Last name"}
                       name="last_name"
                       handleChange={handleInputs}
-                      err={!!err.last_name_err}
-                      helperTxt={err.last_name_err}
+                      err={!!errors.last_name}
+                      helperTxt={errors.last_name}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -237,8 +223,8 @@ const Signup = () => {
                       label={"Username"}
                       name="username"
                       handleChange={handleInputs}
-                      err={!!err.username_err}
-                      helperTxt={err.username_err}
+                      err={!!errors.username}
+                      helperTxt={errors.username}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -246,8 +232,8 @@ const Signup = () => {
                       label={"Email address"}
                       name="email"
                       handleChange={handleInputs}
-                      err={!!err.email_err}
-                      helperTxt={err.email_err}
+                      err={!!errors.email}
+                      helperTxt={errors.email}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -255,8 +241,8 @@ const Signup = () => {
                       label={"Password"}
                       name="password"
                       handleChange={handleInputs}
-                      err={!!err.password_err}
-                      helperTxt={err.password_err}
+                      err={!!errors.password}
+                      helperTxt={errors.password}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -264,8 +250,8 @@ const Signup = () => {
                       label={"Confirm Password"}
                       name="con_password"
                       handleChange={handleInputs}
-                      err={!!err.con_password_err}
-                      helperTxt={err.con_password_err}
+                      err={!!errors.con_password}
+                      helperTxt={errors.con_password}
                     />
                   </Grid>
                   <Grid item xs={12}>
