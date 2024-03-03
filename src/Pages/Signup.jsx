@@ -112,7 +112,7 @@ const Signup = () => {
 
     Api.post("/auth/register/", user)
       .then((response) => {
-        console.log("Response from API:", response.data);
+        //console.log("Response from API:", response.data);
         navigate(`/emailverification?email=${user.email}`);
         setIsLoading(false);
       })
