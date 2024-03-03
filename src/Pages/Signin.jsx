@@ -87,6 +87,7 @@ const Signin = () => {
         setIsLoading(false);
       })
       .catch((err) => {
+        console.log(err.response);
         setErr(err.response.data.msg);
         setIsLoading(false);
       });
