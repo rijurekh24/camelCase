@@ -18,7 +18,7 @@ const Home = () => {
             <Grid item lg={2}>
               <SideBar />
             </Grid>
-            <Grid item xs={11} md={8}>
+            <Grid item xs={12} md={8}>
               <Feed />
             </Grid>
             <Grid item lg={2}>
