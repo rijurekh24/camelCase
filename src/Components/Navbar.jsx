@@ -19,18 +19,21 @@ const Navbar = () => {
         }}
       >
         <Toolbar>
-          <IconButton>
-            <i
-              className="fa-regular fa-square fa-lg"
-              style={{
-                color: "#01ab81",
-              }}
-            ></i>
-          </IconButton>
+          <Box flexGrow={{ xs: 1, md: 0 }}>
+            <IconButton>
+              <i
+                className="fa-regular fa-square fa-lg"
+                style={{
+                  color: "#01ab81",
+                }}
+              ></i>
+            </IconButton>
+          </Box>
           <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, color: "white" }}
+            display={{ xs: "none", md: "block" }}
           >
             camelCase
           </Typography>

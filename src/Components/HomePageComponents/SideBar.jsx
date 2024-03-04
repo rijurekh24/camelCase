@@ -4,6 +4,7 @@ import React from "react";
 const SideBar = () => {
   return (
     <Box
+      display={{ xs: "none", md: "block" }}
       sx={{
         backgroundColor: "#232323",
         flex: 2,
