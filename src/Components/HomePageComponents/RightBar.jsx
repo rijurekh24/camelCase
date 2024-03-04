@@ -1,20 +1,12 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const RightBar = () => {
   return (
-    <Box
-      display={{ xs: "none", md: "block" }}
-      sx={{
-        backgroundColor: "#232323",
-        flex: 2,
-        ml: 1,
-        p: 6,
-        borderRadius: "20px",
-        color: "white",
-      }}
-    >
-      Recent Activity
+    <Box p={2} sx={{ display: { xs: "none", md: "block" } }}>
+      <Box position={"fixed"}>
+        <Typography color={"white"}></Typography>
+      </Box>
     </Box>
   );
 };

@@ -1,22 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
+import ProfileCard from "./ProfileCard";
 
-const SideBar = () => {
+const Sidebar = () => {
   return (
-    <Box
-      display={{ xs: "none", md: "block" }}
-      sx={{
-        backgroundColor: "#232323",
-        flex: 2,
-        mr: 1,
-        p: 6,
-        borderRadius: "20px",
-        color: "white",
-      }}
-    >
-      SideBar
+    <Box p={2} sx={{ display: { xs: "none", md: "block" } }}>
+      <Box position={"fixed"}>{/* <ProfileCard /> */}</Box>
     </Box>
   );
 };
 
-export default SideBar;
+export default Sidebar;

@@ -1,18 +1,22 @@
 import { Box } from "@mui/material";
 import React from "react";
+import Post from "./Post";
+import ProfileCard from "./ProfileCard";
 
 const Feed = () => {
   return (
     <Box
-      sx={{
-        backgroundColor: "#232323",
-        flex: 5,
-        p: 6,
-        borderRadius: "20px",
-        color: "white",
-      }}
+      sx={
+        {
+          // flex: 5,
+        }
+      }
+      px={{ xs: 0, md: 5, lg: 10, xl: 20 }}
     >
-      Feed
+      <Post />
+      <Post />
+      <Post />
+      <Post />
     </Box>
   );
 };
