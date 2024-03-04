@@ -9,11 +9,11 @@ const Navbar = () => {
   const ctx = useContext(authContext);
   const navigate = useNavigate();
   return (
-    <Box sx={{ flexGrow: 1 }} py={2}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
         sx={{
-          background: "#232323",
+          background: "transparent",
           boxShadow: "none",
           borderRadius: "20px",
         }}
