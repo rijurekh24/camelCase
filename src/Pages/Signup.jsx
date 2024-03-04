@@ -346,7 +346,6 @@ const Signup = () => {
                           backgroundColor: "#191919",
                         },
                       }}
-                      onClick={handleClick}
                     >
                       Continue with Github{" "}
                       <i
