@@ -24,7 +24,7 @@ const PostCard = () => {
       sx={{
         zIndex: "-1",
         bgcolor: "#232323",
-        borderRadius: "5px",
+        borderRadius: "25px",
         marginBottom: 2,
       }}
     >

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { authContext } from "../../Context/AuthContext";
 import {
   Card,
   CardHeader,
@@ -12,6 +13,8 @@ import {
 } from "@mui/material";
 
 const ProfileCard = () => {
+  const ctx = useContext(authContext);
+  console.log(ctx);
   return (
     <Card
       sx={{
@@ -112,7 +115,7 @@ const ProfileCard = () => {
               marginTop: "70px",
             }}
           >
-            Rijurekh Ghosh
+            {ctx.user.first_name} {ctx.user.last_name}
           </Typography>
         }
         subheader={
@@ -124,7 +127,7 @@ const ProfileCard = () => {
               paddingTop: "10px",
             }}
           >
-            @rijurekh24
+            @{ctx.user.username}
           </Typography>
         }
       />
