@@ -7,24 +7,13 @@ import RightBar from "../Components/HomePageComponents/RightBar";
 
 const Home = () => {
   return (
-    <Box
-      // maxWidth={"xl"}
-      sx={{ backgroundColor: "#181818", minHeight: "100vh" }}
-    >
+    <Box sx={{ backgroundColor: "#181818", minHeight: "100vh" }}>
       <Navbar />
       <Box>
-        <Stack direction={"row"} justifyContent={"space-evenly"}>
-          <Grid container>
-            <Grid item lg={2}>
-              <SideBar />
-            </Grid>
-            <Grid item lg={8}>
-              <Feed />
-            </Grid>
-            <Grid item lg={2}>
-              <RightBar />
-            </Grid>
-          </Grid>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <SideBar />
+          <Feed />
+          <RightBar />
         </Stack>
       </Box>
     </Box>

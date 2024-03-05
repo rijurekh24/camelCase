@@ -21,23 +21,30 @@ const ProfileCard = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        maxWidth: 250,
       }}
     >
       <CardMedia
         component="img"
-        height="150"
+        height="130"
         image="https://static.vecteezy.com/system/resources/previews/007/162/596/non_2x/beautiful-blue-mountain-landscape-with-sunrise-and-sunset-in-mountains-background-dark-night-time-outdoor-and-hiking-concept-sun-in-the-sky-good-for-wallpaper-site-banner-cover-poster-free-vector.jpg"
         alt="Cover Photo"
       />
       <Avatar
         src="profile-picture.jpg"
-        sx={{ width: 100, height: 100, position: "relative" }}
+        sx={{
+          width: 80,
+          height: 80,
+          border: "5px solid #181818",
+          borderRadius: "35px",
+        }}
       />
       <CardHeader
         title={<Typography variant="h5">Rijurekh Ghosh</Typography>}
         subheader={
-          <Typography variant="body1" sx={{ color: "#999" }}>
+          <Typography
+            variant="body1"
+            sx={{ color: "#999", fontSize: "0.8rem" }}
+          >
             @rijurekh24
           </Typography>
         }
