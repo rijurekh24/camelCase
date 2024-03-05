@@ -6,6 +6,7 @@ import {
   Avatar,
   Typography,
   CardContent,
+  Box,
   Button,
   Stack,
   Divider,
@@ -23,6 +24,7 @@ const ProfileCard = () => {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "25px",
+
         margin: " 0px 15px ",
         position: "relative",
       }}
@@ -30,15 +32,15 @@ const ProfileCard = () => {
       <CardMedia
         component="img"
         height="135"
-        image="https://e0.pxfuel.com/wallpapers/52/580/desktop-wallpaper-shade-of-green-landscape-forest-firewatch-nature-digital-art-mountains-video-games-ar-landscape-minimalist-minimal.jpg"
+        image="https://static.vecteezy.com/system/resources/previews/007/162/596/non_2x/beautiful-blue-mountain-landscape-with-sunrise-and-sunset-in-mountains-background-dark-night-time-outdoor-and-hiking-concept-sun-in-the-sky-good-for-wallpaper-site-banner-cover-poster-free-vector.jpg"
         alt="Cover Photo"
       />
       <Avatar
-        src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
+        src="profile-picture.jpg"
         sx={{
-          width: 95,
-          height: 95,
-          border: "7px solid #1A1A1A",
+          width: 100,
+          height: 100,
+          border: "7px solid #1a1a1a",
           borderRadius: "35px",
           position: "absolute",
           top: 90,
@@ -107,8 +109,9 @@ const ProfileCard = () => {
       <CardHeader
         title={
           <Typography
+            variant="h5"
             sx={{
-              fontSize: "1.3rem",
+              fontSize: "1.2rem",
               marginTop: "70px",
             }}
           >
@@ -132,13 +135,19 @@ const ProfileCard = () => {
         <Typography color="white">
           Hello i am UI/Ux designer. Open to new projects
         </Typography>
-        <Divider variant="middle" color="#333" sx={{ marginTop: 2 }} />
       </CardContent>
+      <Divider
+        variant="middle"
+        sx={{
+          backgroundColor: "white",
+          paddingY: 2,
+        }}
+      />
       <Stack
         direction="row"
         spacing={2}
         sx={{
-          padding: "5px 20px 20px 20px",
+          padding: "20px",
         }}
       >
         <Button
@@ -150,11 +159,6 @@ const ProfileCard = () => {
             color: "#999",
             padding: "15px",
             borderRadius: "18px",
-            transition: "0.4s",
-            ":hover": {
-              backgroundColor: "#01ab81",
-              color: "#181818",
-            },
           }}
         >
           My Profile

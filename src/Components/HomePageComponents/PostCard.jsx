@@ -33,9 +33,10 @@ const PostCard = () => {
           <Avatar
             sx={{
               bgcolor: "grey",
-              border: "5px solid #181818",
+              border: "5px solid #1A1A1A",
               borderRadius: "20px",
             }}
+            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
           >
             R
           </Avatar>
@@ -114,12 +115,11 @@ const PostCard = () => {
             sx={{
               bgcolor: "grey",
               width: "200",
-              border: "5px solid #181818",
+              border: "5px solid #1A1A1A",
               borderRadius: "20px",
             }}
-          >
-            R
-          </Avatar>
+            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
+          ></Avatar>
           <TextField
             id="filled-basic"
             label="add a comment"
