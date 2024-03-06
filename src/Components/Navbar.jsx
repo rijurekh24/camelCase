@@ -52,22 +52,24 @@ const Navbar = () => {
                 ></i>
               </IconButton>
             </Box>
-            <Input
-              placeholder="# Explore"
-              sx={{
-                padding: "5px 40px 5px 20px",
-                marginLeft: "4%",
-                border: "none",
-                backgroundColor: "#232323",
-                borderRadius: "25px",
-                color: "white",
-              }}
-            />
+            <Box display={{ xs: "none", sm: "block" }}>
+              <Input
+                placeholder="# Explore"
+                sx={{
+                  padding: "5px 40px 5px 20px",
+                  marginLeft: "4%",
+                  border: "none",
+                  backgroundColor: "#232323",
+                  borderRadius: "25px",
+                  color: "white",
+                }}
+              />
+            </Box>
           </Stack>
           <Stack
             spacing={4}
             direction={"row"}
-            display={"flex"}
+            display={{ xs: "none", md: "flex" }}
             justifyContent={"center"}
             alignItems={"center"}
           >

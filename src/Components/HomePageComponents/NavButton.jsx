@@ -101,7 +101,7 @@ export default function NavButton() {
             marginRight: "5px",
           }}
         />
-        {ctx.user.first_name} {ctx.user.last_name}
+        {ctx.user.first_name}
       </Button>
       <StyledMenu
         sx={{ zIndex: 10000 }}
