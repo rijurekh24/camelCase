@@ -18,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-const PostCard = () => {
+const PostCard = (props) => {
   return (
     <Card
       sx={{
@@ -36,10 +36,8 @@ const PostCard = () => {
               border: "5px solid #1A1A1A",
               borderRadius: "20px",
             }}
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-          >
-            R
-          </Avatar>
+            src={props.image}
+          ></Avatar>
         }
         action={
           <IconButton style={{ color: "white" }}>
@@ -48,12 +46,12 @@ const PostCard = () => {
         }
         title={
           <Typography variant="body1" color="#999">
-            @rijurekh24
+            @{props.username}
           </Typography>
         }
         subheader={
           <Typography variant="body2" color="white">
-            Rijurekh Ghosh{" "}
+            {props.name}{" "}
             <Typography sx={{ color: "#01ab81", ml: 1 }} display="inline">
               • 1hr ago
             </Typography>
@@ -118,7 +116,7 @@ const PostCard = () => {
               border: "5px solid #1A1A1A",
               borderRadius: "20px",
             }}
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
+            src={props.image}
           ></Avatar>
           <TextField
             id="filled-basic"

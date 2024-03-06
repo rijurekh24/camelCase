@@ -3,11 +3,23 @@ import Api from "../Utils/api";
 import { authContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
-import { Typography, Button, AppBar, Toolbar, IconButton } from "@mui/material";
-
+import {
+  Typography,
+  Button,
+  AppBar,
+  Toolbar,
+  IconButton,
+  TextField,
+  Stack,
+  Input,
+} from "@mui/material";
+import MailIcon from "@mui/icons-material/Mail";
+import Badge from "@mui/material/Badge";
+import { Home, Message, Notifications } from "@mui/icons-material";
+import NavButton from "./HomePageComponents/NavButton";
 const Navbar = () => {
-  const ctx = useContext(authContext);
-  const navigate = useNavigate();
+  // const ctx = useContext(authContext);
+  // const navigate = useNavigate();
   return (
     <AppBar
       sx={{
@@ -18,50 +30,92 @@ const Navbar = () => {
       position={"sticky"}
     >
       <Toolbar>
-        <Box flexGrow={{ xs: 1, md: 0 }}>
-          <IconButton>
-            <i
-              className="fa-regular fa-square fa-lg"
-              style={{
-                color: "#01ab81",
+        <Box
+          flexDirection={"row"}
+          display={"flex"}
+          justifyContent={"space-between"}
+          width={"100%"}
+        >
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Box flexGrow={{ xs: 1, md: 0 }}>
+              <IconButton>
+                <i
+                  className="fa-regular fa-square fa-lg"
+                  style={{
+                    color: "#01ab81",
+                  }}
+                ></i>
+              </IconButton>
+            </Box>
+            <Input
+              placeholder="# Explore"
+              sx={{
+                padding: "5px 40px 5px 20px",
+                marginLeft: "4%",
+                border: "none",
+                backgroundColor: "#232323",
+                borderRadius: "25px",
+                color: "white",
               }}
-            ></i>
-          </IconButton>
+            />
+          </Stack>
+          <Stack
+            spacing={4}
+            direction={"row"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Badge>
+              <Home sx={{ color: "#01ab81" }} />
+            </Badge>
+            <Badge>
+              <Message sx={{ color: "white" }} />
+            </Badge>
+            <Badge color="primary" variant="dot" sx={{ color: "#01ab81" }}>
+              <Notifications sx={{ color: "white" }} />
+            </Badge>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <NavButton />
+            {/* <Typography color={"White"} fontSize={"1.1rem"} mr={2}>
+              {ctx.user.first_name} {ctx.user.last_name}
+            </Typography> */}
+            {/* <Button
+              onClick={() => {
+                Api.get("/auth/logout").then((res) => {
+                  ctx.setUser(null);
+                  navigate("/signin");
+                });
+              }}
+              sx={{
+                display: "block",
+                backgroundColor: "#01ab81",
+                border: "1px solid #01ab81",
+                transition: "0.4s",
+                padding: "4px 8px",
+                color: "white",
+                fontSize: "0.8rem",
+                "&:hover": {
+                  background: "transparent",
+                  color: "#01ab81",
+                },
+              }}
+            >
+              Log out
+            </Button> */}
+          </Stack>
         </Box>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, color: "white" }}
-          display={{ xs: "none", md: "block" }}
-        >
-          camelCase
-        </Typography>
-        <Typography color={"White"} fontSize={"1.1rem"} mr={2}>
-          {ctx.user.first_name} {ctx.user.last_name}
-        </Typography>
-        <Button
-          onClick={() => {
-            Api.get("/auth/logout").then((res) => {
-              ctx.setUser(null);
-              navigate("/signin");
-            });
-          }}
-          sx={{
-            display: "block",
-            backgroundColor: "#01ab81",
-            border: "1px solid #01ab81",
-            transition: "0.4s",
-            padding: "4px 8px",
-            color: "white",
-            fontSize: "0.8rem",
-            "&:hover": {
-              background: "transparent",
-              color: "#01ab81",
-            },
-          }}
-        >
-          Log out
-        </Button>
       </Toolbar>
     </AppBar>
   );
