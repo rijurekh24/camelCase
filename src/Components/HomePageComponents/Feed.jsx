@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import PostCard from "./PostCard";
-
+import Post from "./Post";
 const Feed = () => {
   return (
     <Box
@@ -10,6 +10,7 @@ const Feed = () => {
       }}
       // px={{ xs: 0, md: 5, lg: 10, xl: 20 }}
     >
+      <Post />
       <PostCard
         name="Uzumaki Naruto"
         username="naruto123"
