@@ -40,10 +40,7 @@ const Post = () => {
       <CardActions disableSpacing sx={{ width: "100%" }}>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
-            width: "100%",
+            width: "inherit",
           }}
         >
           <Box
