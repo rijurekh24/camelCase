@@ -16,16 +16,19 @@ import {
 } from "@mui/material";
 const Post = () => {
   return (
-    <Card
+    <Box
       sx={{
         bgcolor: "#232323",
         borderRadius: "25px",
         marginBottom: 2,
         display: "flex",
+        padding: "10px 15px",
+        gap: 2,
+        alignItems: "center",
       }}
     >
-      <CardHeader
-        avatar={
+      <Box>
+        {
           <Avatar
             sx={{
               bgcolor: "grey",
@@ -35,129 +38,113 @@ const Post = () => {
             src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
           ></Avatar>
         }
-      />
-
-      <CardActions disableSpacing sx={{ width: "100%" }}>
-        <Box
-          sx={{
-            width: "inherit",
-          }}
-        >
-          <Box
+      </Box>
+      <Box width={"100%"}>
+        <Box mb={1}>
+          <TextField
+            id="filled-basic"
+            label="Tell your friends about your thougts..."
+            variant="filled"
+            fullWidth
+            autoComplete="off"
             sx={{
-              display: "flex",
-              alignItems: "center",
-              mb: 2,
+              flexGrow: "10",
+              ":hover": {},
+              bgcolor: "#232323",
+              "& .MuiFilledInput-underline:after": {
+                borderBottomColor: "#01ab81",
+              },
             }}
-          >
-            <TextField
-              id="filled-basic"
-              label="Tell your friends about your thougts..."
-              variant="filled"
-              fullWidth
-              autoComplete="off"
-              sx={{
-                flexGrow: "10",
-                ":hover": {},
-                bgcolor: "#232323",
-                "& .MuiFilledInput-underline:after": {
-                  borderBottomColor: "#01ab81",
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#888" },
-              }}
-              InputProps={{
-                style: { color: "white", borderRadius: "20px" },
-                disableUnderline: true,
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+            InputLabelProps={{
+              style: { color: "#888" },
             }}
-          >
-            <Button
-              sx={{
-                backgroundColor: "#202020",
-                color: "white",
-                borderRadius: "25px",
-                textTransform: "none",
-                padding: "0px 20px 0px 10px",
-                fontSize: "0.7rem",
-                ":hover": {
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <IconButton>
-                <InsertPhotoIcon sx={{ color: "#01ab81" }} />
-              </IconButton>
-              Photo
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: "#202020",
-                color: "white",
-                borderRadius: "25px",
-                padding: "0px 20px 0px 10px",
-                fontSize: "0.7rem",
-                textTransform: "none",
-                ":hover": {
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <IconButton>
-                <PlayCircleIcon sx={{ color: "#4F93F8" }} />
-              </IconButton>
-              Video
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: "#202020",
-                color: "white",
-                textTransform: "none",
-                borderRadius: "25px",
-                padding: "0px 20px 0px 10px",
-                fontSize: "0.7rem",
-                ":hover": {
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <IconButton>
-                <PollIcon sx={{ color: "#E67575" }} />
-              </IconButton>
-              Poll
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: "#202020",
-                color: "white",
-                borderRadius: "25px",
-                textTransform: "none",
-                padding: "0px 20px 0px 10px",
-                fontSize: "0.7rem",
-                ":hover": {
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <IconButton>
-                <CalendarMonthIcon sx={{ color: "#EEBE65" }} />
-              </IconButton>
-              Schedule
-            </Button>
-          </Box>
+            InputProps={{
+              style: { color: "white", borderRadius: "20px" },
+              disableUnderline: true,
+            }}
+          />
         </Box>
-      </CardActions>
-
-      <CardContent></CardContent>
-    </Card>
+        <Box display={"flex"} justifyContent={"space-between"}>
+          <Button
+            sx={{
+              backgroundColor: "#202020",
+              color: "white",
+              borderRadius: "25px",
+              textTransform: "none",
+              fontSize: "0.7rem",
+              ":hover": {
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <IconButton>
+              <InsertPhotoIcon sx={{ color: "#01ab81" }} />
+            </IconButton>
+            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+              Photo
+            </Typography>
+          </Button>
+          <Button
+            sx={{
+              backgroundColor: "#202020",
+              color: "white",
+              borderRadius: "25px",
+              fontSize: "0.7rem",
+              textTransform: "none",
+              ":hover": {
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <IconButton>
+              <PlayCircleIcon sx={{ color: "#4F93F8" }} />
+            </IconButton>
+            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+              {" "}
+              Video
+            </Typography>
+          </Button>
+          <Button
+            sx={{
+              backgroundColor: "#202020",
+              color: "white",
+              textTransform: "none",
+              borderRadius: "25px",
+              fontSize: "0.7rem",
+              ":hover": {
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <IconButton>
+              <PollIcon sx={{ color: "#E67575" }} />
+            </IconButton>
+            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+              Poll
+            </Typography>
+          </Button>
+          <Button
+            sx={{
+              backgroundColor: "#202020",
+              color: "white",
+              borderRadius: "25px",
+              textTransform: "none",
+              fontSize: "0.7rem",
+              ":hover": {
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <IconButton>
+              <CalendarMonthIcon sx={{ color: "#EEBE65" }} />
+            </IconButton>
+            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+              Schedule
+            </Typography>
+          </Button>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
