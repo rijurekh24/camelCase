@@ -6,9 +6,18 @@ import PollIcon from "@mui/icons-material/Poll";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Avatar, Box, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import PostModal from "./PostModal";
 const Post = () => {
   const [textInput, setTextInput] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   const handleInputChange = (event) => {
     setTextInput(event.target.value);
   };
@@ -28,6 +37,7 @@ const Post = () => {
         alignItems: "center",
       }}
     >
+      <PostModal open={modalOpen} handleClose={closeModal} />
       <Box>
         <Avatar
           sx={{
@@ -79,6 +89,7 @@ const Post = () => {
         </Box>
         <Box display={"flex"} justifyContent={"space-between"}>
           <Button
+            onClick={openModal}
             sx={{
               backgroundColor: "#202020",
               color: "white",
