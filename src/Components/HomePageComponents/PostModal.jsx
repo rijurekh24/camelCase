@@ -11,7 +11,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 300,
+  //   width: "300",
   bgcolor: "#232323",
   borderRadius: "25px",
   boxShadow: 24,
@@ -34,7 +34,7 @@ function PostModal({ open, handleClose }) {
       aria-describedby="modal-modal-description"
       margin={2}
     >
-      <Box sx={style}>
+      <Box sx={style} width={{ xs: 300, sm: 400 }}>
         <Box
           display={"flex"}
           flexDirection={"column"}
