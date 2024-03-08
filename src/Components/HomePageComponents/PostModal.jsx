@@ -105,7 +105,6 @@ function PostModal({ open, handleClose }) {
             sx={{
               backgroundColor: text ? "#01ab81" : "gray",
               color: text ? "#fff" : "#000",
-              cursor: text ? "pointer" : "not-allowed",
               padding: "10px",
               borderRadius: "25px",
               ":hover": {
