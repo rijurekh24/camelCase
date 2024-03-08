@@ -109,6 +109,7 @@ const Post = () => {
             </Typography>
           </Button>
           <Button
+            onClick={openModal}
             sx={{
               backgroundColor: "#202020",
               color: "white",
