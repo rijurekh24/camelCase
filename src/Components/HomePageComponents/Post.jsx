@@ -1,20 +1,21 @@
-import React from "react";
-import { Button, IconButton, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Button, IconButton, InputAdornment, Typography } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PollIcon from "@mui/icons-material/Poll";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import {
-  Avatar,
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Icon,
-  TextField,
-} from "@mui/material";
+import { Avatar, Box, TextField } from "@mui/material";
+import { Send } from "@mui/icons-material";
 const Post = () => {
+  const [textInput, setTextInput] = useState("");
+
+  const handleInputChange = (event) => {
+    setTextInput(event.target.value);
+  };
+
+  const handleSend = () => {
+    setTextInput("");
+  };
   return (
     <Box
       sx={{
@@ -40,16 +41,23 @@ const Post = () => {
         }
       </Box>
       <Box width={"100%"}>
-        <Box mb={1}>
+        <Box
+          mb={1}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <TextField
             id="filled-basic"
             label="Tell your friends about your thougts..."
             variant="filled"
             fullWidth
             autoComplete="off"
+            value={textInput}
+            onChange={handleInputChange}
             sx={{
-              flexGrow: "10",
-              ":hover": {},
               bgcolor: "#232323",
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "#01ab81",
@@ -61,6 +69,12 @@ const Post = () => {
             InputProps={{
               style: { color: "white", borderRadius: "20px" },
               disableUnderline: true,
+              endAdornment: textInput && (
+                <Send
+                  sx={{ color: "white", cursor: "pointer" }}
+                  onClick={handleSend}
+                />
+              ),
             }}
           />
         </Box>
