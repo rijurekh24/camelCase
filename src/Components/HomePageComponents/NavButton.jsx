@@ -82,8 +82,9 @@ export default function NavButton() {
           backgroundColor: "#232323",
           color: "white",
           borderRadius: "25px",
+          textTransform: "none",
           padding: "5px 20px 5px 10px",
-          fontSize: "0.8rem",
+          fontSize: "0.9rem",
           ":hover": {
             backgroundColor: "#202020",
           },

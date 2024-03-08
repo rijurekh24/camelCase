@@ -132,7 +132,7 @@ const ProfileCard = () => {
       />
       <CardContent>
         <Typography color="white">
-          Hello i am UI/Ux designer. Open to new projects
+          Hello i am UI/UX designer. Open to new projects
         </Typography>
         <Divider variant="middle" color="#333" sx={{ marginTop: 2 }} />
       </CardContent>
@@ -148,8 +148,9 @@ const ProfileCard = () => {
           disableElevation
           sx={{
             width: "315px",
-            backgroundColor: "#333333",
+            backgroundColor: "#333",
             color: "#999",
+            textTransform: "none",
             padding: "15px",
             borderRadius: "18px",
             transition: "0.4s",

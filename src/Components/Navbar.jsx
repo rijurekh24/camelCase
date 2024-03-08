@@ -90,32 +90,6 @@ const Navbar = () => {
             alignItems={"center"}
           >
             <NavButton />
-            {/* <Typography color={"White"} fontSize={"1.1rem"} mr={2}>
-              {ctx.user.first_name} {ctx.user.last_name}
-            </Typography> */}
-            {/* <Button
-              onClick={() => {
-                Api.get("/auth/logout").then((res) => {
-                  ctx.setUser(null);
-                  navigate("/signin");
-                });
-              }}
-              sx={{
-                display: "block",
-                backgroundColor: "#01ab81",
-                border: "1px solid #01ab81",
-                transition: "0.4s",
-                padding: "4px 8px",
-                color: "white",
-                fontSize: "0.8rem",
-                "&:hover": {
-                  background: "transparent",
-                  color: "#01ab81",
-                },
-              }}
-            >
-              Log out
-            </Button> */}
           </Stack>
         </Box>
       </Toolbar>
