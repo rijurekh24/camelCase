@@ -14,7 +14,6 @@ import {
 
 const ProfileCard = () => {
   const ctx = useContext(authContext);
-  console.log(ctx);
   return (
     <Card
       sx={{

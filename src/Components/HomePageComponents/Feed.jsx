@@ -7,9 +7,9 @@ const Feed = () => {
   return (
     <Box
       sx={{
-        flex: 5,
+        flex: 4,
       }}
-      // px={{ xs: 0, md: 5, lg: 10, xl: 20 }}
+      px={{ xs: 0, md: 5, lg: 10, xl: 15 }}
     >
       <Post />
       <PostCard
