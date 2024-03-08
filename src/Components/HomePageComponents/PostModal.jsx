@@ -76,7 +76,7 @@ function PostModal({ open, handleClose }) {
           </Box>
           <TextField
             id="filled-basic"
-            label={`What's on your mind, ${ctx.user.first_name} ?`}
+            placeholder={`What's on your mind, ${ctx.user.first_name} ?`}
             variant="filled"
             fullWidth
             autoComplete="off"
@@ -105,6 +105,7 @@ function PostModal({ open, handleClose }) {
             sx={{
               backgroundColor: text ? "#01ab81" : "gray",
               color: text ? "#fff" : "#000",
+              cursor: text ? "pointer" : "not-allowed",
               padding: "10px",
               borderRadius: "25px",
               ":hover": {
