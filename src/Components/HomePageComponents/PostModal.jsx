@@ -44,7 +44,7 @@ function PostModal({ open, handleClose }) {
           <Typography
             id="modal-modal-title"
             sx={{
-              fontSize: "1.5rem",
+              fontSize: "1.4rem",
               width: "100%",
               textAlign: "center",
             }}
@@ -80,10 +80,12 @@ function PostModal({ open, handleClose }) {
             variant="filled"
             fullWidth
             autoComplete="off"
+            autoFocus
             multiline
             value={text}
             onChange={handleTextChange}
             sx={{
+              marginBottom: "8%",
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "#01ab81",
               },
