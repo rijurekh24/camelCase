@@ -26,7 +26,6 @@ const ProfileCard = () => {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "25px",
-        margin: " 0px 15px ",
         position: "relative",
       }}
     >

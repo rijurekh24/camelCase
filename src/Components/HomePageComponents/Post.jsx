@@ -29,16 +29,14 @@ const Post = () => {
       }}
     >
       <Box>
-        {
-          <Avatar
-            sx={{
-              bgcolor: "grey",
-              border: "5px solid #181818",
-              borderRadius: "20px",
-            }}
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-          ></Avatar>
-        }
+        <Avatar
+          sx={{
+            bgcolor: "grey",
+            border: "5px solid #181818",
+            borderRadius: "20px",
+          }}
+          src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
+        ></Avatar>
       </Box>
       <Box width={"100%"}>
         <Box
@@ -114,7 +112,6 @@ const Post = () => {
               <PlayCircleIcon sx={{ color: "#4F93F8" }} />
             </IconButton>
             <Typography pr={2} display={{ xs: "none", lg: "block" }}>
-              {" "}
               Video
             </Typography>
           </Button>
