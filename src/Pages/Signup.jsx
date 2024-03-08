@@ -78,6 +78,7 @@ const Signup = () => {
           <ul>
             <li>Password must contain at least one uppercase letter (A-Z)</li>
             <li>Password must contain at least one lowercase letter (a-z)</li>
+            <li>Password must contain at least one number (0-9)</li>
             <li>
               Password must contain at least one special character (@$!%*?&)
             </li>
@@ -88,7 +89,7 @@ const Signup = () => {
       hasErrors = true;
     }
 
-    if (user.password !== user.con_password) {
+    if (user.con_password && user.password !== user.con_password) {
       setErrors((prev) => ({
         ...prev,
         con_password: "Passwords do not match.",
