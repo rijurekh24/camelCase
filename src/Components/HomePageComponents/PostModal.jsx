@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Divider, Stack, TextField } from "@mui/material";
+import { Avatar, Divider, Stack, TextField } from "@mui/material";
+import { authContext } from "../../Context/AuthContext";
 
 const style = {
   position: "absolute",
@@ -21,7 +22,7 @@ const style = {
 
 function PostModal({ open, handleClose }) {
   const [text, setText] = useState("");
-
+  const ctx = useContext(authContext);
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
@@ -53,14 +54,29 @@ function PostModal({ open, handleClose }) {
               sx={{
                 maxWidth: "100%",
                 backgroundColor: "#444",
-                margin: "20px auto 0px auto",
+                margin: "20px auto 20px auto",
                 color: "#fff",
               }}
             />
           </Typography>
+          <Box display={"flex"} alignItems={"center"} width={"100%"}>
+            <Avatar
+              src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
+              sx={{
+                width: 40,
+                height: 40,
+                border: "5px solid #1A1A1A",
+                borderRadius: "35px",
+                marginRight: "5px",
+              }}
+            />
+            <Typography fontSize={"1.1rem"}>
+              {ctx.user.first_name} {ctx.user.last_name}
+            </Typography>
+          </Box>
           <TextField
             id="filled-basic"
-            label="What's on your mind..."
+            label={`What's on your mind, ${ctx.user.first_name} ?`}
             variant="filled"
             fullWidth
             autoComplete="off"
@@ -73,7 +89,7 @@ function PostModal({ open, handleClose }) {
               },
             }}
             InputLabelProps={{
-              style: { color: "#888" },
+              style: { color: "#888", fontSize: 18 },
             }}
             InputProps={{
               style: { color: "white", background: "none" },
