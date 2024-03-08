@@ -53,6 +53,7 @@ const Post = () => {
             variant="filled"
             fullWidth
             autoComplete="off"
+            multiline
             value={textInput}
             onChange={handleInputChange}
             sx={{
