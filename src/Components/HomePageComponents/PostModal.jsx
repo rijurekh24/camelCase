@@ -3,9 +3,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, Stack, TextField } from "@mui/material";
+import { Avatar, Divider, TextField } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
-import ImagePostForm from "./ImagePostForm";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,8 +22,10 @@ const style = {
 };
 
 function PostModal({ open, handleClose }) {
-  const [text, setText] = useState("");
   const ctx = useContext(authContext);
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState("No file selected");
+  const [text, setText] = useState("");
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
@@ -97,7 +101,58 @@ function PostModal({ open, handleClose }) {
             }}
           />
           {/* image select section */}
-          <ImagePostForm />
+          <Box mb={2} width={"100%"}>
+            <form
+              style={{
+                border: "3px dotted #999",
+                borderRadius: "20px",
+                height: 200,
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "10px 0px",
+              }}
+              onClick={() => {
+                document.querySelector(".input-field").click();
+              }}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                className="input-field"
+                hidden
+                onChange={({ target: { files } }) => {
+                  files[0] && setFileName(files[0].name);
+                  if (files) setImage(URL.createObjectURL(files[0]));
+                }}
+              />
+              {image ? (
+                <img src={image} style={{ width: 100 }} />
+              ) : (
+                <CloudUploadIcon fontSize="large" sx={{ color: "#01ab81" }} />
+              )}
+            </form>
+            <Box
+              width={"100%"}
+              display={"flex"}
+              justifyContent={"center"}
+              mt={1}
+            >
+              <Box display={"flex"} alignItems={"center"}>
+                <Typography>{fileName} </Typography>
+                {image ? (
+                  <DeleteIcon
+                    sx={{ color: "#01ab81", cursor: "pointer" }}
+                    onClick={() => {
+                      setFileName("No file selected");
+                      setImage(null);
+                    }}
+                  />
+                ) : null}
+              </Box>
+            </Box>
+          </Box>
           <Button
             fullWidth
             disabled={!text}

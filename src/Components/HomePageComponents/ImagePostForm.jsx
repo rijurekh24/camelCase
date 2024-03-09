@@ -1,6 +1,6 @@
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const ImagePostForm = () => {

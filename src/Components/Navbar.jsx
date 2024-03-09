@@ -64,7 +64,14 @@ const Navbar = () => {
             <Badge>
               <Message sx={{ color: "white" }} />
             </Badge>
-            <Badge color="primary" variant="dot" sx={{ color: "#01ab81" }}>
+            <Badge
+              variant="dot"
+              sx={{
+                "& .MuiBadge-badge": {
+                  backgroundColor: "#01ab81",
+                },
+              }}
+            >
               <Notifications sx={{ color: "white" }} />
             </Badge>
           </Stack>
