@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import React from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const LoadingPage = () => {

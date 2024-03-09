@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../assets/signup.css";
 import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";

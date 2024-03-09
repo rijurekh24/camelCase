@@ -1,25 +1,9 @@
-import React, { useContext } from "react";
-import Api from "../Utils/api";
-import { authContext } from "../Context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
-import {
-  Typography,
-  Button,
-  AppBar,
-  Toolbar,
-  IconButton,
-  TextField,
-  Stack,
-  Input,
-} from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
+import { AppBar, Toolbar, IconButton, Stack, Input } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
 const Navbar = () => {
-  // const ctx = useContext(authContext);
-  // const navigate = useNavigate();
   return (
     <AppBar
       sx={{

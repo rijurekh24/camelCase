@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Emailsent from "../assets/Images/email-sent.png";
 import { useLocation } from "react-router-dom";
 import Api from "../Utils/api";
