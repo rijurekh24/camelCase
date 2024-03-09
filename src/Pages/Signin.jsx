@@ -201,7 +201,7 @@ const Signin = () => {
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
-                        bgcolor: "#232323",
+                        bgcolor: "backgroundColor.secondary",
                         "& .MuiFilledInput-underline:after": {
                           borderBottomColor: "primary.main",
                         },
@@ -230,7 +230,7 @@ const Signin = () => {
                       sx={{
                         ":hover": {},
                         borderRadius: 1,
-                        bgcolor: "#232323",
+                        bgcolor: "backgroundColor.secondary",
                         "& .MuiFilledInput-underline:after": {
                           borderBottomColor: "primary.main",
                         },

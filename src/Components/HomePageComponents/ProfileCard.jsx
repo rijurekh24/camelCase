@@ -7,7 +7,7 @@ const ProfileCard = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#232323",
+        backgroundColor: "backgroundColor.secondary",
         color: "textColor.main",
         borderRadius: "25px",
         marginBottom: 2,

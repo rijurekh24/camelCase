@@ -23,7 +23,7 @@ const PostCard = (props) => {
     <Card
       sx={{
         zIndex: "-1",
-        bgcolor: "#232323",
+        bgcolor: "backgroundColor.secondary",
         borderRadius: "25px",
         marginBottom: 2,
       }}
@@ -126,7 +126,7 @@ const PostCard = (props) => {
             fullWidth
             sx={{
               ":hover": {},
-              bgcolor: "#232323",
+              bgcolor: "backgroundColor.secondary",
               ml: 1,
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "primary.main",

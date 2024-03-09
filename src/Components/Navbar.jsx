@@ -44,7 +44,7 @@ const Navbar = () => {
                   padding: "4px 0px 4px 10px",
                   marginLeft: "2%",
                   border: "none",
-                  backgroundColor: "#232323",
+                  backgroundColor: "backgroundColor.secondary",
                   borderRadius: "25px",
                   color: "textColor.main",
                   fontSize: "0.9rem",

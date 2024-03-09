@@ -78,7 +78,7 @@ export default function NavButton() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
         sx={{
-          backgroundColor: "#232323",
+          backgroundColor: "backgroundColor.secondary",
           color: "textColor.main",
           borderRadius: "25px",
           textTransform: "none",

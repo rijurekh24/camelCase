@@ -13,7 +13,7 @@ const Textfield = (props) => {
       autoComplete="off"
       fullWidth
       sx={{
-        bgcolor: "#232323",
+        bgcolor: "backgroundColor.secondary",
         "& .MuiFilledInput-underline:after": {
           borderBottomColor: "primary.main",
         },

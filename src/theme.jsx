@@ -13,9 +13,7 @@ export const theme = createTheme({
     },
     backgroundColor: {
       main: "#181818",
-    },
-    inputBoxColor: {
-      main: "#232323",
+      secondary: "#232323",
     },
   },
 });

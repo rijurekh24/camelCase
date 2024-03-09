@@ -28,7 +28,7 @@ const Post = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#232323",
+        bgcolor: "backgroundColor.secondary",
         borderRadius: "25px",
         marginBottom: 2,
         display: "flex",
@@ -68,7 +68,7 @@ const Post = () => {
             value={textInput}
             onChange={handleInputChange}
             sx={{
-              bgcolor: "#232323",
+              bgcolor: "backgroundColor.secondary",
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "primary.main",
               },
