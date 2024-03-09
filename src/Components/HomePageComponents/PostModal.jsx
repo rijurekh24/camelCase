@@ -37,7 +37,7 @@ function PostModal({ open, handleClose }) {
       aria-describedby="modal-modal-description"
       margin={2}
     >
-      <Box sx={style} width={{ xs: 250, sm: 300 }}>
+      <Box sx={style} width={{ xs: 280, sm: 300 }}>
         <Box
           display={"flex"}
           flexDirection={"column"}
