@@ -23,7 +23,7 @@ const Textfield = (props) => {
       }}
       InputProps={{
         style: { color: "white" },
-        disableUnderline: true,
+        disableUnderline: false,
       }}
     />
   );

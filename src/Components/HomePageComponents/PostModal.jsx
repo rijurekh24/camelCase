@@ -92,12 +92,24 @@ function PostModal({ open, handleClose }) {
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "primary.main",
               },
+              "&:hover": {
+                background: "transparent",
+              },
             }}
             InputLabelProps={{
-              style: { color: "#888", background: "none" },
+              style: {
+                color: "textColor.main",
+                background: "transparent",
+              },
             }}
             InputProps={{
-              sx: { color: "textColor.main", background: "none" },
+              sx: {
+                color: "textColor.main",
+                background: "transparent",
+                "&:hover": {
+                  background: "transparent",
+                },
+              },
               disableUnderline: true,
             }}
           />
