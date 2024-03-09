@@ -7,15 +7,12 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import AuthContext from "./Context/AuthContext.jsx";
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "./theme";
 import "./assets/main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContext>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </AuthContext>
   </React.StrictMode>
 );

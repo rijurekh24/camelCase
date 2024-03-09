@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Avatar, Divider, Stack, TextField } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
-
+import ImagePostForm from "./ImagePostForm";
 const style = {
   position: "absolute",
   top: "50%",
@@ -33,7 +33,7 @@ function PostModal({ open, handleClose }) {
       aria-describedby="modal-modal-description"
       margin={2}
     >
-      <Box sx={style} width={{ xs: 300, sm: 400 }}>
+      <Box sx={style} width={{ xs: 250, sm: 300 }}>
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -43,7 +43,7 @@ function PostModal({ open, handleClose }) {
           <Typography
             id="modal-modal-title"
             sx={{
-              fontSize: "1.4rem",
+              fontSize: "1.2rem",
               width: "100%",
               textAlign: "center",
             }}
@@ -53,7 +53,7 @@ function PostModal({ open, handleClose }) {
               sx={{
                 maxWidth: "100%",
                 backgroundColor: "#444",
-                margin: "20px auto 20px auto",
+                margin: "10px auto 10px auto",
                 color: "#fff",
               }}
             />
@@ -62,14 +62,13 @@ function PostModal({ open, handleClose }) {
             <Avatar
               src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
               sx={{
-                width: 40,
-                height: 40,
+                width: 35,
+                height: 35,
                 border: "5px solid #1A1A1A",
-                borderRadius: "35px",
                 marginRight: "5px",
               }}
             />
-            <Typography fontSize={"1.1rem"}>
+            <Typography fontSize={"1rem"}>
               {ctx.user.first_name} {ctx.user.last_name}
             </Typography>
           </Box>
@@ -84,20 +83,21 @@ function PostModal({ open, handleClose }) {
             value={text}
             onChange={handleTextChange}
             sx={{
-              marginBottom: "8%",
+              mb: 2,
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "#01ab81",
               },
             }}
             InputLabelProps={{
-              style: { color: "#888", fontSize: 18 },
+              style: { color: "#888" },
             }}
             InputProps={{
               style: { color: "white", background: "none" },
               disableUnderline: true,
             }}
           />
-
+          {/* image select section */}
+          <ImagePostForm />
           <Button
             fullWidth
             disabled={!text}

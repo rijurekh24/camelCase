@@ -3,7 +3,6 @@ import { Box, Stack } from "@mui/material";
 import Feed from "../Components/HomePageComponents/Feed";
 import SideBar from "../Components/HomePageComponents/SideBar";
 import RightBar from "../Components/HomePageComponents/RightBar";
-import { theme } from "../theme";
 
 const Home = () => {
   return (
