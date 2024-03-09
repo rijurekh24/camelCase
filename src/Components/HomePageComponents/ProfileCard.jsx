@@ -33,7 +33,7 @@ const ProfileCard = () => {
           mb={3}
           gap={{ sm: 2, lg: 3 }}
         >
-          <Box>
+          <Box textAlign={"center"}>
             <Typography
               sx={{
                 fontSize: "1.1rem",
@@ -43,7 +43,7 @@ const ProfileCard = () => {
             </Typography>
             <Typography
               sx={{
-                color: "#999",
+                color: "textColor.secondary",
                 fontSize: "0.7rem",
               }}
             >
@@ -56,12 +56,13 @@ const ProfileCard = () => {
               sx={{
                 width: 85,
                 height: 85,
-                border: "7px solid #1A1A1A",
+                border: "7px solid ",
+                borderColor: "borderColor.main",
                 borderRadius: "35px",
               }}
             />
           </Box>
-          <Box>
+          <Box textAlign={"center"}>
             <Typography
               sx={{
                 fontSize: "1.1rem",
@@ -71,7 +72,7 @@ const ProfileCard = () => {
             </Typography>
             <Typography
               sx={{
-                color: "#999",
+                color: "textColor.secondary",
                 fontSize: "0.7rem",
               }}
             >
@@ -93,7 +94,7 @@ const ProfileCard = () => {
           <Typography
             mb={3}
             sx={{
-              color: "#999",
+              color: "textColor.secondary",
               fontSize: "0.9rem",
             }}
           >
@@ -107,7 +108,7 @@ const ProfileCard = () => {
             sx={{
               width: "100%",
               backgroundColor: "#333",
-              color: "#999",
+              color: "textColor.secondary",
               textTransform: "none",
               padding: "15px",
               borderRadius: "18px",

@@ -33,7 +33,8 @@ const PostCard = (props) => {
           <Avatar
             sx={{
               bgcolor: "grey",
-              border: "5px solid #1A1A1A",
+              border: "5px solid",
+              borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
             src={props.image}
@@ -45,7 +46,7 @@ const PostCard = (props) => {
           </IconButton>
         }
         title={
-          <Typography variant="body1" color="#999">
+          <Typography variant="body1" color="textColor.secondary">
             @{props.username}
           </Typography>
         }
@@ -78,13 +79,13 @@ const PostCard = (props) => {
         >
           <Box>
             <IconButton aria-label="add to favorites">
-              <FavoriteBorder sx={{ color: "#999" }} />
+              <FavoriteBorder sx={{ color: "textColor.secondary" }} />
             </IconButton>
             <IconButton aria-label="comment">
-              <TextsmsOutlinedIcon sx={{ color: "#999" }} />
+              <TextsmsOutlinedIcon sx={{ color: "textColor.secondary" }} />
             </IconButton>
             <IconButton aria-label="share">
-              <Share sx={{ color: "#999" }} />
+              <Share sx={{ color: "textColor.secondary" }} />
             </IconButton>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -113,7 +114,8 @@ const PostCard = (props) => {
             sx={{
               bgcolor: "grey",
               width: "200",
-              border: "5px solid #1A1A1A",
+              border: "5px solid",
+              borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
             src={props.image}

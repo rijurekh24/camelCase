@@ -68,7 +68,8 @@ function PostModal({ open, handleClose }) {
               sx={{
                 width: 35,
                 height: 35,
-                border: "5px solid #1A1A1A",
+                border: "5px solid ",
+                borderColor: "borderColor.main",
                 marginRight: "5px",
               }}
             />

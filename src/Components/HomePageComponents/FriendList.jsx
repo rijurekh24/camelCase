@@ -14,7 +14,7 @@ const FriendList = (props) => {
           sx={{
             bgcolor: "grey",
             border: "5px solid ",
-            borderColor: "backgroundColor.main",
+            borderColor: "borderColor.main",
             borderRadius: "20px",
           }}
           src={props.image}

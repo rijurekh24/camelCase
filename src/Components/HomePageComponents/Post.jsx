@@ -43,7 +43,7 @@ const Post = () => {
           sx={{
             bgcolor: "grey",
             border: "5px solid",
-            borderColor: "backgroundColor.main",
+            borderColor: "borderColor.main",
             borderRadius: "20px",
           }}
           src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"

@@ -9,11 +9,16 @@ export const theme = createTheme({
       main: "#104f3f",
     },
     textColor: {
-      main: "white",
+      main: "#fff",
+      secondary: "#999",
     },
     backgroundColor: {
       main: "#181818",
       secondary: "#232323",
+    },
+
+    borderColor: {
+      main: "#1A1A1A",
     },
   },
 });

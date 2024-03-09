@@ -94,7 +94,8 @@ export default function NavButton() {
           sx={{
             width: 30,
             height: 30,
-            border: "5px solid #1A1A1A",
+            border: "5px solid",
+            borderColor: "borderColor.main",
             borderRadius: "35px",
             marginRight: "5px",
           }}
