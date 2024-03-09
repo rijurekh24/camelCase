@@ -36,7 +36,7 @@ const ImagePostForm = () => {
         {image ? (
           <img src={image} style={{ width: 100 }} />
         ) : (
-          <CloudUploadIcon fontSize="large" sx={{ color: "#01ab81" }} />
+          <CloudUploadIcon fontSize="large" sx={{ color: "primary.main" }} />
         )}
       </form>
       <Box width={"100%"} display={"flex"} justifyContent={"center"} mt={1}>
@@ -44,7 +44,7 @@ const ImagePostForm = () => {
           <Typography>{fileName} </Typography>
           {image ? (
             <DeleteIcon
-              sx={{ color: "#01ab81", cursor: "pointer" }}
+              sx={{ color: "primary.main", cursor: "pointer" }}
               onClick={() => {
                 setFileName("No file selected");
                 setImage(null);

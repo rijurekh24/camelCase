@@ -8,11 +8,14 @@ import "@fontsource/roboto/700.css";
 import AuthContext from "./Context/AuthContext.jsx";
 import { ThemeProvider } from "@emotion/react";
 import "./assets/main.css";
+import { theme } from "./theme.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContext>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </AuthContext>
   </React.StrictMode>
 );

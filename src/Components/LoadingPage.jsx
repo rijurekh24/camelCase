@@ -5,11 +5,11 @@ const LoadingPage = () => {
   return (
     <Grid
       container
-      sx={{ minHeight: "100vh", backgroundColor: "#181818" }}
+      sx={{ minHeight: "100vh", backgroundColor: "backgroundColor.main" }}
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <PuffLoader color="#01ab81" />
+      <PuffLoader color="primary.main" />
     </Grid>
   );
 };

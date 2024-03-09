@@ -8,7 +8,7 @@ const ProfileCard = () => {
     <Box
       sx={{
         backgroundColor: "#232323",
-        color: "white",
+        color: "textColor.main",
         borderRadius: "25px",
         marginBottom: 2,
       }}
@@ -87,7 +87,7 @@ const ProfileCard = () => {
           flexDirection={"column"}
           textAlign={"center"}
         >
-          <Typography sx={{ fontSize: "1.2rem", color: "white" }}>
+          <Typography sx={{ fontSize: "1.2rem", color: "textColor.main" }}>
             {ctx.user.first_name} {ctx.user.last_name}
           </Typography>
           <Typography
@@ -99,7 +99,7 @@ const ProfileCard = () => {
           >
             @{ctx.user.username}
           </Typography>
-          <Typography color="white" mb={3} fontSize={"0.9rem"}>
+          <Typography color="textColor.main" mb={3} fontSize={"0.9rem"}>
             Hello i am UI/UX designer. Open to new projects
             <Divider variant="middle" color="#333" sx={{ marginTop: 3 }} />
           </Typography>
@@ -113,8 +113,8 @@ const ProfileCard = () => {
               borderRadius: "18px",
               transition: "0.5s",
               ":hover": {
-                backgroundColor: "#01ab81",
-                color: "#181818",
+                backgroundColor: "primary.main",
+                color: "backgroundColor.main",
               },
             }}
           >

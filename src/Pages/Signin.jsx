@@ -101,8 +101,8 @@ const Signin = () => {
   };
   return (
     <Box
-      style={{
-        backgroundColor: "#181818",
+      sx={{
+        backgroundColor: "backgroundColor.main",
         minHeight: " 100vh",
         display: "flex",
       }}
@@ -164,7 +164,7 @@ const Signin = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    color: "#01ab81",
+                    color: "primary.main",
                     fontWeight: "bold",
                   }}
                   display={{ sm: "block", md: "none" }}
@@ -203,7 +203,7 @@ const Signin = () => {
                         borderRadius: 1,
                         bgcolor: "#232323",
                         "& .MuiFilledInput-underline:after": {
-                          borderBottomColor: "#01ab81",
+                          borderBottomColor: "primary.main",
                         },
                       }}
                       InputLabelProps={{
@@ -232,7 +232,7 @@ const Signin = () => {
                         borderRadius: 1,
                         bgcolor: "#232323",
                         "& .MuiFilledInput-underline:after": {
-                          borderBottomColor: "#01ab81",
+                          borderBottomColor: "primary.main",
                         },
                       }}
                       InputLabelProps={{
@@ -269,7 +269,7 @@ const Signin = () => {
                         mt: 1,
                         p: 1,
                         color: "white",
-                        backgroundColor: "#01ab81",
+                        backgroundColor: "primary.main",
                         "&:hover": {
                           backgroundColor: "#007d5e",
                         },

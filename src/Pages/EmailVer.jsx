@@ -52,7 +52,7 @@ const EmailVer = () => {
 
   return (
     <Box
-      sx={{ minHeight: "100vh", backgroundColor: "#181818" }}
+      sx={{ minHeight: "100vh", backgroundColor: "backgroundColor.main" }}
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
@@ -68,7 +68,7 @@ const EmailVer = () => {
           <Typography
             variant="h5"
             sx={{
-              color: "#01ab81",
+              color: "primary.main",
               fontWeight: "bold",
               fontSize: "2.2rem",
             }}
@@ -94,7 +94,7 @@ const EmailVer = () => {
           ></Box>
           <Typography color={"white"} mt={2}>
             Check your registered email{" "}
-            <Typography sx={{ color: "#01ab81", display: "inline-block" }}>
+            <Typography sx={{ color: "primary.main", display: "inline-block" }}>
               {userEmail}
             </Typography>{" "}
             inbox and click the verification link inside to complete your
@@ -129,7 +129,7 @@ const EmailVer = () => {
               horizontal: "right",
             }}
             sx={{
-              "& .MuiSnackbarContent-root": { backgroundColor: "#01ab81" },
+              "& .MuiSnackbarContent-root": { backgroundColor: "primary.main" },
             }}
           >
             <MuiAlert
@@ -137,7 +137,7 @@ const EmailVer = () => {
               variant="filled"
               onClose={handleCloseSnackbar}
               severity="success"
-              sx={{ backgroundColor: "#01ab81", mb: 2 }}
+              sx={{ backgroundColor: "primary.main", mb: 2 }}
             >
               Verification email sent successfully!
             </MuiAlert>

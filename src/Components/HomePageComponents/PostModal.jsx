@@ -17,7 +17,7 @@ const style = {
   borderRadius: "25px",
   boxShadow: 24,
   p: 2,
-  color: "white",
+  color: "textColor.main",
   border: "2px solid #333",
 };
 
@@ -89,14 +89,14 @@ function PostModal({ open, handleClose }) {
             sx={{
               mb: 2,
               "& .MuiFilledInput-underline:after": {
-                borderBottomColor: "#01ab81",
+                borderBottomColor: "primary.main",
               },
             }}
             InputLabelProps={{
-              style: { color: "#888" },
+              style: { color: "#888", background: "none" },
             }}
             InputProps={{
-              style: { color: "white", background: "none" },
+              sx: { color: "textColor.main", background: "none" },
               disableUnderline: true,
             }}
           />
@@ -130,7 +130,10 @@ function PostModal({ open, handleClose }) {
               {image ? (
                 <img src={image} style={{ width: 100 }} />
               ) : (
-                <CloudUploadIcon fontSize="large" sx={{ color: "#01ab81" }} />
+                <CloudUploadIcon
+                  fontSize="large"
+                  sx={{ color: "primary.main" }}
+                />
               )}
             </form>
             <Box
@@ -143,7 +146,7 @@ function PostModal({ open, handleClose }) {
                 <Typography>{fileName} </Typography>
                 {image ? (
                   <DeleteIcon
-                    sx={{ color: "#01ab81", cursor: "pointer" }}
+                    sx={{ color: "primary.main", cursor: "pointer" }}
                     onClick={() => {
                       setFileName("No file selected");
                       setImage(null);
@@ -157,12 +160,12 @@ function PostModal({ open, handleClose }) {
             fullWidth
             disabled={!text && !image}
             sx={{
-              backgroundColor: text || image ? "#01ab81" : "gray",
-              color: text || image ? "#fff" : "#000",
+              backgroundColor: text || image ? "primary.main" : "gray",
+              color: text || image ? "textColor.main" : "#000",
               padding: "10px",
               borderRadius: "25px",
               ":hover": {
-                backgroundColor: "#01ab81",
+                backgroundColor: "primary.main",
               },
             }}
           >

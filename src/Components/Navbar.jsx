@@ -3,11 +3,12 @@ import { AppBar, Toolbar, IconButton, Stack, Input } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
+import { theme } from "../theme";
 const Navbar = () => {
   return (
     <AppBar
       sx={{
-        background: "#181818",
+        backgroundColor: "backgroundColor.main",
         boxShadow: "none",
         zIndex: "9999",
       }}
@@ -26,7 +27,7 @@ const Navbar = () => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Box flexGrow={{ xs: 1, md: 0 }}>
+            <Box>
               <IconButton>
                 <i
                   className="fa-regular fa-square fa-lg"
@@ -45,7 +46,7 @@ const Navbar = () => {
                   border: "none",
                   backgroundColor: "#232323",
                   borderRadius: "25px",
-                  color: "white",
+                  color: "textColor.main",
                   fontSize: "0.9rem",
                 }}
               />
@@ -59,20 +60,20 @@ const Navbar = () => {
             alignItems={"center"}
           >
             <Badge>
-              <Home sx={{ color: "#01ab81" }} />
+              <Home sx={{ color: "primary.main" }} />
             </Badge>
             <Badge>
-              <Message sx={{ color: "white" }} />
+              <Message sx={{ color: "textColor.main" }} />
             </Badge>
             <Badge
               variant="dot"
               sx={{
                 "& .MuiBadge-badge": {
-                  backgroundColor: "#01ab81",
+                  backgroundColor: "primary.main",
                 },
               }}
             >
-              <Notifications sx={{ color: "white" }} />
+              <Notifications sx={{ color: "textColor.main" }} />
             </Badge>
           </Stack>
           <Stack

@@ -79,7 +79,7 @@ export default function NavButton() {
         endIcon={<KeyboardArrowDownIcon />}
         sx={{
           backgroundColor: "#232323",
-          color: "white",
+          color: "textColor.main",
           borderRadius: "25px",
           textTransform: "none",
           padding: "5px 20px 5px 10px",

@@ -13,7 +13,8 @@ const FriendList = (props) => {
         <Avatar
           sx={{
             bgcolor: "grey",
-            border: "5px solid #181818",
+            border: "5px solid ",
+            borderColor: "backgroundColor.main",
             borderRadius: "20px",
           }}
           src={props.image}
@@ -22,7 +23,7 @@ const FriendList = (props) => {
       </Box>
       <Box>
         <IconButton>
-          <PersonRemoveIcon sx={{ color: "white" }} />
+          <PersonRemoveIcon sx={{ color: "textColor.main" }} />
         </IconButton>
       </Box>
     </Box>

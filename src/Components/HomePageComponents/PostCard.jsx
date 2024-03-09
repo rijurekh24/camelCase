@@ -40,7 +40,7 @@ const PostCard = (props) => {
           ></Avatar>
         }
         action={
-          <IconButton style={{ color: "white" }}>
+          <IconButton sx={{ color: "textColor.main" }}>
             <MoreVert />
           </IconButton>
         }
@@ -50,16 +50,16 @@ const PostCard = (props) => {
           </Typography>
         }
         subheader={
-          <Typography variant="body2" color="white">
+          <Typography variant="body2" color="textColor.main">
             {props.name}{" "}
-            <Typography sx={{ color: "#01ab81", ml: 1 }} display="inline">
+            <Typography sx={{ color: "primary.main", ml: 1 }} display="inline">
               • 1hr ago
             </Typography>
           </Typography>
         }
       />
       <CardContent>
-        <Typography variant="body2" color="white">
+        <Typography variant="body2" color="textColor.main">
           Hello there (●'◡'●)
         </Typography>
       </CardContent>
@@ -90,8 +90,8 @@ const PostCard = (props) => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Button
               sx={{
-                backgroundColor: "#01ab81",
-                border: "1px solid #01ab81",
+                backgroundColor: "primary.main",
+                border: "1px solid primary.main",
                 padding: "2px 10px",
                 color: "#222",
                 fontSize: "0.8rem",
@@ -129,14 +129,14 @@ const PostCard = (props) => {
               bgcolor: "#232323",
               ml: 1,
               "& .MuiFilledInput-underline:after": {
-                borderBottomColor: "#01ab81",
+                borderBottomColor: "primary.main",
               },
             }}
             InputLabelProps={{
               style: { color: "#888" },
             }}
             InputProps={{
-              style: { color: "white", borderRadius: "20px" },
+              sx: { color: "textColor.main", borderRadius: "20px" },
               disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">

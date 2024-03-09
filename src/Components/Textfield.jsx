@@ -15,7 +15,7 @@ const Textfield = (props) => {
       sx={{
         bgcolor: "#232323",
         "& .MuiFilledInput-underline:after": {
-          borderBottomColor: "#01ab81",
+          borderBottomColor: "primary.main",
         },
       }}
       InputLabelProps={{

@@ -7,7 +7,7 @@ const FriendListCard = () => {
       p={2}
       sx={{
         backgroundColor: "#232323",
-        color: "white",
+        color: "textColor.main",
         borderRadius: "25px",
         marginBottom: 2,
       }}

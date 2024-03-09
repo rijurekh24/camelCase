@@ -42,7 +42,8 @@ const Post = () => {
         <Avatar
           sx={{
             bgcolor: "grey",
-            border: "5px solid #181818",
+            border: "5px solid",
+            borderColor: "backgroundColor.main",
             borderRadius: "20px",
           }}
           src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
@@ -69,18 +70,18 @@ const Post = () => {
             sx={{
               bgcolor: "#232323",
               "& .MuiFilledInput-underline:after": {
-                borderBottomColor: "#01ab81",
+                borderBottomColor: "primary.main",
               },
             }}
             InputLabelProps={{
               style: { color: "#888" },
             }}
             InputProps={{
-              style: { color: "white", borderRadius: "20px" },
+              sx: { color: "textColor.main", borderRadius: "20px" },
               disableUnderline: true,
               endAdornment: textInput && (
                 <Send
-                  sx={{ color: "white", cursor: "pointer" }}
+                  sx={{ color: "textColor.main", cursor: "pointer" }}
                   onClick={handleSend}
                 />
               ),
@@ -92,7 +93,7 @@ const Post = () => {
             onClick={openModal}
             sx={{
               backgroundColor: "#202020",
-              color: "white",
+              color: "textColor.main",
               borderRadius: "25px",
               textTransform: "none",
               fontSize: "0.7rem",
@@ -102,7 +103,7 @@ const Post = () => {
             }}
           >
             <IconButton>
-              <InsertPhotoIcon sx={{ color: "#01ab81" }} />
+              <InsertPhotoIcon sx={{ color: "primary.main" }} />
             </IconButton>
             <Typography pr={2} display={{ xs: "none", md: "block" }}>
               Photo
@@ -112,7 +113,7 @@ const Post = () => {
             onClick={openModal}
             sx={{
               backgroundColor: "#202020",
-              color: "white",
+              color: "textColor.main",
               borderRadius: "25px",
               fontSize: "0.7rem",
               textTransform: "none",
@@ -131,7 +132,7 @@ const Post = () => {
           <Button
             sx={{
               backgroundColor: "#202020",
-              color: "white",
+              color: "textColor.main",
               textTransform: "none",
               borderRadius: "25px",
               fontSize: "0.7rem",
@@ -150,7 +151,7 @@ const Post = () => {
           <Button
             sx={{
               backgroundColor: "#202020",
-              color: "white",
+              color: "textColor.main",
               borderRadius: "25px",
               textTransform: "none",
               fontSize: "0.7rem",

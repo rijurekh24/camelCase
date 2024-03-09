@@ -25,7 +25,7 @@ const RightBar = () => {
           background: "#181818",
         },
         "&::-webkit-scrollbar-thumb": {
-          background: "#01ab81",
+          background: "primary.main",
         },
         "&::-webkit-scrollbar": {
           width: showScrollbar ? "2px" : "0px",

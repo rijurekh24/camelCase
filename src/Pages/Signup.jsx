@@ -148,7 +148,7 @@ const Signup = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#181818",
+        backgroundColor: "backgroundColor.main",
         minHeight: " 100vh",
         display: "flex",
       }}
@@ -210,7 +210,7 @@ const Signup = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    color: "#01ab81",
+                    color: "primary.main",
                     fontWeight: "bold",
                   }}
                   display={{ sm: "block", md: "none" }}
@@ -296,7 +296,7 @@ const Signup = () => {
                         mt: 2,
                         p: 1,
                         color: "white",
-                        backgroundColor: "#01ab81",
+                        backgroundColor: "primary.main",
                         "&:hover": {
                           backgroundColor: "#007d5e",
                         },
