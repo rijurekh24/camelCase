@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, IconButton, InputAdornment, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PollIcon from "@mui/icons-material/Poll";

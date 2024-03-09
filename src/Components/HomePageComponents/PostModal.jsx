@@ -25,7 +25,7 @@ function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(null);
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
@@ -155,10 +155,10 @@ function PostModal({ open, handleClose }) {
           </Box>
           <Button
             fullWidth
-            disabled={!text}
+            disabled={!text && !image}
             sx={{
-              backgroundColor: text ? "#01ab81" : "gray",
-              color: text ? "#fff" : "#000",
+              backgroundColor: text || image ? "#01ab81" : "gray",
+              color: text || image ? "#fff" : "#000",
               padding: "10px",
               borderRadius: "25px",
               ":hover": {
