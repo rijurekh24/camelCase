@@ -10,6 +10,7 @@ const ProfileCard = () => {
         backgroundColor: "#232323",
         color: "white",
         borderRadius: "25px",
+        marginBottom: 2,
       }}
     >
       <Box

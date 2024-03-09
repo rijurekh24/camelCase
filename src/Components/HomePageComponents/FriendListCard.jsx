@@ -4,11 +4,12 @@ import FriendList from "./FriendList";
 const FriendListCard = () => {
   return (
     <Box
+      p={2}
       sx={{
         backgroundColor: "#232323",
         color: "white",
         borderRadius: "25px",
-        padding: "20px",
+        marginBottom: 2,
       }}
     >
       <Typography variant="h6" mb={2}>
