@@ -20,7 +20,7 @@ const Sidebar = () => {
         flex: 2,
         overflowY: "scroll",
         position: "sticky",
-        top: "72px",
+        top: "70px",
         height: "calc(100vh - 49.6px)",
         "&::-webkit-scrollbar-track": {
           background: "#181818",

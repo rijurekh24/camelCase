@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <Box sx={{ backgroundColor: "#181818", minHeight: "100vh" }}>
       <Navbar />
-      <Box mt={1}>
+      <Box>
         <Stack direction={"row"} gap={{ lg: 5, xl: 10 }}>
           <SideBar />
           <Feed />
