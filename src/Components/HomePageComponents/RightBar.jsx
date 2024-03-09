@@ -19,7 +19,7 @@ const RightBar = () => {
         flex: 2,
         overflowY: "scroll",
         position: "sticky",
-        top: "70px",
+        top: "72px",
         height: "calc(100vh - 49.6px)",
         "&::-webkit-scrollbar-track": {
           background: "#181818",
