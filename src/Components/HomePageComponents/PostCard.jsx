@@ -25,7 +25,7 @@ const PostCard = (props) => {
         zIndex: "-1",
         bgcolor: "#232323",
         borderRadius: "25px",
-        // marginBottom: 2,
+        marginBottom: 2,
       }}
     >
       <CardHeader
