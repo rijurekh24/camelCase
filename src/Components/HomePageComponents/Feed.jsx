@@ -9,7 +9,6 @@ const Feed = () => {
       sx={{
         flex: 4,
       }}
-      px={{ xs: 0, md: 5, lg: 10, xl: 15 }}
     >
       <Post />
       <PostCard

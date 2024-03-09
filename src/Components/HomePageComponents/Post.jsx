@@ -104,7 +104,7 @@ const Post = () => {
             <IconButton>
               <InsertPhotoIcon sx={{ color: "#01ab81" }} />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+            <Typography pr={2} display={{ xs: "none", md: "block" }}>
               Photo
             </Typography>
           </Button>
@@ -124,7 +124,7 @@ const Post = () => {
             <IconButton>
               <PlayCircleIcon sx={{ color: "#4F93F8" }} />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+            <Typography pr={2} display={{ xs: "none", md: "block" }}>
               Video
             </Typography>
           </Button>
@@ -143,7 +143,7 @@ const Post = () => {
             <IconButton>
               <PollIcon sx={{ color: "#E67575" }} />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+            <Typography pr={2} display={{ xs: "none", md: "block" }}>
               Poll
             </Typography>
           </Button>
@@ -162,7 +162,7 @@ const Post = () => {
             <IconButton>
               <CalendarMonthIcon sx={{ color: "#EEBE65" }} />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", lg: "block" }}>
+            <Typography pr={2} display={{ xs: "none", md: "block" }}>
               Schedule
             </Typography>
           </Button>

@@ -56,18 +56,19 @@ const Navbar = () => {
               <Input
                 placeholder="# Explore"
                 sx={{
-                  padding: "5px 40px 5px 20px",
-                  marginLeft: "4%",
+                  padding: "4px 0px 4px 10px",
+                  marginLeft: "2%",
                   border: "none",
                   backgroundColor: "#232323",
                   borderRadius: "25px",
                   color: "white",
+                  fontSize: "0.9rem",
                 }}
               />
             </Box>
           </Stack>
           <Stack
-            spacing={4}
+            spacing={8}
             direction={"row"}
             display={{ xs: "none", md: "flex" }}
             justifyContent={"center"}
