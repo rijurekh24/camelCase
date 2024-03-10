@@ -9,7 +9,7 @@ const LoadingPage = () => {
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <PuffLoader color="primary.main" />
+      <PuffLoader color="#01ab81" />
     </Grid>
   );
 };

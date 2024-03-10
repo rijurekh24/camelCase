@@ -36,6 +36,7 @@ function PostModal({ open, handleClose }) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       margin={2}
+      disableScrollLock
     >
       <Box sx={style} width={{ xs: 280, sm: 300 }}>
         <Box

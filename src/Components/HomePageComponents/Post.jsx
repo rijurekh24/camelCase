@@ -91,6 +91,7 @@ const Post = () => {
         <Box display={"flex"} justifyContent={"space-between"}>
           <Button
             onClick={openModal}
+            disableRipple
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",
@@ -121,6 +122,7 @@ const Post = () => {
                 backgroundColor: "#202020",
               },
             }}
+            disableRipple
           >
             <IconButton>
               <PlayCircleIcon sx={{ color: "#4F93F8" }} />
@@ -130,6 +132,7 @@ const Post = () => {
             </Typography>
           </Button>
           <Button
+            disableRipple
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",
@@ -149,6 +152,7 @@ const Post = () => {
             </Typography>
           </Button>
           <Button
+            disableRipple
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",

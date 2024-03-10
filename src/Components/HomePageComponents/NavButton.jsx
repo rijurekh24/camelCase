@@ -112,6 +112,7 @@ export default function NavButton() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        disableScrollLock
       >
         <MenuItem onClick={handleClose} disableRipple>
           <PersonIcon />

@@ -20,17 +20,17 @@ const Sidebar = () => {
         flex: 2,
         overflowY: "scroll",
         position: "sticky",
-        top: "72px",
+        top: "73px",
         height: "calc(100vh - 49.6px)",
         "&::-webkit-scrollbar-track": {
-          background: "#181818",
+          backgroundColor: "backgroundColor.main",
         },
         "&::-webkit-scrollbar-thumb": {
-          background: "#primary.main",
+          backgroundColor: "primary.main",
         },
         "&::-webkit-scrollbar": {
-          width: showScrollbar ? "2px" : "0px",
-          transition: "width 0.5s",
+          width: showScrollbar ? "0px" : "0px",
+          // transition: "width 0.5s",
         },
       }}
       onScroll={handleScroll}
