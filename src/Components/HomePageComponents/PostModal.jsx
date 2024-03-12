@@ -77,8 +77,8 @@ function PostModal({ open, handleClose }) {
           .then((res) => {
             //console.log(res.data);
             handleClose();
-            window.location.reload();
             setIsLoading(false);
+            ctx.fetchPost();
           })
           .catch((err) => {
             setIsLoading(false);

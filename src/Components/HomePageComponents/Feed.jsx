@@ -1,16 +1,15 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import Post from "./Post";
 import Api from "../../Utils/api";
+import { authContext } from "../../Context/AuthContext";
 
 const Feed = () => {
-  const [postData, setPostData] = useState([]);
+  const ctx = useContext(authContext);
 
   useEffect(() => {
-    Api.get("/posts/get-all").then((res) => {
-      setPostData(res.data.posts);
-    });
+    ctx.fetchPost();
   }, []);
 
   return (
@@ -21,7 +20,7 @@ const Feed = () => {
     >
       <Post />
 
-      {postData.map((item) => (
+      {ctx.postData.map((item) => (
         <PostCard
           name={`${item.user.first_name} ${item.user.last_name}`}
           username={item.user.username}
