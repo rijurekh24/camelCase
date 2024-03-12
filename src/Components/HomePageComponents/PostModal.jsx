@@ -3,10 +3,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, TextField } from "@mui/material";
+import { Avatar, Divider, InputBase, TextField } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Axios from "axios";
+import Api from "../../Utils/api";
 
 const style = {
   position: "absolute",
@@ -24,11 +26,59 @@ const style = {
 function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
   const [image, setImage] = useState(null);
+  const [img, setImg] = useState("");
   const [fileName, setFileName] = useState("No file selected");
-  const [text, setText] = useState(null);
+  const [blobURL, setBlobURL] = useState("");
+  const [caption, setCaption] = useState("");
+
+  console.log(ctx.user);
   const handleTextChange = (event) => {
-    setText(event.target.value);
+    setCaption(event.target.value);
   };
+
+  const uploadImage = ({ target: { files } }) => {
+    if (files && files[0]) {
+      setFileName(files[0].name);
+      const imageURL = URL.createObjectURL(files[0]);
+      setBlobURL(imageURL);
+      setImage(files[0]);
+    }
+  };
+
+  const handleClick = () => {
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "bdafcwdk");
+
+    Axios.post(
+      "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload",
+      formData
+    )
+      .then((res) => {
+        //console.log(res.data);
+        Api.post("/posts/create-new", {
+          username: ctx.user.username,
+          caption,
+          img: res.data.url,
+          user: ctx.user._id,
+        })
+          .then((res) => {
+            //console.log(res.data);
+          })
+          .catch((err) => {
+            // console.log(err.response.data);
+          });
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
+  };
+
   return (
     <Modal
       open={open}
@@ -78,40 +128,18 @@ function PostModal({ open, handleClose }) {
               {ctx.user.first_name} {ctx.user.last_name}
             </Typography>
           </Box>
-          <TextField
-            id="filled-basic"
+          <InputBase
             placeholder={`What's on your mind, ${ctx.user.first_name} ?`}
-            variant="filled"
             fullWidth
             autoComplete="off"
             autoFocus
             multiline
-            value={text}
+            value={caption}
             onChange={handleTextChange}
             sx={{
               mb: 2,
-              "& .MuiFilledInput-underline:after": {
-                borderBottomColor: "primary.main",
-              },
-              "&:hover": {
-                background: "transparent",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "textColor.main",
-                background: "transparent",
-              },
-            }}
-            InputProps={{
-              sx: {
-                color: "textColor.main",
-                background: "transparent",
-                "&:hover": {
-                  background: "transparent",
-                },
-              },
-              disableUnderline: true,
+              px: 1,
+              color: "textColor.main",
             }}
           />
           {/* image select section */}
@@ -136,13 +164,10 @@ function PostModal({ open, handleClose }) {
                 accept="image/*"
                 className="input-field"
                 hidden
-                onChange={({ target: { files } }) => {
-                  files[0] && setFileName(files[0].name);
-                  if (files) setImage(URL.createObjectURL(files[0]));
-                }}
+                onChange={uploadImage}
               />
-              {image ? (
-                <img src={image} style={{ width: 100 }} />
+              {blobURL ? (
+                <img src={blobURL} style={{ width: 100 }} />
               ) : (
                 <CloudUploadIcon
                   fontSize="large"
@@ -164,6 +189,7 @@ function PostModal({ open, handleClose }) {
                     onClick={() => {
                       setFileName("No file selected");
                       setImage(null);
+                      setBlobURL("");
                     }}
                   />
                 ) : null}
@@ -172,10 +198,11 @@ function PostModal({ open, handleClose }) {
           </Box>
           <Button
             fullWidth
-            disabled={!text && !image}
+            disabled={!caption && !image}
+            onClick={handleClick}
             sx={{
-              backgroundColor: text || image ? "primary.main" : "gray",
-              color: text || image ? "textColor.main" : "#000",
+              backgroundColor: caption || image ? "primary.main" : "gray",
+              color: caption || image ? "textColor.main" : "#000",
               padding: "10px",
               borderRadius: "25px",
               ":hover": {

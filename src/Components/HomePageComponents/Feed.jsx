@@ -1,9 +1,18 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import Post from "./Post";
+import Api from "../../Utils/api";
 
 const Feed = () => {
+  const [postData, setPostData] = useState([]);
+
+  useEffect(() => {
+    Api.get("/posts/get-all").then((res) => {
+      setPostData(res.data.posts);
+    });
+  }, []);
+
   return (
     <Box
       sx={{
@@ -11,21 +20,15 @@ const Feed = () => {
       }}
     >
       <Post />
-      <PostCard
-        name="Uzumaki Naruto"
-        username="naruto123"
-        image="https://i1.sndcdn.com/artworks-000139163741-dk8qn7-t500x500.jpg"
-      />
-      <PostCard
-        name="Eren Yeager"
-        username="yeager_10"
-        image="https://i.pinimg.com/474x/b6/6d/22/b66d22a8b57900e75cbab27192cd58a3.jpg"
-      />
-      <PostCard
-        name="Kamado Tanjiro"
-        username="tanjiro_7"
-        image="https://i-ogp.pximg.net/c/540x540_70/img-master/img/2020/05/23/00/00/03/81773326_p0_square1200.jpg"
-      />
+
+      {postData.map((item) => (
+        <PostCard
+          name={`${item.user.first_name} ${item.user.last_name}`}
+          username={item.user.username}
+          image={item.img}
+          caption={item.caption}
+        />
+      ))}
     </Box>
   );
 };

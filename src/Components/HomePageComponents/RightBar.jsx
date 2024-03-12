@@ -36,6 +36,11 @@ const RightBar = () => {
     >
       <Box>
         <FriendListCard />
+        {/* {Array(20)
+          .fill("")
+          .map(() => (
+            <FriendListCard />
+          ))} */}
       </Box>
     </Box>
   );

@@ -1,5 +1,12 @@
 import { Box } from "@mui/system";
-import { AppBar, Toolbar, IconButton, Stack, Input } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Stack,
+  Input,
+  InputBase,
+} from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
@@ -38,7 +45,7 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box display={{ xs: "none", sm: "block" }}>
-              <Input
+              <InputBase
                 placeholder="# Explore"
                 sx={{
                   padding: "4px 0px 4px 10px",

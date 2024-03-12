@@ -37,7 +37,7 @@ const PostCard = (props) => {
               borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
-            src={props.image}
+            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
           ></Avatar>
         }
         action={
@@ -61,13 +61,25 @@ const PostCard = (props) => {
       />
       <CardContent>
         <Typography variant="body2" color="textColor.main">
-          Hello there (●'◡'●)
+          {props.caption}
         </Typography>
       </CardContent>
-      <CardMedia
-        component="img"
-        image="https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=1434/https://s3.cointelegraph.com/uploads/2023-01/158029af-a86a-402f-a5b5-e915cc69f138.JPG"
-      />
+      <Box sx={{ height: "25rem", bgcolor: "#333" }}>
+        {/* <CardMedia
+          component="img"
+          image={props.image}
+          width={"100%"}
+          height={"100%"}
+        /> */}
+
+        <img
+          src={props.image}
+          alt="image"
+          height={"100%"}
+          width={"100%"}
+          style={{ objectFit: "contain" }}
+        />
+      </Box>
 
       <CardActions>
         <Box
@@ -118,7 +130,7 @@ const PostCard = (props) => {
               borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
-            src={props.image}
+            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
           ></Avatar>
           <TextField
             id="filled-basic"

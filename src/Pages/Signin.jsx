@@ -337,7 +337,7 @@ const Signin = () => {
                   </Grid>
                   <Grid item xs={12} sx={{ textAlign: "center" }}>
                     <Typography sx={{ color: "white" }}>
-                      Already have an account?{" "}
+                      Don't have an account?{" "}
                       <Link
                         to="/signup"
                         style={{
