@@ -29,7 +29,7 @@ const Post = () => {
     <Box
       sx={{
         bgcolor: "backgroundColor.secondary",
-        borderRadius: "25px",
+        borderRadius: { xs: "0", lg: "15px" },
         marginBottom: 2,
         display: "flex",
         padding: "10px 15px",
@@ -95,7 +95,7 @@ const Post = () => {
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",
-              borderRadius: "25px",
+              borderRadius: "15px",
               textTransform: "none",
               fontSize: "0.7rem",
               ":hover": {
@@ -115,7 +115,7 @@ const Post = () => {
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",
-              borderRadius: "25px",
+              borderRadius: "15px",
               fontSize: "0.7rem",
               textTransform: "none",
               ":hover": {
@@ -137,7 +137,7 @@ const Post = () => {
               backgroundColor: "#202020",
               color: "textColor.main",
               textTransform: "none",
-              borderRadius: "25px",
+              borderRadius: "15px",
               fontSize: "0.7rem",
               ":hover": {
                 backgroundColor: "#202020",
@@ -156,7 +156,7 @@ const Post = () => {
             sx={{
               backgroundColor: "#202020",
               color: "textColor.main",
-              borderRadius: "25px",
+              borderRadius: "15px",
               textTransform: "none",
               fontSize: "0.7rem",
               ":hover": {

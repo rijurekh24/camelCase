@@ -1,17 +1,8 @@
 import { Box } from "@mui/system";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Stack,
-  Input,
-  InputBase,
-  TextField,
-} from "@mui/material";
+import { AppBar, Toolbar, IconButton, Stack, InputBase } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
-import { theme } from "../theme";
 const Navbar = () => {
   return (
     <AppBar
@@ -19,10 +10,11 @@ const Navbar = () => {
         backgroundColor: "backgroundColor.main",
         boxShadow: "none",
         zIndex: "9999",
+        width: "100%",
       }}
       position={"sticky"}
     >
-      <Toolbar>
+      <Toolbar sx={{ height: "4rem" }}>
         <Box
           flexDirection={"row"}
           display={"flex"}
@@ -35,6 +27,7 @@ const Navbar = () => {
             justifyContent={"flex-start"}
             alignItems={"center"}
             flex={1}
+            gap={1}
           >
             <Box>
               <IconButton>
@@ -50,10 +43,10 @@ const Navbar = () => {
               <InputBase
                 placeholder="# Explore"
                 sx={{
-                  width: { xs: "100%", md: "60%" },
+                  width: { xs: "100%", md: "50%" },
                   padding: "4px 20px 4px 20px",
                   bgcolor: "backgroundColor.secondary",
-                  borderRadius: "25px",
+                  borderRadius: "15px",
                   color: "textColor.main",
                   fontSize: "0.9rem",
                 }}

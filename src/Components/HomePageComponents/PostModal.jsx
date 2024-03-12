@@ -16,7 +16,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "backgroundColor.secondary",
-  borderRadius: "25px",
+  borderRadius: "15px",
   boxShadow: 24,
   p: 2,
   color: "textColor.main",
@@ -210,7 +210,7 @@ function PostModal({ open, handleClose }) {
               backgroundColor: caption || image ? "primary.main" : "gray",
               color: caption || image ? "textColor.main" : "#000",
               padding: "10px",
-              borderRadius: "25px",
+              borderRadius: "15px",
               ":hover": {
                 backgroundColor: "primary.main",
               },

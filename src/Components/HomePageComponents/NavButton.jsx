@@ -80,7 +80,7 @@ export default function NavButton() {
         sx={{
           backgroundColor: "backgroundColor.secondary",
           color: "textColor.main",
-          borderRadius: "25px",
+          borderRadius: "15px",
           textTransform: "none",
           padding: "5px 20px 5px 10px",
           fontSize: "0.9rem",

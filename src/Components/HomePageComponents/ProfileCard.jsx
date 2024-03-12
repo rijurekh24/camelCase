@@ -9,8 +9,9 @@ const ProfileCard = () => {
       sx={{
         backgroundColor: "backgroundColor.secondary",
         color: "textColor.main",
-        borderRadius: "25px",
+        borderRadius: "15px",
         marginBottom: 2,
+        overflow: "hidden",
       }}
     >
       <Box
@@ -20,8 +21,8 @@ const ProfileCard = () => {
           width: "100%",
           height: 130,
           objectFit: "cover",
-          borderTopLeftRadius: "25px",
-          borderTopRightRadius: "25px",
+          // borderTopLeftRadius: "25px",
+          // borderTopRightRadius: "25px",
         }}
       />
 
@@ -111,7 +112,7 @@ const ProfileCard = () => {
               color: "textColor.secondary",
               textTransform: "none",
               padding: "15px",
-              borderRadius: "18px",
+              borderRadius: "10px",
               transition: "0.5s",
               ":hover": {
                 backgroundColor: "primary.main",

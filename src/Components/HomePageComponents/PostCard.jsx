@@ -10,7 +10,6 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  CardMedia,
   Divider,
   IconButton,
   InputAdornment,
@@ -24,8 +23,8 @@ const PostCard = (props) => {
       sx={{
         zIndex: "-1",
         bgcolor: "backgroundColor.secondary",
-        borderRadius: "25px",
-        marginBottom: 2,
+        borderRadius: { xs: "0", lg: "15px" },
+        marginBottom: { xs: "1px", lg: 2 },
       }}
     >
       <CardHeader
@@ -64,14 +63,15 @@ const PostCard = (props) => {
           {props.caption}
         </Typography>
       </CardContent>
-      <Box sx={{ height: "25rem", bgcolor: "#333" }}>
-        {/* <CardMedia
-          component="img"
-          image={props.image}
-          width={"100%"}
-          height={"100%"}
-        /> */}
-
+      <Box
+        sx={{
+          height: "25rem",
+          bgcolor: "#333",
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
         <img
           src={props.image}
           alt="image"

@@ -21,7 +21,7 @@ const Sidebar = () => {
         overflowY: "scroll",
         position: "sticky",
         top: "73px",
-        height: "calc(100vh - 49.6px)",
+        height: "calc(100dvh - 5.5rem)",
         "&::-webkit-scrollbar-track": {
           backgroundColor: "backgroundColor.main",
         },

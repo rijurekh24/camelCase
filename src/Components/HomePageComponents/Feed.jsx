@@ -16,6 +16,7 @@ const Feed = () => {
     <Box
       sx={{
         flex: 4,
+        px: "4px",
       }}
     >
       <Post />

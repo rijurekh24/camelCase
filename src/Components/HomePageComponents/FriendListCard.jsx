@@ -8,7 +8,7 @@ const FriendListCard = () => {
       sx={{
         backgroundColor: "backgroundColor.secondary",
         color: "textColor.main",
-        borderRadius: "25px",
+        borderRadius: "15px",
         marginBottom: 2,
       }}
     >
