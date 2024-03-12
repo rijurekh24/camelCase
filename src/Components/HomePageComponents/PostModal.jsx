@@ -3,7 +3,13 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase, TextField } from "@mui/material";
+import {
+  Avatar,
+  CircularProgress,
+  Divider,
+  InputBase,
+  TextField,
+} from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -26,10 +32,10 @@ const style = {
 function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
   const [image, setImage] = useState(null);
-  const [img, setImg] = useState("");
   const [fileName, setFileName] = useState("No file selected");
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTextChange = (event) => {
     setCaption(event.target.value);
@@ -45,6 +51,7 @@ function PostModal({ open, handleClose }) {
   };
 
   const handleClick = () => {
+    setIsLoading(true);
     if (!image) {
       console.error("No image selected");
       return;
@@ -59,6 +66,7 @@ function PostModal({ open, handleClose }) {
       formData
     )
       .then((res) => {
+        setIsLoading(false);
         //console.log(res.data);
         Api.post("/posts/create-new", {
           username: ctx.user.username,
@@ -68,12 +76,17 @@ function PostModal({ open, handleClose }) {
         })
           .then((res) => {
             //console.log(res.data);
+            handleClose();
+            window.location.reload();
+            setIsLoading(false);
           })
           .catch((err) => {
+            setIsLoading(false);
             // console.log(err.response.data);
           });
       })
       .catch((error) => {
+        setIsLoading(false);
         console.error("Error uploading image:", error);
       });
   };
@@ -209,7 +222,11 @@ function PostModal({ open, handleClose }) {
               },
             }}
           >
-            Post
+            {isLoading ? (
+              <CircularProgress size={"2em"} sx={{ color: "white" }} />
+            ) : (
+              "Post"
+            )}
           </Button>
         </Box>
       </Box>
