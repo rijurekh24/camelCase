@@ -31,7 +31,6 @@ function PostModal({ open, handleClose }) {
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");
 
-  console.log(ctx.user);
   const handleTextChange = (event) => {
     setCaption(event.target.value);
   };
