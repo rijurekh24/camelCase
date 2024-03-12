@@ -6,6 +6,7 @@ import {
   Stack,
   Input,
   InputBase,
+  TextField,
 } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
@@ -31,8 +32,9 @@ const Navbar = () => {
           <Stack
             flexDirection={"row"}
             display={"flex"}
-            justifyContent={"center"}
+            justifyContent={"flex-start"}
             alignItems={"center"}
+            flex={1}
           >
             <Box>
               <IconButton>
@@ -44,14 +46,13 @@ const Navbar = () => {
                 ></i>
               </IconButton>
             </Box>
-            <Box display={{ xs: "none", sm: "block" }}>
+            <Box display={{ xs: "none", sm: "block" }} flex={1}>
               <InputBase
                 placeholder="# Explore"
                 sx={{
-                  padding: "4px 0px 4px 10px",
-                  marginLeft: "2%",
-                  border: "none",
-                  backgroundColor: "backgroundColor.secondary",
+                  width: { xs: "100%", md: "60%" },
+                  padding: "4px 20px 4px 20px",
+                  bgcolor: "backgroundColor.secondary",
                   borderRadius: "25px",
                   color: "textColor.main",
                   fontSize: "0.9rem",
@@ -65,6 +66,7 @@ const Navbar = () => {
             display={{ xs: "none", md: "flex" }}
             justifyContent={"center"}
             alignItems={"center"}
+            flex={1}
           >
             <Badge>
               <Home sx={{ color: "primary.main" }} />
@@ -84,9 +86,10 @@ const Navbar = () => {
             </Badge>
           </Stack>
           <Stack
+            flex={1}
             flexDirection={"row"}
             display={"flex"}
-            justifyContent={"center"}
+            justifyContent={"flex-end"}
             alignItems={"center"}
           >
             <NavButton />

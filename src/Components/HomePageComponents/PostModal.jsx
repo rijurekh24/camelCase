@@ -3,13 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import {
-  Avatar,
-  CircularProgress,
-  Divider,
-  InputBase,
-  TextField,
-} from "@mui/material";
+import { Avatar, CircularProgress, Divider, InputBase } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
