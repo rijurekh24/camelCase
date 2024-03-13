@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import Post from "./Post";
-import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
 
 const Feed = () => {

@@ -1,8 +1,10 @@
 import { Box } from "@mui/system";
-import { AppBar, Toolbar, IconButton, Stack, InputBase } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Stack } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
+import Search from "./HomePageComponents/Search";
+
 const Navbar = () => {
   return (
     <AppBar
@@ -40,17 +42,7 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box display={{ xs: "none", sm: "block" }} flex={1}>
-              <InputBase
-                placeholder="# Explore"
-                sx={{
-                  width: { xs: "100%", md: "50%" },
-                  padding: "4px 20px 4px 20px",
-                  bgcolor: "backgroundColor.secondary",
-                  borderRadius: "15px",
-                  color: "textColor.main",
-                  fontSize: "0.9rem",
-                }}
-              />
+              <Search />
             </Box>
           </Stack>
           <Stack

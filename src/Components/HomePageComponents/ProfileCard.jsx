@@ -1,9 +1,15 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard = () => {
   const ctx = useContext(authContext);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/profile");
+  };
   return (
     <Box
       sx={{
@@ -106,6 +112,7 @@ const ProfileCard = () => {
             <Divider variant="middle" color="#333" sx={{ marginTop: 3 }} />
           </Typography>
           <Button
+            onClick={handleClick}
             sx={{
               width: "100%",
               backgroundColor: "#333",

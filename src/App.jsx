@@ -14,6 +14,7 @@ import { Box } from "@mui/system";
 import LoadingPage from "./Components/LoadingPage";
 import { authContext } from "./Context/AuthContext";
 import EmailVer from "./Pages/EmailVer";
+import ProfilePage from "./Components/ProfilePageComponents/ProfilePage";
 
 const AuthView = () => {
   const ctx = useContext(authContext);
@@ -51,16 +52,20 @@ const App = () => {
   //   }, 1000);
   // }, []);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AuthView />}>
-          <Route element={<Home />} index />
-        </Route>
-        <Route path="signin" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="emailverification" element={<EmailVer />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AuthView />}>
+            <Route element={<Home />} index />
+          </Route>
+
+          <Route path="signin" element={<Signin />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="emailverification" element={<EmailVer />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 };
 
