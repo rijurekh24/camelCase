@@ -1,7 +1,28 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Api from "../../Utils/api";
 
 const ProfilePage = () => {
+  const location = useLocation();
+  const [username, setUsername] = useState("");
+  const [profileData, setProfileData] = useState([]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const usernameParam = searchParams.get("username");
+    setUsername(usernameParam);
+
+    if (usernameParam) {
+      Api.get(`/auth/accounts/profile?username=${usernameParam}`)
+        .then((response) => {
+          setProfileData(response.data.user);
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    }
+  }, [location.search, username]);
   return (
     <Box
       minHeight={"100vh"}
@@ -35,12 +56,12 @@ const ProfilePage = () => {
           <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
             <Box>
               <Typography sx={{ fontSize: "1.4rem", color: "textColor.main" }}>
-                Rijurekh Ghosh
+                {profileData.first_name} {profileData.last_name}
               </Typography>
               <Typography
                 sx={{ fontSize: "1.1rem", color: "textColor.secondary" }}
               >
-                @rijurekh24
+                {username}
               </Typography>
             </Box>
             <Box>

@@ -1,9 +1,10 @@
-import { Autocomplete, Box, InputBase, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { Autocomplete, Box, InputBase, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import Api from "../../Utils/api";
 
 const Search = () => {
-  const [username, setUsername] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
   const debounce = (func, delay) => {
@@ -19,7 +20,6 @@ const Search = () => {
   const handleSearch = (query) => {
     Api.post("/auth/search", { query })
       .then((response) => {
-        console.log(response.data.search_res[0].users);
         setSearchResult(response.data.search_res[0].users);
       })
       .catch((error) => {
@@ -30,11 +30,12 @@ const Search = () => {
   const delayedSearch = debounce(handleSearch, 500);
 
   const handleChange = (e) => {
-    setUsername(e.target.value);
-    if (e.target.value.trim() !== "") {
-      delayedSearch(e.target.value);
-    }
-    if (!e.target.value) {
+    const { value } = e.target;
+    setSearchInput(value);
+
+    if (value.trim() !== "") {
+      delayedSearch(value);
+    } else {
       setSearchResult([]);
     }
   };
@@ -43,19 +44,22 @@ const Search = () => {
     <Autocomplete
       disablePortal
       id="combo-box-demo"
-      options={searchResult
-        .map((user) => {
-          const fullName = `${user.first_name} ${user.last_name}`;
-
-          if (user.username.toLowerCase().includes(username.toLowerCase())) {
-            return user.username + (fullName ? ` (${fullName})` : "");
-          } else if (fullName.toLowerCase().includes(username.toLowerCase())) {
-            return fullName + (user.username ? ` (${user.username})` : "");
-          }
-          return null;
-        })
-        .filter(Boolean)}
-      noOptionsText={username ? "Not found" : "Search"}
+      options={searchResult}
+      getOptionLabel={(option) => {
+        const fullName = `${option.first_name} ${option.last_name}`;
+        return `${option.username} (${option.first_name} ${option.last_name})`;
+      }}
+      renderOption={(props, option) => (
+        <Link
+          to={`/profile?username=${option.username}`}
+          style={{ textDecoration: "none" }}
+        >
+          <Box {...props}>
+            <Typography variant="body1">{`${option.username} (${option.first_name} ${option.last_name})`}</Typography>
+          </Box>
+        </Link>
+      )}
+      noOptionsText={searchInput ? "Not found" : "Search"}
       sx={{ width: 300 }}
       renderInput={(params) => {
         const { InputLabelProps, InputProps, ...rest } = params;
@@ -64,7 +68,7 @@ const Search = () => {
             {...params.InputProps}
             {...rest}
             id="search-input"
-            value={username}
+            value={searchInput}
             onChange={handleChange}
             placeholder="Search"
             sx={{

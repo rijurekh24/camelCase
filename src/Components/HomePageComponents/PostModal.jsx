@@ -55,7 +55,7 @@ function PostModal({ open, handleClose }) {
         user: ctx.user._id,
       })
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
           handleClose();
           setIsLoading(false);
           ctx.fetchPost();
