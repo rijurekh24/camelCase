@@ -6,7 +6,7 @@ import { authContext } from "../../Context/AuthContext";
 
 const Feed = () => {
   const ctx = useContext(authContext);
-
+  console.log(ctx.postData);
   useEffect(() => {
     ctx.fetchPost();
   }, []);

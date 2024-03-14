@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, IconButton, Typography } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
@@ -7,9 +7,12 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Avatar, Box, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
+import { authContext } from "../../Context/AuthContext";
+import Api from "../../Utils/api";
 const Post = () => {
   const [textInput, setTextInput] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const ctx = useContext(authContext);
 
   const openModal = () => {
     setModalOpen(true);
@@ -23,7 +26,16 @@ const Post = () => {
   };
 
   const handleSend = () => {
-    setTextInput("");
+    Api.post("/posts/create-new", {
+      username: ctx.user.username,
+      caption: textInput,
+      user: ctx.user._id,
+    })
+      .then((res) => {
+        ctx.fetchPost();
+        setTextInput("");
+      })
+      .catch((err) => {});
   };
   return (
     <Box

@@ -63,23 +63,25 @@ const PostCard = (props) => {
           {props.caption}
         </Typography>
       </CardContent>
-      <Box
-        sx={{
-          height: "25rem",
-          bgcolor: "#333",
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        <img
-          src={props.image}
-          alt="image"
-          height={"100%"}
-          width={"100%"}
-          style={{ objectFit: "contain" }}
-        />
-      </Box>
+      {props.image && (
+        <Box
+          sx={{
+            height: "25rem",
+            bgcolor: "#333",
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <img
+            src={props.image}
+            alt="image"
+            height={"100%"}
+            width={"100%"}
+            style={{ objectFit: "contain" }}
+          />
+        </Box>
+      )}
 
       <CardActions>
         <Box

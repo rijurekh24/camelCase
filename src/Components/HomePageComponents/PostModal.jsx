@@ -47,42 +47,58 @@ function PostModal({ open, handleClose }) {
   const handleClick = () => {
     setIsLoading(true);
     if (!image) {
-      console.error("No image selected");
-      return;
+      // console.error("No image selected");
+      // return;
+      Api.post("/posts/create-new", {
+        username: ctx.user.username,
+        caption,
+        user: ctx.user._id,
+      })
+        .then((res) => {
+          // console.log(res.data);
+          handleClose();
+          setIsLoading(false);
+          ctx.fetchPost();
+        })
+        .catch((err) => {
+          setIsLoading(false);
+        });
     }
 
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "bdafcwdk");
+    if (image) {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "bdafcwdk");
 
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload",
-      formData
-    )
-      .then((res) => {
-        setIsLoading(false);
-        //console.log(res.data);
-        Api.post("/posts/create-new", {
-          username: ctx.user.username,
-          caption,
-          img: res.data.url,
-          user: ctx.user._id,
-        })
-          .then((res) => {
-            //console.log(res.data);
-            handleClose();
-            setIsLoading(false);
-            ctx.fetchPost();
+      Axios.post(
+        "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload",
+        formData
+      )
+        .then((res) => {
+          setIsLoading(false);
+          //console.log(res.data);
+          Api.post("/posts/create-new", {
+            username: ctx.user.username,
+            caption,
+            img: res.data.url,
+            user: ctx.user._id,
           })
-          .catch((err) => {
-            setIsLoading(false);
-            // console.log(err.response.data);
-          });
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error uploading image:", error);
-      });
+            .then((res) => {
+              //console.log(res.data);
+              handleClose();
+              setIsLoading(false);
+              ctx.fetchPost();
+            })
+            .catch((err) => {
+              setIsLoading(false);
+              // console.log(err.response.data);
+            });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.error("Error uploading image:", error);
+        });
+    }
   };
 
   return (
