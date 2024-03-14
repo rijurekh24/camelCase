@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
 
 const ProfilePage = () => {
+  const [isFollowed, setIsFollowed] = useState(false);
   const [profileData, setProfileData] = useState([]);
   const { username } = useParams();
   useEffect(() => {
@@ -17,6 +18,18 @@ const ProfilePage = () => {
         });
     }
   }, [location.search, username]);
+
+  const handleClick = () => {
+    Api.post("/auth/accounts/follow/", { to: profileData._id })
+      .then((response) => {
+        console.log("sucessful", response.data);
+        setIsFollowed(true);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
   return (
     <Box
       minHeight={"100vh"}
@@ -59,12 +72,8 @@ const ProfilePage = () => {
               </Typography>
             </Box>
             <Box>
-              <Button>
-                <i
-                  class="fa-regular fa-pen-to-square"
-                  style={{ color: "#999", marginRight: "4px" }}
-                ></i>
-                Edit Profile
+              <Button onClick={handleClick}>
+                {isFollowed ? "Followed" : "Follow"}
               </Button>
             </Box>
           </Box>

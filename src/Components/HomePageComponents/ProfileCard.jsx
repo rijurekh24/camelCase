@@ -46,7 +46,7 @@ const ProfileCard = () => {
                 fontSize: "1.1rem",
               }}
             >
-              6969
+              {ctx.user.followers.length}
             </Typography>
             <Typography
               sx={{
@@ -75,7 +75,7 @@ const ProfileCard = () => {
                 fontSize: "1.1rem",
               }}
             >
-              7852
+              {ctx.user.following.length}
             </Typography>
             <Typography
               sx={{
