@@ -1,20 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
 
 const ProfilePage = () => {
-  const location = useLocation();
-  const [username, setUsername] = useState("");
   const [profileData, setProfileData] = useState([]);
-
+  const { username } = useParams();
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const usernameParam = searchParams.get("username");
-    setUsername(usernameParam);
-
-    if (usernameParam) {
-      Api.get(`/auth/accounts/profile?username=${usernameParam}`)
+    if (username) {
+      Api.get(`/auth/accounts/profile?username=${username}`)
         .then((response) => {
           setProfileData(response.data.user);
         })

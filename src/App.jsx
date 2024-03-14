@@ -62,7 +62,7 @@ const App = () => {
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
           <Route path="emailverification" element={<EmailVer />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile/:username" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </>

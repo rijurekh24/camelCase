@@ -51,7 +51,7 @@ const Search = () => {
       }}
       renderOption={(props, option) => (
         <Link
-          to={`/profile?username=${option.username}`}
+          to={`/profile/${option.username}`}
           style={{ textDecoration: "none" }}
         >
           <Box {...props}>
