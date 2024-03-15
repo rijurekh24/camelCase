@@ -19,7 +19,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
 const PostCard = (props) => {
+  console.log(props.name.charAt(0));
   return (
     <Card
       sx={{
@@ -38,8 +40,9 @@ const PostCard = (props) => {
               borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-          ></Avatar>
+          >
+            {props.name ? props.name.charAt(0) : ""}
+          </Avatar>
         }
         action={
           <IconButton sx={{ color: "textColor.main" }}>
@@ -55,7 +58,7 @@ const PostCard = (props) => {
           <Typography variant="body2" color="textColor.main">
             {props.name}{" "}
             <Typography sx={{ color: "primary.main", ml: 1 }} display="inline">
-              • <TimeAgo datetime={props.date} />
+              • <span>{format(props.date)}</span>
             </Typography>
           </Typography>
         }
@@ -134,8 +137,9 @@ const PostCard = (props) => {
               borderColor: "borderColor.main",
               borderRadius: "20px",
             }}
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-          ></Avatar>
+          >
+            {props.name ? props.name.charAt(0) : ""}
+          </Avatar>
           <TextField
             id="filled-basic"
             label="add a comment"

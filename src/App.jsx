@@ -39,7 +39,9 @@ const AuthView = () => {
       <LoadingPage />
     </Box>
   ) : (
-    <Outlet />
+    <Box>
+      <Outlet />
+    </Box>
   );
 };
 

@@ -58,8 +58,9 @@ const Post = () => {
             borderColor: "borderColor.main",
             borderRadius: "20px",
           }}
-          src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-        ></Avatar>
+        >
+          {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+        </Avatar>
       </Box>
       <Box width={"100%"}>
         <Box

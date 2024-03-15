@@ -60,15 +60,18 @@ const ProfileCard = () => {
           </Box>
           <Box>
             <Avatar
-              src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
               sx={{
                 width: 85,
                 height: 85,
                 border: "7px solid ",
                 borderColor: "borderColor.main",
                 borderRadius: "35px",
+                fontSize: "2rem",
+                backgroundColor: "textColor.secondary",
               }}
-            />
+            >
+              {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+            </Avatar>
           </Box>
           <Box textAlign={"center"}>
             <Typography

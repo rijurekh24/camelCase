@@ -1,4 +1,4 @@
-import { Box, Button, Typography, Skeleton } from "@mui/material";
+import { Box, Button, Typography, Skeleton, Avatar } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
@@ -10,22 +10,29 @@ const ProfilePage = () => {
   const { username } = useParams();
   const ctx = useContext(authContext);
   const [loading, setLoading] = useState(true);
+  const [followButton, setFollowButton] = useState(true);
 
   useEffect(() => {
     if (username) {
       Api.get(`/auth/accounts/profile?username=${username}`)
         .then((response) => {
           setProfileData(response.data.user);
+
           const followerList = response.data.user.followers;
+
           if (followerList.includes(ctx.user._id)) {
             setIsFollowed(true);
           } else {
             setIsFollowed(false);
           }
-          setLoading(false);
+          if (response.data.user._id === ctx.user._id) {
+            setFollowButton(false);
+          }
         })
         .catch((error) => {
           console.log(error.response.data);
+        })
+        .finally(() => {
           setLoading(false);
         });
     }
@@ -59,11 +66,7 @@ const ProfilePage = () => {
           <Skeleton variant="rectangular" width="100%" height={150} />
           <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
             <Skeleton variant="circular" width={130} height={130} />
-            <Box
-              display={"flex"}
-              justifyContent={"space-between"}
-              width={"100%"}
-            >
+            <Box display={"flex"} justifyContent={"space-between"} flex={1}>
               <Box>
                 <Skeleton width={150} height={50} />
                 <Skeleton width={100} height={20} />
@@ -97,17 +100,19 @@ const ProfilePage = () => {
           }}
         />
         <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
-          <Box
-            component="img"
-            src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
-            alt="profile_photo"
-            width={"15%"}
+          <Avatar
             sx={{
+              width: 85,
+              height: 85,
+              border: "7px solid ",
+              borderColor: "borderColor.main",
               borderRadius: "50%",
-              border: "10px solid",
-              borderColor: "backgroundColor.main",
+              fontSize: "2rem",
+              backgroundColor: "textColor.secondary",
             }}
-          />
+          >
+            {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+          </Avatar>
           <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
             <Box>
               <Typography sx={{ fontSize: "1.4rem", color: "textColor.main" }}>
@@ -120,7 +125,10 @@ const ProfilePage = () => {
               </Typography>
             </Box>
             <Box>
-              <Button onClick={handleClick}>
+              <Button
+                onClick={handleClick}
+                sx={{ display: followButton ? "inline-block" : "none" }}
+              >
                 {isFollowed ? "Unfollow" : "Follow"}
               </Button>
             </Box>

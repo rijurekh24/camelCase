@@ -90,7 +90,6 @@ export default function NavButton() {
         }}
       >
         <Avatar
-          src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
           sx={{
             width: 30,
             height: 30,
@@ -99,7 +98,9 @@ export default function NavButton() {
             borderRadius: "35px",
             marginRight: "5px",
           }}
-        />
+        >
+          {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+        </Avatar>
         {ctx.user.first_name}
       </Button>
       <StyledMenu
