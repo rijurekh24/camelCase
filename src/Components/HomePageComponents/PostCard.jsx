@@ -18,10 +18,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
 const PostCard = (props) => {
-  console.log(props.name.charAt(0));
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -39,6 +39,8 @@ const PostCard = (props) => {
               border: "5px solid",
               borderColor: "borderColor.main",
               borderRadius: "20px",
+              color: "primary.main",
+              bgcolor: "#111",
             }}
           >
             {props.name ? props.name.charAt(0) : ""}
@@ -50,7 +52,12 @@ const PostCard = (props) => {
           </IconButton>
         }
         title={
-          <Typography variant="body1" color="textColor.secondary">
+          <Typography
+            variant="body1"
+            color="textColor.secondary"
+            onClick={() => navigate(`/profile/${props.username}`)}
+            sx={{ cursor: "pointer" }}
+          >
             @{props.username}
           </Typography>
         }
@@ -136,6 +143,8 @@ const PostCard = (props) => {
               border: "5px solid",
               borderColor: "borderColor.main",
               borderRadius: "20px",
+              color: "primary.main",
+              bgcolor: "#111",
             }}
           >
             {props.name ? props.name.charAt(0) : ""}

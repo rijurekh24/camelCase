@@ -15,6 +15,7 @@ import LoadingPage from "./Components/LoadingPage";
 import { authContext } from "./Context/AuthContext";
 import EmailVer from "./Pages/EmailVer";
 import ProfilePage from "./Components/ProfilePageComponents/ProfilePage";
+import Navbar from "./Components/Navbar";
 
 const AuthView = () => {
   const ctx = useContext(authContext);
@@ -40,6 +41,7 @@ const AuthView = () => {
     </Box>
   ) : (
     <Box>
+      <Navbar />
       <Outlet />
     </Box>
   );
@@ -54,7 +56,7 @@ const App = () => {
   //   }, 1000);
   // }, []);
   return (
-    <>
+    <Box>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AuthView />}>
@@ -67,7 +69,7 @@ const App = () => {
           <Route path="emailverification" element={<EmailVer />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </Box>
   );
 };
 

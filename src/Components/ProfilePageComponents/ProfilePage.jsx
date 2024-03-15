@@ -83,12 +83,17 @@ const ProfilePage = () => {
 
   return (
     <Box
-      minHeight={"100vh"}
       bgcolor={"backgroundColor.main"}
       display={"flex"}
       justifyContent={"center"}
+      alignItems={"center"}
     >
-      <Box bgcolor={"backgroundColor.secondary"} width={"50%"}>
+      <Box
+        bgcolor={"backgroundColor.secondary"}
+        width={"50%"}
+        padding={"20px"}
+        borderRadius={"15px"}
+      >
         <Box
           component="img"
           src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
@@ -97,6 +102,7 @@ const ProfilePage = () => {
             width: "100%",
             height: 150,
             objectFit: "cover",
+            borderRadius: "15px",
           }}
         />
         <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
@@ -109,6 +115,8 @@ const ProfilePage = () => {
               borderRadius: "50%",
               fontSize: "2rem",
               backgroundColor: "textColor.secondary",
+              color: "primary.main",
+              bgcolor: "#111",
             }}
           >
             {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
@@ -121,7 +129,7 @@ const ProfilePage = () => {
               <Typography
                 sx={{ fontSize: "1.1rem", color: "textColor.secondary" }}
               >
-                {username}
+                @{username}
               </Typography>
             </Box>
             <Box>

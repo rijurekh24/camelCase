@@ -57,6 +57,8 @@ const Post = () => {
             border: "5px solid",
             borderColor: "borderColor.main",
             borderRadius: "20px",
+            color: "primary.main",
+            bgcolor: "#111",
           }}
         >
           {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}

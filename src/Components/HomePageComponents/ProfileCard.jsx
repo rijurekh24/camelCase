@@ -67,7 +67,8 @@ const ProfileCard = () => {
                 borderColor: "borderColor.main",
                 borderRadius: "35px",
                 fontSize: "2rem",
-                backgroundColor: "textColor.secondary",
+                color: "primary.main",
+                bgcolor: "#111",
               }}
             >
               {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}

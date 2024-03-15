@@ -7,8 +7,8 @@ import RightBar from "../Components/HomePageComponents/RightBar";
 const Home = () => {
   return (
     <Box sx={{ backgroundColor: "backgroundColor.main", minHeight: "100dvh" }}>
-      <Navbar />
-      <Box mt={1}>
+      {/* <Navbar /> */}
+      <Box>
         <Stack direction={"row"} gap={{ lg: 5, xl: 2 }}>
           <SideBar />
           <Feed />

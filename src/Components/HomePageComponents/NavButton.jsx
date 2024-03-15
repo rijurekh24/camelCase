@@ -97,6 +97,8 @@ export default function NavButton() {
             borderColor: "borderColor.main",
             borderRadius: "35px",
             marginRight: "5px",
+            color: "primary.main",
+            bgcolor: "#111",
           }}
         >
           {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}

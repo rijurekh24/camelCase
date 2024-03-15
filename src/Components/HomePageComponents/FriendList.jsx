@@ -1,7 +1,9 @@
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import { useNavigate } from "react-router-dom";
 
 const FriendList = (props) => {
+  const navigate = useNavigate();
   return (
     <Box
       display={"flex"}
@@ -16,11 +18,18 @@ const FriendList = (props) => {
             border: "5px solid ",
             borderColor: "borderColor.main",
             borderRadius: "20px",
+            color: "primary.main",
+            bgcolor: "#111",
           }}
         >
           {props.name.charAt(0)}
         </Avatar>
-        <Typography>{props.username}</Typography>
+        <Typography
+          sx={{ cursor: "pointer" }}
+          onClick={() => navigate(`/profile/${props.username}`)}
+        >
+          {props.username}
+        </Typography>
       </Box>
       {/* <Box>
         <IconButton>
