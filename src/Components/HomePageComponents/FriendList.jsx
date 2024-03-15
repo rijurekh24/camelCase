@@ -21,11 +21,11 @@ const FriendList = (props) => {
         ></Avatar>
         <Typography>{props.username}</Typography>
       </Box>
-      <Box>
+      {/* <Box>
         <IconButton>
           <PersonRemoveIcon sx={{ color: "textColor.main" }} />
         </IconButton>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

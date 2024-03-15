@@ -2,6 +2,8 @@ import { FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import TimeAgo from "timeago-react";
+
 import {
   Avatar,
   Box,
@@ -53,7 +55,7 @@ const PostCard = (props) => {
           <Typography variant="body2" color="textColor.main">
             {props.name}{" "}
             <Typography sx={{ color: "primary.main", ml: 1 }} display="inline">
-              • 1hr ago
+              • <TimeAgo datetime={props.date} />
             </Typography>
           </Typography>
         }

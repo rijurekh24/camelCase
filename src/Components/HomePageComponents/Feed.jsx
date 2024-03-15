@@ -26,6 +26,7 @@ const Feed = () => {
           username={item.user.username}
           image={item.img}
           caption={item.caption}
+          date={item.date}
         />
       ))}
     </Box>

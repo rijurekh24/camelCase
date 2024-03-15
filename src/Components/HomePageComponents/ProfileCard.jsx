@@ -7,7 +7,7 @@ const ProfileCard = () => {
   const ctx = useContext(authContext);
   const navigate = useNavigate();
 
-  console.log(ctx.user);
+  // console.log(ctx.user);
   const handleClick = () => {
     navigate(`/profile/${ctx.user.username}`);
   };

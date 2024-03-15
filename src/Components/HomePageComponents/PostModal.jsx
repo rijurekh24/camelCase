@@ -59,6 +59,10 @@ function PostModal({ open, handleClose }) {
           handleClose();
           setIsLoading(false);
           ctx.fetchPost();
+          handleClose();
+          setCaption("");
+          setBlobURL("");
+          setImage(null);
         })
         .catch((err) => {
           setIsLoading(false);
@@ -87,6 +91,7 @@ function PostModal({ open, handleClose }) {
               //console.log(res.data);
               handleClose();
               setIsLoading(false);
+
               ctx.fetchPost();
             })
             .catch((err) => {
@@ -232,11 +237,12 @@ function PostModal({ open, handleClose }) {
               },
             }}
           >
-            {isLoading ? (
+            {/* {isLoading ? (
               <CircularProgress size={"2em"} sx={{ color: "white" }} />
             ) : (
               "Post"
-            )}
+            )} */}
+            Post
           </Button>
         </Box>
       </Box>

@@ -6,6 +6,7 @@ const authContext = createContext();
 const AuthContext = ({ children }) => {
   const [postData, setPostData] = useState([]);
 
+  console.log(postData);
   const fetchPost = () => {
     Api.get("/posts/get-all").then((res) => {
       setPostData(res.data.posts);

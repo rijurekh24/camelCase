@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import FriendListCard from "./FriendListCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const RightBar = () => {
   const [showScrollbar, setShowScrollbar] = useState(false);
@@ -36,11 +36,6 @@ const RightBar = () => {
     >
       <Box>
         <FriendListCard />
-        {/* {Array(20)
-          .fill("")
-          .map(() => (
-            <FriendListCard />
-          ))} */}
       </Box>
     </Box>
   );

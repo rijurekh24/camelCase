@@ -57,12 +57,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<AuthView />}>
             <Route element={<Home />} index />
+            <Route path="profile/:username" element={<ProfilePage />} />
           </Route>
 
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
           <Route path="emailverification" element={<EmailVer />} />
-          <Route path="profile/:username" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </>

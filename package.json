@@ -22,6 +22,8 @@
     "react-password-checklist": "^1.5.1",
     "react-router-dom": "^6.22.1",
     "react-spinners": "^0.13.8",
+    "timeago-react": "^3.0.6",
+    "timeago.js": "^4.0.2",
     "validator": "^13.11.0"
   },
   "devDependencies": {

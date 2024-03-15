@@ -1,7 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import FriendList from "./FriendList";
+import { useContext, useState } from "react";
+import { authContext } from "../../Context/AuthContext";
 
 const FriendListCard = () => {
+  const ctx = useContext(authContext);
+  const [displayCount, setDisplayCount] = useState(3);
+
+  const handleShowMore = () => {
+    // Increase the display count to show all elements
+    setDisplayCount(ctx.user.following.length);
+  };
   return (
     <Box
       p={2}
@@ -13,23 +22,22 @@ const FriendListCard = () => {
       }}
     >
       <Typography variant="h6" mb={2}>
-        Friend List
+        Following
       </Typography>
-      <FriendList
-        name="Uzumaki Naruto"
-        username="naruto123"
-        image="https://i1.sndcdn.com/artworks-000139163741-dk8qn7-t500x500.jpg"
-      />
-      <FriendList
-        name="Eren Yeager"
-        username="yeager_10"
-        image="https://i.pinimg.com/474x/b6/6d/22/b66d22a8b57900e75cbab27192cd58a3.jpg"
-      />
-      <FriendList
-        name="Kamado Tanjiro"
-        username="tanjiro_7"
-        image="https://i-ogp.pximg.net/c/540x540_70/img-master/img/2020/05/23/00/00/03/81773326_p0_square1200.jpg"
-      />
+
+      <ul>
+        {ctx.user.following.slice(0, displayCount).map((item, index) => (
+          <FriendList
+            key={index}
+            name={item.first_name}
+            username={item.username}
+            image="profile-photo"
+          />
+        ))}
+      </ul>
+      {displayCount < ctx.user.following.length && (
+        <button onClick={handleShowMore}>Show More</button>
+      )}
     </Box>
   );
 };
