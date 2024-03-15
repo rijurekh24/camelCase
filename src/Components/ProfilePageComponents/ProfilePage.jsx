@@ -91,7 +91,7 @@ const ProfilePage = () => {
       <Box bgcolor={"backgroundColor.secondary"} width={"50%"}>
         <Box
           component="img"
-          src="https://e0.pxfuel.com/wallpapers/52/580/desktop-wallpaper-shade-of-green-landscape-forest-firewatch-nature-digital-art-mountains-video-games-ar-landscape-minimalist-minimal.jpg"
+          src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
           alt="cover_photo"
           sx={{
             width: "100%",

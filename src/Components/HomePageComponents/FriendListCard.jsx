@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import FriendList from "./FriendList";
 import { useContext, useState } from "react";
 import { authContext } from "../../Context/AuthContext";
@@ -35,9 +35,27 @@ const FriendListCard = () => {
           />
         ))}
       </ul>
-      {displayCount < ctx.user.following.length && (
-        <button onClick={handleShowMore}>Show More</button>
-      )}
+      <Box display={"flex"} justifyContent={"center"}>
+        {displayCount < ctx.user.following.length && (
+          <Button
+            onClick={handleShowMore}
+            sx={{
+              backgroundColor: "none",
+              color: "primary.main",
+              textTransform: "none",
+              borderRadius: "10px",
+              ":hover": {
+                backgroundColor: "none",
+              },
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: "transparent",
+              },
+            }}
+          >
+            Show More
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 };
