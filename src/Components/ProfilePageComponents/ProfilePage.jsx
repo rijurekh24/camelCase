@@ -90,7 +90,7 @@ const ProfilePage = () => {
     >
       <Box
         bgcolor={"backgroundColor.secondary"}
-        width={"50%"}
+        width={{ xs: "90%", md: "50%" }}
         padding={"20px"}
         borderRadius={"15px"}
       >

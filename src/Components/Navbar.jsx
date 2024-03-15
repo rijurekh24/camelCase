@@ -4,8 +4,12 @@ import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./HomePageComponents/NavButton";
 import Search from "./HomePageComponents/Search";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <AppBar
       sx={{
@@ -54,7 +58,13 @@ const Navbar = () => {
             flex={1}
           >
             <Badge>
-              <Home sx={{ color: "primary.main" }} />
+              <Home
+                sx={{
+                  color: location.pathname === "/" ? "primary.main" : "white",
+                  cursor: "pointer",
+                }}
+                onClick={() => navigate("/")}
+              />
             </Badge>
             <Badge>
               <Message sx={{ color: "textColor.main" }} />
