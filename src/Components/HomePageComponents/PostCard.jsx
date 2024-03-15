@@ -160,16 +160,16 @@ const PostCard = (props) => {
             InputProps={{
               sx: { color: "textColor.main", borderRadius: "20px" },
               disableUnderline: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Link style={{ color: "#aaa", marginRight: 3 }}>
-                    <AddPhotoAlternateIcon />
-                  </Link>
-                  <Link style={{ color: "#aaa" }}>
-                    <AddLinkIcon />
-                  </Link>
-                </InputAdornment>
-              ),
+              // endAdornment: (
+              //   <InputAdornment position="end">
+              //     <Link style={{ color: "#aaa", marginRight: 3 }}>
+              //       <AddPhotoAlternateIcon />
+              //     </Link>
+              //     <Link style={{ color: "#aaa" }}>
+              //       <AddLinkIcon />
+              //     </Link>
+              //   </InputAdornment>
+              // ),
             }}
           />
         </Box>
