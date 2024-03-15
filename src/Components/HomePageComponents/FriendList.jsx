@@ -17,8 +17,9 @@ const FriendList = (props) => {
             borderColor: "borderColor.main",
             borderRadius: "20px",
           }}
-          src={props.image}
-        ></Avatar>
+        >
+          {props.name.charAt(0)}
+        </Avatar>
         <Typography>{props.username}</Typography>
       </Box>
       {/* <Box>
