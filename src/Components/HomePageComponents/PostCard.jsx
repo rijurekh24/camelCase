@@ -28,16 +28,10 @@ const PostCard = (props) => {
   const likes = props.likes;
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (ctx.postData) {
-        setLoading(false);
-      }
-    }, 1500);
+    if (ctx.postData) {
+      setLoading(false);
+    }
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
     if (likes.includes(ctx.user._id)) {
       setClicked(true);
     } else {
