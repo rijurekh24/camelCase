@@ -13,7 +13,6 @@ const FriendList = (props) => {
       <Box display={"flex"} gap={1} alignItems={"center"}>
         <Avatar
           sx={{
-            bgcolor: "grey",
             border: "5px solid ",
             borderColor: "borderColor.main",
             borderRadius: "20px",

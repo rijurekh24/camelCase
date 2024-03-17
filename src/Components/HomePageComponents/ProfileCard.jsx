@@ -26,7 +26,7 @@ const ProfileCard = () => {
         src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
         sx={{
           width: "100%",
-          height: 120,
+          height: 140,
           objectFit: "cover",
           // borderTopLeftRadius: "25px",
           // borderTopRightRadius: "25px",

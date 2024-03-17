@@ -125,13 +125,13 @@ const Post = () => {
             <IconButton>
               <InsertPhotoIcon
                 disableRipple
-                sx={{ color: "primary.main", fontSize: "1.2rem" }}
+                sx={{ color: "primary.main", fontSize: "1.5rem" }}
               />
             </IconButton>
             <Typography
               pr={2}
               display={{ xs: "none", md: "block" }}
-              fontSize={"0.9rem"}
+              fontSize={"1rem"}
             >
               Photo
             </Typography>
@@ -151,13 +151,13 @@ const Post = () => {
             <IconButton>
               <PlayCircleIcon
                 disableRipple
-                sx={{ color: "#4F93F8", fontSize: "1.2rem" }}
+                sx={{ color: "#4F93F8", fontSize: "1.5rem" }}
               />
             </IconButton>
             <Typography
               pr={2}
               display={{ xs: "none", md: "block" }}
-              fontSize={"0.9rem"}
+              fontSize={"1rem"}
             >
               Video
             </Typography>
@@ -177,13 +177,13 @@ const Post = () => {
             <IconButton>
               <PollIcon
                 disableRipple
-                sx={{ color: "#E67575", fontSize: "1.2rem" }}
+                sx={{ color: "#E67575", fontSize: "1.5rem" }}
               />
             </IconButton>
             <Typography
               pr={2}
               display={{ xs: "none", md: "block" }}
-              fontSize={"0.9rem"}
+              fontSize={"1rem"}
             >
               Poll
             </Typography>
@@ -202,13 +202,13 @@ const Post = () => {
             <IconButton>
               <CalendarMonthIcon
                 disableRipple
-                sx={{ color: "#EEBE65", fontSize: "1.2rem" }}
+                sx={{ color: "#EEBE65", fontSize: "1.5rem" }}
               />
             </IconButton>
             <Typography
               pr={2}
               display={{ xs: "none", md: "block" }}
-              fontSize={"0.9rem"}
+              fontSize={"1rem"}
             >
               Schedule
             </Typography>
