@@ -40,7 +40,7 @@ const Post = () => {
   return (
     <Box
       sx={{
-        bgcolor: "backgroundColor.secondary",
+        backgroundColor: "backgroundColor.secondary",
         borderRadius: { xs: "0", lg: "15px" },
         marginBottom: 2,
         display: "flex",
@@ -53,12 +53,11 @@ const Post = () => {
       <Box>
         <Avatar
           sx={{
-            bgcolor: "grey",
             border: "5px solid",
             borderColor: "borderColor.main",
             borderRadius: "20px",
             color: "primary.main",
-            bgcolor: "#111",
+            backgroundColor: "#111",
           }}
         >
           {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
@@ -83,7 +82,7 @@ const Post = () => {
             value={textInput}
             onChange={handleInputChange}
             sx={{
-              bgcolor: "backgroundColor.secondary",
+              backgroundColor: "backgroundColor.secondary",
               "& .MuiFilledInput-underline:after": {
                 borderBottomColor: "primary.main",
               },
@@ -95,7 +94,7 @@ const Post = () => {
               sx: {
                 color: "textColor.main",
                 borderRadius: "20px",
-                bgcolor: "#212121",
+                backgroundColor: "#212121",
                 p: 2,
               },
               disableUnderline: true,

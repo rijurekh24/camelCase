@@ -1,3 +1,4 @@
+import { MoreVert } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -19,6 +20,16 @@ const PostCard = (props) => {
   const [likeCount, setLikeCount] = useState(0);
   const [commentCount, setCommentCount] = useState(0);
   const [increment, setIncrement] = useState(true);
+
+  const handleLike = () => {
+    setClicked(!clicked);
+    if (increment) {
+      setLikeCount(likeCount + 1);
+    } else {
+      setLikeCount(likeCount - 1);
+    }
+    setIncrement(!increment);
+  };
 
   return (
     <Card
@@ -103,15 +114,7 @@ const PostCard = (props) => {
                 style={{
                   color: clicked ? "#DC381F" : "#999",
                 }}
-                onClick={() => {
-                  setClicked(!clicked);
-                  if (increment) {
-                    setLikeCount(likeCount + 1);
-                  } else {
-                    setLikeCount(likeCount - 1);
-                  }
-                  setIncrement(!increment);
-                }}
+                onClick={handleLike}
               ></i>
             </Typography>
             <Typography ml={1} color={"textColor.secondary"}>
