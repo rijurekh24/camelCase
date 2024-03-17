@@ -88,7 +88,7 @@ const PostCard = (props) => {
         <Box
           sx={{
             height: "23rem",
-            bgColor: "#333",
+            backgroundColor: "#333",
             display: "flex",
             justifyContent: "center",
             width: "100%",

@@ -43,14 +43,11 @@ const Post = () => {
         backgroundColor: "backgroundColor.secondary",
         borderRadius: { xs: "0", lg: "15px" },
         marginBottom: 2,
-        display: "flex",
         padding: "10px 15px",
-        gap: 2,
-        alignItems: "center",
       }}
     >
       <PostModal open={modalOpen} handleClose={closeModal} />
-      <Box>
+      <Box display={"flex"} width={"100%"} gap={2}>
         <Avatar
           sx={{
             border: "5px solid",
@@ -62,157 +59,147 @@ const Post = () => {
         >
           {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
         </Avatar>
-      </Box>
-      <Box width={"100%"}>
-        <Box
-          mb={1}
+        <TextField
+          id="filled-basic"
+          placeholder={`What's on your mind, ${ctx.user.first_name} ?`}
+          variant="standard"
+          autoComplete="off"
+          multiline
+          fullWidth
+          value={textInput}
+          onChange={handleInputChange}
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            backgroundColor: "backgroundColor.secondary",
+            "& .MuiFilledInput-underline:after": {
+              borderBottomColor: "primary.main",
+            },
+          }}
+          InputLabelProps={{
+            style: { color: "#888" },
+          }}
+          InputProps={{
+            sx: {
+              color: "textColor.main",
+              borderRadius: "20px",
+              backgroundColor: "#212121",
+              p: 2,
+              fontSize: "1rem",
+            },
+            disableUnderline: true,
+            endAdornment: textInput && (
+              <Send
+                sx={{ color: "textColor.main", cursor: "pointer" }}
+                onClick={handleSend}
+              />
+            ),
+          }}
+        />
+      </Box>
+      <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
+        <Button
+          onClick={openModal}
+          disableRipple
+          sx={{
+            color: "textColor.main",
+            borderRadius: "15px",
+            textTransform: "none",
+            ":hover": {
+              backgroundColor: "transparent",
+            },
+            p: 0,
           }}
         >
-          <TextField
-            id="filled-basic"
-            placeholder="Tell your friends about your thougts..."
-            variant="standard"
-            autoComplete="off"
-            multiline
-            fullWidth
-            value={textInput}
-            onChange={handleInputChange}
-            sx={{
-              backgroundColor: "backgroundColor.secondary",
-              "& .MuiFilledInput-underline:after": {
-                borderBottomColor: "primary.main",
-              },
-            }}
-            InputLabelProps={{
-              style: { color: "#888" },
-            }}
-            InputProps={{
-              sx: {
-                color: "textColor.main",
-                borderRadius: "20px",
-                backgroundColor: "#212121",
-                p: 2,
-              },
-              disableUnderline: true,
-              endAdornment: textInput && (
-                <Send
-                  sx={{ color: "textColor.main", cursor: "pointer" }}
-                  onClick={handleSend}
-                />
-              ),
-            }}
-          />
-        </Box>
-        <Box display={"flex"} justifyContent={"space-between"}>
-          <Button
-            onClick={openModal}
-            disableRipple
-            sx={{
-              color: "textColor.main",
-              borderRadius: "15px",
-              textTransform: "none",
-              ":hover": {
-                backgroundColor: "transparent",
-              },
-              p: 0,
-            }}
+          <IconButton>
+            <InsertPhotoIcon
+              disableRipple
+              sx={{ color: "primary.main", fontSize: "1.5rem" }}
+            />
+          </IconButton>
+          <Typography
+            pr={2}
+            display={{ xs: "none", md: "block" }}
+            fontSize={"1rem"}
           >
-            <IconButton>
-              <InsertPhotoIcon
-                disableRipple
-                sx={{ color: "primary.main", fontSize: "1.5rem" }}
-              />
-            </IconButton>
-            <Typography
-              pr={2}
-              display={{ xs: "none", md: "block" }}
-              fontSize={"1rem"}
-            >
-              Photo
-            </Typography>
-          </Button>
-          <Button
-            onClick={openModal}
-            sx={{
-              color: "textColor.main",
-              borderRadius: "15px",
-              textTransform: "none",
-              ":hover": {
-                backgroundColor: "transparent",
-              },
-            }}
-            disableRipple
+            Photo
+          </Typography>
+        </Button>
+        <Button
+          onClick={openModal}
+          sx={{
+            color: "textColor.main",
+            borderRadius: "15px",
+            textTransform: "none",
+            ":hover": {
+              backgroundColor: "transparent",
+            },
+          }}
+          disableRipple
+        >
+          <IconButton>
+            <PlayCircleIcon
+              disableRipple
+              sx={{ color: "#4F93F8", fontSize: "1.5rem" }}
+            />
+          </IconButton>
+          <Typography
+            pr={2}
+            display={{ xs: "none", md: "block" }}
+            fontSize={"1rem"}
           >
-            <IconButton>
-              <PlayCircleIcon
-                disableRipple
-                sx={{ color: "#4F93F8", fontSize: "1.5rem" }}
-              />
-            </IconButton>
-            <Typography
-              pr={2}
-              display={{ xs: "none", md: "block" }}
-              fontSize={"1rem"}
-            >
-              Video
-            </Typography>
-          </Button>
-          <Button
-            disableRipple
-            sx={{
-              color: "textColor.main",
-              textTransform: "none",
-              borderRadius: "15px",
-              fontSize: "0.7rem",
-              ":hover": {
-                backgroundColor: "transparent",
-              },
-            }}
+            Video
+          </Typography>
+        </Button>
+        <Button
+          disableRipple
+          sx={{
+            color: "textColor.main",
+            textTransform: "none",
+            borderRadius: "15px",
+            fontSize: "0.7rem",
+            ":hover": {
+              backgroundColor: "transparent",
+            },
+          }}
+        >
+          <IconButton>
+            <PollIcon
+              disableRipple
+              sx={{ color: "#E67575", fontSize: "1.5rem" }}
+            />
+          </IconButton>
+          <Typography
+            pr={2}
+            display={{ xs: "none", md: "block" }}
+            fontSize={"1rem"}
           >
-            <IconButton>
-              <PollIcon
-                disableRipple
-                sx={{ color: "#E67575", fontSize: "1.5rem" }}
-              />
-            </IconButton>
-            <Typography
-              pr={2}
-              display={{ xs: "none", md: "block" }}
-              fontSize={"1rem"}
-            >
-              Poll
-            </Typography>
-          </Button>
-          <Button
-            disableRipple
-            sx={{
-              color: "textColor.main",
-              borderRadius: "15px",
-              textTransform: "none",
-              ":hover": {
-                backgroundColor: "transparent",
-              },
-            }}
+            Poll
+          </Typography>
+        </Button>
+        <Button
+          disableRipple
+          sx={{
+            color: "textColor.main",
+            borderRadius: "15px",
+            textTransform: "none",
+            ":hover": {
+              backgroundColor: "transparent",
+            },
+          }}
+        >
+          <IconButton>
+            <CalendarMonthIcon
+              disableRipple
+              sx={{ color: "#EEBE65", fontSize: "1.5rem" }}
+            />
+          </IconButton>
+          <Typography
+            pr={2}
+            display={{ xs: "none", md: "block" }}
+            fontSize={"1rem"}
           >
-            <IconButton>
-              <CalendarMonthIcon
-                disableRipple
-                sx={{ color: "#EEBE65", fontSize: "1.5rem" }}
-              />
-            </IconButton>
-            <Typography
-              pr={2}
-              display={{ xs: "none", md: "block" }}
-              fontSize={"1rem"}
-            >
-              Schedule
-            </Typography>
-          </Button>
-        </Box>
+            Schedule
+          </Typography>
+        </Button>
       </Box>
     </Box>
   );
