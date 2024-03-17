@@ -186,7 +186,7 @@ const PostCard = (props) => {
             onClick={() => navigate(`/profile/${props.username}`)}
             sx={{ cursor: "pointer" }}
           >
-            @{props.username} hi
+            @{props.username}
           </Typography>
         }
         subheader={
