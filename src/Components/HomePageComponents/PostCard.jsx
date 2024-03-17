@@ -78,7 +78,7 @@ const PostCard = (props) => {
       {props.image && (
         <Box
           sx={{
-            height: "25rem",
+            height: "23rem",
             bgcolor: "#333",
             display: "flex",
             justifyContent: "center",
@@ -95,6 +95,7 @@ const PostCard = (props) => {
         </Box>
       )}
 
+      <Divider variant="middle" color="#333" />
       <CardActions>
         <Box
           sx={{
@@ -133,8 +134,8 @@ const PostCard = (props) => {
           </Box>
         </Box>
       </CardActions>
-      <Divider variant="middle" color="#444" />
-      <CardContent>
+
+      {/* <CardContent>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             sx={{
@@ -182,7 +183,7 @@ const PostCard = (props) => {
             }}
           />
         </Box>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };

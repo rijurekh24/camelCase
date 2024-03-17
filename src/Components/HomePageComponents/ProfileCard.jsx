@@ -33,12 +33,12 @@ const ProfileCard = () => {
         }}
       />
 
-      <Box p={2}>
+      <Box px={2} pb={2}>
         <Box
           display={"flex"}
           justifyContent={"space-around"}
           alignItems={"center"}
-          mb={3}
+          mb={1}
           gap={{ sm: 2, lg: 3 }}
         >
           <Box textAlign={"center"}>
@@ -61,12 +61,12 @@ const ProfileCard = () => {
           <Box>
             <Avatar
               sx={{
-                width: 85,
-                height: 85,
+                width: 75,
+                height: 75,
                 border: "7px solid ",
                 borderColor: "borderColor.main",
                 borderRadius: "35px",
-                fontSize: "2rem",
+                fontSize: "1.8rem",
                 color: "primary.main",
                 bgcolor: "#111",
               }}
@@ -100,11 +100,11 @@ const ProfileCard = () => {
           flexDirection={"column"}
           textAlign={"center"}
         >
-          <Typography sx={{ fontSize: "1.2rem", color: "textColor.main" }}>
+          <Typography sx={{ fontSize: "1.1rem", color: "textColor.main" }}>
             {ctx.user.first_name} {ctx.user.last_name}
           </Typography>
           <Typography
-            mb={3}
+            mb={2}
             sx={{
               color: "textColor.secondary",
               fontSize: "0.9rem",
@@ -112,7 +112,7 @@ const ProfileCard = () => {
           >
             @{ctx.user.username}
           </Typography>
-          <Typography color="textColor.main" mb={3} fontSize={"0.9rem"}>
+          <Typography color="textColor.main" mb={3} fontSize={"0.8rem"}>
             Hello i am UI/UX designer. Open to new projects
             <Divider variant="middle" color="#333" sx={{ marginTop: 3 }} />
           </Typography>

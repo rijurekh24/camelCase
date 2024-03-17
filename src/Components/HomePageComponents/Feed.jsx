@@ -13,22 +13,28 @@ const Feed = () => {
 
   return (
     <Box
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+      alignItems={"center"}
       sx={{
-        flex: 4,
+        flex: 5,
         px: "4px",
       }}
     >
-      <Post />
+      <Box width={{ xs: "100%", md: "75%" }}>
+        <Post />
 
-      {ctx.postData.map((item) => (
-        <PostCard
-          name={`${item.user.first_name} ${item.user.last_name}`}
-          username={item.user.username}
-          image={item.img}
-          caption={item.caption}
-          date={item.date}
-        />
-      ))}
+        {ctx.postData.map((item) => (
+          <PostCard
+            name={`${item.user.first_name} ${item.user.last_name}`}
+            username={item.user.username}
+            image={item.img}
+            caption={item.caption}
+            date={item.date}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

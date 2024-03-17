@@ -142,15 +142,18 @@ function PostModal({ open, handleClose }) {
           </Typography>
           <Box display={"flex"} alignItems={"center"} width={"100%"}>
             <Avatar
-              src="https://pics.craiyon.com/2023-09-20/c98875fa1d9e4981b377031bc56a8a6a.webp"
               sx={{
                 width: 35,
                 height: 35,
                 border: "5px solid ",
+                bgcolor: "#111",
                 borderColor: "borderColor.main",
                 marginRight: "5px",
+                color: "primary.main",
               }}
-            />
+            >
+              {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+            </Avatar>
             <Typography fontSize={"1rem"}>
               {ctx.user.first_name} {ctx.user.last_name}
             </Typography>

@@ -21,7 +21,7 @@ const FriendListCard = () => {
         marginBottom: 2,
       }}
     >
-      <Typography variant="h6" mb={2}>
+      <Typography fontSize={"1.1rem"} mb={2}>
         Following
       </Typography>
 

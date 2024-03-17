@@ -77,9 +77,9 @@ const Post = () => {
             id="filled-basic"
             label="Tell your friends about your thougts..."
             variant="filled"
-            fullWidth
             autoComplete="off"
             multiline
+            fullWidth
             value={textInput}
             onChange={handleInputChange}
             sx={{
@@ -108,81 +108,103 @@ const Post = () => {
             onClick={openModal}
             disableRipple
             sx={{
-              backgroundColor: "#202020",
               color: "textColor.main",
               borderRadius: "15px",
               textTransform: "none",
-              fontSize: "0.7rem",
               ":hover": {
-                backgroundColor: "#202020",
+                backgroundColor: "transparent",
               },
+              p: 0,
             }}
           >
             <IconButton>
-              <InsertPhotoIcon sx={{ color: "primary.main" }} />
+              <InsertPhotoIcon
+                disableRipple
+                sx={{ color: "primary.main", fontSize: "1.2rem" }}
+              />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", md: "block" }}>
+            <Typography
+              pr={2}
+              display={{ xs: "none", md: "block" }}
+              fontSize={"0.9rem"}
+            >
               Photo
             </Typography>
           </Button>
           <Button
             onClick={openModal}
             sx={{
-              backgroundColor: "#202020",
               color: "textColor.main",
               borderRadius: "15px",
-              fontSize: "0.7rem",
               textTransform: "none",
               ":hover": {
-                backgroundColor: "#202020",
+                backgroundColor: "transparent",
               },
             }}
             disableRipple
           >
             <IconButton>
-              <PlayCircleIcon sx={{ color: "#4F93F8" }} />
+              <PlayCircleIcon
+                disableRipple
+                sx={{ color: "#4F93F8", fontSize: "1.2rem" }}
+              />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", md: "block" }}>
+            <Typography
+              pr={2}
+              display={{ xs: "none", md: "block" }}
+              fontSize={"0.9rem"}
+            >
               Video
             </Typography>
           </Button>
           <Button
             disableRipple
             sx={{
-              backgroundColor: "#202020",
               color: "textColor.main",
               textTransform: "none",
               borderRadius: "15px",
               fontSize: "0.7rem",
               ":hover": {
-                backgroundColor: "#202020",
+                backgroundColor: "transparent",
               },
             }}
           >
             <IconButton>
-              <PollIcon sx={{ color: "#E67575" }} />
+              <PollIcon
+                disableRipple
+                sx={{ color: "#E67575", fontSize: "1.2rem" }}
+              />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", md: "block" }}>
+            <Typography
+              pr={2}
+              display={{ xs: "none", md: "block" }}
+              fontSize={"0.9rem"}
+            >
               Poll
             </Typography>
           </Button>
           <Button
             disableRipple
             sx={{
-              backgroundColor: "#202020",
               color: "textColor.main",
               borderRadius: "15px",
               textTransform: "none",
-              fontSize: "0.7rem",
               ":hover": {
-                backgroundColor: "#202020",
+                backgroundColor: "transparent",
               },
             }}
           >
             <IconButton>
-              <CalendarMonthIcon sx={{ color: "#EEBE65" }} />
+              <CalendarMonthIcon
+                disableRipple
+                sx={{ color: "#EEBE65", fontSize: "1.2rem" }}
+              />
             </IconButton>
-            <Typography pr={2} display={{ xs: "none", md: "block" }}>
+            <Typography
+              pr={2}
+              display={{ xs: "none", md: "block" }}
+              fontSize={"0.9rem"}
+            >
               Schedule
             </Typography>
           </Button>
