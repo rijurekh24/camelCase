@@ -24,12 +24,21 @@ const FriendList = (props) => {
         >
           {props.name.charAt(0)}
         </Avatar>
-        <Typography
-          sx={{ cursor: "pointer", fontSize: "0.9rem" }}
-          onClick={() => navigate(`/profile/${props.username}`)}
-        >
-          {props.username}
-        </Typography>
+        <Box>
+          <Typography
+            sx={{
+              cursor: "pointer",
+              fontSize: "0.9rem",
+              color: "textColor.secondary",
+            }}
+            onClick={() => navigate(`/profile/${props.username}`)}
+          >
+            @{props.username}
+          </Typography>
+          <Typography sx={{ cursor: "pointer", fontSize: "0.9rem" }}>
+            {props.name}
+          </Typography>
+        </Box>
       </Box>
       {/* <Box>
         <IconButton>

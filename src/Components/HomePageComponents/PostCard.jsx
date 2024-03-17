@@ -19,33 +19,136 @@ import { authContext } from "../../Context/AuthContext";
 import { useEffect } from "react";
 const PostCard = (props) => {
   const navigate = useNavigate();
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState();
   const [likeCount, setLikeCount] = useState(props.likes.length);
   const [commentCount, setCommentCount] = useState(0);
-  const [increment, setIncrement] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   const ctx = useContext(authContext);
   const likes = props.likes;
 
   useEffect(() => {
+    if (ctx.postData) {
+      setLoading(false);
+    }
+
     if (likes.includes(ctx.user._id)) {
       setClicked(true);
+    } else {
+      setClicked(false);
     }
-  });
+  }, []);
 
   const handleLike = () => {
-    setClicked(!clicked);
-    if (increment) {
-      setLikeCount((likeCount) => likeCount + 1);
-    } else {
+    if (clicked) {
+      setClicked(false);
       setLikeCount((likeCount) => likeCount - 1);
+    } else {
+      setClicked(true);
+      setLikeCount((likeCount) => likeCount + 1);
     }
-    setIncrement(!increment);
+
     Api.post("/posts/like", { post_id: props.postId })
       .then((response) => {})
       .catch((err) => {
         log(err.response.data);
       });
   };
+
+  if (loading) {
+    return (
+      <Card
+        sx={{
+          borderRadius: "15px",
+          marginBottom: { xs: "1px", lg: 2 },
+          backgroundColor: "backgroundColor.secondary",
+        }}
+      >
+        {/* Skeleton for CardHeader */}
+        <CardHeader
+          avatar={
+            <Box
+              sx={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "15px",
+                backgroundColor: "backgroundColor.main",
+              }}
+            ></Box>
+          }
+          title={
+            <Box
+              sx={{
+                width: "200px",
+                height: "40px",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          }
+        />
+        {/* Skeleton for CardContent */}
+        <CardContent>
+          <Box
+            sx={{
+              width: "100%",
+              height: "30px",
+              backgroundColor: "backgroundColor.main",
+              borderRadius: "15px",
+              mb: 1,
+            }}
+          ></Box>
+          {props.image && (
+            <Box
+              sx={{
+                width: "100%",
+                height: "23rem",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          )}
+        </CardContent>
+        {/* Skeleton for CardActions */}
+        <CardActions>
+          <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
+            <Box
+              sx={{
+                width: "100px",
+                height: "40px",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+            <Box
+              sx={{
+                width: "100px",
+                height: "40px",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+            <Box
+              sx={{
+                width: "100px",
+                height: "40px",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+            <Box
+              sx={{
+                width: "100px",
+                height: "40px",
+                backgroundColor: "backgroundColor.main",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          </Box>
+        </CardActions>
+      </Card>
+    );
+  }
 
   return (
     <Card

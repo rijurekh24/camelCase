@@ -29,7 +29,7 @@ const FriendListCard = () => {
         {ctx.user.followers.slice(0, displayCount).map((item, index) => (
           <FriendList
             key={index}
-            name={item.first_name}
+            name={`${item.first_name} ${item.last_name}`}
             username={item.username}
             image="profile-photo"
           />
