@@ -119,7 +119,7 @@ const ProfilePage = () => {
               bgcolor: "#111",
             }}
           >
-            {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+            {profileData.first_name ? profileData.first_name.charAt(0) : ""}
           </Avatar>
           <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
             <Box>
