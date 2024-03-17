@@ -227,7 +227,7 @@ const PostCard = (props) => {
       <CardActions>
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
           <IconButton aria-label="add to favorites">
-            <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
+            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
               <i
                 className={` ${clicked ? " fa-solid" : "fa-regular"} fa-heart`}
                 style={{
@@ -239,26 +239,54 @@ const PostCard = (props) => {
             <Typography ml={1} color={"textColor.secondary"}>
               {likeCount}
             </Typography>
+            <Typography
+              display={{ xs: "none", sm: "block" }}
+              ml={1}
+              color={"textColor.secondary"}
+            >
+              likes
+            </Typography>
           </IconButton>
 
           <IconButton aria-label="comment">
-            <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
+            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
               <i className="fa-regular fa-comment"></i>
             </Typography>
             <Typography ml={1} color={"textColor.secondary"}>
               {commentCount}
             </Typography>
+            <Typography
+              display={{ xs: "none", sm: "block" }}
+              ml={1}
+              color={"textColor.secondary"}
+            >
+              comments
+            </Typography>
           </IconButton>
 
           <IconButton aria-label="share">
-            <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
+            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
               <i className="fa-regular fa-paper-plane"></i>
+            </Typography>
+            <Typography
+              display={{ xs: "none", sm: "block" }}
+              ml={1}
+              color={"textColor.secondary"}
+            >
+              Share
             </Typography>
           </IconButton>
 
           <IconButton aria-label="save">
-            <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
+            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
               <i className="fa-regular fa-bookmark"></i>
+            </Typography>
+            <Typography
+              display={{ xs: "none", sm: "block" }}
+              ml={1}
+              color={"textColor.secondary"}
+            >
+              Save
             </Typography>
           </IconButton>
         </Box>
