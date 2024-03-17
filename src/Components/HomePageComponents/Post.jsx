@@ -75,8 +75,8 @@ const Post = () => {
         >
           <TextField
             id="filled-basic"
-            label="Tell your friends about your thougts..."
-            variant="filled"
+            placeholder="Tell your friends about your thougts..."
+            variant="standard"
             autoComplete="off"
             multiline
             fullWidth
@@ -92,7 +92,12 @@ const Post = () => {
               style: { color: "#888" },
             }}
             InputProps={{
-              sx: { color: "textColor.main", borderRadius: "20px" },
+              sx: {
+                color: "textColor.main",
+                borderRadius: "20px",
+                bgcolor: "#212121",
+                p: 2,
+              },
               disableUnderline: true,
               endAdornment: textInput && (
                 <Send
