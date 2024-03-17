@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Api from "../../Utils/api";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -103,7 +103,7 @@ export default function NavButton() {
         >
           {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
         </Avatar>
-        {ctx.user.first_name}
+        <Typography> {ctx.user.first_name}</Typography>
       </Button>
       <StyledMenu
         sx={{ zIndex: 10000 }}

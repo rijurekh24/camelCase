@@ -209,7 +209,7 @@ const Post = () => {
           </IconButton>
           <Typography
             pr={2}
-            display={{ xs: "none", md: "block" }}
+            display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
             Photo
@@ -235,7 +235,7 @@ const Post = () => {
           </IconButton>
           <Typography
             pr={2}
-            display={{ xs: "none", md: "block" }}
+            display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
             Video
@@ -261,7 +261,7 @@ const Post = () => {
           </IconButton>
           <Typography
             pr={2}
-            display={{ xs: "none", md: "block" }}
+            display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
             Poll
@@ -286,7 +286,7 @@ const Post = () => {
           </IconButton>
           <Typography
             pr={2}
-            display={{ xs: "none", md: "block" }}
+            display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
             Schedule
