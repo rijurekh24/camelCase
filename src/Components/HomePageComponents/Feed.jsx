@@ -15,7 +15,6 @@ const Feed = () => {
     <Box
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"center"}
       alignItems={"center"}
       sx={{
         flex: 5,
