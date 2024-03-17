@@ -6,11 +6,11 @@ import { authContext } from "../../Context/AuthContext";
 
 const Feed = () => {
   const ctx = useContext(authContext);
-  //console.log(ctx.postData);
   useEffect(() => {
     ctx.fetchPost();
   }, []);
 
+  // console.log(ctx.postData);
   return (
     <Box
       display={"flex"}
@@ -21,16 +21,18 @@ const Feed = () => {
         px: "4px",
       }}
     >
-      <Box width={{ xs: "100%", md: "75%" }}>
+      <Box width={{ xs: "100%", lg: "75%" }}>
         <Post />
-
-        {ctx.postData.map((item) => (
+        {ctx.postData.map((item, index) => (
           <PostCard
+            key={item._id}
             name={`${item.user.first_name} ${item.user.last_name}`}
             username={item.user.username}
             image={item.img}
             caption={item.caption}
             date={item.date}
+            postId={item._id}
+            likes={item.likes}
           />
         ))}
       </Box>

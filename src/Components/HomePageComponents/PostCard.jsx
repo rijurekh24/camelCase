@@ -13,22 +13,40 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Api from "../../Utils/api";
+import { authContext } from "../../Context/AuthContext";
+import { useEffect } from "react";
 const PostCard = (props) => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(props.likes.length);
   const [commentCount, setCommentCount] = useState(0);
   const [increment, setIncrement] = useState(true);
+  const ctx = useContext(authContext);
+  const likes = props.likes;
+
+  useEffect(() => {
+    if (likes.includes(ctx.user._id)) {
+      setClicked(true);
+    }
+  });
 
   const handleLike = () => {
     setClicked(!clicked);
     if (increment) {
-      setLikeCount(likeCount + 1);
+      setLikeCount((likeCount) => likeCount + 1);
     } else {
-      setLikeCount(likeCount - 1);
+      setLikeCount((likeCount) => likeCount - 1);
     }
     setIncrement(!increment);
+    Api.post("/posts/like", { post_id: props.postId })
+      .then((response) => {
+        // console.log(response.data.msg);
+      })
+      .catch((err) => {
+        log(err.response.data);
+      });
   };
 
   return (
