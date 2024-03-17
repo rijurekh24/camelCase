@@ -9,7 +9,7 @@ const FriendListCard = () => {
 
   const handleShowMore = () => {
     // Increase the display count to show all elements
-    setDisplayCount(ctx.user.following.length);
+    setDisplayCount(ctx.user.followers.length);
   };
   return (
     <Box
@@ -22,11 +22,11 @@ const FriendListCard = () => {
       }}
     >
       <Typography fontSize={"1.1rem"} mb={2}>
-        Following
+        Followers
       </Typography>
 
       <ul>
-        {ctx.user.following.slice(0, displayCount).map((item, index) => (
+        {ctx.user.followers.slice(0, displayCount).map((item, index) => (
           <FriendList
             key={index}
             name={item.first_name}
@@ -36,7 +36,7 @@ const FriendListCard = () => {
         ))}
       </ul>
       <Box display={"flex"} justifyContent={"center"}>
-        {displayCount < ctx.user.following.length && (
+        {displayCount < ctx.user.followers.length && (
           <Button
             onClick={handleShowMore}
             sx={{
