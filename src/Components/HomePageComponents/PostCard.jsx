@@ -41,9 +41,7 @@ const PostCard = (props) => {
     }
     setIncrement(!increment);
     Api.post("/posts/like", { post_id: props.postId })
-      .then((response) => {
-        // console.log(response.data.msg);
-      })
+      .then((response) => {})
       .catch((err) => {
         log(err.response.data);
       });
@@ -142,7 +140,7 @@ const PostCard = (props) => {
 
           <IconButton aria-label="comment">
             <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
-              <i class="fa-regular fa-comment"></i>
+              <i className="fa-regular fa-comment"></i>
             </Typography>
             <Typography ml={1} color={"textColor.secondary"}>
               {commentCount}
@@ -151,13 +149,13 @@ const PostCard = (props) => {
 
           <IconButton aria-label="share">
             <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
-              <i class="fa-regular fa-paper-plane"></i>
+              <i className="fa-regular fa-paper-plane"></i>
             </Typography>
           </IconButton>
 
           <IconButton aria-label="save">
             <Typography color={"textColor.secondary"} fontSize={"1.4rem"}>
-              <i class="fa-regular fa-bookmark"></i>
+              <i className="fa-regular fa-bookmark"></i>
             </Typography>
           </IconButton>
         </Box>

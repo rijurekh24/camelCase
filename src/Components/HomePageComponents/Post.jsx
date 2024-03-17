@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Divider, IconButton, Typography } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PollIcon from "@mui/icons-material/Poll";
@@ -43,11 +43,11 @@ const Post = () => {
         backgroundColor: "backgroundColor.secondary",
         borderRadius: { xs: "0", lg: "15px" },
         marginBottom: 2,
-        padding: "10px 15px",
+        padding: "10px",
       }}
     >
       <PostModal open={modalOpen} handleClose={closeModal} />
-      <Box display={"flex"} width={"100%"} gap={2}>
+      <Box display={"flex"} width={"100%"} gap={2} mb={2}>
         <Avatar
           sx={{
             border: "5px solid",
@@ -95,6 +95,7 @@ const Post = () => {
           }}
         />
       </Box>
+      <Divider variant="middle" color="#333" />
       <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
         <Button
           onClick={openModal}
