@@ -172,7 +172,7 @@ const Post = () => {
             sx: {
               color: "textColor.main",
               borderRadius: "20px",
-              backgroundColor: "#212121",
+              backgroundColor: "#222831",
               p: 2,
               fontSize: "1rem",
             },
@@ -204,7 +204,7 @@ const Post = () => {
           <IconButton>
             <InsertPhotoIcon
               disableRipple
-              sx={{ color: "primary.main", fontSize: "1.5rem" }}
+              sx={{ color: "#8dbd61", fontSize: "1.5rem" }}
             />
           </IconButton>
           <Typography
@@ -230,7 +230,7 @@ const Post = () => {
           <IconButton>
             <PlayCircleIcon
               disableRipple
-              sx={{ color: "#4F93F8", fontSize: "1.5rem" }}
+              sx={{ color: "#be375f", fontSize: "1.5rem" }}
             />
           </IconButton>
           <Typography
@@ -256,7 +256,7 @@ const Post = () => {
           <IconButton>
             <PollIcon
               disableRipple
-              sx={{ color: "#E67575", fontSize: "1.5rem" }}
+              sx={{ color: "#ed8554", fontSize: "1.5rem" }}
             />
           </IconButton>
           <Typography
@@ -281,7 +281,7 @@ const Post = () => {
           <IconButton>
             <CalendarMonthIcon
               disableRipple
-              sx={{ color: "#EEBE65", fontSize: "1.5rem" }}
+              sx={{ color: "#f5eb6d", fontSize: "1.5rem" }}
             />
           </IconButton>
           <Typography

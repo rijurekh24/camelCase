@@ -40,7 +40,7 @@ const Navbar = () => {
                 <i
                   className="fa-regular fa-square fa-lg"
                   style={{
-                    color: "#01ab81",
+                    color: "#76ABAE",
                   }}
                 ></i>
               </IconButton>

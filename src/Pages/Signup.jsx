@@ -166,7 +166,7 @@ const Signup = () => {
               display={{ xs: "none", md: "block" }}
               style={{
                 width: "97%",
-                background: "linear-gradient(135deg, #01ab81, #104f3f)",
+                background: "linear-gradient(135deg, #76ABAE, #31363F)",
                 height: "97vh",
                 borderRadius: "10px",
               }}
@@ -217,7 +217,7 @@ const Signup = () => {
                 >
                   <i
                     className="fa-regular fa-square"
-                    style={{ color: "#01ab81", marginRight: "1%" }}
+                    style={{ color: "#76ABAE", marginRight: "1%" }}
                   ></i>
                   camelCase
                 </Typography>
@@ -298,10 +298,10 @@ const Signup = () => {
                         color: "white",
                         backgroundColor: "primary.main",
                         "&:hover": {
-                          backgroundColor: "#007d5e",
+                          backgroundColor: "#31363F",
                         },
                         "&:disabled": {
-                          backgroundColor: "#007d5e",
+                          backgroundColor: "#31363F",
                         },
                       }}
                       onClick={handleClick}
@@ -362,7 +362,7 @@ const Signup = () => {
                       <Link
                         to="/signin"
                         style={{
-                          color: "#01ab81",
+                          color: "#76ABAE",
                           cursor: "pointer",
                           textDecoration: "none",
                         }}

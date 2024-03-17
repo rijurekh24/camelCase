@@ -192,7 +192,10 @@ const PostCard = (props) => {
         subheader={
           <Typography variant="body2" color="textColor.main">
             {props.name}{" "}
-            <Typography sx={{ color: "primary.main", ml: 1 }} display="inline">
+            <Typography
+              sx={{ color: "textColor.secondary", ml: 1 }}
+              display="inline"
+            >
               • <span>{format(props.date)}</span>
             </Typography>
           </Typography>
@@ -207,7 +210,7 @@ const PostCard = (props) => {
         <Box
           sx={{
             height: "23rem",
-            backgroundColor: "#333",
+            backgroundColor: "#1b2129",
             display: "flex",
             justifyContent: "center",
             width: "100%",

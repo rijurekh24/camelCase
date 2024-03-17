@@ -120,7 +120,7 @@ const Signin = () => {
               display={{ xs: "none", md: "block" }}
               sx={{
                 width: "97%",
-                background: "linear-gradient(135deg, #01ab81, #104f3f)",
+                background: "linear-gradient(135deg, #76ABAE, #31363F)",
                 height: "97vh",
                 borderRadius: "10px",
               }}
@@ -171,7 +171,7 @@ const Signin = () => {
                 >
                   <i
                     className="fa-regular fa-square"
-                    style={{ color: "#01ab81", marginRight: "1%" }}
+                    style={{ color: "#76ABAE", marginRight: "1%" }}
                   ></i>
                   camelCase
                 </Typography>
@@ -252,7 +252,7 @@ const Signin = () => {
                     <Link
                       to=""
                       style={{
-                        color: "#01ab81",
+                        color: "#76ABAE",
                         cursor: "pointer",
                         textDecoration: "none",
                       }}
@@ -271,10 +271,10 @@ const Signin = () => {
                         color: "white",
                         backgroundColor: "primary.main",
                         "&:hover": {
-                          backgroundColor: "#007d5e",
+                          backgroundColor: "#31363F",
                         },
                         "&:disabled": {
-                          backgroundColor: "#007d5e",
+                          backgroundColor: "#31363F",
                         },
                       }}
                       onClick={handleSignIn}
@@ -341,7 +341,7 @@ const Signin = () => {
                       <Link
                         to="/signup"
                         style={{
-                          color: "#01ab81",
+                          color: "#76ABAE",
                           cursor: "pointer",
                           textDecoration: "none",
                         }}

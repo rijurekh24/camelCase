@@ -120,7 +120,7 @@ const ProfileCard = () => {
             onClick={handleClick}
             sx={{
               width: "100%",
-              backgroundColor: "#333",
+              backgroundColor: "#222831",
               color: "textColor.secondary",
               textTransform: "none",
               padding: "15px",
