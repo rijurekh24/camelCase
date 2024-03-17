@@ -172,7 +172,7 @@ const Post = () => {
             sx: {
               color: "textColor.main",
               borderRadius: "20px",
-              backgroundColor: "#222831",
+              backgroundColor: "backgroundColor.main",
               p: 2,
               fontSize: "1rem",
             },
@@ -186,7 +186,7 @@ const Post = () => {
           }}
         />
       </Box>
-      <Divider variant="middle" color="#333" />
+      <Divider variant="middle" color="#666" />
       <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
         <Button
           onClick={openModal}

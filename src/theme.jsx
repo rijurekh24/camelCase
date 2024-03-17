@@ -13,12 +13,12 @@ export const theme = createTheme({
       secondary: "#999",
     },
     backgroundColor: {
-      main: "#222831",
-      secondary: "#31363F",
+      main: "#1a1f26",
+      secondary: "#222831",
     },
 
     borderColor: {
-      main: "#222831",
+      main: "#1a1f26",
     },
   },
 });

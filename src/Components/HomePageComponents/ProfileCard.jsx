@@ -114,13 +114,13 @@ const ProfileCard = () => {
           </Typography>
           <Typography color="textColor.main" mb={3} fontSize={"0.8rem"}>
             Hello i am UI/UX designer. Open to new projects
-            <Divider variant="middle" color="#333" sx={{ marginTop: 3 }} />
+            <Divider variant="middle" color="#666" sx={{ marginTop: 3 }} />
           </Typography>
           <Button
             onClick={handleClick}
             sx={{
               width: "100%",
-              backgroundColor: "#222831",
+              backgroundColor: "backgroundColor.main",
               color: "textColor.secondary",
               textTransform: "none",
               padding: "15px",

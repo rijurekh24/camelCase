@@ -226,7 +226,7 @@ const PostCard = (props) => {
         </Box>
       )}
 
-      <Divider variant="middle" color="#333" />
+      <Divider variant="middle" color="#666" />
       <CardActions>
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
           <IconButton aria-label="add to favorites">
