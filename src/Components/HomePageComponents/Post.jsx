@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Divider, IconButton, Typography } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
@@ -9,18 +9,22 @@ import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
 import { authContext } from "../../Context/AuthContext";
 import Api from "../../Utils/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Post = () => {
   const [textInput, setTextInput] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const ctx = useContext(authContext);
-  // const [loading, setLoading] = useState(true);
 
-  // console.log(ctx.user);
-  // useEffect(() => {
-  //   if (ctx.user) {
-  //     setLoading(false);
-  //   }
-  // }, []);
+  const [loading, setLoading] = useState(true);
+  const toastId = useRef(null);
+
+  useEffect(() => {
+    if (ctx.user) {
+      setLoading(false);
+    }
+  }, []);
 
   const openModal = () => {
     setModalOpen(true);
@@ -34,12 +38,27 @@ const Post = () => {
   };
 
   const handleSend = () => {
+    toastId.current = toast.loading("Posting...");
+
     Api.post("/posts/create-new", {
       username: ctx.user.username,
       caption: textInput,
       user: ctx.user._id,
     })
       .then((res) => {
+        toast.update(toastId.current, {
+          render: "Posted sucessfully...",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+          closeButton: true,
+          pauseOnHover: true,
+          draggable: false,
+          style: {
+            backgroundColor: "#222831",
+            color: "white",
+          },
+        });
         ctx.fetchPost();
         setTextInput("");
       })
@@ -137,6 +156,20 @@ const Post = () => {
         padding: "10px",
       }}
     >
+      {" "}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <PostModal open={modalOpen} handleClose={closeModal} />
       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
         <Avatar

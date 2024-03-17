@@ -229,68 +229,72 @@ const PostCard = (props) => {
       <Divider variant="middle" color="#444" />
       <CardActions>
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
-          <IconButton aria-label="add to favorites">
-            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
-              <i
-                className={` ${clicked ? " fa-solid" : "fa-regular"} fa-heart`}
-                style={{
-                  color: clicked ? "#DC381F" : "#999",
-                }}
-                onClick={handleLike}
-              ></i>
-            </Typography>
-            <Typography ml={1} color={"textColor.secondary"}>
-              {likeCount}
-            </Typography>
-            <Typography
+          <Box display={"flex"} gap={1}>
+            <IconButton aria-label="add to favorites" disableRipple>
+              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <i
+                  className={` ${
+                    clicked ? " fa-solid" : "fa-regular"
+                  } fa-heart`}
+                  style={{
+                    color: clicked ? "#DC381F" : "#999",
+                  }}
+                  onClick={handleLike}
+                ></i>
+              </Typography>
+              <Typography ml={1} color={"textColor.secondary"}>
+                {likeCount}
+              </Typography>
+              {/* <Typography
               display={{ xs: "none", sm: "block" }}
               ml={1}
               color={"textColor.secondary"}
             >
               likes
-            </Typography>
-          </IconButton>
+            </Typography> */}
+            </IconButton>
 
-          <IconButton aria-label="comment">
-            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
-              <i className="fa-regular fa-comment"></i>
-            </Typography>
-            <Typography ml={1} color={"textColor.secondary"}>
-              {commentCount}
-            </Typography>
-            <Typography
+            <IconButton aria-label="comment" disableRipple>
+              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <i className="fa-regular fa-comment"></i>
+              </Typography>
+              <Typography ml={1} color={"textColor.secondary"}>
+                {commentCount}
+              </Typography>
+              {/* <Typography
               display={{ xs: "none", sm: "block" }}
               ml={1}
               color={"textColor.secondary"}
             >
               comments
-            </Typography>
-          </IconButton>
+            </Typography> */}
+            </IconButton>
 
-          <IconButton aria-label="share">
-            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
-              <i className="fa-regular fa-paper-plane"></i>
-            </Typography>
-            <Typography
+            <IconButton aria-label="share" disableRipple>
+              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <i className="fa-regular fa-paper-plane"></i>
+              </Typography>
+              {/* <Typography
               display={{ xs: "none", sm: "block" }}
               ml={1}
               color={"textColor.secondary"}
             >
               Share
-            </Typography>
-          </IconButton>
+            </Typography> */}
+            </IconButton>
+          </Box>
 
-          <IconButton aria-label="save">
-            <Typography color={"textColor.secondary"} fontSize={"1.1rem"}>
+          <IconButton aria-label="save" disableRipple>
+            <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
               <i className="fa-regular fa-bookmark"></i>
             </Typography>
-            <Typography
+            {/* <Typography
               display={{ xs: "none", sm: "block" }}
               ml={1}
               color={"textColor.secondary"}
             >
               Save
-            </Typography>
+            </Typography> */}
           </IconButton>
         </Box>
         {/* <Box sx={{ display: "flex", alignItems: "center" }}>
