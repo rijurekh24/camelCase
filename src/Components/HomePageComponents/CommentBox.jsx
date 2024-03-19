@@ -25,7 +25,13 @@ const CommentBox = ({ postId }) => {
       placeholder="add a comment"
       value={comment}
       onChange={handleInputChange}
-      sx={{ p: 1, color: "textColor.secondary", width: "100%" }}
+      sx={{
+        p: 1,
+        color: "textColor.secondary",
+        width: "100%",
+        backgroundColor: "backgroundColor.main",
+        borderRadius: "15px",
+      }}
       endAdornment={
         <InputAdornment position="end">
           <Button

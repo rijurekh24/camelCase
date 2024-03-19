@@ -20,7 +20,9 @@ import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
 import { useEffect } from "react";
 import LikeModal from "./Modals/LikeModal";
+import CommentModal from "./Modals/CommentModal";
 import CommentBox from "./CommentBox";
+
 const PostCard = (props) => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState();
@@ -45,13 +47,13 @@ const PostCard = (props) => {
     }
   }, []);
 
-  const handleLike = () => {
+  const handleLike = (e) => {
     if (clicked) {
       setClicked(false);
-      setLikeCount((likeCount) => likeCount - 1);
+      setLikeCount((prev) => prev - 1);
     } else {
       setClicked(true);
-      setLikeCount((likeCount) => likeCount + 1);
+      setLikeCount((prev) => prev + 1);
     }
 
     Api.post("/posts/like", { post_id: props.postId })
@@ -233,17 +235,32 @@ const PostCard = (props) => {
         </Box>
       )}
 
-      <Divider variant="middle" color="#444" />
+      {!props.image && <Divider variant="middle" color="#444" />}
 
       <CardActions>
         <Box width={"100%"}>
-          <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
-            <Box
-              display={"flex"}
-              justifyContent={"space-between"}
-              width={"100%"}
-            >
-              <IconButton aria-label="add to favorites" disableRipple>
+          <Box>
+            <Box px={1}>
+              <Typography sx={{ color: "textColor.main" }} onClick={handleOpen}>
+                {likeCount === 0
+                  ? null
+                  : clicked
+                  ? likeCount === 1
+                    ? "Liked by you"
+                    : `Liked by you and ${likeCount - 1} ${
+                        likeCount > 2 ? "others" : "other"
+                      }`
+                  : likeCount === 1
+                  ? "1 like"
+                  : `${likeCount} likes`}
+              </Typography>
+            </Box>
+            <Box display={"flex"} flex={1} justifyContent={"space-between"}>
+              <IconButton
+                aria-label="add to favorites"
+                disableRipple
+                onClick={handleLike}
+              >
                 <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
                   <i
                     className={` ${
@@ -252,65 +269,91 @@ const PostCard = (props) => {
                     style={{
                       color: clicked ? "#DC381F" : "#999",
                     }}
-                    onClick={handleLike}
                   ></i>
                 </Typography>
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: "0.9rem",
+                      pl: 1,
+                      color: "textColor.main",
+                    }}
+                  >
+                    Like
+                  </Typography>
+                </Box>
               </IconButton>
-
+              <LikeModal open={open} onClose={handleClose} likes={likes} />
+              <CommentModal
+                open={open}
+                onClose={handleClose}
+                postId={props.postId}
+              />
               <IconButton aria-label="comment" disableRipple>
                 <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
                   <i className="fa-regular fa-comment"></i>
                 </Typography>
+                <Box onClick={handleOpen}>
+                  <Typography
+                    sx={{
+                      fontSize: "0.9rem",
+                      pl: 1,
+                      color: "textColor.main",
+                    }}
+                  >
+                    Comment
+                  </Typography>
+                </Box>
               </IconButton>
 
               <IconButton aria-label="share" disableRipple>
                 <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
                   <i className="fa-regular fa-paper-plane"></i>
                 </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "0.9rem",
+                    pl: 1,
+                    color: "textColor.main",
+                  }}
+                >
+                  Share
+                </Typography>
               </IconButton>
               <IconButton aria-label="repost" disableRipple>
                 <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
                   <i className="fa-solid fa-repeat"></i>
                 </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "0.9rem",
+                    pl: 1,
+                    color: "textColor.main",
+                  }}
+                >
+                  Repost
+                </Typography>
               </IconButton>
             </Box>
-          </Box>
-          <Box>
-            {likeCount > 0 ? (
-              <Button
-                onClick={handleOpen}
+
+            {/* comment box */}
+            <Box display={"flex"} flex={1}>
+              <Avatar
                 sx={{
-                  fontSize: "1rem",
-                  textTransform: "none",
-                  p: 0,
-                  ":hover": {
-                    background: "transparent",
-                  },
+                  width: 35,
+                  height: 35,
+                  border: "5px solid ",
+                  bgcolor: "#111",
+                  borderColor: "borderColor.main",
+                  marginRight: "5px",
+                  color: "primary.main",
                 }}
               >
-                {likeCount} {likeCount > 1 ? "likes" : "like"}
-              </Button>
-            ) : null}
-            <LikeModal open={open} onClose={handleClose} likes={likes} />
+                {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+              </Avatar>
+              <CommentBox postId={props.postId} />
+            </Box>
           </Box>
-          <Box>
-            {/* <Button
-              // onClick={handleOpen}
-              sx={{
-                fontSize: "0.9rem",
-                textTransform: "none",
-                py: 0,
-                color: "textColor.secondary",
-                ":hover": {
-                  background: "transparent",
-                },
-              }}
-            >
-              view Comments
-            </Button> */}
-            {/* <LikeModal open={open} onClose={handleClose} likes={likes} /> */}
-          </Box>
-          <CommentBox postId={props.postId} />
         </Box>
       </CardActions>
     </Card>
