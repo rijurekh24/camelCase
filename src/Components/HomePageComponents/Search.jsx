@@ -20,7 +20,6 @@ const Search = () => {
   const handleSearch = (query) => {
     Api.post("/auth/search", { query })
       .then((response) => {
-        // console.log(response.data.search_res[0].users);
         setSearchResult(response.data.search_res[0].users);
       })
       .catch((error) => {

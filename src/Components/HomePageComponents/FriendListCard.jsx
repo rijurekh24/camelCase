@@ -8,9 +8,9 @@ const FriendListCard = () => {
   const [displayCount, setDisplayCount] = useState(3);
 
   const handleShowMore = () => {
-    // Increase the display count to show all elements
     setDisplayCount(ctx.user.followers.length);
   };
+
   return (
     <Box
       p={2}

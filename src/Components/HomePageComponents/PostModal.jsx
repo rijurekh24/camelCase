@@ -49,6 +49,7 @@ function PostModal({ open, handleClose }) {
 
   const handleClick = () => {
     setIsLoading(true);
+    handleClose();
     if (!image) {
       toastId.current = toast.loading("Posting...");
       Api.post("/posts/create-new", {
@@ -57,7 +58,6 @@ function PostModal({ open, handleClose }) {
         user: ctx.user._id,
       })
         .then((res) => {
-          handleClose();
           setIsLoading(false);
           ctx.fetchPost();
           toast.update(toastId.current, {
@@ -73,7 +73,6 @@ function PostModal({ open, handleClose }) {
               color: "white",
             },
           });
-          handleClose();
           setCaption("");
           setBlobURL("");
           setImage(null);
@@ -88,14 +87,14 @@ function PostModal({ open, handleClose }) {
       const formData = new FormData();
       formData.append("file", image);
       formData.append("upload_preset", "bdafcwdk");
-
+      setIsLoading(true);
+      handleClose();
       Axios.post(
         "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload",
         formData
       )
         .then((res) => {
           setIsLoading(false);
-          //console.log(res.data);
           Api.post("/posts/create-new", {
             username: ctx.user.username,
             caption,
@@ -103,10 +102,10 @@ function PostModal({ open, handleClose }) {
             user: ctx.user._id,
           })
             .then((res) => {
-              //console.log(res.data);
-              handleClose();
-              setIsLoading(false);
               ctx.fetchPost();
+              setCaption("");
+              setBlobURL("");
+              setImage(null);
               toast.update(toastId.current, {
                 render: "Posted sucessfully...",
                 type: "success",

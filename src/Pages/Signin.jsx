@@ -83,7 +83,7 @@ const Signin = () => {
     setErr(null);
     Api.post("/auth/login/", user)
       .then((response) => {
-        navigate("/");
+        navigate("/", { replace: true });
         setIsLoading(false);
       })
       .catch((err) => {

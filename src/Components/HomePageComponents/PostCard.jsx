@@ -9,21 +9,27 @@ import {
   CardHeader,
   Divider,
   IconButton,
+  InputBase,
+  Modal,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
 import { useContext, useState } from "react";
 import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
 import { useEffect } from "react";
+import LikeModal from "./Modals/LikeModal";
+import CommentBox from "./CommentBox";
 const PostCard = (props) => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState();
   const [likeCount, setLikeCount] = useState(props.likes.length);
   const [commentCount, setCommentCount] = useState(0);
   const [loading, setLoading] = useState(true);
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const ctx = useContext(authContext);
   const likes = props.likes;
 
@@ -32,7 +38,7 @@ const PostCard = (props) => {
       setLoading(false);
     }
 
-    if (likes.includes(ctx.user._id)) {
+    if (likes.some((e) => e._id == ctx.user._id)) {
       setClicked(true);
     } else {
       setClicked(false);
@@ -64,7 +70,6 @@ const PostCard = (props) => {
           backgroundColor: "backgroundColor.secondary",
         }}
       >
-        {/* Skeleton for CardHeader */}
         <CardHeader
           avatar={
             <Box
@@ -150,6 +155,8 @@ const PostCard = (props) => {
     );
   }
 
+  // likemodal part
+
   return (
     <Card
       sx={{
@@ -227,93 +234,84 @@ const PostCard = (props) => {
       )}
 
       <Divider variant="middle" color="#444" />
+
       <CardActions>
-        <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
-          <Box display={"flex"} gap={1}>
-            <IconButton aria-label="add to favorites" disableRipple>
-              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
-                <i
-                  className={` ${
-                    clicked ? " fa-solid" : "fa-regular"
-                  } fa-heart`}
-                  style={{
-                    color: clicked ? "#DC381F" : "#999",
-                  }}
-                  onClick={handleLike}
-                ></i>
-              </Typography>
-              <Typography ml={1} color={"textColor.secondary"}>
-                {likeCount}
-              </Typography>
-              {/* <Typography
-              display={{ xs: "none", sm: "block" }}
-              ml={1}
-              color={"textColor.secondary"}
+        <Box width={"100%"}>
+          <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+              width={"100%"}
             >
-              likes
-            </Typography> */}
-            </IconButton>
+              <IconButton aria-label="add to favorites" disableRipple>
+                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                  <i
+                    className={` ${
+                      clicked ? " fa-solid" : "fa-regular"
+                    } fa-heart`}
+                    style={{
+                      color: clicked ? "#DC381F" : "#999",
+                    }}
+                    onClick={handleLike}
+                  ></i>
+                </Typography>
+              </IconButton>
 
-            <IconButton aria-label="comment" disableRipple>
-              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
-                <i className="fa-regular fa-comment"></i>
-              </Typography>
-              <Typography ml={1} color={"textColor.secondary"}>
-                {commentCount}
-              </Typography>
-              {/* <Typography
-              display={{ xs: "none", sm: "block" }}
-              ml={1}
-              color={"textColor.secondary"}
-            >
-              comments
-            </Typography> */}
-            </IconButton>
+              <IconButton aria-label="comment" disableRipple>
+                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                  <i className="fa-regular fa-comment"></i>
+                </Typography>
+              </IconButton>
 
-            <IconButton aria-label="share" disableRipple>
-              <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
-                <i className="fa-regular fa-paper-plane"></i>
-              </Typography>
-              {/* <Typography
-              display={{ xs: "none", sm: "block" }}
-              ml={1}
-              color={"textColor.secondary"}
-            >
-              Share
-            </Typography> */}
-            </IconButton>
+              <IconButton aria-label="share" disableRipple>
+                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                  <i className="fa-regular fa-paper-plane"></i>
+                </Typography>
+              </IconButton>
+              <IconButton aria-label="repost" disableRipple>
+                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                  <i className="fa-solid fa-repeat"></i>
+                </Typography>
+              </IconButton>
+            </Box>
           </Box>
-
-          <IconButton aria-label="save" disableRipple>
-            <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
-              <i className="fa-regular fa-bookmark"></i>
-            </Typography>
-            {/* <Typography
-              display={{ xs: "none", sm: "block" }}
-              ml={1}
-              color={"textColor.secondary"}
-            >
-              Save
-            </Typography> */}
-          </IconButton>
-        </Box>
-        {/* <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button
+          <Box>
+            {likeCount > 0 ? (
+              <Button
+                onClick={handleOpen}
+                sx={{
+                  fontSize: "1rem",
+                  textTransform: "none",
+                  p: 0,
+                  ":hover": {
+                    background: "transparent",
+                  },
+                }}
+              >
+                {likeCount} {likeCount > 1 ? "likes" : "like"}
+              </Button>
+            ) : null}
+            <LikeModal open={open} onClose={handleClose} likes={likes} />
+          </Box>
+          <Box>
+            {/* <Button
+              // onClick={handleOpen}
               sx={{
-                backgroundColor: "primary.main",
-                border: "1px solid primary.main",
-                padding: "2px 10px",
-                color: "#222",
-                fontSize: "0.8rem",
-                borderRadius: "10px",
-                "&:hover": {
-                  backgroundColor: "#01ab90",
+                fontSize: "0.9rem",
+                textTransform: "none",
+                py: 0,
+                color: "textColor.secondary",
+                ":hover": {
+                  background: "transparent",
                 },
               }}
             >
-              Hire me
-            </Button>
-          </Box> */}
+              view Comments
+            </Button> */}
+            {/* <LikeModal open={open} onClose={handleClose} likes={likes} /> */}
+          </Box>
+          <CommentBox postId={props.postId} />
+        </Box>
       </CardActions>
     </Card>
   );
