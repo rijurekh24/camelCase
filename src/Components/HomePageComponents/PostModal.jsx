@@ -9,6 +9,8 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "axios";
 import Api from "../../Utils/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -30,6 +32,7 @@ function PostModal({ open, handleClose }) {
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const toastId = useRef(null);
 
   const handleTextChange = (event) => {
     setCaption(event.target.value);
@@ -47,18 +50,29 @@ function PostModal({ open, handleClose }) {
   const handleClick = () => {
     setIsLoading(true);
     if (!image) {
-      // console.error("No image selected");
-      // return;
+      toastId.current = toast.loading("Posting...");
       Api.post("/posts/create-new", {
         username: ctx.user.username,
         caption,
         user: ctx.user._id,
       })
         .then((res) => {
-          console.log(res.data);
           handleClose();
           setIsLoading(false);
           ctx.fetchPost();
+          toast.update(toastId.current, {
+            render: "Posted sucessfully...",
+            type: "success",
+            isLoading: false,
+            autoClose: 2000,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: false,
+            style: {
+              backgroundColor: "#222831",
+              color: "white",
+            },
+          });
           handleClose();
           setCaption("");
           setBlobURL("");
@@ -70,6 +84,7 @@ function PostModal({ open, handleClose }) {
     }
 
     if (image) {
+      toastId.current = toast.loading("Uploading image...");
       const formData = new FormData();
       formData.append("file", image);
       formData.append("upload_preset", "bdafcwdk");
@@ -91,8 +106,20 @@ function PostModal({ open, handleClose }) {
               //console.log(res.data);
               handleClose();
               setIsLoading(false);
-
               ctx.fetchPost();
+              toast.update(toastId.current, {
+                render: "Posted sucessfully...",
+                type: "success",
+                isLoading: false,
+                autoClose: 2000,
+                closeButton: true,
+                pauseOnHover: true,
+                draggable: false,
+                style: {
+                  backgroundColor: "#222831",
+                  color: "white",
+                },
+              });
             })
             .catch((err) => {
               setIsLoading(false);

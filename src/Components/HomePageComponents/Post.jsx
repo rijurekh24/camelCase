@@ -9,7 +9,7 @@ import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
 import { authContext } from "../../Context/AuthContext";
 import Api from "../../Utils/api";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Post = () => {
@@ -38,7 +38,12 @@ const Post = () => {
   };
 
   const handleSend = () => {
-    toastId.current = toast.loading("Posting...");
+    toastId.current = toast.loading("Posting...", {
+      style: {
+        backgroundColor: "#222831",
+        color: "#eee",
+      },
+    });
 
     Api.post("/posts/create-new", {
       username: ctx.user.username,
@@ -50,7 +55,7 @@ const Post = () => {
           render: "Posted sucessfully...",
           type: "success",
           isLoading: false,
-          autoClose: 5000,
+          autoClose: 2000,
           closeButton: true,
           pauseOnHover: true,
           draggable: false,
@@ -156,20 +161,6 @@ const Post = () => {
         padding: "10px",
       }}
     >
-      {" "}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Bounce
-      />
       <PostModal open={modalOpen} handleClose={closeModal} />
       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
         <Avatar
