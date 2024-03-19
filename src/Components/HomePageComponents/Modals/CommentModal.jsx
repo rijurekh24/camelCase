@@ -22,10 +22,14 @@ const style = {
 
 const CommentModal = ({ open, onClose, postId }) => {
   const [comments, setComments] = useState([]);
-  Api.get(`/posts/get?id=${postId}`).then((res) => {
-    console.log(res.data);
-    setComments(res.data.comments);
-  });
+
+  useEffect(() => {
+    Api.get(`/posts/get?id=${postId}`).then((res) => {
+      console.log(res.data.comments);
+      setComments(res.data.comments);
+    });
+  }, []);
+
   return (
     <Modal
       open={open}
@@ -33,7 +37,7 @@ const CommentModal = ({ open, onClose, postId }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style} width={{ xs: 300, md: 400 }}>
+      <Box sx={style}>
         <Typography
           id="modal-modal-title"
           sx={{

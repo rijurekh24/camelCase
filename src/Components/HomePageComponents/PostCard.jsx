@@ -284,11 +284,11 @@ const PostCard = (props) => {
                 </Box>
               </IconButton>
               <LikeModal open={open} onClose={handleClose} likes={likes} />
-              <CommentModal
+              {/* <CommentModal
                 open={open}
                 onClose={handleClose}
                 postId={props.postId}
-              />
+              /> */}
               <IconButton aria-label="comment" disableRipple>
                 <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
                   <i className="fa-regular fa-comment"></i>
