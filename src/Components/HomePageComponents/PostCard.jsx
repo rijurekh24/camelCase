@@ -261,7 +261,10 @@ const PostCard = (props) => {
                 disableRipple
                 onClick={handleLike}
               >
-                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <Typography
+                  color={"textColor.secondary"}
+                  fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
+                >
                   <i
                     className={` ${
                       clicked ? " fa-solid" : "fa-regular"
@@ -271,7 +274,7 @@ const PostCard = (props) => {
                     }}
                   ></i>
                 </Typography>
-                <Box>
+                <Box display={{ xs: "none", sm: "block" }}>
                   <Typography
                     sx={{
                       fontSize: "0.9rem",
@@ -290,10 +293,13 @@ const PostCard = (props) => {
                 postId={props.postId}
               /> */}
               <IconButton aria-label="comment" disableRipple>
-                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <Typography
+                  color={"textColor.secondary"}
+                  fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
+                >
                   <i className="fa-regular fa-comment"></i>
                 </Typography>
-                <Box onClick={handleOpen}>
+                <Box display={{ xs: "none", sm: "block" }}>
                   <Typography
                     sx={{
                       fontSize: "0.9rem",
@@ -307,10 +313,14 @@ const PostCard = (props) => {
               </IconButton>
 
               <IconButton aria-label="share" disableRipple>
-                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <Typography
+                  color={"textColor.secondary"}
+                  fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
+                >
                   <i className="fa-regular fa-paper-plane"></i>
                 </Typography>
                 <Typography
+                  display={{ xs: "none", sm: "block" }}
                   sx={{
                     fontSize: "0.9rem",
                     pl: 1,
@@ -321,10 +331,14 @@ const PostCard = (props) => {
                 </Typography>
               </IconButton>
               <IconButton aria-label="repost" disableRipple>
-                <Typography color={"textColor.secondary"} fontSize={"1.3rem"}>
+                <Typography
+                  color={"textColor.secondary"}
+                  fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
+                >
                   <i className="fa-solid fa-repeat"></i>
                 </Typography>
                 <Typography
+                  display={{ xs: "none", sm: "block" }}
                   sx={{
                     fontSize: "0.9rem",
                     pl: 1,
