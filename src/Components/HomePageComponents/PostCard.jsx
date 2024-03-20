@@ -312,7 +312,7 @@ const PostCard = (props) => {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: "0.9rem",
+                    fontSize: "1rem",
                     pl: 1,
                     color: "textColor.main",
                   }}
