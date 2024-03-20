@@ -54,13 +54,15 @@ const ProfileCard = () => {
           mb={1}
           gap={{ sm: 2, lg: 3 }}
         >
-          <Box textAlign={"center"}>
+          <Box
+            textAlign={"center"}
+            onClick={handleOpenFollowers}
+            sx={{ cursor: "pointer" }}
+          >
             <Typography
               sx={{
                 fontSize: "1.1rem",
-                cursor: "pointer",
               }}
-              onClick={handleOpenFollowers}
             >
               {ctx.user.followers.length}
             </Typography>
@@ -89,9 +91,12 @@ const ProfileCard = () => {
               {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
             </Avatar>
           </Box>
-          <Box textAlign={"center"}>
+          <Box
+            textAlign={"center"}
+            onClick={handleOpenFollowing}
+            sx={{ cursor: "pointer" }}
+          >
             <Typography
-              onClick={handleOpenFollowing}
               sx={{
                 fontSize: "1.1rem",
               }}
