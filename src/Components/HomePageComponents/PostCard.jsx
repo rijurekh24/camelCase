@@ -39,11 +39,22 @@ const PostCard = (props) => {
 
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
+    fetchComment();
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  const fetchComment = () => {
+    Api.get(`/posts/get?id=${props.postId}`).then((res) => {
+      setCommentCount(res.data.post.comments.length);
+    });
+  };
+
+  useEffect(() => {
+    fetchComment();
+  }, []);
 
   useEffect(() => {
     if (ctx.postData) {
@@ -258,9 +269,13 @@ const PostCard = (props) => {
       <CardActions>
         <Box width={"100%"}>
           <Box>
-            <Box px={1}>
+            <Box px={1} display={"flex"} justifyContent={"space-between"}>
               <Typography
-                sx={{ color: "textColor.main", cursor: "pointer" }}
+                sx={{
+                  color: "textColor.secondary",
+                  cursor: "pointer",
+                  fontSize: "0.9rem",
+                }}
                 onClick={handleOpen}
               >
                 {likeCount === 0
@@ -275,6 +290,19 @@ const PostCard = (props) => {
                   ? "1 like"
                   : `${likeCount} likes`}
               </Typography>
+
+              {commentCount > 0 ? (
+                <Typography
+                  sx={{
+                    color: "textColor.secondary",
+                    cursor: "pointer",
+                    fontSize: "0.9rem",
+                  }}
+                  onClick={handleOpenModal}
+                >
+                  {commentCount} {commentCount === 1 ? "Comment" : "Comments"}
+                </Typography>
+              ) : null}
             </Box>
             <Box display={"flex"} flex={1} justifyContent={"space-between"}>
               <IconButton

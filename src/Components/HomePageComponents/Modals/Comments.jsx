@@ -41,14 +41,18 @@ const Comments = ({ username, comment, name, date }) => {
         </Avatar>
       </Box>
       <Box>
-        <Box display={"flex"} gap={1} sx={{}}>
+        <Box display={"flex"} gap={1}>
           <Typography
-            sx={{ color: "textColor.secondary", wordBreak: "break-all" }}
+            sx={{
+              color: "textColor.secondary",
+              wordBreak: "break-all",
+              fontSize: "0.9rem",
+            }}
           >
             @{username}
             <Typography
               component={"span"}
-              sx={{ color: "textColor.main", pl: 1 }}
+              sx={{ color: "textColor.main", pl: 1, fontSize: "0.9rem" }}
             >
               {comment}
             </Typography>
@@ -56,10 +60,10 @@ const Comments = ({ username, comment, name, date }) => {
         </Box>
 
         <Box display={"flex"} gap={2} sx={{ wordBreak: "break-all" }}>
-          <Typography sx={{ color: "textColor.secondary", fontSize: "0.8rem" }}>
+          <Typography sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}>
             {format(date, "custom")}
           </Typography>
-          <Typography sx={{ color: "textColor.secondary", fontSize: "0.8rem" }}>
+          <Typography sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}>
             reply
           </Typography>
         </Box>
