@@ -29,11 +29,23 @@ const PostCard = (props) => {
   const [likeCount, setLikeCount] = useState(props.likes.length);
   const [commentCount, setCommentCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const ctx = useContext(authContext);
+  const likes = props.likes;
+
+  //like modal box
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const ctx = useContext(authContext);
-  const likes = props.likes;
+
+  // comment dialog box
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   useEffect(() => {
     if (ctx.postData) {
@@ -157,8 +169,6 @@ const PostCard = (props) => {
     );
   }
 
-  // likemodal part
-
   return (
     <Card
       sx={{
@@ -168,6 +178,16 @@ const PostCard = (props) => {
         marginBottom: { xs: "1px", lg: 2 },
       }}
     >
+      <Box>
+        <LikeModal open={open} onClose={handleClose} likes={likes} />
+      </Box>
+      <Box>
+        <CommentModal
+          open={openModal}
+          onClose={handleCloseModal}
+          postId={props.postId}
+        />
+      </Box>
       <CardHeader
         avatar={
           <Avatar
@@ -241,7 +261,10 @@ const PostCard = (props) => {
         <Box width={"100%"}>
           <Box>
             <Box px={1}>
-              <Typography sx={{ color: "textColor.main" }} onClick={handleOpen}>
+              <Typography
+                sx={{ color: "textColor.main", cursor: "pointer" }}
+                onClick={handleOpen}
+              >
                 {likeCount === 0
                   ? null
                   : clicked
@@ -286,20 +309,18 @@ const PostCard = (props) => {
                   </Typography>
                 </Box>
               </IconButton>
-              <LikeModal open={open} onClose={handleClose} likes={likes} />
-              <CommentModal
-                open={open}
-                onClose={handleClose}
-                postId={props.postId}
-              />
-              <IconButton aria-label="comment" disableRipple>
+              <IconButton
+                aria-label="comment"
+                disableRipple
+                onClick={handleOpenModal}
+              >
                 <Typography
                   color={"textColor.secondary"}
                   fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
                 >
                   <i className="fa-regular fa-comment"></i>
                 </Typography>
-                <Box display={{ xs: "none", sm: "block" }} onClick={handleOpen}>
+                <Box display={{ xs: "none", sm: "block" }}>
                   <Typography
                     sx={{
                       fontSize: "0.9rem",

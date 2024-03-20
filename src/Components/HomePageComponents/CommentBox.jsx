@@ -32,25 +32,27 @@ const CommentBox = ({ postId }) => {
         borderRadius: "15px",
       }}
       endAdornment={
-        <InputAdornment position="end">
-          <Button
-            variant="contained"
-            onClick={handleClick}
-            endIcon={<SendIcon />}
-            sx={{
-              fontSize: "0.9rem",
-              textTransform: "none",
-              background: "transparent",
-              p: 0,
-              boxShadow: 0,
-              color: "textColor.secondary",
-              ":hover": {
+        comment && (
+          <InputAdornment position="end">
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              endIcon={<SendIcon />}
+              sx={{
+                fontSize: "0.9rem",
+                textTransform: "none",
                 background: "transparent",
+                p: 0,
                 boxShadow: 0,
-              },
-            }}
-          />
-        </InputAdornment>
+                color: "textColor.secondary",
+                ":hover": {
+                  background: "transparent",
+                  boxShadow: 0,
+                },
+              }}
+            />
+          </InputAdornment>
+        )
       }
     />
   );

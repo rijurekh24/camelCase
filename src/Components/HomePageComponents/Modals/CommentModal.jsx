@@ -1,51 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase, TextField } from "@mui/material"; // Import TextField for the input box
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Divider from "@mui/material/Divider";
 import Api from "../../../Utils/api";
 import CommentBox from "../CommentBox";
 import Comments from "./Comments";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  borderRadius: "15px",
-  bgcolor: "backgroundColor.main",
-  boxShadow: 24,
-  color: "textColor.main",
-  border: "2px solid #333",
-  py: 2,
-};
 
 const CommentModal = ({ open, onClose, postId }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    Api.get(`/posts/get?id=${postId}`).then((res) => {
-      console.log(res.data.comments);
-      setComments(res.data.comments);
-    });
-  }, []);
+    if (open) {
+      Api.get(`/posts/get?id=${postId}`).then((res) => {
+        console.log(res.data.comments);
+        setComments(res.data.comments);
+      });
+    }
+  }, [open, postId]);
 
   return (
-    <Modal
+    <Dialog
       open={open}
       onClose={onClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby="dialog-modal-title"
+      aria-describedby="dialog-modal-description"
+      maxWidth="md"
+      fullWidth
     >
-      <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          sx={{
-            fontSize: "1.2rem",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
+      <Box>
+        <DialogTitle id="dialog-modal-title" sx={{ textAlign: "center" }}>
           Comments
           <Divider
             sx={{
@@ -55,10 +42,8 @@ const CommentModal = ({ open, onClose, postId }) => {
               color: "#fff",
             }}
           />
-        </Typography>
-
-        <Box
-          maxWidth={"100%"}
+        </DialogTitle>
+        <DialogContent
           sx={{
             overflowY: "scroll",
             height: 250,
@@ -73,17 +58,19 @@ const CommentModal = ({ open, onClose, postId }) => {
             },
           }}
         >
-          {comments.map((item) => (
+          {comments.map((item, index) => (
             <Comments
+              key={index}
               comment={item.comment}
               username={item.commentator.username}
             />
           ))}
-        </Box>
-
-        <CommentBox postId={postId} />
+        </DialogContent>
+        <DialogActions>
+          <CommentBox postId={postId} />
+        </DialogActions>
       </Box>
-    </Modal>
+    </Dialog>
   );
 };
 

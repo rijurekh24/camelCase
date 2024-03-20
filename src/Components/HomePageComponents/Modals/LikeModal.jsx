@@ -88,7 +88,9 @@ const LikeModal = ({ open, onClose, likes }) => {
               sx={{ px: 2, color: "textColor.secondary", mb: 1 }}
             />
             {filteredLikes.length === 0 ? (
-              <Typography variant="body2">No results found</Typography>
+              <Box textAlign={"center"}>
+                <Typography>No results found</Typography>
+              </Box>
             ) : (
               filteredLikes.map((item) => (
                 <Box display={"flex"} gap={1} alignItems={"center"} key={item}>
