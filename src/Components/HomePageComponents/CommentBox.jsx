@@ -1,7 +1,6 @@
 import { Button, InputAdornment, InputBase, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-import Textfield from "../Textfield";
 import Api from "../../Utils/api";
 
 const CommentBox = ({ postId }) => {

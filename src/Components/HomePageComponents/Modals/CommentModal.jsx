@@ -74,7 +74,10 @@ const CommentModal = ({ open, onClose, postId }) => {
           }}
         >
           {comments.map((item) => (
-            <Comments comment={item.comment} />
+            <Comments
+              comment={item.comment}
+              username={item.commentator.username}
+            />
           ))}
         </Box>
 

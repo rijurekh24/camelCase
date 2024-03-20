@@ -1,16 +1,25 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import { authContext } from "../../Context/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FollowersModal from "./Modals/FollowersModal";
+import FollowingModal from "./Modals/FollowingModal";
 
 const ProfileCard = () => {
   const ctx = useContext(authContext);
   const navigate = useNavigate();
+  const [openFollowers, setOpenFollowers] = useState(false);
+  const handleOpenFollowers = () => setOpenFollowers(true);
+  const handleCloseFollowers = () => setOpenFollowers(false);
 
-  // console.log(ctx.user);
+  const [openFollowing, setOpenFollowing] = useState(false);
+  const handleOpenFollowing = () => setOpenFollowing(true);
+  const handleCloseFollowing = () => setOpenFollowing(false);
+
   const handleClick = () => {
     navigate(`/profile/${ctx.user.username}`);
   };
+
   return (
     <Box
       sx={{
@@ -21,6 +30,10 @@ const ProfileCard = () => {
         overflow: "hidden",
       }}
     >
+      <Box>
+        <FollowersModal open={openFollowers} onClose={handleCloseFollowers} />
+        <FollowingModal open={openFollowing} onClose={handleCloseFollowing} />
+      </Box>
       <Box
         component="img"
         src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
@@ -45,7 +58,9 @@ const ProfileCard = () => {
             <Typography
               sx={{
                 fontSize: "1.1rem",
+                cursor: "pointer",
               }}
+              onClick={handleOpenFollowers}
             >
               {ctx.user.followers.length}
             </Typography>
@@ -76,6 +91,7 @@ const ProfileCard = () => {
           </Box>
           <Box textAlign={"center"}>
             <Typography
+              onClick={handleOpenFollowing}
               sx={{
                 fontSize: "1.1rem",
               }}
