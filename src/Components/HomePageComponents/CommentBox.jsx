@@ -3,7 +3,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import Api from "../../Utils/api";
 
-const CommentBox = ({ postId }) => {
+const CommentBox = ({ postId, fetchComment }) => {
   const [comment, setComment] = useState("");
 
   const handleInputChange = (e) => {
@@ -15,6 +15,7 @@ const CommentBox = ({ postId }) => {
       .then((res) => {
         console.log(res.data);
         setComment("");
+        fetchComment();
       })
       .catch(() => {});
   };

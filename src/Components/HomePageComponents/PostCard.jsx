@@ -9,8 +9,6 @@ import {
   CardHeader,
   Divider,
   IconButton,
-  InputBase,
-  Modal,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
