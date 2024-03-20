@@ -19,7 +19,6 @@ const ProfilePage = () => {
           setProfileData(response.data.user);
 
           const followerList = response.data.user.followers;
-
           if (followerList.includes(ctx.user._id)) {
             setIsFollowed(true);
           } else {
@@ -152,12 +151,17 @@ const ProfilePage = () => {
               </Typography>
             </Box>
             <Box>
-              <Button
-                onClick={handleClick}
-                sx={{ display: followButton ? "inline-block" : "none" }}
-              >
-                {isFollowed ? "Unfollow" : "Follow"}
-              </Button>
+              {profileData._id != ctx.user._id && (
+                <Button
+                  onClick={handleClick}
+                  // sx={{
+                  //   display:
+                  //      ? "inline-block" : "none",
+                  // }}
+                >
+                  {isFollowed ? "Unfollow" : "Follow"}
+                </Button>
+              )}
             </Box>
           </Box>
         </Box>
