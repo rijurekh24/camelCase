@@ -48,7 +48,7 @@ const PostCard = (props) => {
 
   const fetchComment = () => {
     Api.get(`/posts/get?id=${props.postId}`).then((res) => {
-      setCommentCount(res.data.post.comments.length);
+      setCommentCount(res.data.total_comment);
     });
   };
 
@@ -412,7 +412,7 @@ const PostCard = (props) => {
               >
                 {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
               </Avatar>
-              <CommentBox postId={props.postId} />
+              <CommentBox postId={props.postId} fetchComment={fetchComment} />
             </Box>
           </Box>
         </Box>

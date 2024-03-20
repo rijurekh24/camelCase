@@ -107,7 +107,7 @@ export default function NavButton() {
         <Typography> {ctx.user.first_name}</Typography>
       </Button>
       <StyledMenu
-        sx={{ zIndex: 10000 }}
+        sx={{ zIndex: 10000, mt: 1 }}
         id="demo-customized-menu"
         MenuListProps={{
           "aria-labelledby": "demo-customized-button",

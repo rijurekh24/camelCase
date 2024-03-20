@@ -22,7 +22,7 @@ const Comments = ({ username, comment, name, date }) => {
   });
 
   return (
-    <Box display={"flex"} gap={1} alignItems={"center"}>
+    <Box display={"flex"} gap={1} alignItems={"center"} mb={1}>
       <Box>
         <Avatar
           sx={{
