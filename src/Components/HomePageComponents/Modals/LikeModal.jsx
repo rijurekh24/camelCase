@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase, TextField } from "@mui/material"; // Import TextField for the input box
+import { Avatar, Divider, InputBase, TextField } from "@mui/material";
 import Api from "../../../Utils/api";
 
 const style = {
@@ -68,7 +68,7 @@ const LikeModal = ({ open, onClose, likes }) => {
             sx={{
               overflowY: "scroll",
               position: "sticky",
-              height: 250,
+              height: 300,
               "&::-webkit-scrollbar-track": {
                 backgroundColor: "backgroundColor.main",
               },

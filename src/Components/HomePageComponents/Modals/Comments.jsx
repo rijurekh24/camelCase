@@ -1,7 +1,11 @@
 import { Avatar, Box, Typography } from "@mui/material";
+import { useContext } from "react";
 import { format, register } from "timeago.js";
+import { authContext } from "../../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Comments = ({ username, comment, name, date }) => {
+  const navigate = useNavigate();
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -47,7 +51,9 @@ const Comments = ({ username, comment, name, date }) => {
               color: "textColor.secondary",
               wordBreak: "break-all",
               fontSize: "0.9rem",
+              cursor: "pointer",
             }}
+            onClick={() => navigate(`/profile/${username}`)}
           >
             @{username}
             <Typography
