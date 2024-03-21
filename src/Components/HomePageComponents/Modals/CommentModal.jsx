@@ -10,16 +10,22 @@ import Skeleton from "@mui/material/Skeleton"; // Import Skeleton component
 import Api from "../../../Utils/api";
 import CommentBox from "../CommentBox";
 import Comments from "./Comments";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const CommentModal = ({ open, onClose, postId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false); // State for loading indicator
+  const [img, setImg] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const fetchComment = () => {
-    setLoading(true); // Set loading state to true
+    setLoading(true);
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setComments(res.data.post.comments);
-      setLoading(false); // Set loading state to false once comments are fetched
+      setImg(res.data.post.img);
+      setLoading(false);
     });
   };
 
@@ -35,98 +41,128 @@ const CommentModal = ({ open, onClose, postId }) => {
       onClose={onClose}
       aria-labelledby="dialog-modal-title"
       aria-describedby="dialog-modal-description"
-      maxWidth="sm"
+      maxWidth={img ? (isMobile ? "xs" : "md") : "sm"}
       fullWidth
-      PaperProps={{ sx: { borderRadius: "15px", background: "transparent" } }}
-    >
-      <Box
-        sx={{
-          backgroundColor: "backgroundColor.secondary",
+      PaperProps={{
+        sx: {
           borderRadius: "15px",
-        }}
-      >
-        <DialogTitle id="dialog-modal-title" sx={{ textAlign: "center" }}>
-          <Typography color={"textColor.main"}>Comments</Typography>
-          <Divider
+          background: "transparent",
+        },
+      }}
+    >
+      <Box display={"flex"} borderRadius="15px">
+        {img && (
+          <Box
             sx={{
-              maxWidth: "100%",
-              backgroundColor: "#444",
-              margin: "10px auto 10px auto",
-              color: "#fff",
+              backgroundColor: "backgroundColor.secondary",
             }}
-          />
-        </DialogTitle>
-        <DialogContent
+            flex={1}
+            display={{ xs: "none", lg: "flex" }}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Box
+              sx={{ width: "95%", height: "95%" }}
+              bgcolor={"backgroundColor.main"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              borderRadius={"15px"}
+            >
+              <Box component={"img"} src={img} alt="" sx={{ width: "100%" }} />
+            </Box>
+          </Box>
+        )}
+
+        <Box
+          flex={1}
           sx={{
-            overflowY: "scroll",
-            display: "flex",
-            flexDirection: "column",
-            gap: 1,
-            height: 250,
-            "&::-webkit-scrollbar-track": {
-              backgroundColor: "backgroundColor.main",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "primary.main",
-            },
-            "&::-webkit-scrollbar": {
-              width: "2px",
-            },
+            backgroundColor: "backgroundColor.secondary",
           }}
         >
-          {loading ? ( // Render skeleton loading state if loading is true
-            <>
-              <Skeleton variant="text" width={100} height={30} />
-              <Skeleton variant="text" width={200} height={10} />
-              <Skeleton variant="text" width={150} height={10} />
-              <Skeleton variant="text" width={250} height={10} />
-            </>
-          ) : (
-            <>
-              {comments?.length > 0 ? (
-                comments.map((item, index) => (
-                  <Box mb={1} key={index}>
-                    <Comments
-                      comment={item.comment}
-                      username={item.commentator.username}
-                      name={item.commentator.first_name}
-                      date={item.date}
-                    />
-                    <Box
-                      sx={{
-                        pl: { xs: 3, md: 4 },
-                        borderLeft: "1px solid #eee3",
-                      }}
-                    >
-                      {item.replies.map((inItem, idx) => (
-                        <Comments
-                          key={idx}
-                          comment={inItem.comment}
-                          username={inItem.commentator.username}
-                          name={inItem.commentator.first_name}
-                          date={inItem.date}
-                        />
-                      ))}
+          <DialogTitle id="dialog-modal-title" sx={{ textAlign: "center" }}>
+            <Typography color={"textColor.main"}>Comments</Typography>
+            <Divider
+              sx={{
+                maxWidth: "100%",
+                backgroundColor: "#444",
+                margin: "10px auto 10px auto",
+                color: "#fff",
+              }}
+            />
+          </DialogTitle>
+          <DialogContent
+            sx={{
+              overflowY: "scroll",
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+              height: { xs: "40vh", lg: "50vh" },
+              "&::-webkit-scrollbar-track": {
+                backgroundColor: "backgroundColor.main",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "primary.main",
+              },
+              "&::-webkit-scrollbar": {
+                width: "2px",
+              },
+            }}
+          >
+            {loading ? (
+              <>
+                <Skeleton variant="text" width={100} height={30} />
+                <Skeleton variant="text" width={200} height={10} />
+                <Skeleton variant="text" width={150} height={10} />
+                <Skeleton variant="text" width={250} height={10} />
+              </>
+            ) : (
+              <>
+                {comments?.length > 0 ? (
+                  comments.map((item, index) => (
+                    <Box mb={1} key={index}>
+                      <Comments
+                        comment={item.comment}
+                        username={item.commentator.username}
+                        name={item.commentator.first_name}
+                        date={item.date}
+                      />
+                      <Box
+                        sx={{
+                          pl: { xs: 3, md: 4 },
+                          borderLeft: "1px solid #eee3",
+                        }}
+                      >
+                        {item.replies.map((inItem, idx) => (
+                          <Comments
+                            key={idx}
+                            comment={inItem.comment}
+                            username={inItem.commentator.username}
+                            name={inItem.commentator.first_name}
+                            date={inItem.date}
+                          />
+                        ))}
+                      </Box>
                     </Box>
+                  ))
+                ) : (
+                  <Box
+                    display={"flex"}
+                    width={"100%"}
+                    height={"100%"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                  >
+                    <Typography color="textColor.main">No Comments</Typography>
                   </Box>
-                ))
-              ) : (
-                <Box
-                  display={"flex"}
-                  width={"100%"}
-                  height={"100%"}
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                >
-                  <Typography color="textColor.main">No Comments</Typography>
-                </Box>
-              )}
-            </>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <CommentBox postId={postId} fetchComment={fetchComment} />
-        </DialogActions>
+                )}
+              </>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <CommentBox postId={postId} fetchComment={fetchComment} />
+          </DialogActions>
+        </Box>
       </Box>
     </Dialog>
   );
