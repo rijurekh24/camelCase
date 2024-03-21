@@ -36,7 +36,7 @@ const Navbar = () => {
             gap={1}
           >
             <Box>
-              <IconButton>
+              <IconButton onClick={() => navigate("/")}>
                 <i
                   className="fa-regular fa-square fa-lg"
                   style={{

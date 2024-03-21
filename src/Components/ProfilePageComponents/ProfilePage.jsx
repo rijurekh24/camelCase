@@ -10,8 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import ProfilePicPopUp from "./ProfilePicPopUp";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -19,14 +18,6 @@ const ProfilePage = () => {
   const { username } = useParams();
   const ctx = useContext(authContext);
   const [loading, setLoading] = useState(true);
-  const [followButton, setFollowButton] = useState(true);
-  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
-  const handleBadgeClick = (event) => {
-    setMenuAnchorEl(event.currentTarget);
-  };
-  const handleCloseMenu = () => {
-    setMenuAnchorEl(null);
-  };
 
   useEffect(() => {
     if (username) {
@@ -141,15 +132,7 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  <i
-                    class="fa-regular fa-pen-to-square"
-                    style={{
-                      backgroundColor: "#1a1f26",
-                      padding: "5px",
-                      borderRadius: "50%",
-                      cursor: "pointer",
-                    }}
-                  ></i>
+                  <ProfilePicPopUp />
                 </Typography>
               }
             >
@@ -183,15 +166,7 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  <i
-                    class="fa-regular fa-pen-to-square"
-                    style={{
-                      backgroundColor: "#1a1f26",
-                      padding: "5px",
-                      borderRadius: "50%",
-                      cursor: "pointer",
-                    }}
-                  ></i>
+                  <ProfilePicPopUp />
                 </Typography>
               }
             >
