@@ -5,8 +5,18 @@ import { MenuButton as BaseMenuButton } from "@mui/base/MenuButton";
 import { MenuItem as BaseMenuItem, menuItemClasses } from "@mui/base/MenuItem";
 import { styled } from "@mui/system";
 import { Typography } from "@mui/material";
+import { useState } from "react";
+import ProfilePhotoUploadModal from "../HomePageComponents/Modals/ProfilePhotoUploadModal";
 
 export default function ProfilePicPopUp() {
+  const [open, setOpen] = useState(false);
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
@@ -28,15 +38,15 @@ export default function ProfilePicPopUp() {
             }}
           ></i>
         </Typography>
+        <ProfilePhotoUploadModal open={open} handleClose={closeModal} />
       </MenuButton>
       <Menu slots={{ listbox: Listbox }}>
-        <MenuItem onClick={createHandleMenuClick("Profile")}>
+        <MenuItem>
           <Typography>
-            {" "}
             <i className="fa-regular fa-user"></i> View Photo
           </Typography>
         </MenuItem>
-        <MenuItem onClick={createHandleMenuClick("Language settings")}>
+        <MenuItem onClick={openModal}>
           <Typography>
             <i class="fa-solid fa-upload"></i> Upload Photo
           </Typography>

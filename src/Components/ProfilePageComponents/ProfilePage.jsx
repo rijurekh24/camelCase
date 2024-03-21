@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
 import ProfilePicPopUp from "./ProfilePicPopUp";
+import { ToastContainer } from "react-toastify";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -94,6 +95,18 @@ const ProfilePage = () => {
       justifyContent={"center"}
       alignItems={"center"}
     >
+      <ToastContainer
+        position="bottom-right"
+        autoClose={false}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition:Bounce
+      />
       <Box
         bgcolor={"backgroundColor.secondary"}
         width={{ xs: "90%", md: "50%" }}
@@ -132,7 +145,7 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  <ProfilePicPopUp />
+                  {profileData._id == ctx.user._id && <ProfilePicPopUp />}
                 </Typography>
               }
             >
@@ -166,7 +179,15 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  <ProfilePicPopUp />
+                  <i
+                    class="fa-regular fa-pen-to-square"
+                    style={{
+                      backgroundColor: "#1a1f26",
+                      padding: "5px",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                  ></i>
                 </Typography>
               }
             >
