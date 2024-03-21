@@ -1,7 +1,5 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import { useContext } from "react";
 import { format, register } from "timeago.js";
-import { authContext } from "../../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Comments = ({ username, comment, name, date }) => {
