@@ -90,20 +90,36 @@ export default function NavButton() {
           },
         }}
       >
-        <Avatar
-          sx={{
-            width: 30,
-            height: 30,
-            border: "5px solid",
-            borderColor: "borderColor.main",
-            borderRadius: "35px",
-            marginRight: "5px",
-            color: "primary.main",
-            bgcolor: "#111",
-          }}
-        >
-          {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-        </Avatar>
+        {ctx.user.profile_pic ? (
+          <Avatar
+            src={ctx.user.profile_pic}
+            sx={{
+              width: 30,
+              height: 30,
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "35px",
+              fontSize: "1.8rem",
+              color: "primary.main",
+              bgcolor: "#111",
+            }}
+          ></Avatar>
+        ) : (
+          <Avatar
+            sx={{
+              width: 30,
+              height: 30,
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "35px",
+              fontSize: "1.8rem",
+              color: "primary.main",
+              bgcolor: "#111",
+            }}
+          >
+            {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+          </Avatar>
+        )}
         <Typography> {ctx.user.first_name}</Typography>
       </Button>
       <StyledMenu

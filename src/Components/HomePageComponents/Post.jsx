@@ -163,17 +163,32 @@ const Post = () => {
     >
       <PostModal open={modalOpen} handleClose={closeModal} />
       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
-        <Avatar
-          sx={{
-            border: "5px solid",
-            borderColor: "borderColor.main",
-            borderRadius: "20px",
-            color: "primary.main",
-            backgroundColor: "#111",
-          }}
-        >
-          {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-        </Avatar>
+        {ctx.user.profile_pic ? (
+          <Avatar
+            src={ctx.user.profile_pic}
+            sx={{
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "20px",
+              fontSize: "1.8rem",
+              color: "primary.main",
+              bgcolor: "#111",
+            }}
+          ></Avatar>
+        ) : (
+          <Avatar
+            sx={{
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "20px",
+              fontSize: "1.8rem",
+              color: "primary.main",
+              bgcolor: "#111",
+            }}
+          >
+            {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+          </Avatar>
+        )}
         <TextField
           id="filled-basic"
           placeholder={`What's on your mind, ${ctx.user.first_name} ?`}

@@ -44,7 +44,7 @@ function ProfilePhotoUploadModal({ open, handleClose }) {
 
   const handleClick = () => {
     setIsLoading(true);
-
+    handleClose();
     if (image) {
       toastId.current = toast.loading("Uploading profile photo...");
       const formData = new FormData();
@@ -58,11 +58,10 @@ function ProfilePhotoUploadModal({ open, handleClose }) {
         .then((res) => {
           setIsLoading(false);
           Api.put("/auth/accounts/update", {
-            bg_pic: res.data.url,
+            profile_pic: res.data.url,
             id: ctx.user._id,
           })
             .then((res) => {
-              handleClose();
               setBlobURL("");
               setImage(null);
 

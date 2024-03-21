@@ -199,18 +199,32 @@ const PostCard = (props) => {
       </Box>
       <CardHeader
         avatar={
-          <Avatar
-            sx={{
-              bgColor: "grey",
-              border: "5px solid",
-              borderColor: "borderColor.main",
-              borderRadius: "20px",
-              color: "primary.main",
-              backgroundColor: "#111",
-            }}
-          >
-            {props.name ? props.name.charAt(0) : ""}
-          </Avatar>
+          props.dp ? (
+            <Avatar
+              src={props.dp}
+              sx={{
+                border: "5px solid ",
+                borderColor: "borderColor.main",
+                borderRadius: "20px",
+                fontSize: "1.8rem",
+                color: "primary.main",
+                bgcolor: "#111",
+              }}
+            ></Avatar>
+          ) : (
+            <Avatar
+              sx={{
+                border: "5px solid ",
+                borderColor: "borderColor.main",
+                borderRadius: "20px",
+                fontSize: "1.8rem",
+                color: "primary.main",
+                bgcolor: "#111",
+              }}
+            >
+              {props.name ? props.name.charAt(0) : ""}
+            </Avatar>
+          )
         }
         action={
           <IconButton sx={{ color: "textColor.main" }}>

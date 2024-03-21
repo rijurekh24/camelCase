@@ -10,7 +10,7 @@ const Feed = () => {
     ctx.fetchPost();
   }, []);
 
-  // console.log(ctx.postData);
+  console.log(ctx.postData);
   return (
     <Box
       display={"flex"}
@@ -33,6 +33,7 @@ const Feed = () => {
             date={item.date}
             postId={item._id}
             likes={item.likes}
+            dp={item.user.profile_pic}
           />
         ))}
       </Box>

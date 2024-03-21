@@ -34,17 +34,31 @@ const ProfileCard = () => {
         <FollowersModal open={openFollowers} onClose={handleCloseFollowers} />
         <FollowingModal open={openFollowing} onClose={handleCloseFollowing} />
       </Box>
-      <Box
-        component="img"
-        src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
-        sx={{
-          width: "100%",
-          height: 140,
-          objectFit: "cover",
-          // borderTopLeftRadius: "25px",
-          // borderTopRightRadius: "25px",
-        }}
-      />
+      {ctx.user.bg_pic ? (
+        <Box
+          component="img"
+          src={ctx.user.bg_pic}
+          sx={{
+            width: "100%",
+            height: 140,
+            objectFit: "cover",
+            // borderTopLeftRadius: "25px",
+            // borderTopRightRadius: "25px",
+          }}
+        />
+      ) : (
+        <Box
+          component="img"
+          src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
+          sx={{
+            width: "100%",
+            height: 140,
+            objectFit: "cover",
+            // borderTopLeftRadius: "25px",
+            // borderTopRightRadius: "25px",
+          }}
+        />
+      )}
 
       <Box px={2} pb={2} pt={1}>
         <Box
@@ -76,20 +90,36 @@ const ProfileCard = () => {
             </Typography>
           </Box>
           <Box>
-            <Avatar
-              sx={{
-                width: 75,
-                height: 75,
-                border: "7px solid ",
-                borderColor: "borderColor.main",
-                borderRadius: "35px",
-                fontSize: "1.8rem",
-                color: "primary.main",
-                bgcolor: "#111",
-              }}
-            >
-              {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-            </Avatar>
+            {ctx.user.profile_pic ? (
+              <Avatar
+                src={ctx.user.profile_pic}
+                sx={{
+                  width: 75,
+                  height: 75,
+                  border: "7px solid ",
+                  borderColor: "borderColor.main",
+                  borderRadius: "35px",
+                  fontSize: "1.8rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              ></Avatar>
+            ) : (
+              <Avatar
+                sx={{
+                  width: 75,
+                  height: 75,
+                  border: "7px solid ",
+                  borderColor: "borderColor.main",
+                  borderRadius: "35px",
+                  fontSize: "1.8rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              >
+                {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+              </Avatar>
+            )}
           </Box>
           <Box
             textAlign={"center"}
