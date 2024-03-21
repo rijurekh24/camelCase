@@ -1,8 +1,17 @@
-import { Box, Button, Typography, Skeleton, Avatar } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  Skeleton,
+  Avatar,
+  Badge,
+} from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -11,6 +20,13 @@ const ProfilePage = () => {
   const ctx = useContext(authContext);
   const [loading, setLoading] = useState(true);
   const [followButton, setFollowButton] = useState(true);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const handleBadgeClick = (event) => {
+    setMenuAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setMenuAnchorEl(null);
+  };
 
   useEffect(() => {
     if (username) {
@@ -110,34 +126,90 @@ const ProfilePage = () => {
         />
         <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
           {profileData.profile_pic ? (
-            <Avatar
-              src={profileData.profile_pic}
-              sx={{
-                width: 75,
-                height: 75,
-                border: "7px solid ",
-                borderColor: "borderColor.main",
-                borderRadius: "35px",
-                fontSize: "1.8rem",
-                color: "primary.main",
-                bgcolor: "#111",
+            <Badge
+              overlap="circular"
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
               }}
-            />
-          ) : (
-            <Avatar
-              sx={{
-                width: 75,
-                height: 75,
-                border: "7px solid ",
-                borderColor: "borderColor.main",
-                borderRadius: "35px",
-                fontSize: "1.8rem",
-                color: "primary.main",
-                bgcolor: "#111",
-              }}
+              badgeContent={
+                <Typography
+                  component={"span"}
+                  sx={{
+                    borderRadius: "50%",
+                    padding: "2px 4px",
+                    color: "textColor.main",
+                  }}
+                >
+                  <i
+                    class="fa-regular fa-pen-to-square"
+                    style={{
+                      backgroundColor: "#1a1f26",
+                      padding: "5px",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                  ></i>
+                </Typography>
+              }
             >
-              {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-            </Avatar>
+              <Avatar
+                src={profileData.profile_pic}
+                sx={{
+                  width: 75,
+                  height: 75,
+                  border: "7px solid ",
+                  borderColor: "borderColor.main",
+                  borderRadius: "35px",
+                  fontSize: "1.8rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              />
+            </Badge>
+          ) : (
+            <Badge
+              overlap="circular"
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              badgeContent={
+                <Typography
+                  component={"span"}
+                  sx={{
+                    borderRadius: "50%",
+                    padding: "2px 4px",
+                    color: "textColor.main",
+                  }}
+                >
+                  <i
+                    class="fa-regular fa-pen-to-square"
+                    style={{
+                      backgroundColor: "#1a1f26",
+                      padding: "5px",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                  ></i>
+                </Typography>
+              }
+            >
+              <Avatar
+                sx={{
+                  width: 75,
+                  height: 75,
+                  border: "7px solid ",
+                  borderColor: "borderColor.main",
+                  borderRadius: "35px",
+                  fontSize: "1.8rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              >
+                {profileData.first_name ? profileData.first_name.charAt(0) : ""}
+              </Avatar>
+            </Badge>
           )}
           <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
             <Box>
