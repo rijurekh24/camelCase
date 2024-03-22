@@ -11,6 +11,7 @@ const FriendListCard = () => {
     setDisplayCount(ctx.user.followers.length);
   };
 
+  console.log(ctx.user.followers);
   return (
     <Box
       p={2}
@@ -31,7 +32,7 @@ const FriendListCard = () => {
             key={index}
             name={`${item.first_name} ${item.last_name}`}
             username={item.username}
-            image="profile-photo"
+            dp={item.profile_pic}
           />
         ))}
       </ul>

@@ -203,10 +203,12 @@ const PostCard = (props) => {
             <Avatar
               src={props.dp}
               sx={{
+                width: 35,
+                height: 35,
                 border: "5px solid ",
                 borderColor: "borderColor.main",
                 borderRadius: "20px",
-                fontSize: "1.8rem",
+                fontSize: "1.2rem",
                 color: "primary.main",
                 bgcolor: "#111",
               }}
@@ -214,10 +216,12 @@ const PostCard = (props) => {
           ) : (
             <Avatar
               sx={{
+                width: 35,
+                height: 35,
                 border: "5px solid ",
                 borderColor: "borderColor.main",
                 borderRadius: "20px",
-                fontSize: "1.8rem",
+                fontSize: "1.2rem",
                 color: "primary.main",
                 bgcolor: "#111",
               }}
@@ -413,19 +417,36 @@ const PostCard = (props) => {
 
             {/* comment box */}
             <Box display={"flex"} flex={1}>
-              <Avatar
-                sx={{
-                  width: 35,
-                  height: 35,
-                  border: "5px solid ",
-                  bgcolor: "#111",
-                  borderColor: "borderColor.main",
-                  marginRight: "5px",
-                  color: "primary.main",
-                }}
-              >
-                {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-              </Avatar>
+              {props.dp ? (
+                <Avatar
+                  src={props.dp}
+                  sx={{
+                    width: 35,
+                    height: 35,
+                    border: "5px solid ",
+                    borderColor: "borderColor.main",
+                    borderRadius: "20px",
+                    fontSize: "1.2rem",
+                    color: "primary.main",
+                    bgcolor: "#111",
+                  }}
+                ></Avatar>
+              ) : (
+                <Avatar
+                  sx={{
+                    width: 35,
+                    height: 35,
+                    border: "5px solid ",
+                    borderColor: "borderColor.main",
+                    borderRadius: "20px",
+                    fontSize: "1.2rem",
+                    color: "primary.main",
+                    bgcolor: "#111",
+                  }}
+                >
+                  {props.name ? props.name.charAt(0) : ""}
+                </Avatar>
+              )}
               <CommentBox postId={props.postId} fetchComment={fetchComment} />
             </Box>
           </Box>

@@ -179,15 +179,7 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  <i
-                    class="fa-regular fa-pen-to-square"
-                    style={{
-                      backgroundColor: "#1a1f26",
-                      padding: "5px",
-                      borderRadius: "50%",
-                      cursor: "pointer",
-                    }}
-                  ></i>
+                  {profileData._id == ctx.user._id && <ProfilePicPopUp />}
                 </Typography>
               }
             >

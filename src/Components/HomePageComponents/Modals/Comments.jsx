@@ -2,7 +2,7 @@ import { Avatar, Box, Typography } from "@mui/material";
 import { format, register } from "timeago.js";
 import { useNavigate } from "react-router-dom";
 
-const Comments = ({ username, comment, name, date }) => {
+const Comments = ({ username, comment, name, date, dp }) => {
   const navigate = useNavigate();
   register("custom", (number, index) => {
     return [
@@ -26,21 +26,38 @@ const Comments = ({ username, comment, name, date }) => {
   return (
     <Box display={"flex"} gap={1} alignItems={"center"} mb={1}>
       <Box>
-        <Avatar
-          sx={{
-            width: 30,
-            height: 30,
-            bgColor: "grey",
-            border: "2px solid",
-            borderColor: "borderColor.main",
-            borderRadius: "50%",
-            color: "primary.main",
-            backgroundColor: "#111",
-            fontSize: "0.9rem",
-          }}
-        >
-          {name ? name.charAt(0) : ""}
-        </Avatar>
+        {dp ? (
+          <Avatar
+            src={dp}
+            sx={{
+              width: 30,
+              height: 30,
+              bgColor: "grey",
+              border: "2px solid",
+              borderColor: "borderColor.main",
+              borderRadius: "50%",
+              color: "primary.main",
+              backgroundColor: "#111",
+              fontSize: "0.9rem",
+            }}
+          ></Avatar>
+        ) : (
+          <Avatar
+            sx={{
+              width: 30,
+              height: 30,
+              bgColor: "grey",
+              border: "2px solid",
+              borderColor: "borderColor.main",
+              borderRadius: "50%",
+              color: "primary.main",
+              backgroundColor: "#111",
+              fontSize: "0.9rem",
+            }}
+          >
+            {name ? name.charAt(0) : ""}
+          </Avatar>
+        )}
       </Box>
       <Box>
         <Box display={"flex"} gap={1}>

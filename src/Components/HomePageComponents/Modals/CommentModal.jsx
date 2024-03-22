@@ -126,6 +126,7 @@ const CommentModal = ({ open, onClose, postId }) => {
                         username={item.commentator.username}
                         name={item.commentator.first_name}
                         date={item.date}
+                        dp={item.commentator.profile_pic}
                       />
                       <Box
                         sx={{
@@ -140,6 +141,7 @@ const CommentModal = ({ open, onClose, postId }) => {
                             username={inItem.commentator.username}
                             name={inItem.commentator.first_name}
                             date={inItem.date}
+                            dp={inItem.commentator.profile_pic}
                           />
                         ))}
                       </Box>

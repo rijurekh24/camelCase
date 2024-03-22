@@ -167,10 +167,12 @@ const Post = () => {
           <Avatar
             src={ctx.user.profile_pic}
             sx={{
+              width: 35,
+              height: 35,
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "20px",
-              fontSize: "1.8rem",
+              fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
             }}
@@ -178,10 +180,12 @@ const Post = () => {
         ) : (
           <Avatar
             sx={{
+              width: 35,
+              height: 35,
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "20px",
-              fontSize: "1.8rem",
+              fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
             }}

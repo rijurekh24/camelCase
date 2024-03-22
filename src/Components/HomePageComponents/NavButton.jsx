@@ -99,7 +99,7 @@ export default function NavButton() {
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "35px",
-              fontSize: "1.8rem",
+              fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
             }}
@@ -112,7 +112,7 @@ export default function NavButton() {
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "35px",
-              fontSize: "1.8rem",
+              fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
             }}

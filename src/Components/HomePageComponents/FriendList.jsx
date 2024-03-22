@@ -11,19 +11,34 @@ const FriendList = (props) => {
       mb={2}
     >
       <Box display={"flex"} gap={1} alignItems={"center"}>
-        <Avatar
-          sx={{
-            border: "5px solid ",
-            borderColor: "borderColor.main",
-            borderRadius: "20px",
-            color: "primary.main",
-            bgcolor: "#111",
-            width: 40,
-            height: 40,
-          }}
-        >
-          {props.name.charAt(0)}
-        </Avatar>
+        {props.dp ? (
+          <Avatar
+            src={props.dp}
+            sx={{
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "20px",
+              color: "primary.main",
+              bgcolor: "#111",
+              width: 40,
+              height: 40,
+            }}
+          ></Avatar>
+        ) : (
+          <Avatar
+            sx={{
+              border: "5px solid ",
+              borderColor: "borderColor.main",
+              borderRadius: "20px",
+              color: "primary.main",
+              bgcolor: "#111",
+              width: 40,
+              height: 40,
+            }}
+          >
+            {props.name.charAt(0)}
+          </Avatar>
+        )}
         <Box>
           <Typography
             sx={{
