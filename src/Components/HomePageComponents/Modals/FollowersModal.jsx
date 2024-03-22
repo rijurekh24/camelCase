@@ -96,7 +96,7 @@ const FollowersModal = ({ open, onClose }) => {
                 key={index}
                 name={`${item.first_name} ${item.last_name}`}
                 username={item.username}
-                image="profile-photo"
+                dp={item.profile_pic}
               />
             ))}
           </Box>

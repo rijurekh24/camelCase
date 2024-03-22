@@ -11,7 +11,6 @@ const FriendListCard = () => {
     setDisplayCount(ctx.user.followers.length);
   };
 
-  console.log(ctx.user.followers);
   return (
     <Box
       p={2}
