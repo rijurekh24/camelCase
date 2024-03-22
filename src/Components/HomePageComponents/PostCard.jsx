@@ -198,6 +198,7 @@ const PostCard = (props) => {
         />
       </Box>
       <CardHeader
+        sx={{ padding: 1 }}
         avatar={
           props.dp ? (
             <Avatar
