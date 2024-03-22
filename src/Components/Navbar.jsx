@@ -35,8 +35,8 @@ const Navbar = () => {
             flex={1}
             gap={1}
           >
-            <Box>
-              <IconButton onClick={() => navigate("/")}>
+            <Box onClick={() => navigate("/")}>
+              <IconButton>
                 <i
                   className="fa-regular fa-square fa-lg"
                   style={{

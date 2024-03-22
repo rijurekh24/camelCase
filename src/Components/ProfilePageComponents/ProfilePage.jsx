@@ -12,6 +12,7 @@ import Api from "../../Utils/api";
 import { authContext } from "../../Context/AuthContext";
 import ProfilePicPopUp from "./ProfilePicPopUp";
 import { ToastContainer } from "react-toastify";
+import CoverPhotoUploadModal from "../HomePageComponents/Modals/CoverPhotoUploadModal";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -19,6 +20,14 @@ const ProfilePage = () => {
   const { username } = useParams();
   const ctx = useContext(authContext);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (username) {
@@ -69,10 +78,19 @@ const ProfilePage = () => {
         display={"flex"}
         justifyContent={"center"}
       >
-        <Box bgcolor={"backgroundColor.secondary"} width={"50%"}>
+        <Box
+          bgcolor={"backgroundColor.secondary"}
+          width={{ xs: "100%", md: "50%" }}
+        >
           <Skeleton variant="rectangular" width="100%" height={150} />
-          <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
-            <Skeleton variant="circular" width={130} height={130} />
+          <Box
+            px={{ xs: 2, md: 2 }}
+            display={"flex"}
+            alignItems={"center"}
+            gap={2}
+            mt={2}
+          >
+            <Skeleton variant="circular" width={90} height={90} />
             <Box display={"flex"} justifyContent={"space-between"} flex={1}>
               <Box>
                 <Skeleton width={150} height={50} />
@@ -113,22 +131,52 @@ const ProfilePage = () => {
         padding={"20px"}
         borderRadius={"15px"}
       >
-        <Box
-          component="img"
-          src={
-            profileData.bg_pic
-              ? profileData.bg_pic
-              : "https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
-          }
-          alt="cover_photo"
-          sx={{
-            width: "100%",
-            height: 150,
-            objectFit: "cover",
-            borderRadius: "15px",
-          }}
-        />
-        <Box px={2} display={"flex"} alignItems={"center"} gap={4} mt={2}>
+        <Box sx={{ position: "relative", width: "100%", height: 150 }}>
+          <Box
+            component="img"
+            src={
+              profileData.bg_pic
+                ? profileData.bg_pic
+                : "https://scontent.frdp1-1.fna.fbcdn.net/v/t31.18172-8/16819286_741171146050826_4557200543484548208_o.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1mA0jEmUkYAAX9mrPY1&_nc_ht=scontent.frdp1-1.fna&oh=00_AfBqFGnIXofSsojoe1-Gr_l4pU8A6G60E2eQp1RPLiUX5A&oe=66254623"
+            }
+            alt="cover_photo"
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "15px",
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              padding: "5px 10px",
+              fontSize: "12px",
+              cursor: "pointer",
+            }}
+          >
+            <CoverPhotoUploadModal open={open} handleClose={closeModal} />
+            {profileData._id == ctx.user._id && (
+              <Box onClick={openModal}>
+                <i
+                  class="fa-solid fa-camera "
+                  style={{
+                    color: "#eee",
+                    fontSize: "1.2rem",
+                    backgroundColor: "#1a1f26",
+                    padding: "5px",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                  }}
+                ></i>
+              </Box>
+            )}
+          </Box>
+        </Box>
+
+        <Box display={"flex"} alignItems={"center"} gap={2} mt={2}>
           {profileData.profile_pic ? (
             <Badge
               overlap="circular"
@@ -152,12 +200,12 @@ const ProfilePage = () => {
               <Avatar
                 src={profileData.profile_pic}
                 sx={{
-                  width: 75,
-                  height: 75,
+                  width: { xs: 55, md: 75 },
+                  height: { xs: 55, md: 75 },
                   border: "7px solid ",
                   borderColor: "borderColor.main",
                   borderRadius: "35px",
-                  fontSize: "1.8rem",
+                  fontSize: "1.4rem",
                   color: "primary.main",
                   bgcolor: "#111",
                 }}
@@ -185,12 +233,12 @@ const ProfilePage = () => {
             >
               <Avatar
                 sx={{
-                  width: 75,
-                  height: 75,
+                  width: { xs: 55, md: 75 },
+                  height: { xs: 55, md: 75 },
                   border: "7px solid ",
                   borderColor: "borderColor.main",
                   borderRadius: "35px",
-                  fontSize: "1.8rem",
+                  fontSize: { xs: "1.4rem", md: "1.8rem" },
                   color: "primary.main",
                   bgcolor: "#111",
                 }}

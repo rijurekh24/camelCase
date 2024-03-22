@@ -17,20 +17,16 @@ export default function ProfilePicPopUp() {
   const closeModal = () => {
     setOpen(false);
   };
-  const createHandleMenuClick = (menuItem) => {
-    return () => {
-      console.log(`Clicked on ${menuItem}`);
-    };
-  };
 
   return (
     <Dropdown>
       <MenuButton>
         <Typography>
           <i
-            class="fa-regular fa-pen-to-square"
+            class="fa-solid fa-camera "
             style={{
-              color: "#999",
+              color: "#eee",
+              fontSize: "1.2rem",
               backgroundColor: "#1a1f26",
               padding: "5px",
               borderRadius: "50%",

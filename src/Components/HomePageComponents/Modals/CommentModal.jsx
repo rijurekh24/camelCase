@@ -62,14 +62,27 @@ const CommentModal = ({ open, onClose, postId }) => {
             alignItems={"center"}
           >
             <Box
-              sx={{ width: "95%", height: "95%" }}
+              sx={{
+                width: "95%",
+                height: "95%",
+              }}
               bgcolor={"backgroundColor.main"}
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
               borderRadius={"15px"}
             >
-              <Box component={"img"} src={img} alt="" sx={{ width: "100%" }} />
+              <Box
+                component={"img"}
+                src={img}
+                alt=""
+                sx={{
+                  width: "100%",
+                  objectFit: "contain",
+                  height: "100%",
+                  borderRadius: "15px",
+                }}
+              />
             </Box>
           </Box>
         )}

@@ -134,7 +134,12 @@ export default function NavButton() {
         onClose={handleClose}
         disableScrollLock
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            navigate(`/profile/${ctx.user.username}`);
+          }}
+          disableRipple
+        >
           <PersonIcon />
           Profile
         </MenuItem>
