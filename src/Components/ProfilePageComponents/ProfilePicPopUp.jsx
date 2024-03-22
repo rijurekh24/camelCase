@@ -23,7 +23,7 @@ export default function ProfilePicPopUp() {
       <MenuButton>
         <Typography>
           <i
-            class="fa-solid fa-camera "
+            className="fa-solid fa-camera "
             style={{
               color: "#eee",
               fontSize: "1.2rem",
@@ -44,7 +44,7 @@ export default function ProfilePicPopUp() {
         </MenuItem>
         <MenuItem onClick={openModal}>
           <Typography>
-            <i class="fa-solid fa-upload"></i> Upload Photo
+            <i className="fa-solid fa-upload"></i> Upload Photo
           </Typography>
         </MenuItem>
       </Menu>

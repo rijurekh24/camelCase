@@ -161,7 +161,7 @@ const ProfilePage = () => {
             {profileData._id == ctx.user._id && (
               <Box onClick={openModal}>
                 <i
-                  class="fa-solid fa-camera "
+                  className="fa-solid fa-camera "
                   style={{
                     color: "#eee",
                     fontSize: "1.2rem",
