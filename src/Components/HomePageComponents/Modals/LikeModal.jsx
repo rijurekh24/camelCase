@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase, TextField } from "@mui/material";
-import Api from "../../../Utils/api";
+import { Avatar, Divider, InputBase } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -22,7 +21,6 @@ const LikeModal = ({ open, onClose, likes }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLikes, setFilteredLikes] = useState([]);
 
-  // console.log(likes);
   useEffect(() => {
     const filtered = likes.filter((item) =>
       item.username.toLowerCase().includes(searchQuery.toLowerCase())
@@ -99,15 +97,17 @@ const LikeModal = ({ open, onClose, likes }) => {
                       width: 45,
                       height: 45,
                       border: "5px solid ",
-                      bgcolor: "#111",
                       borderColor: "borderColor.main",
+                      borderRadius: "35px",
+                      fontSize: "1.2rem",
                       color: "primary.main",
+                      bgcolor: "#111",
                     }}
                   >
-                    R
+                    {item.first_name ? item.first_name.charAt(0) : ""}
                   </Avatar>
-                  <Typography sx={{ color: "textColor.main" }}>
-                    {item?.username}
+                  <Typography sx={{ color: "textColor.secondary" }}>
+                    @{item?.username}
                   </Typography>
                 </Box>
               ))

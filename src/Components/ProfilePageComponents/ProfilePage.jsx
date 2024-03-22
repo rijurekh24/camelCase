@@ -82,7 +82,7 @@ const ProfilePage = () => {
           bgcolor={"backgroundColor.secondary"}
           width={{ xs: "100%", md: "50%" }}
         >
-          <Skeleton variant="rectangular" width="100%" height={150} />
+          <Skeleton variant="rectangular" width="100%" height={180} />
           <Box
             px={{ xs: 2, md: 2 }}
             display={"flex"}

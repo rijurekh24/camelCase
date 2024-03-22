@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Divider from "@mui/material/Divider";
-import Skeleton from "@mui/material/Skeleton"; // Import Skeleton component
+import Skeleton from "@mui/material/Skeleton";
 import Api from "../../../Utils/api";
 import CommentBox from "../CommentBox";
 import Comments from "./Comments";
@@ -15,7 +15,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const CommentModal = ({ open, onClose, postId }) => {
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [loading, setLoading] = useState(false);
   const [img, setImg] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
@@ -50,7 +50,11 @@ const CommentModal = ({ open, onClose, postId }) => {
         },
       }}
     >
-      <Box display={"flex"} borderRadius="15px">
+      <Box
+        display={"flex"}
+        borderRadius="15px"
+        sx={{ height: { xs: "60vh", lg: "70vh" } }}
+      >
         {img && (
           <Box
             sx={{
@@ -88,9 +92,12 @@ const CommentModal = ({ open, onClose, postId }) => {
         )}
 
         <Box
+          display={"flex"}
+          flexDirection={"column"}
           flex={1}
           sx={{
             backgroundColor: "backgroundColor.secondary",
+            height: "100%",
           }}
         >
           <DialogTitle id="dialog-modal-title" sx={{ textAlign: "center" }}>
@@ -110,7 +117,6 @@ const CommentModal = ({ open, onClose, postId }) => {
               display: "flex",
               flexDirection: "column",
               gap: 1,
-              height: { xs: "40vh", lg: "50vh" },
               "&::-webkit-scrollbar-track": {
                 backgroundColor: "backgroundColor.main",
               },
