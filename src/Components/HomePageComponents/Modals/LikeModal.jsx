@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Avatar, Divider, InputBase } from "@mui/material";
+import Api from "../../../Utils/api";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -15,11 +17,28 @@ const style = {
   color: "textColor.main",
   border: "2px solid #333",
   py: 2,
+  "&:focus": {
+    outline: "none",
+  },
 };
 
-const LikeModal = ({ open, onClose, likes }) => {
+const LikeModal = ({ open, onClose, postId }) => {
+  const [likes, setLikes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLikes, setFilteredLikes] = useState([]);
+  const navigate = useNavigate();
+  const fetchLikes = () => {
+    Api.get(`/posts/get?id=${postId}`).then((res) => {
+      setLikes(res.data.post.likes);
+      console.log(res.data.post);
+    });
+  };
+
+  useEffect(() => {
+    if (open) {
+      fetchLikes();
+    }
+  }, [open, postId]);
 
   useEffect(() => {
     const filtered = likes.filter((item) =>
@@ -91,24 +110,60 @@ const LikeModal = ({ open, onClose, likes }) => {
               </Box>
             ) : (
               filteredLikes.map((item) => (
-                <Box display={"flex"} gap={1} alignItems={"center"} key={item}>
-                  <Avatar
-                    sx={{
-                      width: 45,
-                      height: 45,
-                      border: "5px solid ",
-                      borderColor: "borderColor.main",
-                      borderRadius: "35px",
-                      fontSize: "1.2rem",
-                      color: "primary.main",
-                      bgcolor: "#111",
-                    }}
-                  >
-                    {item.first_name ? item.first_name.charAt(0) : ""}
-                  </Avatar>
-                  <Typography sx={{ color: "textColor.secondary" }}>
-                    @{item?.username}
-                  </Typography>
+                <Box
+                  display={"flex"}
+                  gap={1}
+                  alignItems={"center"}
+                  key={item}
+                  px={1}
+                >
+                  {item.profile_pic ? (
+                    <Avatar
+                      src={item.profile_pic}
+                      sx={{
+                        width: 45,
+                        height: 45,
+                        border: "5px solid ",
+                        borderColor: "borderColor.main",
+                        borderRadius: "35px",
+                        fontSize: "1.2rem",
+                        color: "primary.main",
+                        bgcolor: "#111",
+                      }}
+                    ></Avatar>
+                  ) : (
+                    <Avatar
+                      sx={{
+                        width: 45,
+                        height: 45,
+                        border: "5px solid ",
+                        borderColor: "borderColor.main",
+                        borderRadius: "35px",
+                        fontSize: "1.2rem",
+                        color: "primary.main",
+                        bgcolor: "#111",
+                      }}
+                    >
+                      {item.first_name ? item.first_name.charAt(0) : ""}
+                    </Avatar>
+                  )}
+                  <Box>
+                    <Typography
+                      onClick={() => navigate(`/profile/${item.username}`)}
+                      sx={{
+                        color: "textColor.secondary",
+                        fontSize: "0.9rem",
+                        cursor: "pointer",
+                      }}
+                    >
+                      @{item?.username}
+                    </Typography>
+                    <Typography
+                      sx={{ color: "textColor.main", fontSize: "1rem" }}
+                    >
+                      {item?.first_name} {item?.last_name}
+                    </Typography>
+                  </Box>
                 </Box>
               ))
             )}

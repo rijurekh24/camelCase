@@ -42,8 +42,6 @@ const ProfileCard = () => {
             width: "100%",
             height: 140,
             objectFit: "cover",
-            // borderTopLeftRadius: "25px",
-            // borderTopRightRadius: "25px",
           }}
         />
       ) : (
@@ -54,8 +52,6 @@ const ProfileCard = () => {
             width: "100%",
             height: 140,
             objectFit: "cover",
-            // borderTopLeftRadius: "25px",
-            // borderTopRightRadius: "25px",
           }}
         />
       )}
@@ -65,8 +61,8 @@ const ProfileCard = () => {
           display={"flex"}
           justifyContent={"space-around"}
           alignItems={"center"}
-          mb={1}
-          gap={{ sm: 2, lg: 3 }}
+          mb={2}
+          gap={{ lg: 15 }}
         >
           <Box
             textAlign={"center"}
@@ -89,13 +85,13 @@ const ProfileCard = () => {
               Followers
             </Typography>
           </Box>
-          <Box>
+          <Box position={"absolute"} top={90}>
             {ctx.user.profile_pic ? (
               <Avatar
                 src={ctx.user.profile_pic}
                 sx={{
-                  width: 75,
-                  height: 75,
+                  width: 90,
+                  height: 90,
                   border: "7px solid ",
                   borderColor: "borderColor.main",
                   borderRadius: "35px",
@@ -107,8 +103,8 @@ const ProfileCard = () => {
             ) : (
               <Avatar
                 sx={{
-                  width: 75,
-                  height: 75,
+                  width: 90,
+                  height: 90,
                   border: "7px solid ",
                   borderColor: "borderColor.main",
                   borderRadius: "35px",

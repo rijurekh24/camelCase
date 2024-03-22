@@ -23,10 +23,10 @@ export default function ProfilePicPopUp() {
       <MenuButton>
         <Typography>
           <i
-            className="fa-solid fa-camera "
+            className="fa-solid fa-pen-to-square "
             style={{
               color: "#eee",
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               backgroundColor: "#1a1f26",
               padding: "5px",
               borderRadius: "50%",

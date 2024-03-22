@@ -188,7 +188,7 @@ const PostCard = (props) => {
       }}
     >
       <Box>
-        <LikeModal open={open} onClose={handleClose} likes={likes} />
+        <LikeModal open={open} onClose={handleClose} postId={props.postId} />
       </Box>
       <Box>
         <CommentModal
