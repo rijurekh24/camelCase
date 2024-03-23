@@ -17,7 +17,7 @@ const Search = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   const handleSearch = (query) => {
-    setIsFetching(true); // Set loading state when fetching starts
+    setIsFetching(true);
     Api.post("/auth/search", { query })
       .then((response) => {
         setSearchResult(response.data.search_res[0].users);
@@ -26,7 +26,7 @@ const Search = () => {
         console.error("Error:", error.response);
       })
       .finally(() => {
-        setIsFetching(false); // Reset loading state when fetching ends
+        setIsFetching(false);
       });
   };
 
@@ -35,7 +35,7 @@ const Search = () => {
     setSearchInput(value);
 
     if (value.trim() !== "") {
-      setIsFetching(true); // Set loading state when input is not empty
+      setIsFetching(true);
       Api.post("/auth/search", { value })
         .then((response) => {
           setSearchResult(response.data.search_res[0].users);
@@ -44,7 +44,7 @@ const Search = () => {
           console.error("Error:", error.response);
         })
         .finally(() => {
-          setIsFetching(false); // Reset loading state when fetching ends
+          setIsFetching(false);
         });
     } else {
       setSearchResult([]);
