@@ -59,6 +59,7 @@ const Search = () => {
       ListboxProps={{
         sx: {
           maxHeight: 300,
+          padding: 0,
           overflowY: "scroll",
           "&::-webkit-scrollbar": {
             width: "0px",
