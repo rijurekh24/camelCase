@@ -29,7 +29,7 @@ function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
   const [media, setMedia] = useState(null); // Updated to handle both image and video
   const [mediaType, setMediaType] = useState(""); // Indicates whether it's an image or video
-  const [fileName, setFileName] = useState("No file selected");
+  const [fileName, setFileName] = useState(" Choose Photo or Video");
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -146,8 +146,11 @@ function PostModal({ open, handleClose }) {
       aria-describedby="modal-modal-description"
       margin={2}
       disableScrollLock
+      sx={{
+        zIndex: 99999999,
+      }}
     >
-      <Box sx={style} width={{ xs: 280, sm: 300 }}>
+      <Box sx={style} width={{ xs: 280, sm: 500 }}>
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -209,13 +212,14 @@ function PostModal({ open, handleClose }) {
             <form
               style={{
                 border: "3px dotted #999",
-                borderRadius: "20px",
-                height: 200,
+                borderRadius: "15px",
+                height: 300,
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                padding: "10px 0px",
+                backgroundColor: "#1a1f26",
+                padding: "3px",
               }}
               onClick={() => {
                 document.querySelector(".input-field").click();
@@ -228,18 +232,40 @@ function PostModal({ open, handleClose }) {
                 hidden
                 onChange={uploadMedia}
               />
-              {blobURL ? (
-                mediaType === "image" ? (
-                  <img src={blobURL} style={{ width: 100 }} />
+              <Box
+                height={"100%"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                {blobURL ? (
+                  mediaType === "image" ? (
+                    <img
+                      src={blobURL}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  ) : (
+                    <video
+                      src={blobURL}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                      controls
+                    />
+                  )
                 ) : (
-                  <video src={blobURL} style={{ width: 100 }} controls />
-                )
-              ) : (
-                <CloudUploadIcon
-                  fontSize="large"
-                  sx={{ color: "primary.main" }}
-                />
-              )}
+                  <CloudUploadIcon
+                    fontSize="large"
+                    sx={{ color: "primary.main" }}
+                  />
+                )}
+              </Box>
             </form>
             <Box
               width={"100%"}
@@ -247,13 +273,17 @@ function PostModal({ open, handleClose }) {
               justifyContent={"center"}
               mt={1}
             >
-              <Box display={"flex"} alignItems={"center"}>
-                <Typography>{fileName} </Typography>
+              <Box display={"flex"} alignItems={"center"} px={1}>
+                <Typography
+                  sx={{ wordBreak: "break-all", textAlign: "center" }}
+                >
+                  {fileName}{" "}
+                </Typography>
                 {media ? (
                   <DeleteIcon
                     sx={{ color: "primary.main", cursor: "pointer" }}
                     onClick={() => {
-                      setFileName("No file selected");
+                      setFileName(" Choose Photo or Video");
                       setMedia(null);
                       setBlobURL("");
                     }}
