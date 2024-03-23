@@ -21,7 +21,7 @@ import LikeModal from "../Modals/LikeModal";
 import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
 
-const MediaPostCard = (props) => {
+const MarkDownPostCard = (props) => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState();
   const [likeCount, setLikeCount] = useState(props.likes.length);
@@ -126,7 +126,7 @@ const MediaPostCard = (props) => {
               mb: 1,
             }}
           ></Box>
-          {props.image && (
+          {/* {props.image && (
             <Box
               sx={{
                 width: "100%",
@@ -135,7 +135,7 @@ const MediaPostCard = (props) => {
                 borderRadius: "15px",
               }}
             ></Box>
-          )}
+          )} */}
         </CardContent>
         {/* Skeleton for CardActions */}
         <CardActions>
@@ -263,27 +263,8 @@ const MediaPostCard = (props) => {
           {props.caption}
         </Typography>
       </CardContent>
-      {props.image && (
-        <Box
-          sx={{
-            height: "23rem",
-            backgroundColor: "#1b2129",
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
-          <img
-            src={props.image}
-            alt="image"
-            height={"100%"}
-            width={"100%"}
-            style={{ objectFit: "contain" }}
-          />
-        </Box>
-      )}
 
-      {!props.image && <Divider variant="middle" color="#444" />}
+      <Divider variant="middle" color="#444" />
 
       <CardActions>
         <Box width={"100%"}>
@@ -457,4 +438,4 @@ const MediaPostCard = (props) => {
   );
 };
 
-export default MediaPostCard;
+export default MarkDownPostCard;

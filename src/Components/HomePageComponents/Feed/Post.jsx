@@ -7,6 +7,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Avatar, Box, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
+import MarkDownModal from "../PostCards/MarkDownComponents/MarkDownModal";
 import { authContext } from "../../../Context/AuthContext";
 import Api from "../../../Utils/api";
 import { toast } from "react-toastify";
@@ -14,23 +15,24 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Post = () => {
   const [textInput, setTextInput] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
   const ctx = useContext(authContext);
   const toastId = useRef(null);
-
-  // useEffect(() => {
-  //   if (ctx.user) {
-  //     setLoading(false);
-  //   }
-  // }, []);
-
+  const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const [mdModalOpen, setMdModalOpen] = useState(false);
+  const openMdModal = () => {
+    setMdModalOpen(true);
+  };
+  const closeMdModal = () => {
+    setMdModalOpen(false);
+  };
+
   const handleInputChange = (event) => {
     setTextInput(event.target.value);
   };
@@ -78,6 +80,7 @@ const Post = () => {
       }}
     >
       <PostModal open={modalOpen} handleClose={closeModal} />
+      <MarkDownModal open={mdModalOpen} handleClose={closeMdModal} />
       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
         {ctx.user.profile_pic ? (
           <Avatar
@@ -175,7 +178,7 @@ const Post = () => {
           </Typography>
         </Button>
         <Button
-          onClick={openModal}
+          onClick={openMdModal}
           sx={{
             color: "textColor.main",
             borderRadius: "15px",
@@ -187,10 +190,10 @@ const Post = () => {
           disableRipple
         >
           <IconButton>
-            <CodeIcon
-              disableRipple
-              sx={{ color: "#be375f", fontSize: "1.5rem" }}
-            />
+            <i
+              className="fa-brands fa-markdown"
+              style={{ color: "#be375f", fontSize: "1.5rem" }}
+            ></i>
           </IconButton>
           <Typography
             pr={2}
