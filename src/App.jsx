@@ -1,4 +1,5 @@
 import { lazy, useContext, useEffect, useState } from "react";
+import "./App.css";
 // const Home = lazy(() => import("./Pages/Home"));
 import Home from "./Pages/Home";
 import Signin from "./Pages/Signin";
