@@ -273,13 +273,19 @@ const MediaPostCard = (props) => {
             width: "100%",
           }}
         >
-          <img
-            src={props.image}
-            alt="image"
-            height={"100%"}
-            width={"100%"}
-            style={{ objectFit: "contain" }}
-          />
+          {props.image.match(/\.(jpeg|jpg|gif|png)$/) != null ? (
+            <img
+              src={props.image}
+              alt="image"
+              height={"100%"}
+              width={"100%"}
+              style={{ objectFit: "contain" }}
+            />
+          ) : (
+            <video controls autoPlay loop muted height={"100%"} width={"100%"}>
+              <source src={props.image} type="video/mp4" />
+            </video>
+          )}
         </Box>
       )}
 

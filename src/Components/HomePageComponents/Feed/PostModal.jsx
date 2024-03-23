@@ -27,7 +27,8 @@ const style = {
 
 function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
-  const [image, setImage] = useState(null);
+  const [media, setMedia] = useState(null); // Updated to handle both image and video
+  const [mediaType, setMediaType] = useState(""); // Indicates whether it's an image or video
   const [fileName, setFileName] = useState("No file selected");
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");
@@ -38,19 +39,23 @@ function PostModal({ open, handleClose }) {
     setCaption(event.target.value);
   };
 
-  const uploadImage = ({ target: { files } }) => {
+  const uploadMedia = ({ target: { files } }) => {
     if (files && files[0]) {
       setFileName(files[0].name);
-      const imageURL = URL.createObjectURL(files[0]);
-      setBlobURL(imageURL);
-      setImage(files[0]);
+      const mediaURL = URL.createObjectURL(files[0]);
+      setBlobURL(mediaURL);
+      setMedia(files[0]);
+
+      // Determine the type of media (image or video)
+      const type = files[0].type.split("/")[0];
+      setMediaType(type);
     }
   };
 
   const handleClick = () => {
     setIsLoading(true);
     handleClose();
-    if (!image) {
+    if (!media) {
       toastId.current = toast.loading("Posting...");
       Api.post("/posts/create-new", {
         username: ctx.user.username,
@@ -61,7 +66,7 @@ function PostModal({ open, handleClose }) {
           setIsLoading(false);
           ctx.fetchPost();
           toast.update(toastId.current, {
-            render: "Posted sucessfully...",
+            render: "Posted successfully...",
             type: "success",
             isLoading: false,
             autoClose: 2000,
@@ -75,24 +80,25 @@ function PostModal({ open, handleClose }) {
           });
           setCaption("");
           setBlobURL("");
-          setImage(null);
+          setMedia(null);
         })
         .catch((err) => {
           setIsLoading(false);
         });
     }
 
-    if (image) {
-      toastId.current = toast.loading("Uploading image...");
+    if (media) {
+      toastId.current = toast.loading("Uploading media...");
       const formData = new FormData();
-      formData.append("file", image);
+      formData.append("file", media);
       formData.append("upload_preset", "bdafcwdk");
       setIsLoading(true);
       handleClose();
-      Axios.post(
-        "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload",
-        formData
-      )
+      const cloudinaryUploadEndpoint =
+        mediaType === "image"
+          ? "https://api.cloudinary.com/v1_1/dc1xi4aeb/image/upload"
+          : "https://api.cloudinary.com/v1_1/dc1xi4aeb/video/upload";
+      Axios.post(cloudinaryUploadEndpoint, formData)
         .then((res) => {
           setIsLoading(false);
           Api.post("/posts/create-new", {
@@ -105,9 +111,9 @@ function PostModal({ open, handleClose }) {
               ctx.fetchPost();
               setCaption("");
               setBlobURL("");
-              setImage(null);
+              setMedia(null);
               toast.update(toastId.current, {
-                render: "Posted sucessfully...",
+                render: "Posted successfully...",
                 type: "success",
                 isLoading: false,
                 autoClose: 2000,
@@ -122,12 +128,12 @@ function PostModal({ open, handleClose }) {
             })
             .catch((err) => {
               setIsLoading(false);
-              // console.log(err.response.data);
+              console.error("Error creating post:", err);
             });
         })
         .catch((error) => {
           setIsLoading(false);
-          console.error("Error uploading image:", error);
+          console.error("Error uploading media:", error);
         });
     }
   };
@@ -198,7 +204,7 @@ function PostModal({ open, handleClose }) {
               color: "textColor.main",
             }}
           />
-          {/* image select section */}
+          {/* media select section */}
           <Box mb={2} width={"100%"}>
             <form
               style={{
@@ -217,13 +223,17 @@ function PostModal({ open, handleClose }) {
             >
               <input
                 type="file"
-                accept="image/*"
+                accept="image/*,video/*"
                 className="input-field"
                 hidden
-                onChange={uploadImage}
+                onChange={uploadMedia}
               />
               {blobURL ? (
-                <img src={blobURL} style={{ width: 100 }} />
+                mediaType === "image" ? (
+                  <img src={blobURL} style={{ width: 100 }} />
+                ) : (
+                  <video src={blobURL} style={{ width: 100 }} controls />
+                )
               ) : (
                 <CloudUploadIcon
                   fontSize="large"
@@ -239,12 +249,12 @@ function PostModal({ open, handleClose }) {
             >
               <Box display={"flex"} alignItems={"center"}>
                 <Typography>{fileName} </Typography>
-                {image ? (
+                {media ? (
                   <DeleteIcon
                     sx={{ color: "primary.main", cursor: "pointer" }}
                     onClick={() => {
                       setFileName("No file selected");
-                      setImage(null);
+                      setMedia(null);
                       setBlobURL("");
                     }}
                   />
@@ -254,11 +264,11 @@ function PostModal({ open, handleClose }) {
           </Box>
           <Button
             fullWidth
-            disabled={!caption && !image}
+            disabled={!caption && !media}
             onClick={handleClick}
             sx={{
-              backgroundColor: caption || image ? "primary.main" : "gray",
-              color: caption || image ? "textColor.main" : "#000",
+              backgroundColor: caption || media ? "primary.main" : "gray",
+              color: caption || media ? "textColor.main" : "#000",
               padding: "10px",
               borderRadius: "15px",
               ":hover": {
@@ -266,12 +276,11 @@ function PostModal({ open, handleClose }) {
               },
             }}
           >
-            {/* {isLoading ? (
+            {isLoading ? (
               <CircularProgress size={"2em"} sx={{ color: "white" }} />
             ) : (
               "Post"
-            )} */}
-            Post
+            )}
           </Button>
         </Box>
       </Box>
