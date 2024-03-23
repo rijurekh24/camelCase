@@ -3,16 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import {
-  Avatar,
-  ButtonGroup,
-  CircularProgress,
-  Divider,
-  InputBase,
-  Stack,
-} from "@mui/material";
+import { ButtonGroup, CircularProgress, Stack } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "axios";
 import Api from "../../../Utils/api";
 import { toast } from "react-toastify";
@@ -105,7 +97,7 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
     <Modal
       open={open}
       sx={{
-        zIndex: 999999999999999999,
+        zIndex: 99999999,
       }}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
@@ -208,7 +200,7 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
                   },
                 }}
               >
-                Reupload
+                Reselect
               </Button>
               <Button
                 // disabled={!image}

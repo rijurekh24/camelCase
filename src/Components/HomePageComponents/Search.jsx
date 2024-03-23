@@ -55,7 +55,7 @@ const Search = () => {
     <Autocomplete
       disablePortal
       id="combo-box-demo"
-      options={searchResult}
+      options={searchInput ? searchResult : []}
       ListboxProps={{
         sx: {
           maxHeight: 300,

@@ -47,7 +47,7 @@ const ProfileCard = () => {
       ) : (
         <Box
           component="img"
-          src="https://c4.wallpaperflare.com/wallpaper/792/460/915/1920x1080-px-code-coding-programming-simple-background-anime-ah-my-goddess-hd-art-wallpaper-preview.jpg"
+          src="https://scontent.frdp1-1.fna.fbcdn.net/v/t31.18172-8/16819286_741171146050826_4557200543484548208_o.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1mA0jEmUkYAAX9mrPY1&_nc_ht=scontent.frdp1-1.fna&oh=00_AfBqFGnIXofSsojoe1-Gr_l4pU8A6G60E2eQp1RPLiUX5A&oe=66254623  "
           sx={{
             width: "100%",
             height: 140,

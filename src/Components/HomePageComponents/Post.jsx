@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Divider, IconButton, Typography } from "@mui/material";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import CodeIcon from "@mui/icons-material/Code";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PollIcon from "@mui/icons-material/Poll";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -16,15 +16,13 @@ const Post = () => {
   const [textInput, setTextInput] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const ctx = useContext(authContext);
-
-  const [loading, setLoading] = useState(true);
   const toastId = useRef(null);
 
-  useEffect(() => {
-    if (ctx.user) {
-      setLoading(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (ctx.user) {
+  //     setLoading(false);
+  //   }
+  // }, []);
 
   const openModal = () => {
     setModalOpen(true);
@@ -69,88 +67,6 @@ const Post = () => {
       })
       .catch((err) => {});
   };
-
-  // if (loading) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         backgroundColor: "backgroundColor.secondary",
-  //         borderRadius: "15px",
-  //         padding: "10px",
-  //         mb: 2,
-  //       }}
-  //     >
-  //       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
-  //         {/* Skeleton for Avatar */}
-  //         <Box
-  //           sx={{
-  //             width: "50px",
-  //             height: "50px",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "20px",
-  //           }}
-  //         ></Box>
-
-  //         {/* Skeleton for TextField */}
-  //         <Box
-  //           sx={{
-  //             flex: "1",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "20px",
-  //             height: "50px",
-  //           }}
-  //         ></Box>
-  //       </Box>
-  //       <Divider variant="middle" color="#333" />
-  //       <Box
-  //         display={"flex"}
-  //         justifyContent={"space-between"}
-  //         width={"100%"}
-  //         mt={2}
-  //       >
-  //         {/* Skeleton for Button 1 */}
-  //         <Box
-  //           sx={{
-  //             width: "70px",
-  //             height: "40px",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "15px",
-  //           }}
-  //         ></Box>
-
-  //         {/* Skeleton for Button 2 */}
-  //         <Box
-  //           sx={{
-  //             width: "70px",
-  //             height: "40px",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "15px",
-  //           }}
-  //         ></Box>
-
-  //         {/* Skeleton for Button 3 */}
-  //         <Box
-  //           sx={{
-  //             width: "70px",
-  //             height: "40px",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "15px",
-  //           }}
-  //         ></Box>
-
-  //         {/* Skeleton for Button 4 */}
-  //         <Box
-  //           sx={{
-  //             width: "70px",
-  //             height: "40px",
-  //             backgroundColor: "backgroundColor.main",
-  //             borderRadius: "15px",
-  //           }}
-  //         ></Box>
-  //       </Box>
-  //     </Box>
-  //   );
-  // }
 
   return (
     <Box
@@ -271,7 +187,7 @@ const Post = () => {
           disableRipple
         >
           <IconButton>
-            <PlayCircleIcon
+            <CodeIcon
               disableRipple
               sx={{ color: "#be375f", fontSize: "1.5rem" }}
             />
@@ -281,7 +197,7 @@ const Post = () => {
             display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
-            Video
+            MarkDown
           </Typography>
         </Button>
         <Button
