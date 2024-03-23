@@ -174,7 +174,7 @@ const Post = () => {
             display={{ xs: "none", sm: "block" }}
             fontSize={"1rem"}
           >
-            Photo
+            Media
           </Typography>
         </Button>
         <Button
