@@ -25,7 +25,7 @@ const style = {
   border: "2px solid #333",
 };
 
-function ProfilePhotoUploadModal({ open, handleClose }) {
+function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
   const ctx = useContext(authContext);
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
@@ -62,6 +62,7 @@ function ProfilePhotoUploadModal({ open, handleClose }) {
             id: ctx.user._id,
           })
             .then((res) => {
+              fetchProfile();
               setBlobURL("");
               setImage(null);
 

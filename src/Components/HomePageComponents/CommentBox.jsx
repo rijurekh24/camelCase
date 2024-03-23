@@ -13,7 +13,6 @@ const CommentBox = ({ postId, fetchComment }) => {
   const handleClick = () => {
     Api.post("/posts/add-comment", { post_id: postId, comment: comment })
       .then((res) => {
-        console.log(res.data);
         setComment("");
         fetchComment();
       })

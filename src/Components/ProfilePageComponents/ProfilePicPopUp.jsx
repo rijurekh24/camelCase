@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import { useState } from "react";
 import ProfilePhotoUploadModal from "../HomePageComponents/Modals/ProfilePhotoUploadModal";
 
-export default function ProfilePicPopUp() {
+export default function ProfilePicPopUp({ fetchProfile }) {
   const [open, setOpen] = useState(false);
   const openModal = () => {
     setOpen(true);
@@ -34,7 +34,11 @@ export default function ProfilePicPopUp() {
             }}
           ></i>
         </Typography>
-        <ProfilePhotoUploadModal open={open} handleClose={closeModal} />
+        <ProfilePhotoUploadModal
+          open={open}
+          handleClose={closeModal}
+          fetchProfile={fetchProfile}
+        />
       </MenuButton>
       <Menu slots={{ listbox: Listbox }}>
         <MenuItem>

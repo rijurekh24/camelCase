@@ -29,28 +29,32 @@ const ProfilePage = () => {
     setOpen(false);
   };
 
+  const fetchProfile = () => {
+    Api.get(`/auth/accounts/profile?username=${username}`)
+      .then((response) => {
+        setProfileData(response.data.user);
+
+        const followerList = response.data.user.followers;
+        if (followerList.includes(ctx.user._id)) {
+          setIsFollowed(true);
+        } else {
+          setIsFollowed(false);
+        }
+        if (response.data.user._id === ctx.user._id) {
+          setFollowButton(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     if (username) {
-      Api.get(`/auth/accounts/profile?username=${username}`)
-        .then((response) => {
-          setProfileData(response.data.user);
-
-          const followerList = response.data.user.followers;
-          if (followerList.includes(ctx.user._id)) {
-            setIsFollowed(true);
-          } else {
-            setIsFollowed(false);
-          }
-          if (response.data.user._id === ctx.user._id) {
-            setFollowButton(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      fetchProfile();
     }
   }, [location.search, username]);
 
@@ -157,7 +161,11 @@ const ProfilePage = () => {
               cursor: "pointer",
             }}
           >
-            <CoverPhotoUploadModal open={open} handleClose={closeModal} />
+            <CoverPhotoUploadModal
+              open={open}
+              handleClose={closeModal}
+              fetchProfile={fetchProfile}
+            />
             {profileData._id == ctx.user._id && (
               <Box onClick={openModal}>
                 <i
@@ -193,7 +201,9 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  {profileData._id == ctx.user._id && <ProfilePicPopUp />}
+                  {profileData._id == ctx.user._id && (
+                    <ProfilePicPopUp fetchProfile={fetchProfile} />
+                  )}
                 </Typography>
               }
             >

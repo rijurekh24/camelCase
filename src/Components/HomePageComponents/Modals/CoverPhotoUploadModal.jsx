@@ -28,7 +28,7 @@ const style = {
   },
 };
 
-function CoverPhotoUploadModal({ open, handleClose }) {
+function CoverPhotoUploadModal({ open, handleClose, fetchProfile }) {
   const ctx = useContext(authContext);
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
@@ -65,9 +65,9 @@ function CoverPhotoUploadModal({ open, handleClose }) {
             id: ctx.user._id,
           })
             .then((res) => {
+              fetchProfile();
               setBlobURL("");
               setImage(null);
-
               toast.update(toastId.current, {
                 render: "Uploaded sucessfully...",
                 type: "success",
