@@ -7,8 +7,8 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Avatar, Box, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
-import { authContext } from "../../Context/AuthContext";
-import Api from "../../Utils/api";
+import { authContext } from "../../../Context/AuthContext";
+import Api from "../../../Utils/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

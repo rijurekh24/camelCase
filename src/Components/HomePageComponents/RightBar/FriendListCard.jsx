@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import FriendList from "./FriendList";
 import { useContext, useState } from "react";
-import { authContext } from "../../Context/AuthContext";
+import { authContext } from "../../../Context/AuthContext";
 
 const FriendListCard = () => {
   const ctx = useContext(authContext);

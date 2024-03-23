@@ -14,11 +14,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
 import { useContext, useState } from "react";
-import Api from "../../Utils/api";
-import { authContext } from "../../Context/AuthContext";
+import Api from "../../../Utils/api";
+import { authContext } from "../../../Context/AuthContext";
 import { useEffect } from "react";
-import LikeModal from "./Modals/LikeModal";
-import CommentModal from "./Modals/CommentModal";
+import LikeModal from "../Modals/LikeModal";
+import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
 
 const PostCard = (props) => {

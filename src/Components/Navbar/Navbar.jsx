@@ -2,8 +2,8 @@ import { Box } from "@mui/system";
 import { AppBar, Toolbar, IconButton, Stack } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import { Home, Message, Notifications } from "@mui/icons-material";
-import NavButton from "./HomePageComponents/NavButton";
-import Search from "./HomePageComponents/Search";
+import NavButton from "./NavButton";
+import Search from "./Search";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {

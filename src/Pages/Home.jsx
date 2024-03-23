@@ -1,8 +1,8 @@
-import Navbar from "../Components/Navbar";
+import Navbar from "../Components/Navbar/Navbar";
 import { Box, Stack } from "@mui/material";
-import Feed from "../Components/HomePageComponents/Feed";
-import SideBar from "../Components/HomePageComponents/SideBar";
-import RightBar from "../Components/HomePageComponents/RightBar";
+import Feed from "../Components/HomePageComponents/Feed/Feed";
+import SideBar from "../Components/HomePageComponents/SideBar/SideBar";
+import RightBar from "../Components/HomePageComponents/RightBar/RightBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

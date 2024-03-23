@@ -1,7 +1,7 @@
 import { Button, InputAdornment, InputBase, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-import Api from "../../Utils/api";
+import Api from "../../../Utils/api";
 
 const CommentBox = ({ postId, fetchComment }) => {
   const [comment, setComment] = useState("");

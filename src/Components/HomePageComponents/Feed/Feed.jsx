@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import PostCard from "./PostCard";
+import MediaPostCard from "../PostCards/MediaPostCard";
 import Post from "./Post";
-import { authContext } from "../../Context/AuthContext";
+import { authContext } from "../../../Context/AuthContext";
 
 const Feed = () => {
   const ctx = useContext(authContext);
@@ -23,7 +23,7 @@ const Feed = () => {
       <Box width={{ xs: "100%", lg: "75%" }}>
         <Post />
         {ctx.postData.map((item, index) => (
-          <PostCard
+          <MediaPostCard
             key={item._id}
             name={`${item.user.first_name} ${item.user.last_name}`}
             username={item.user.username}

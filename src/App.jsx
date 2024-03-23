@@ -17,7 +17,7 @@ import LoadingPage from "./Components/LoadingPage";
 import { authContext } from "./Context/AuthContext";
 import EmailVer from "./Pages/EmailVer";
 import ProfilePage from "./Components/ProfilePageComponents/ProfilePage";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 
 const AuthView = () => {
   const ctx = useContext(authContext);

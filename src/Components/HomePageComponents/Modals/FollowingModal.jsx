@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Divider, InputBase } from "@mui/material";
 import { authContext } from "../../../Context/AuthContext";
-import FriendList from "../FriendList";
+import FriendList from "../RightBar/FriendList";
 
 const style = {
   position: "absolute",

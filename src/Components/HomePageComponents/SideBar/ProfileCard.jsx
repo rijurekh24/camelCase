@@ -1,9 +1,9 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
-import { authContext } from "../../Context/AuthContext";
+import { authContext } from "../../../Context/AuthContext";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FollowersModal from "./Modals/FollowersModal";
-import FollowingModal from "./Modals/FollowingModal";
+import FollowersModal from "../Modals/FollowersModal";
+import FollowingModal from "../Modals/FollowingModal";
 
 const ProfileCard = () => {
   const ctx = useContext(authContext);
