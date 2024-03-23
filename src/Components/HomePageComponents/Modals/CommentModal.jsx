@@ -8,8 +8,8 @@ import DialogActions from "@mui/material/DialogActions";
 import Divider from "@mui/material/Divider";
 import Skeleton from "@mui/material/Skeleton";
 import Api from "../../../Utils/api";
-import CommentBox from "../Modals/";
-import Comments from "../PostCards/CommentBox";
+import CommentBox from "../PostCards/CommentBox";
+import Comments from "../Modals/Comments";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
