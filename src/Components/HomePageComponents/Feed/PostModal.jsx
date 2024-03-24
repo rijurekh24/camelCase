@@ -27,8 +27,8 @@ const style = {
 
 function PostModal({ open, handleClose }) {
   const ctx = useContext(authContext);
-  const [media, setMedia] = useState(null); // Updated to handle both image and video
-  const [mediaType, setMediaType] = useState(""); // Indicates whether it's an image or video
+  const [media, setMedia] = useState(null);
+  const [mediaType, setMediaType] = useState("");
   const [fileName, setFileName] = useState(" Choose Photo or Video");
   const [blobURL, setBlobURL] = useState("");
   const [caption, setCaption] = useState("");

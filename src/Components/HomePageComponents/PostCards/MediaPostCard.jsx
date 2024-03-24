@@ -258,11 +258,14 @@ const MediaPostCard = (props) => {
           </Typography>
         }
       />
-      <CardContent>
-        <Typography variant="body2" color="textColor.main">
-          {props.caption}
-        </Typography>
-      </CardContent>
+      <Box>
+        {props.caption && (
+          <Typography variant="body2" color="textColor.main">
+            {props.caption}
+          </Typography>
+        )}
+      </Box>
+
       {props.image && (
         <Box
           sx={{

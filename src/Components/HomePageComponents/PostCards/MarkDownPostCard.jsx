@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import LikeModal from "../Modals/LikeModal";
 import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
+import MDEditor, { selectWord } from "@uiw/react-md-editor";
 
 const MarkDownPostCard = (props) => {
   const navigate = useNavigate();
@@ -126,7 +127,7 @@ const MarkDownPostCard = (props) => {
               mb: 1,
             }}
           ></Box>
-          {/* {props.image && (
+          {props.image && (
             <Box
               sx={{
                 width: "100%",
@@ -135,7 +136,7 @@ const MarkDownPostCard = (props) => {
                 borderRadius: "15px",
               }}
             ></Box>
-          )} */}
+          )}
         </CardContent>
         {/* Skeleton for CardActions */}
         <CardActions>
@@ -258,13 +259,44 @@ const MarkDownPostCard = (props) => {
           </Typography>
         }
       />
-      <CardContent>
-        <Typography variant="body2" color="textColor.main">
-          {props.caption}
-        </Typography>
-      </CardContent>
+      <Box>
+        {props.caption && (
+          <Typography variant="body2" color="textColor.main">
+            {props.caption}
+          </Typography>
+        )}
+      </Box>
 
-      <Divider variant="middle" color="#444" />
+      {props.image && (
+        <Box
+          sx={{
+            maxHeight: "30rem",
+            backgroundColor: "#1b2129",
+            width: "100%",
+            overflowY: "scroll",
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "backgroundColor.main",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "primary.main",
+            },
+            "&::-webkit-scrollbar": {
+              width: "2px",
+            },
+          }}
+        >
+          <MDEditor.Markdown
+            source={props.image}
+            style={{
+              height: "100%",
+              // width: "100%",
+              objectFit: "contain",
+              whiteSpace: "pre-wrap",
+              padding: 10,
+            }}
+          />
+        </Box>
+      )}
 
       <CardActions>
         <Box width={"100%"}>
