@@ -290,9 +290,7 @@ const MarkDownPostCard = (props) => {
             style={{
               height: "100%",
               // width: "100%",
-              objectFit: "contain",
-              whiteSpace: "pre-wrap",
-              padding: 10,
+              padding: 25,
             }}
           />
         </Box>
