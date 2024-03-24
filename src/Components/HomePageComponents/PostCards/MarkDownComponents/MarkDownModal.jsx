@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
@@ -76,6 +76,7 @@ export default function FullScreenDialog({ open, handleClose }) {
             background: "transparent",
           },
         }}
+        disableEscapeKeyDown={true} // Here's the addition
       >
         <Box
           sx={{
