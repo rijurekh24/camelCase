@@ -102,6 +102,7 @@ export default function NavButton() {
               fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
+              mr: 1,
             }}
           ></Avatar>
         ) : (
@@ -115,6 +116,7 @@ export default function NavButton() {
               fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
+              mr: 1,
             }}
           >
             {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
