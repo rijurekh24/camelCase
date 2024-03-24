@@ -27,7 +27,7 @@ export default function DeletePost({
         ctx.fetchPost();
         toast.update(toastId.current, {
           render: "Deleted successfully...",
-          type: "success",
+          type: "error",
           isLoading: false,
           autoClose: 2000,
           closeButton: true,
