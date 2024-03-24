@@ -54,6 +54,8 @@ export default function FullScreenDialog({ open, handleClose }) {
               color: "white",
             },
           });
+          setCaption("");
+          setValue("");
         })
         .catch((err) => {
           console.log(err.res.data);
@@ -101,6 +103,8 @@ export default function FullScreenDialog({ open, handleClose }) {
                 color="inherit"
                 onClick={() => {
                   handleClose();
+                  setCaption("");
+                  setValue("");
                 }}
                 aria-label="close"
               >
