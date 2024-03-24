@@ -70,7 +70,7 @@ const Post = () => {
       .catch((err) => {});
   };
 
-  const isTextInputEmptyOrSpaces = !textInput.trim();
+  const isTextInputEmptyOrSpaces = !textInput.trimStart();
 
   return (
     <Box

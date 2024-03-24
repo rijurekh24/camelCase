@@ -19,7 +19,7 @@ const CommentBox = ({ postId, fetchComment }) => {
       .catch(() => {});
   };
 
-  const isCommentEmptyOrSpaces = !comment.trim();
+  const isCommentEmptyOrSpaces = !comment.trimStart();
 
   return (
     <InputBase
