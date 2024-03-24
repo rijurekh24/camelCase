@@ -3,6 +3,7 @@ import MDEditor, { selectWord } from "@uiw/react-md-editor";
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import { Box } from "@mui/material";
+import rehypeSanitize from "rehype-sanitize";
 
 const Editor = ({ value, setValue }) => {
   return (
@@ -12,6 +13,9 @@ const Editor = ({ value, setValue }) => {
         value={value}
         onChange={setValue}
         visibleDragbar={false}
+        previewOptions={{
+          rehypePlugins: [[rehypeSanitize]],
+        }}
       />
     </Box>
   );
