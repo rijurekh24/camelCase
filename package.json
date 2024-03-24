@@ -17,17 +17,19 @@
     "@mui/lab": "^5.0.0-alpha.166",
     "@mui/material": "^5.15.11",
     "axios": "^1.6.7",
+    "highlight.js": "^11.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^5.0.5",
     "react-image-crop": "^11.0.5",
-    "react-markdown": "^2.5.0",
+    "react-markdown": "^9.0.1",
     "react-mentions": "^4.4.10",
     "react-password-checklist": "^1.5.1",
     "react-router-dom": "^6.22.1",
     "react-spinners": "^0.13.8",
     "react-syntax-highlighter": "^15.5.0",
     "react-toastify": "^10.0.5",
+    "remark-gfm": "^4.0.0",
     "timeago-react": "^3.0.6",
     "timeago.js": "^4.0.2",
     "validator": "^13.11.0"
@@ -40,6 +42,6 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.1.5"
+    "vite": "^5.2.4"
   }
 }

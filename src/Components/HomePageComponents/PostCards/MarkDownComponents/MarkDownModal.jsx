@@ -95,7 +95,7 @@ export default function FullScreenDialog({ open, handleClose }) {
                 components={{
                   code: SyntaxHighlighter,
                 }}
-                children={input}
+                source={input}
               />
             </Box>
           </Box>
