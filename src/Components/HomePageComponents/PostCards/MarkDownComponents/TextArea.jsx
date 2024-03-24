@@ -11,9 +11,9 @@ const TextArea = () => {
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
-      p={1}
       gap={1}
       height={"100%"}
+      width={"100%"}
     >
       <Box flex={"1"} height={"100%"} width={"100%"}>
         <textarea
