@@ -1,4 +1,4 @@
-import { Button, InputAdornment, InputBase, TextField } from "@mui/material";
+import { Button, InputAdornment, InputBase } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import Api from "../../../Utils/api";
@@ -19,6 +19,8 @@ const CommentBox = ({ postId, fetchComment }) => {
       .catch(() => {});
   };
 
+  const isCommentEmptyOrSpaces = !comment.trim();
+
   return (
     <InputBase
       placeholder="add a comment"
@@ -33,7 +35,7 @@ const CommentBox = ({ postId, fetchComment }) => {
         borderRadius: "15px",
       }}
       endAdornment={
-        comment && (
+        !isCommentEmptyOrSpaces && (
           <InputAdornment position="end">
             <Button
               variant="contained"

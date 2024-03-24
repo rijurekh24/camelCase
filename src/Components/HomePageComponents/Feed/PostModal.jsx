@@ -294,11 +294,12 @@ function PostModal({ open, handleClose }) {
           </Box>
           <Button
             fullWidth
-            disabled={!caption && !media}
+            disabled={!caption.trimStart() && !media}
             onClick={handleClick}
             sx={{
-              backgroundColor: caption || media ? "primary.main" : "gray",
-              color: caption || media ? "textColor.main" : "#000",
+              backgroundColor:
+                caption.trim() || media ? "primary.main" : "gray",
+              color: caption.trim() || media ? "textColor.main" : "#000",
               padding: "10px",
               borderRadius: "15px",
               ":hover": {

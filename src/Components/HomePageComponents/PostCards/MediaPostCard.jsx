@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import LikeModal from "../Modals/LikeModal";
 import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
+import DeletePost from "./DeletePost";
 
 const MediaPostCard = (props) => {
   const navigate = useNavigate();
@@ -44,6 +45,16 @@ const MediaPostCard = (props) => {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  //post option menu
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   const fetchComment = () => {
@@ -197,6 +208,15 @@ const MediaPostCard = (props) => {
           postId={props.postId}
         />
       </Box>
+      <Box>
+        <DeletePost
+          open={openMenu}
+          handleClose={handleCloseMenu}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+          postId={props.postId}
+        />
+      </Box>
       <CardHeader
         sx={{ padding: 1 }}
         avatar={
@@ -232,9 +252,14 @@ const MediaPostCard = (props) => {
           )
         }
         action={
-          <IconButton sx={{ color: "textColor.main" }}>
-            <MoreVert />
-          </IconButton>
+          props.username === ctx.user.username && (
+            <IconButton
+              sx={{ color: "textColor.main" }}
+              onClick={handleClickMenu}
+            >
+              <MoreVert />
+            </IconButton>
+          )
         }
         title={
           <Typography
@@ -248,12 +273,18 @@ const MediaPostCard = (props) => {
         }
         subheader={
           <Typography variant="body2" color="textColor.main">
-            {props.name}{" "}
+            {props.name}
             <Typography
-              sx={{ color: "textColor.secondary", ml: 1 }}
-              display="inline"
+              component={"span"}
+              sx={{ color: "textColor.secondary", px: 1 }}
             >
-              • <span>{format(props.date)}</span>
+              .
+            </Typography>
+            <Typography
+              sx={{ color: "textColor.secondary" }}
+              component={"span"}
+            >
+              {format(props.date)}
             </Typography>
           </Typography>
         }

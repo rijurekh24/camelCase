@@ -70,6 +70,8 @@ const Post = () => {
       .catch((err) => {});
   };
 
+  const isTextInputEmptyOrSpaces = !textInput.trim();
+
   return (
     <Box
       sx={{
@@ -139,7 +141,7 @@ const Post = () => {
               fontSize: "1rem",
             },
             disableUnderline: true,
-            endAdornment: textInput && (
+            endAdornment: !isTextInputEmptyOrSpaces && (
               <Send
                 sx={{ color: "textColor.main", cursor: "pointer" }}
                 onClick={handleSend}

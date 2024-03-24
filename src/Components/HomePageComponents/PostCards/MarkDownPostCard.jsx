@@ -21,6 +21,7 @@ import LikeModal from "../Modals/LikeModal";
 import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
 import MDEditor, { selectWord } from "@uiw/react-md-editor";
+import DeletePost from "./DeletePost";
 
 const MarkDownPostCard = (props) => {
   const navigate = useNavigate();
@@ -45,6 +46,16 @@ const MarkDownPostCard = (props) => {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  //post option menu
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   const fetchComment = () => {
@@ -198,6 +209,15 @@ const MarkDownPostCard = (props) => {
           postId={props.postId}
         />
       </Box>
+      <Box>
+        <DeletePost
+          open={openMenu}
+          handleClose={handleCloseMenu}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+          postId={props.postId}
+        />
+      </Box>
       <CardHeader
         sx={{ padding: 1 }}
         avatar={
@@ -233,9 +253,14 @@ const MarkDownPostCard = (props) => {
           )
         }
         action={
-          <IconButton sx={{ color: "textColor.main" }}>
-            <MoreVert />
-          </IconButton>
+          props.username === ctx.user.username && (
+            <IconButton
+              sx={{ color: "textColor.main" }}
+              onClick={handleClickMenu}
+            >
+              <MoreVert />
+            </IconButton>
+          )
         }
         title={
           <Typography
