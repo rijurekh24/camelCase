@@ -259,13 +259,13 @@ const MarkDownPostCard = (props) => {
           </Typography>
         }
       />
-      <Box>
-        {props.caption && (
+      {props.caption && (
+        <CardContent>
           <Typography variant="body2" color="textColor.main">
             {props.caption}
           </Typography>
-        )}
-      </Box>
+        </CardContent>
+      )}
 
       {props.image && (
         <Box

@@ -16,7 +16,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const CommentModal = ({ open, onClose, postId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [img, setImg] = useState(false);
+  const [img, setImg] = useState("");
+  const [post, setPost] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -25,6 +26,7 @@ const CommentModal = ({ open, onClose, postId }) => {
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setComments(res.data.post.comments);
       setImg(res.data.post.img);
+      setPost(res.data.post);
       setLoading(false);
     });
   };
@@ -55,7 +57,7 @@ const CommentModal = ({ open, onClose, postId }) => {
         borderRadius="15px"
         sx={{ height: { xs: "60vh", lg: "70vh" } }}
       >
-        {img && (
+        {img && post.type === "Media" && (
           <Box
             sx={{
               backgroundColor: "backgroundColor.secondary",
