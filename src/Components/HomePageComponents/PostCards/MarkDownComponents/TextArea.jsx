@@ -4,8 +4,7 @@ import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-const TextArea = () => {
-  const [input, setInput] = React.useState("");
+const TextArea = ({ input, setInput }) => {
   return (
     <Box
       display={"flex"}
@@ -14,6 +13,7 @@ const TextArea = () => {
       gap={1}
       height={"100%"}
       width={"100%"}
+      flexDirection={{ xs: "column", md: "row" }}
     >
       <Box flex={"1"} height={"100%"} width={"100%"}>
         <textarea

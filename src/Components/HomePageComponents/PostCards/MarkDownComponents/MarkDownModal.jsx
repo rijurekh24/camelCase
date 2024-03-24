@@ -8,16 +8,11 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { Box } from "@mui/material";
-
-import ReactMarkdown from "react-markdown";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextArea from "./TextArea";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 export default function FullScreenDialog({ open, handleClose }) {
   const [input, setInput] = React.useState("");
   return (
@@ -41,7 +36,6 @@ export default function FullScreenDialog({ open, handleClose }) {
               edge="start"
               color="inherit"
               onClick={() => {
-                setInput("");
                 handleClose();
               }}
               aria-label="close"
@@ -65,7 +59,7 @@ export default function FullScreenDialog({ open, handleClose }) {
           p={1}
           flexDirection={{ xs: "column", md: "row" }}
         >
-          <TextArea />
+          <TextArea input={input} setInput={setInput} />
         </Box>
       </Dialog>
     </React.Fragment>
