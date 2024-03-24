@@ -42,8 +42,8 @@ const TextArea = () => {
       >
         <Box padding={2}>
           <ReactMarkdown
-            source={input}
-            renderers={{
+            children={input}
+            components={{
               code: SyntaxHighlighter,
             }}
           />
