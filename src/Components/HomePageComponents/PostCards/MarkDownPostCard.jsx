@@ -249,12 +249,18 @@ const MarkDownPostCard = (props) => {
         }
         subheader={
           <Typography variant="body2" color="textColor.main">
-            {props.name}{" "}
+            {props.name}
             <Typography
-              sx={{ color: "textColor.secondary", ml: 1 }}
-              display="inline"
+              component={"span"}
+              sx={{ color: "textColor.secondary", px: 1 }}
             >
-              • <span>{format(props.date)}</span>
+              .
+            </Typography>
+            <Typography
+              sx={{ color: "textColor.secondary" }}
+              component={"span"}
+            >
+              {format(props.date)}
             </Typography>
           </Typography>
         }
