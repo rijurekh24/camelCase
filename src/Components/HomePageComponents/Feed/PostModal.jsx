@@ -46,8 +46,6 @@ function PostModal({ open, handleClose }) {
       const mediaURL = URL.createObjectURL(files[0]);
       setBlobURL(mediaURL);
       setMedia(files[0]);
-
-      // Determine the type of media (image or video)
       const type = files[0].type.split("/")[0];
       setMediaType(type);
     }
