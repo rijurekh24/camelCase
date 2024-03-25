@@ -83,7 +83,15 @@ const LikeModal = ({ open, onClose, postId }) => {
               }}
             />
           </Typography>
-
+          <Box width={"100%"}>
+            <InputBase
+              placeholder="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              fullWidth
+              sx={{ color: "textColor.secondary", mb: 1, px: 1 }}
+            />
+          </Box>
           <Box
             width={"100%"}
             sx={{
@@ -101,13 +109,6 @@ const LikeModal = ({ open, onClose, postId }) => {
               },
             }}
           >
-            <InputBase
-              placeholder="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              fullWidth
-              sx={{ px: 2, color: "textColor.secondary", mb: 1 }}
-            />
             {loading ? (
               <Box>
                 <Box display={"flex"} alignItems={"center"} gap={1}>
@@ -124,13 +125,7 @@ const LikeModal = ({ open, onClose, postId }) => {
               </Box>
             ) : (
               filteredLikes.map((item) => (
-                <Box
-                  display={"flex"}
-                  gap={1}
-                  alignItems={"center"}
-                  key={item}
-                  px={1}
-                >
+                <Box display={"flex"} gap={1} alignItems={"center"} key={item}>
                   {item.profile_pic ? (
                     <Avatar
                       src={item.profile_pic}
