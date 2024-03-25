@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import { Box, Divider, InputBase } from "@mui/material";
+import { Box, Divider, InputBase, useMediaQuery } from "@mui/material";
 import Editor from "./Editor";
 import { authContext } from "../../../../Context/AuthContext";
 import Api from "../../../../Utils/api";
@@ -62,23 +62,28 @@ export default function FullScreenDialog({ open, handleClose }) {
         });
     }
   };
+  const isMobileScreen = useMediaQuery("(max-width:600px)");
+  const isLaptopScreen = useMediaQuery("(min-width:900px)");
 
   return (
     <React.Fragment>
       <Dialog
-        sx={{ zIndex: 1000000000000 }}
-        fullWidth
-        maxWidth="md"
+        sx={{
+          zIndex: 1000000000000,
+        }}
+        fullScreen={isMobileScreen}
+        fullWidth={isLaptopScreen ? true : false}
+        maxWidth={isLaptopScreen ? "md" : false}
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
         PaperProps={{
           sx: {
-            borderRadius: "15px",
+            borderRadius: { xs: 0, sm: "15px" },
             background: "transparent",
           },
         }}
-        disableEscapeKeyDown={true} // Here's the addition
+        disableEscapeKeyDown={true}
       >
         <Box
           sx={{
@@ -140,7 +145,7 @@ export default function FullScreenDialog({ open, handleClose }) {
           />
         </Box>
         <Box
-          height={"70vh"}
+          height={{ xs: "100%", sm: "70vh" }}
           bgcolor={"backgroundColor.main"}
           display={"flex"}
           justifyContent={"center"}
