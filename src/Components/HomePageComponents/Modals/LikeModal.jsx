@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase } from "@mui/material";
+import { Avatar, Divider, InputBase, Skeleton } from "@mui/material"; // Import Skeleton component
 import Api from "../../../Utils/api";
 import { useNavigate } from "react-router-dom";
 
@@ -26,11 +26,14 @@ const LikeModal = ({ open, onClose, postId }) => {
   const [likes, setLikes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLikes, setFilteredLikes] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+
   const fetchLikes = () => {
+    setLoading(true); // Set loading state to true when fetching starts
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setLikes(res.data.post.likes);
-      console.log(res.data.post);
+      setLoading(false); // Set loading state to false when fetching finishes
     });
   };
 
@@ -60,6 +63,7 @@ const LikeModal = ({ open, onClose, postId }) => {
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
+          px={1}
         >
           <Typography
             id="modal-modal-title"
@@ -93,7 +97,7 @@ const LikeModal = ({ open, onClose, postId }) => {
                 backgroundColor: "primary.main",
               },
               "&::-webkit-scrollbar": {
-                width: "0px",
+                width: "1px",
               },
             }}
           >
@@ -104,7 +108,17 @@ const LikeModal = ({ open, onClose, postId }) => {
               fullWidth
               sx={{ px: 2, color: "textColor.secondary", mb: 1 }}
             />
-            {filteredLikes.length === 0 ? (
+            {loading ? (
+              <Box>
+                <Box display={"flex"} alignItems={"center"} gap={1}>
+                  <Skeleton variant="circular" width={45} height={45} />
+                  <Box>
+                    <Skeleton variant="text" width={100} height={30} />
+                    <Skeleton variant="text" width={120} height={10} />
+                  </Box>
+                </Box>
+              </Box>
+            ) : filteredLikes.length === 0 ? (
               <Box textAlign={"center"}>
                 <Typography>No results found</Typography>
               </Box>

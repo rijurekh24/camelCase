@@ -45,6 +45,7 @@ const MediaPostCard = (props) => {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+    fetchComment();
   };
 
   //post option menu
