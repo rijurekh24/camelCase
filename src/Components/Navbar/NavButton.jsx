@@ -139,6 +139,7 @@ export default function NavButton() {
         <MenuItem
           onClick={() => {
             navigate(`/profile/${ctx.user.username}`);
+handleClose();
           }}
           disableRipple
         >
