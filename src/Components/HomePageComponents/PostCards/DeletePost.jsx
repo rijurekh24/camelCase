@@ -17,6 +17,7 @@ export default function DeletePost({
   setAnchorEl,
   anchorEl,
   postId,
+  username,
 }) {
   const ctx = useContext(authContext);
   const toastId = useRef(null);
@@ -45,39 +46,41 @@ export default function DeletePost({
   };
   return (
     <div>
-      <Menu
-        id="long-menu"
-        MenuListProps={{
-          "aria-labelledby": "long-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        PaperProps={{
-          style: {
-            width: "15ch",
-            color: "white",
-            background: "rgba(200,200,200,0.3)",
-            boxShadow: "none",
-            backdropFilter: "blur(20px)",
-          },
-        }}
-      >
-        <MenuItem
-          sx={{
-            "&:hover": {
-              background: "transparent",
+      {username === ctx.user.username && (
+        <Menu
+          id="long-menu"
+          MenuListProps={{
+            "aria-labelledby": "long-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          PaperProps={{
+            style: {
+              width: "15ch",
+              color: "white",
+              background: "rgba(200,200,200,0.3)",
+              boxShadow: "none",
+              backdropFilter: "blur(20px)",
             },
           }}
-          onClick={handleClick}
         >
-          Delete
-        </MenuItem>
-      </Menu>
+          <MenuItem
+            sx={{
+              "&:hover": {
+                background: "transparent",
+              },
+            }}
+            onClick={handleClick}
+          >
+            Delete
+          </MenuItem>
+        </Menu>
+      )}
     </div>
   );
 }

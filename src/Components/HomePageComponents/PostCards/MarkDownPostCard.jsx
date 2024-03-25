@@ -216,6 +216,7 @@ const MarkDownPostCard = (props) => {
           anchorEl={anchorEl}
           setAnchorEl={setAnchorEl}
           postId={props.postId}
+          username={props.username}
         />
       </Box>
       <CardHeader
@@ -253,14 +254,12 @@ const MarkDownPostCard = (props) => {
           )
         }
         action={
-          props.username === ctx.user.username && (
-            <IconButton
-              sx={{ color: "textColor.main" }}
-              onClick={handleClickMenu}
-            >
-              <MoreVert />
-            </IconButton>
-          )
+          <IconButton
+            sx={{ color: "textColor.main" }}
+            onClick={handleClickMenu}
+          >
+            <MoreVert />
+          </IconButton>
         }
         title={
           <Typography

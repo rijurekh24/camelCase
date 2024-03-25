@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Avatar, Divider, InputBase, Skeleton } from "@mui/material"; // Import Skeleton component
+import { Avatar, Divider, InputBase, Skeleton } from "@mui/material";
 import Api from "../../../Utils/api";
 import { useNavigate } from "react-router-dom";
 
@@ -26,14 +26,14 @@ const LikeModal = ({ open, onClose, postId }) => {
   const [likes, setLikes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLikes, setFilteredLikes] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const fetchLikes = () => {
-    setLoading(true); // Set loading state to true when fetching starts
+    setLoading(true);
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setLikes(res.data.post.likes);
-      setLoading(false); // Set loading state to false when fetching finishes
+      setLoading(false);
     });
   };
 

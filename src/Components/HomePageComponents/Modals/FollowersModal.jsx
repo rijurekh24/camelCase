@@ -17,6 +17,9 @@ const style = {
   color: "textColor.main",
   border: "2px solid #333",
   py: 2,
+  "&:focus": {
+    outline: "none",
+  },
 };
 
 const FollowersModal = ({ open, onClose }) => {

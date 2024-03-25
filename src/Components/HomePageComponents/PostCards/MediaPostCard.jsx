@@ -216,6 +216,7 @@ const MediaPostCard = (props) => {
           anchorEl={anchorEl}
           setAnchorEl={setAnchorEl}
           postId={props.postId}
+          username={props.username}
         />
       </Box>
       <CardHeader
@@ -253,14 +254,12 @@ const MediaPostCard = (props) => {
           )
         }
         action={
-          props.username === ctx.user.username && (
-            <IconButton
-              sx={{ color: "textColor.main" }}
-              onClick={handleClickMenu}
-            >
-              <MoreVert />
-            </IconButton>
-          )
+          <IconButton
+            sx={{ color: "textColor.main" }}
+            onClick={handleClickMenu}
+          >
+            <MoreVert />
+          </IconButton>
         }
         title={
           <Typography

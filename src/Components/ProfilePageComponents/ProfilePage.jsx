@@ -270,13 +270,7 @@ const ProfilePage = () => {
             </Box>
             <Box>
               {profileData._id != ctx.user._id && (
-                <Button
-                  onClick={handleClick}
-                  // sx={{
-                  //   display:
-                  //      ? "inline-block" : "none",
-                  // }}
-                >
+                <Button onClick={handleClick}>
                   {isFollowed ? "Unfollow" : "Follow"}
                 </Button>
               )}
