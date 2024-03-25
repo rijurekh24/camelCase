@@ -79,6 +79,7 @@ const Post = () => {
         borderRadius: { xs: "0", lg: "15px" },
         marginBottom: 2,
         padding: "10px",
+        marginTop: "2%",
       }}
     >
       <PostModal open={modalOpen} handleClose={closeModal} />
