@@ -19,6 +19,9 @@ const Home = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        style={{
+          zIndex: 2000000000,
+        }}
         transition:Bounce
       />
       <Box>

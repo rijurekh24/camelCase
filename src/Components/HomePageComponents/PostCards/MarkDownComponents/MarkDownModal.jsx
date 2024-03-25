@@ -1,19 +1,16 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import { Box, Divider, InputBase, useMediaQuery } from "@mui/material";
+import { Box, InputBase, useMediaQuery } from "@mui/material";
 import Editor from "./Editor";
 import { authContext } from "../../../../Context/AuthContext";
 import Api from "../../../../Utils/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MDEditor, { selectWord } from "@uiw/react-md-editor";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -29,11 +26,16 @@ export default function FullScreenDialog({ open, handleClose }) {
   };
 
   const handlePost = () => {
+    const trimmedCaption = caption.trim();
+    if (/^\s+$/.test(value)) {
+      toast.error("Markdown cannot contain only initial spaces.");
+      return;
+    }
     toastId.current = toast.loading("Uploading markdown...");
     if (value) {
       handleClose();
       Api.post("/posts/create-new", {
-        caption: caption,
+        caption: trimmedCaption,
         username: ctx.user.username,
         img: value,
         user: ctx.user._id,
@@ -69,7 +71,7 @@ export default function FullScreenDialog({ open, handleClose }) {
     <React.Fragment>
       <Dialog
         sx={{
-          zIndex: 1000000000000,
+          zIndex: 1000000000,
         }}
         fullScreen={isMobileScreen}
         fullWidth={isLaptopScreen ? true : false}
