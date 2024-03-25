@@ -90,9 +90,9 @@ export default function NavButton() {
           },
         }}
       >
-        {ctx.user.profile_pic ? (
+        {ctx.profile.profile_pic ? (
           <Avatar
-            src={ctx.user.profile_pic}
+            src={ctx.profile.profile_pic}
             sx={{
               width: 30,
               height: 30,

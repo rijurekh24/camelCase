@@ -64,9 +64,9 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
           })
             .then((res) => {
               fetchProfile();
+              ctx.fetchProfile();
               setBlobURL("");
               setImage(null);
-
               toast.update(toastId.current, {
                 render: "Uploaded sucessfully...",
                 type: "success",

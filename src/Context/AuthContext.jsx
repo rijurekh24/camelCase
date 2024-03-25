@@ -5,6 +5,7 @@ const authContext = createContext();
 
 const AuthContext = ({ children }) => {
   const [postData, setPostData] = useState([]);
+  const [profile, setProfile] = useState({});
 
   const fetchPost = () => {
     Api.get("/posts/get-all").then((res) => {
@@ -12,8 +13,18 @@ const AuthContext = ({ children }) => {
     });
   };
 
+  const fetchProfile = () => {
+    Api.get(`/auth/accounts/profile?username=${user.username}`)
+      .then((res) => {
+        setProfile(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err.res.data);
+      });
+  };
+
   const [user, setUser] = useState(null);
-  const value = { user, setUser, fetchPost, postData };
+  const value = { user, setUser, fetchPost, postData, fetchProfile, profile };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 };
 

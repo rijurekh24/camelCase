@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import ProfileCard from "./ProfileCard";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "../../../Context/AuthContext";
 
 const Sidebar = () => {
   const [showScrollbar, setShowScrollbar] = useState(false);
@@ -11,6 +12,11 @@ const Sidebar = () => {
       setShowScrollbar(false);
     }, 2000);
   };
+
+  const ctx = useContext(authContext);
+  useEffect(() => {
+    ctx.fetchProfile();
+  }, []);
 
   return (
     <Box

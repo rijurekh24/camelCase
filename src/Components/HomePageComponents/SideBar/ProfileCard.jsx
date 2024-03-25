@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import { authContext } from "../../../Context/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FollowersModal from "../Modals/FollowersModal";
 import FollowingModal from "../Modals/FollowingModal";
@@ -20,6 +20,10 @@ const ProfileCard = () => {
     navigate(`/profile/${ctx.user.username}`);
   };
 
+  useEffect(() => {
+    ctx.fetchProfile();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -34,10 +38,10 @@ const ProfileCard = () => {
         <FollowersModal open={openFollowers} onClose={handleCloseFollowers} />
         <FollowingModal open={openFollowing} onClose={handleCloseFollowing} />
       </Box>
-      {ctx.user.bg_pic ? (
+      {ctx.profile.bg_pic ? (
         <Box
           component="img"
-          src={ctx.user.bg_pic}
+          src={ctx.profile.bg_pic}
           sx={{
             width: "100%",
             height: 140,
@@ -74,7 +78,11 @@ const ProfileCard = () => {
                 fontSize: "1.1rem",
               }}
             >
-              {ctx.user.followers.length}
+              {ctx.profile.followers ? (
+                ctx.profile.followers.length
+              ) : (
+                <Typography color="backgroundColor.secondary">0</Typography>
+              )}
             </Typography>
             <Typography
               sx={{
@@ -86,9 +94,9 @@ const ProfileCard = () => {
             </Typography>
           </Box>
           <Box position={"absolute"} top={90}>
-            {ctx.user.profile_pic ? (
+            {ctx.profile.profile_pic ? (
               <Avatar
-                src={ctx.user.profile_pic}
+                src={ctx.profile.profile_pic}
                 sx={{
                   width: 90,
                   height: 90,
@@ -127,7 +135,11 @@ const ProfileCard = () => {
                 fontSize: "1.1rem",
               }}
             >
-              {ctx.user.following.length}
+              {ctx.profile.following ? (
+                ctx.profile.following.length
+              ) : (
+                <Typography color="backgroundColor.secondary">0</Typography>
+              )}
             </Typography>
             <Typography
               sx={{

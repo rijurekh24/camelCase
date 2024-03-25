@@ -29,7 +29,7 @@ const ProfilePage = () => {
     setOpen(false);
   };
 
-  const fetchProfile = () => {
+  const fetchProfileData = () => {
     Api.get(`/auth/accounts/profile?username=${username}`)
       .then((response) => {
         setProfileData(response.data.user);
@@ -54,7 +54,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (username) {
-      fetchProfile();
+      fetchProfileData();
     }
   }, [location.search, username]);
 
@@ -164,7 +164,7 @@ const ProfilePage = () => {
             <CoverPhotoUploadModal
               open={open}
               handleClose={closeModal}
-              fetchProfile={fetchProfile}
+              fetchProfile={fetchProfileData}
             />
             {profileData._id == ctx.user._id && (
               <Box onClick={openModal}>
@@ -202,7 +202,7 @@ const ProfilePage = () => {
                   }}
                 >
                   {profileData._id == ctx.user._id && (
-                    <ProfilePicPopUp fetchProfile={fetchProfile} />
+                    <ProfilePicPopUp fetchProfile={fetchProfileData} />
                   )}
                 </Typography>
               }

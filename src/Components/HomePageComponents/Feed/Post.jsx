@@ -85,9 +85,9 @@ const Post = () => {
       <PostModal open={modalOpen} handleClose={closeModal} />
       <MarkDownModal open={mdModalOpen} handleClose={closeMdModal} />
       <Box display={"flex"} width={"100%"} gap={2} mb={2}>
-        {ctx.user.profile_pic ? (
+        {ctx.profile.profile_pic ? (
           <Avatar
-            src={ctx.user.profile_pic}
+            src={ctx.profile.profile_pic}
             sx={{
               width: 35,
               height: 35,

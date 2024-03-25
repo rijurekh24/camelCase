@@ -5,8 +5,15 @@ import SideBar from "../Components/HomePageComponents/SideBar/SideBar";
 import RightBar from "../Components/HomePageComponents/RightBar/RightBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext, useEffect } from "react";
+import { authContext } from "../Context/AuthContext";
 
 const Home = () => {
+  const ctx = useContext(authContext);
+  useEffect(() => {
+    ctx.fetchProfile();
+  }, []);
+
   return (
     <Box sx={{ backgroundColor: "backgroundColor.main", minHeight: "100dvh" }}>
       <ToastContainer

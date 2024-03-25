@@ -23,6 +23,7 @@ const style = {
   p: 2,
   color: "textColor.main",
   border: "2px solid #333",
+  outline: "none",
 };
 
 function PostModal({ open, handleClose }) {
@@ -176,19 +177,34 @@ function PostModal({ open, handleClose }) {
             />
           </Typography>
           <Box display={"flex"} alignItems={"center"} width={"100%"}>
-            <Avatar
-              sx={{
-                width: 35,
-                height: 35,
-                border: "5px solid ",
-                bgcolor: "#111",
-                borderColor: "borderColor.main",
-                marginRight: "5px",
-                color: "primary.main",
-              }}
-            >
-              {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
-            </Avatar>
+            {ctx.profile.profile_pic ? (
+              <Avatar
+                src={ctx.profile.profile_pic}
+                sx={{
+                  width: 35,
+                  height: 35,
+                  border: "5px solid ",
+                  borderColor: "borderColor.main",
+                  fontSize: "1.2rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              ></Avatar>
+            ) : (
+              <Avatar
+                sx={{
+                  width: 35,
+                  height: 35,
+                  border: "5px solid ",
+                  borderColor: "borderColor.main",
+                  fontSize: "1.2rem",
+                  color: "primary.main",
+                  bgcolor: "#111",
+                }}
+              >
+                {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
+              </Avatar>
+            )}
             <Typography fontSize={"1rem"}>
               {ctx.user.first_name} {ctx.user.last_name}
             </Typography>
