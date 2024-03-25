@@ -21,7 +21,7 @@ const ViewDpModal = ({ open, closeModal, dp }) => {
           justifyContent: "center",
           alignItems: "center",
           padding: 0.5,
-          borderRadius: 0,
+          borderRadius: "15px",
         },
       }}
     >
@@ -46,8 +46,8 @@ const ViewDpModal = ({ open, closeModal, dp }) => {
         color={"textColor.main"}
         textAlign={"center"}
         width={"100%"}
-        sx={{ cursor: "pointer" }}
-      >
+        sx={{ cursor: "pointer", borderRadius: "15px" }}   
+ >
         Update Profile Photo
       </Typography> */}
     </Dialog>
