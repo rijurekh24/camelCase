@@ -16,19 +16,19 @@ const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
-  const handleSearch = (query) => {
-    setIsFetching(true);
-    Api.post("/auth/search", { query })
-      .then((response) => {
-        setSearchResult(response.data.search_res[0].users);
-      })
-      .catch((error) => {
-        console.error("Error:", error.response);
-      })
-      .finally(() => {
-        setIsFetching(false);
-      });
-  };
+  // const handleSearch = (query) => {
+  //   setIsFetching(true);
+  //   Api.post("/auth/search", { query })
+  //     .then((response) => {
+  //       setSearchResult(response.data.search_res[0].users);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error.response);
+  //     })
+  //     .finally(() => {
+  //       setIsFetching(false);
+  //     });
+  // };
 
   const handleChange = (e) => {
     const { value } = e.target;
