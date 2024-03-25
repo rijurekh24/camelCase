@@ -5,10 +5,17 @@ import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./NavButton";
 import Search from "./Search";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { authContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const ctx = useContext(authContext);
+
+  useEffect(() => {
+    ctx.fetchProfile();
+  }, []);
 
   return (
     <AppBar

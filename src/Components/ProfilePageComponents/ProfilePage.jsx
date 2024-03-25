@@ -13,6 +13,7 @@ import { authContext } from "../../Context/AuthContext";
 import ProfilePicPopUp from "./ProfilePicPopUp";
 import { ToastContainer } from "react-toastify";
 import CoverPhotoUploadModal from "../HomePageComponents/Modals/CoverPhotoUploadModal";
+import ViewDpModal from "../HomePageComponents/Modals/ViewDpModal";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -27,6 +28,17 @@ const ProfilePage = () => {
 
   const closeModal = () => {
     setOpen(false);
+  };
+
+  //view dp
+
+  const [openDp, setOpenDp] = useState(false);
+
+  const handleClickDpOpen = () => {
+    setOpenDp(true);
+  };
+  const handleDpClose = () => {
+    setOpenDp(false);
   };
 
   const fetchProfileData = () => {
@@ -135,6 +147,11 @@ const ProfilePage = () => {
         padding={"20px"}
         borderRadius={"15px"}
       >
+        <ViewDpModal
+          open={openDp}
+          closeModal={handleDpClose}
+          dp={profileData.profile_pic}
+        />
         <Box sx={{ position: "relative", width: "100%", height: 150 }}>
           <Box
             component="img"
@@ -209,6 +226,7 @@ const ProfilePage = () => {
             >
               <Avatar
                 src={profileData.profile_pic}
+                onClick={handleClickDpOpen}
                 sx={{
                   width: { xs: 55, md: 75 },
                   height: { xs: 55, md: 75 },
@@ -218,6 +236,7 @@ const ProfilePage = () => {
                   fontSize: "1.4rem",
                   color: "primary.main",
                   bgcolor: "#111",
+                  cursor: "pointer",
                 }}
               />
             </Badge>

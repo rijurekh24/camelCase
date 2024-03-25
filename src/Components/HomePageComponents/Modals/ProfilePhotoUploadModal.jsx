@@ -23,6 +23,7 @@ const style = {
   p: 2,
   color: "textColor.main",
   border: "2px solid #333",
+  outline: "none",
 };
 
 function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
@@ -137,7 +138,7 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
                 style={{
                   border: "3px dotted #999",
                   borderRadius: "20px",
-                  height: 200,
+                  height: 300,
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
