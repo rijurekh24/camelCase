@@ -46,6 +46,7 @@ const ViewDpModal = ({ open, closeModal, dp }) => {
         color={"textColor.main"}
         textAlign={"center"}
         width={"100%"}
+       borderRadius={"15px"}
         sx={{ cursor: "pointer", borderRadius: "15px" }}   
  >
         Update Profile Photo
