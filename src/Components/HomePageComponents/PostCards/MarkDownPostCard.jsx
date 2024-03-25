@@ -315,6 +315,7 @@ const MarkDownPostCard = (props) => {
               width: "2px",
             },
           }}
+          data-color-mode="dark"
         >
           <MDEditor.Markdown
             source={props.image}

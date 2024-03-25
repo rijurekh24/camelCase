@@ -7,7 +7,7 @@ import rehypeSanitize from "rehype-sanitize";
 
 const Editor = ({ value, setValue }) => {
   return (
-    <Box height={"100%"} width={"100%"}>
+    <Box height={"100%"} width={"100%"} data-color-mode="dark">
       <MDEditor
         height={"100%"}
         value={value}
