@@ -8,12 +8,12 @@ import {
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Api from "../../Utils/api";
-import { authContext } from "../../Context/AuthContext";
-import ProfilePicPopUp from "./ProfilePicPopUp";
+import Api from "../Utils/api";
+import { authContext } from "../Context/AuthContext";
+import ProfilePicPopUp from "../Components/ProfilePageComponents/ProfilePicPopUp";
 import { ToastContainer } from "react-toastify";
-import CoverPhotoUploadModal from "../HomePageComponents/Modals/CoverPhotoUploadModal";
-import ViewDpModal from "../HomePageComponents/Modals/ViewDpModal";
+import CoverPhotoUploadModal from "../Components/HomePageComponents/Modals/CoverPhotoUploadModal";
+import ViewDpModal from "../Components/HomePageComponents/Modals/ViewDpModal";
 
 const ProfilePage = () => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -152,6 +152,11 @@ const ProfilePage = () => {
           closeModal={handleDpClose}
           dp={profileData.profile_pic}
         />
+        <CoverPhotoUploadModal
+          open={open}
+          handleClose={closeModal}
+          fetchProfile={fetchProfileData}
+        />
         <Box sx={{ position: "relative", width: "100%", height: 150 }}>
           <Box
             component="img"
@@ -178,11 +183,6 @@ const ProfilePage = () => {
               cursor: "pointer",
             }}
           >
-            <CoverPhotoUploadModal
-              open={open}
-              handleClose={closeModal}
-              fetchProfile={fetchProfileData}
-            />
             {profileData._id == ctx.user._id && (
               <Box onClick={openModal}>
                 <i
@@ -256,7 +256,9 @@ const ProfilePage = () => {
                     color: "textColor.main",
                   }}
                 >
-                  {profileData._id == ctx.user._id && <ProfilePicPopUp />}
+                  {profileData._id == ctx.user._id && (
+                    <ProfilePicPopUp fetchProfile={fetchProfileData} />
+                  )}
                 </Typography>
               }
             >
