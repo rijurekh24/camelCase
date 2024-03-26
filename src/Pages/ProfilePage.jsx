@@ -37,7 +37,7 @@ const ProfilePage = () => {
   const handleClickDpOpen = () => {
     setOpenDp(true);
   };
-  
+
   const handleDpClose = () => {
     setOpenDp(false);
   };
@@ -48,7 +48,7 @@ const ProfilePage = () => {
         setProfileData(response?.data.user);
 
         const followerList = response?.data.user.followers;
-        if (followerList.includes(ctx.user._id)) {
+        if (followerList.some((elem) => elem._id === ctx.user._id)) {
           setIsFollowed(true);
         } else {
           setIsFollowed(false);

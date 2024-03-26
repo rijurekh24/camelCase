@@ -10,7 +10,7 @@ import {
 
 const EasyCrop = ({ image, setCroppedImg }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(0);
   const [rotation, setRotation] = useState(0);
   const [flipH, setFlipH] = useState(false);
   const [flipV, setFlipV] = useState(false);
@@ -40,11 +40,11 @@ const EasyCrop = ({ image, setCroppedImg }) => {
               showCroppedImage(cropperAreaPixles)
             }
             image={image}
-            initialCroppedAreaPercentages={{
+            initialCroppedAreaPixels={{
               x: 0,
               y: 0,
-              width: 100,
-              height: 100,
+              width: 300,
+              height: 300,
             }}
             cropShape="round"
             crop={crop}
