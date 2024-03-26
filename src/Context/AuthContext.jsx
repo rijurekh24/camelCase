@@ -14,7 +14,7 @@ const AuthContext = ({ children }) => {
   };
 
   const fetchProfile = () => {
-    Api.get(`/auth/accounts/profile?username=${user.username}`)
+    Api.get(`/profile?username=${user.username}`)
       .then((res) => {
         setProfile(res.data.user);
       })

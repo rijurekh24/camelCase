@@ -22,7 +22,7 @@ const Search = () => {
 
     if (value.trim() !== "") {
       setIsFetching(true);
-      Api.post("/auth/search", { value })
+      Api.post("/profile/search", { value })
         .then((response) => {
           setSearchResult(response.data.search_res[0].users);
         })

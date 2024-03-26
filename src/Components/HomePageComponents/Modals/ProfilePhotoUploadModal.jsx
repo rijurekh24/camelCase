@@ -59,7 +59,7 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
       )
         .then((res) => {
           setIsLoading(false);
-          Api.put("/auth/accounts/update", {
+          Api.put("/profile/update", {
             profile_pic: res.data.url,
             id: ctx.user._id,
           })

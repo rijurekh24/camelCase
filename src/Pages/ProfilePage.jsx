@@ -42,7 +42,7 @@ const ProfilePage = () => {
   };
 
   const fetchProfileData = () => {
-    Api.get(`/auth/accounts/profile?username=${username}`)
+    Api.get(`/profile?username=${username}`)
       .then((response) => {
         setProfileData(response.data.user);
 
@@ -71,7 +71,7 @@ const ProfilePage = () => {
   }, [location.search, username]);
 
   const handleClick = () => {
-    Api.post("/auth/accounts/follow/", { to: profileData._id })
+    Api.post("/profile/accounts/follow", { to: profileData._id })
       .then((response) => {
         const message = response.data.msg;
         if (message.includes("followed")) {

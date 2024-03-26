@@ -60,7 +60,7 @@ function CoverPhotoUploadModal({ open, handleClose, fetchProfile }) {
       )
         .then((res) => {
           setIsLoading(false);
-          Api.put("/auth/accounts/update", {
+          Api.put("/profile/update", {
             bg_pic: res.data.url,
             id: ctx.user._id,
           })
