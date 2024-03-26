@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { ButtonGroup, CircularProgress, Stack } from "@mui/material";
+import { ButtonGroup, CircularProgress, Stack, Tab, Tabs } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Axios from "axios";
 import Api from "../../../Utils/api";
@@ -106,8 +106,9 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
       margin={2}
       disableScrollLock
     >
-      <Box sx={style} width={{ xs: 280, sm: 500 }}>
+      <Box sx={style} width={{ xs: 280, sm: 600 }} display={"flex"}>
         <Box
+          flex={1}
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"center"}
@@ -124,106 +125,109 @@ function ProfilePhotoUploadModal({ open, handleClose, fetchProfile }) {
           >
             Upload Profile Photo
           </Typography>
-          <Box display={"flex"} alignItems={"center"} width={"100%"}></Box>
+          <Box display={"flex"} flexDirection={"column"} gap={1} width={"100%"}>
+            <Box flex={1}>
+              <Box>
+                <>
+                  <Box mb={2} width={"100%"}>
+                    {blobURL ? (
+                      <Stack>
+                        <EasyCrop
+                          image={blobURL}
+                          setCroppedImg={setCroppedImg}
+                        />
+                      </Stack>
+                    ) : (
+                      <form
+                        style={{
+                          border: "3px dotted #999",
+                          borderRadius: "20px",
+                          height: 300,
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "10px 0px",
+                        }}
+                        onClick={() => {
+                          document.querySelector(".input-field").click();
+                        }}
+                      >
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="input-field"
+                          hidden
+                          onChange={uploadImage}
+                        />
 
-          {/* image select section */}
-          <Box mb={2} width={"100%"}>
-            {blobURL ? (
-              <Stack>
-                <EasyCrop image={blobURL} setCroppedImg={setCroppedImg} />
-                {/* <img src={croppedImg?.blob} alt="" /> */}
-              </Stack>
-            ) : (
-              <form
-                style={{
-                  border: "3px dotted #999",
-                  borderRadius: "20px",
-                  height: 300,
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "10px 0px",
-                }}
-                onClick={() => {
-                  document.querySelector(".input-field").click();
+                        <CloudUploadIcon
+                          fontSize="large"
+                          sx={{ color: "primary.main" }}
+                        />
+                      </form>
+                    )}
+                  </Box>
+                </>
+              </Box>
+
+              {/* <Box
+                sx={{
+                  overflow: "hidden",
+                  height: 200,
+                  width: 200,
+                  borderRadius: "50%",
                 }}
               >
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="input-field"
-                  hidden
-                  onChange={uploadImage}
+                <img
+                  src={croppedImg?.blob}
+                  alt=""
+                  height={"100%"}
+                  width={"100%"}
                 />
+              </Box> */}
 
-                <CloudUploadIcon
-                  fontSize="large"
-                  sx={{ color: "primary.main" }}
-                />
-              </form>
-            )}
-
-            <Box
-              width={"100%"}
-              display={"flex"}
-              justifyContent={"center"}
-              mt={1}
-            >
-              <Box display={"flex"} alignItems={"center"}>
-                {/* <Typography>{fileName} </Typography> */}
-                {/* {image ? (
-                  <DeleteIcon
-                    sx={{ color: "primary.main", cursor: "pointer" }}
+              {image && (
+                <ButtonGroup fullWidth>
+                  <Button
                     onClick={() => {
                       setFileName("No file selected");
                       setImage(null);
                       setBlobURL("");
                     }}
-                  />
-                ) : null} */}
-              </Box>
+                    sx={{
+                      borderRadius: "15px",
+                      ":hover": {
+                        // backgroundColor: "error.dark",
+                        // color: 'black'
+                      },
+                    }}
+                  >
+                    Reselect
+                  </Button>
+                  <Button
+                    // disabled={!image}
+                    onClick={handleClick}
+                    sx={{
+                      backgroundColor: image ? "primary.main" : "gray",
+                      color: image ? "textColor.main" : "#000",
+                      padding: "10px",
+                      borderRadius: "15px",
+                      ":hover": {
+                        backgroundColor: "primary.main",
+                      },
+                    }}
+                  >
+                    {isLoading ? (
+                      <CircularProgress size={"2em"} sx={{ color: "white" }} />
+                    ) : (
+                      "Upload"
+                    )}
+                  </Button>
+                </ButtonGroup>
+              )}
             </Box>
           </Box>
-          {image && (
-            <ButtonGroup fullWidth>
-              <Button
-                onClick={() => {
-                  setFileName("No file selected");
-                  setImage(null);
-                  setBlobURL("");
-                }}
-                sx={{
-                  borderRadius: "15px",
-                  ":hover": {
-                    // backgroundColor: "error.dark",
-                    // color: 'black'
-                  },
-                }}
-              >
-                Reselect
-              </Button>
-              <Button
-                // disabled={!image}
-                onClick={handleClick}
-                sx={{
-                  backgroundColor: image ? "primary.main" : "gray",
-                  color: image ? "textColor.main" : "#000",
-                  padding: "10px",
-                  borderRadius: "15px",
-                  ":hover": {
-                    backgroundColor: "primary.main",
-                  },
-                }}
-              >
-                {isLoading ? (
-                  <CircularProgress size={"2em"} sx={{ color: "white" }} />
-                ) : (
-                  "Upload"
-                )}
-              </Button>
-            </ButtonGroup>
-          )}
         </Box>
       </Box>
     </Modal>

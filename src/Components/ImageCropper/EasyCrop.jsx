@@ -1,38 +1,51 @@
 import { useCallback, useEffect, useState } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./Crop";
-import { Box, Slider } from "@mui/material";
+import { Box, IconButton, Slider } from "@mui/material";
+import {
+  Rotate90DegreesCcw,
+  Rotate90DegreesCw,
+  Rotate90DegreesCwOutlined,
+} from "@mui/icons-material";
 
 const EasyCrop = ({ image, setCroppedImg }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [flipH, setFlipH] = useState(false);
+  const [flipV, setFlipV] = useState(false);
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  }, []);
-
-  const showCroppedImage = useCallback(async () => {
-    try {
-      const croppedImage = await getCroppedImg(
-        image,
-        croppedAreaPixels,
-        rotation
-      );
-      setCroppedImg(croppedImage);
-    } catch (e) {
-      console.error(e);
-    }
-  }, [croppedAreaPixels, rotation, image]);
+  const showCroppedImage = useCallback(
+    async (croppedAreaPixels) => {
+      try {
+        const croppedImage = await getCroppedImg(
+          image,
+          croppedAreaPixels,
+          rotation
+        );
+        setCroppedImg(croppedImage);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [rotation, image]
+  );
 
   return (
     <div>
       <div className="container">
         <div className="crop-container">
           <Cropper
-            onCropAreaChange={showCroppedImage}
+            onCropComplete={(_, cropperAreaPixles) =>
+              showCroppedImage(cropperAreaPixles)
+            }
             image={image}
+            initialCroppedAreaPercentages={{
+              x: 0,
+              y: 0,
+              width: 100,
+              height: 100,
+            }}
             cropShape="round"
             crop={crop}
             rotation={rotation}
@@ -43,23 +56,32 @@ const EasyCrop = ({ image, setCroppedImg }) => {
             showGrid={true}
             aspect={5 / 5}
             onCropChange={setCrop}
-            onCropComplete={onCropComplete}
             onZoomChange={setZoom}
             onRotationChange={setRotation}
           />
         </div>
-        <Box className="controls" mt={2} display={'flex'} gap={2}>
+
+        <Box
+          className="controls"
+          mt={2}
+          display={"flex"}
+          gap={2}
+          flexDirection={"column"}
+        >
           <Box sx={{ display: "flex", gap: 3 }} flex={1}>
             <label>Rotate</label>
-            <Slider
-              value={rotation}
-              min={0}
-              max={360}
-              step={1}
-              aria-labelledby="rotate"
-              onChange={(e, rotation) => setRotation(rotation)}
-              className="range"
-            />
+            <IconButton
+              onClick={() => setRotation((prev) => prev + 90)}
+              color="primary"
+            >
+              <Rotate90DegreesCwOutlined />
+            </IconButton>
+            <IconButton
+              onClick={() => setRotation((prev) => prev - 90)}
+              color="primary"
+            >
+              <Rotate90DegreesCcw />
+            </IconButton>
           </Box>
           <Box sx={{ display: "flex", gap: 3 }} flex={1}>
             <label>Zoom</label>

@@ -37,6 +37,7 @@ const ProfilePage = () => {
   const handleClickDpOpen = () => {
     setOpenDp(true);
   };
+  
   const handleDpClose = () => {
     setOpenDp(false);
   };
@@ -44,20 +45,20 @@ const ProfilePage = () => {
   const fetchProfileData = () => {
     Api.get(`/profile?username=${username}`)
       .then((response) => {
-        setProfileData(response.data.user);
+        setProfileData(response?.data.user);
 
-        const followerList = response.data.user.followers;
+        const followerList = response?.data.user.followers;
         if (followerList.includes(ctx.user._id)) {
           setIsFollowed(true);
         } else {
           setIsFollowed(false);
         }
-        if (response.data.user._id === ctx.user._id) {
+        if (response?.data.user._id === ctx.user._id) {
           setFollowButton(false);
         }
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error.response?.data);
       })
       .finally(() => {
         setLoading(false);
@@ -73,7 +74,7 @@ const ProfilePage = () => {
   const handleClick = () => {
     Api.post("/profile/accounts/follow", { to: profileData._id })
       .then((response) => {
-        const message = response.data.msg;
+        const message = response?.data.msg;
         if (message.includes("followed")) {
           setIsFollowed(true);
         }
@@ -82,7 +83,7 @@ const ProfilePage = () => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err.response?.data);
       });
   };
 
