@@ -20,6 +20,20 @@ const SocketContext = ({ children }) => {
     setIsConnected(false);
   }
 
+  function notifyMe(title) {
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+      const notification = new Notification(title);
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          const notification = new Notification(title);
+        }
+      });
+    }
+  }
+
   const fetchNotification = () => {
     Api.post("/notifications/get-all/", {
       user_id: ctx.user._id,
@@ -63,11 +77,12 @@ const SocketContext = ({ children }) => {
     socket.on("notification", (data) => {
       {
         setNotification((prev) => [data, ...prev]);
-        toast(data?.title, {
-          autoClose: 2000,
-          theme: "dark",
-          icon: "❤️",
-        });
+        notifyMe(data?.title);
+        // toast(data?.title, {
+        //   autoClose: 2000,
+        //   theme: "dark",
+        //   icon: "❤️",
+        // });
       }
     });
 
