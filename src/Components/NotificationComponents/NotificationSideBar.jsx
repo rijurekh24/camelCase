@@ -49,6 +49,7 @@ export default function NotificationSideBar({ open, closeDrawer }) {
             image={item.data?.post?.url}
             likedBy={item?.data.liked_by}
             date={item?.date}
+            id={item?._id}
           />
         ))}
       </Box>

@@ -9,6 +9,7 @@ const SocketContext = ({ children }) => {
   const ctx = useContext(authContext);
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [notification, setNotification] = useState([]);
+  const [newNotCount, setNewNotCount] = useState(0);
 
   function onConnect() {
     setIsConnected(true);
@@ -23,15 +24,30 @@ const SocketContext = ({ children }) => {
       user_id: ctx.user._id,
     }).then((res) => {
       setNotification(res.data.notifications);
+      localStorage.setItem("lnid", res.data.notifications[0]?._id);
     });
   };
 
   useEffect(() => {
     if (ctx.user) {
       socket.emit("setup", { id: ctx.user._id });
-      fetchNotification();
+      // fetchNotification();
     }
   }, [ctx.user]);
+
+  useEffect(() => {
+    const lnid = localStorage.getItem("lnid") || 0;
+    let val = 0;
+
+    for (let i = 0; i < notification.length; i++) {
+      if (notification[i]._id != lnid) {
+        val++;
+      } else {
+        break;
+      }
+    }
+    setNewNotCount(val);
+  }, [notification]);
 
   useEffect(() => {
     socket.on("connect", onConnect);
@@ -39,9 +55,11 @@ const SocketContext = ({ children }) => {
     socket.on("connected", (e) => {
       //   console.log(e);
     });
-    socket.on("notification", (data) =>
-      setNotification((prev) => [data, ...prev])
-    );
+    socket.on("notification", (data) => {
+      {
+        setNotification((prev) => [data, ...prev]);
+      }
+    });
 
     return () => {
       socket.off("connect", onConnect);
@@ -49,7 +67,7 @@ const SocketContext = ({ children }) => {
     };
   }, []);
 
-  const value = { notification, fetchNotification };
+  const value = { notification, fetchNotification, newNotCount };
   return (
     <socketContext.Provider value={value}>{children}</socketContext.Provider>
   );

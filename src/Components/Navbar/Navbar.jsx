@@ -92,7 +92,7 @@ const Navbar = () => {
               <Message sx={{ color: "textColor.main" }} />
             </Badge>
             <Badge
-              badgeContent={count}
+              badgeContent={sCtx?.newNotCount}
               onClick={() => {
                 if (!open) {
                   openDrawer();

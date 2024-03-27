@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import { format, register } from "timeago.js";
-const LikeNotification = ({ image, likedBy, date }) => {
+const LikeNotification = ({ image, likedBy, date, id }) => {
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -40,6 +40,7 @@ const LikeNotification = ({ image, likedBy, date }) => {
           src={image}
         />
       </Box>
+      <Typography color={"#fff"}>{id}</Typography>
     </Box>
   );
 };
