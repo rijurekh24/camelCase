@@ -77,7 +77,7 @@ export default function NavButton() {
         disableElevation
         disableRipple
         onClick={handleClick}
-        // endIcon={<KeyboardArrowDownIcon />}
+        endIcon={<KeyboardArrowDownIcon />}
         sx={{
           backgroundColor: {
             xs: "transparent",
