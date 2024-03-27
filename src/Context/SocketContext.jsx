@@ -40,7 +40,7 @@ const SocketContext = ({ children }) => {
       //   console.log(e);
     });
     socket.on("notification", (data) =>
-      setNotification((prev) => [...prev, data])
+      setNotification((prev) => [data, ...prev])
     );
 
     return () => {
