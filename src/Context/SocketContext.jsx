@@ -49,7 +49,7 @@ const SocketContext = ({ children }) => {
     };
   }, []);
 
-  const value = { notification };
+  const value = { notification, fetchNotification };
   return (
     <socketContext.Provider value={value}>{children}</socketContext.Provider>
   );

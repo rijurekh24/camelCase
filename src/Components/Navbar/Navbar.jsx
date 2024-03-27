@@ -18,6 +18,7 @@ const Navbar = () => {
   const [count, setCount] = useState();
   const [open, setOpen] = useState(false);
   const openDrawer = () => {
+    sCtx.fetchNotification();
     setOpen(true);
   };
   const closeDrawer = () => {
@@ -71,9 +72,9 @@ const Navbar = () => {
             </Box>
           </Stack>
           <Stack
-            spacing={8}
+            spacing={{ xs: 5, md: 8 }}
             direction={"row"}
-            display={{ xs: "none", md: "flex" }}
+            display={{ xs: "flex", md: "flex" }}
             justifyContent={"center"}
             alignItems={"center"}
             flex={1}

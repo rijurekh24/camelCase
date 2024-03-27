@@ -75,17 +75,24 @@ export default function NavButton() {
         aria-expanded={open ? "true" : undefined}
         variant="contained"
         disableElevation
+        disableRipple
         onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
+        // endIcon={<KeyboardArrowDownIcon />}
         sx={{
-          backgroundColor: "backgroundColor.secondary",
+          backgroundColor: {
+            xs: "transparent",
+            md: "backgroundColor.secondary",
+          },
           color: "textColor.main",
           borderRadius: "15px",
           textTransform: "none",
-          padding: "5px 20px 5px 10px",
+          padding: "5px 10px",
           fontSize: "0.9rem",
           ":hover": {
-            backgroundColor: "primary.main",
+            backgroundColor: {
+              xs: "transparent",
+              md: "primary.main",
+            },
             color: "backgroundColor.main",
           },
         }}
@@ -94,35 +101,38 @@ export default function NavButton() {
           <Avatar
             src={ctx.profile.profile_pic}
             sx={{
-              width: 30,
-              height: 30,
+              width: { xs: 40, md: 30 },
+              height: { xs: 40, md: 30 },
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "35px",
               fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
-              mr: 1,
+              mr: { xs: 0, md: 1 },
             }}
           ></Avatar>
         ) : (
           <Avatar
             sx={{
-              width: 30,
-              height: 30,
+              width: { xs: 40, md: 30 },
+              height: { xs: 40, md: 30 },
               border: "5px solid ",
               borderColor: "borderColor.main",
               borderRadius: "35px",
               fontSize: "1.2rem",
               color: "primary.main",
               bgcolor: "#111",
-              mr: 1,
+              mr: { xs: 0, md: 1 },
             }}
           >
             {ctx.user.first_name ? ctx.user.first_name.charAt(0) : ""}
           </Avatar>
         )}
-        <Typography> {ctx.user.first_name}</Typography>
+        <Typography display={{ xs: "none", md: "block" }}>
+          {" "}
+          {ctx.user.first_name}
+        </Typography>
       </Button>
       <StyledMenu
         sx={{ zIndex: 10000, mt: 1 }}
@@ -139,7 +149,7 @@ export default function NavButton() {
         <MenuItem
           onClick={() => {
             navigate(`/profile/${ctx.user.username}`);
-handleClose();
+            handleClose();
           }}
           disableRipple
         >
