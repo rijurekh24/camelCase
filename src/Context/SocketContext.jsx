@@ -63,7 +63,7 @@ const SocketContext = ({ children }) => {
     socket.on("notification", (data) => {
       {
         setNotification((prev) => [data, ...prev]);
-        toast.success(data?.title, {
+        toast(data?.title, {
           autoClose: 2000,
           theme: "dark",
           icon: "❤️",
