@@ -5,13 +5,23 @@ import { Home, Message, Notifications } from "@mui/icons-material";
 import NavButton from "./NavButton";
 import Search from "./Search";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../Context/AuthContext";
+import NotificationSideBar from "../NotificationComponents/NotificationSideBar";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const ctx = useContext(authContext);
+
+  const [open, setOpen] = useState(false);
+
+  const openDrawer = () => {
+    setOpen(true);
+  };
+  const closeDrawer = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     ctx.fetchProfile();
@@ -28,6 +38,9 @@ const Navbar = () => {
       position={"sticky"}
     >
       <Toolbar sx={{ height: "4rem" }}>
+        <Box>
+          <NotificationSideBar open={open} closeDrawer={closeDrawer} />
+        </Box>
         <Box
           flexDirection={"row"}
           display={"flex"}
@@ -77,6 +90,13 @@ const Navbar = () => {
               <Message sx={{ color: "textColor.main" }} />
             </Badge>
             <Badge
+              onClick={() => {
+                if (!open) {
+                  openDrawer();
+                } else {
+                  closeDrawer();
+                }
+              }}
               variant="dot"
               sx={{
                 "& .MuiBadge-badge": {
@@ -84,7 +104,9 @@ const Navbar = () => {
                 },
               }}
             >
-              <Notifications sx={{ color: "textColor.main" }} />
+              <Notifications
+                sx={{ color: "textColor.main", cursor: "pointer" }}
+              />
             </Badge>
           </Stack>
           <Stack

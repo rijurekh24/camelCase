@@ -9,13 +9,14 @@ import AuthContext from "./Context/AuthContext.jsx";
 import { ThemeProvider } from "@emotion/react";
 import "./assets/main.css";
 import { theme } from "./theme.jsx";
+import SocketContext from "./Context/SocketContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AuthContext>
+  <AuthContext>
+    <SocketContext>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    </AuthContext>
-  </React.StrictMode>
+    </SocketContext>
+  </AuthContext>
 );

@@ -50,13 +50,6 @@ const AuthView = () => {
 };
 
 const App = () => {
-  // const [loader, setLoader] = useState(false);
-  // useEffect(() => {
-  //   setLoader(true);
-  //   setTimeout(() => {
-  //     setLoader(false);
-  //   }, 1000);
-  // }, []);
   return (
     <Box>
       <BrowserRouter>
