@@ -15,6 +15,7 @@ const Navbar = () => {
   const location = useLocation();
   const ctx = useContext(authContext);
   const sCtx = useContext(socketContext);
+  const [count, setCount] = useState();
   const [open, setOpen] = useState(false);
   const openDrawer = () => {
     setOpen(true);
@@ -26,11 +27,6 @@ const Navbar = () => {
   useEffect(() => {
     ctx.fetchProfile();
   }, []);
-
-  // Calculate the count of unread notifications
-  const badgeCount = sCtx.notification.filter(
-    (notification) => !notification.read
-  ).length;
 
   return (
     <AppBar
@@ -95,7 +91,7 @@ const Navbar = () => {
               <Message sx={{ color: "textColor.main" }} />
             </Badge>
             <Badge
-              badgeContent={badgeCount} // Set badge content to the count of unread notifications
+              badgeContent={count}
               onClick={() => {
                 if (!open) {
                   openDrawer();
