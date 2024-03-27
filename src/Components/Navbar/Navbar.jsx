@@ -15,7 +15,6 @@ const Navbar = () => {
   const location = useLocation();
   const ctx = useContext(authContext);
   const sCtx = useContext(socketContext);
-  const [count, setCount] = useState();
   const [open, setOpen] = useState(false);
   const openDrawer = () => {
     sCtx.fetchNotification();

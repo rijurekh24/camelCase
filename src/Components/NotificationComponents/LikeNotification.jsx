@@ -40,7 +40,6 @@ const LikeNotification = ({ image, likedBy, date, id }) => {
           src={image}
         />
       </Box>
-      <Typography color={"#fff"}>{id}</Typography>
     </Box>
   );
 };

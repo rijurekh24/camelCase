@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { socket } from "../Utils/socket";
 import { authContext } from "./AuthContext";
 import Api from "../Utils/api";
+import { toast } from "react-toastify";
 
 const socketContext = createContext();
 
@@ -31,7 +32,11 @@ const SocketContext = ({ children }) => {
   useEffect(() => {
     if (ctx.user) {
       socket.emit("setup", { id: ctx.user._id });
-      // fetchNotification();
+      Api.post("/notifications/get-all/", {
+        user_id: ctx.user._id,
+      }).then((res) => {
+        setNotification(res.data.notifications);
+      });
     }
   }, [ctx.user]);
 
@@ -58,6 +63,11 @@ const SocketContext = ({ children }) => {
     socket.on("notification", (data) => {
       {
         setNotification((prev) => [data, ...prev]);
+        toast.success(data?.title, {
+          autoClose: 2000,
+          theme: "dark",
+          icon: "❤️",
+        });
       }
     });
 
