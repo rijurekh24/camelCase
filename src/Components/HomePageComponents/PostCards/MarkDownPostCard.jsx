@@ -302,7 +302,7 @@ const MarkDownPostCard = (props) => {
           sx={{
             maxHeight: "30rem",
             backgroundColor: "#1b2129",
-            width: "100%",
+            width: "100vw",
             overflowY: "scroll",
             "&::-webkit-scrollbar-track": {
               backgroundColor: "backgroundColor.main",
