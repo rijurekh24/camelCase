@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { socketContext } from "../../Context/SocketContext";
 
 export default function NotificationSideBar({ open, closeDrawer }) {
-  const ctx = useContext(socketContext);
+  const sCtx = useContext(socketContext);
 
   return (
     <Drawer
@@ -43,10 +43,10 @@ export default function NotificationSideBar({ open, closeDrawer }) {
 
         <Divider variant="middle" color="#333" flexItem />
 
-        {ctx.notification.map((item, index) => (
+        {sCtx.notification.map((item, index) => (
           <LikeNotification
             key={index}
-            image={item.data?.post.url}
+            image={item.data?.post?.url}
             likedBy={item?.data.liked_by}
             date={item?.date}
           />

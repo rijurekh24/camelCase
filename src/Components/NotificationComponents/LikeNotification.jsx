@@ -24,12 +24,12 @@ const LikeNotification = ({ image, likedBy, date }) => {
     <Box py={1} width={"100%"}>
       <Box display={"flex"} alignItems={"center"} gap={2} p={1}>
         <Avatar
-          src={likedBy.profile_pic}
+          src={likedBy?.profile_pic}
           sx={{ backgroundColor: "black", color: "primary.main" }}
         ></Avatar>
         <Box>
           <Typography color={"textColor.main"}>
-            {likedBy.username} liked your post
+            {likedBy?.username} liked your post
           </Typography>
           <Typography color={"textColor.secondary"}>
             {format(date, "custom")}

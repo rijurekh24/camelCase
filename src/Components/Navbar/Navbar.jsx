@@ -8,14 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../Context/AuthContext";
 import NotificationSideBar from "../NotificationComponents/NotificationSideBar";
+import { socketContext } from "../../Context/SocketContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const ctx = useContext(authContext);
-
+  const sCtx = useContext(socketContext);
   const [open, setOpen] = useState(false);
-
   const openDrawer = () => {
     setOpen(true);
   };
@@ -26,6 +26,11 @@ const Navbar = () => {
   useEffect(() => {
     ctx.fetchProfile();
   }, []);
+
+  // Calculate the count of unread notifications
+  const badgeCount = sCtx.notification.filter(
+    (notification) => !notification.read
+  ).length;
 
   return (
     <AppBar
@@ -90,6 +95,7 @@ const Navbar = () => {
               <Message sx={{ color: "textColor.main" }} />
             </Badge>
             <Badge
+              badgeContent={badgeCount} // Set badge content to the count of unread notifications
               onClick={() => {
                 if (!open) {
                   openDrawer();
@@ -97,7 +103,6 @@ const Navbar = () => {
                   closeDrawer();
                 }
               }}
-              variant="dot"
               sx={{
                 "& .MuiBadge-badge": {
                   backgroundColor: "primary.main",
