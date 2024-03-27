@@ -304,6 +304,7 @@ const MarkDownPostCard = (props) => {
             backgroundColor: "#1b2129",
             width: "100%",
             overflowY: "scroll",
+            objectFit: "contain",
             "&::-webkit-scrollbar-track": {
               backgroundColor: "backgroundColor.main",
             },
@@ -320,8 +321,9 @@ const MarkDownPostCard = (props) => {
             source={props.image}
             style={{
               height: "100%",
-              // width: "100%",
+              width: "100%",
               padding: 25,
+              objectFit: "contain",
             }}
           />
         </Box>

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Api from "../../Utils/api";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Typography, useMediaQuery } from "@mui/material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -55,6 +55,7 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function NavButton() {
+  const isMobile = useMediaQuery("(max-width:600px)");
   const ctx = useContext(authContext);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -77,7 +78,7 @@ export default function NavButton() {
         disableElevation
         disableRipple
         onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
+        endIcon={!isMobile && <KeyboardArrowDownIcon />}
         sx={{
           backgroundColor: {
             xs: "transparent",
