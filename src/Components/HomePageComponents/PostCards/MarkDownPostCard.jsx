@@ -191,7 +191,7 @@ const MarkDownPostCard = (props) => {
   }
 
   return (
-    <Card
+    <Box
       sx={{
         zIndex: "-1",
         backgroundColor: "backgroundColor.secondary",
@@ -304,7 +304,6 @@ const MarkDownPostCard = (props) => {
             backgroundColor: "#1b2129",
             width: "100%",
             overflowY: "scroll",
-            objectFit: "contain",
             "&::-webkit-scrollbar-track": {
               backgroundColor: "backgroundColor.main",
             },
@@ -322,8 +321,6 @@ const MarkDownPostCard = (props) => {
             style={{
               height: "100%",
               width: "100%",
-              padding: 25,
-              objectFit: "contain",
             }}
           />
         </Box>
@@ -497,7 +494,7 @@ const MarkDownPostCard = (props) => {
           </Box>
         </Box>
       </CardActions>
-    </Card>
+    </Box>
   );
 };
 

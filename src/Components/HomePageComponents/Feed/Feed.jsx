@@ -21,7 +21,7 @@ const Feed = () => {
         px: "4px",
       }}
     >
-      <Box width={{ xs: "100%", lg: "75%" }}>
+      <Box width={{ xs: "100dvw", lg: "35rem" }}>
         <Post />
         {ctx.postData.map((item, index) =>
           item.type === "Media" ? (
