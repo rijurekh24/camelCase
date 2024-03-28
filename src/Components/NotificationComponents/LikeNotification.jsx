@@ -22,7 +22,20 @@ const LikeNotification = ({ image, likedBy, date, id }) => {
   });
   return (
     <Box py={1} width={"100%"}>
-      <Box display={"flex"} alignItems={"center"} gap={2} p={1}>
+      <Box
+        display={"flex"}
+        alignItems={"center"}
+        gap={2}
+        px={2}
+        py={1}
+        sx={{
+          transition: "0.3s",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "backgroundColor.secondary",
+          },
+        }}
+      >
         <Avatar
           src={likedBy?.profile_pic}
           sx={{ backgroundColor: "black", color: "primary.main" }}

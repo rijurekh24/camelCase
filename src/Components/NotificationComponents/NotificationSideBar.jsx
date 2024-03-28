@@ -25,33 +25,48 @@ export default function NotificationSideBar({ open, closeDrawer }) {
     >
       <Box
         display={"flex"}
-        justifyContent={"center"}
-        p={1}
         flexDirection={"column"}
         alignItems={"center"}
+        overflow="auto"
       >
-        <Typography
+        <Box width={"100%"} textAlign={"center"}>
+          <Typography
+            sx={{
+              color: "textColor.main",
+              fontSize: "1.4rem",
+              fontWeight: 500,
+              p: 1,
+            }}
+          >
+            Notifications
+          </Typography>
+        </Box>
+        <Divider color="#333" flexItem />
+        <Box
+          overflow="auto"
           sx={{
-            color: "textColor.main",
-            fontSize: "1.4rem",
-            fontWeight: 500,
-            pb: 1,
+            width: "100%",
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "backgroundColor.main",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "primary.main",
+            },
+            "&::-webkit-scrollbar": {
+              width: "3px",
+            },
           }}
         >
-          Notifications
-        </Typography>
-
-        <Divider variant="middle" color="#333" flexItem />
-
-        {sCtx.notification.map((item, index) => (
-          <LikeNotification
-            key={index}
-            image={item.data?.post?.url}
-            likedBy={item?.data.liked_by}
-            date={item?.date}
-            id={item?._id}
-          />
-        ))}
+          {sCtx.notification.map((item, index) => (
+            <LikeNotification
+              key={index}
+              image={item.data?.post?.url}
+              likedBy={item?.data.liked_by}
+              date={item?.date}
+              id={item?._id}
+            />
+          ))}
+        </Box>
       </Box>
     </Drawer>
   );
