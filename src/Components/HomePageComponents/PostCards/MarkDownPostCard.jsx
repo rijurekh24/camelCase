@@ -301,7 +301,10 @@ const MarkDownPostCard = (props) => {
         <Box
           sx={{
             maxHeight: "30rem",
-            backgroundColor: "#1b2129",
+            display: "flex",
+            justifyContent: "center",
+
+            backgroundColor: "#0d1117",
             maxWidth: "100%",
             overflowY: "scroll",
             "&::-webkit-scrollbar-track": {
@@ -320,7 +323,8 @@ const MarkDownPostCard = (props) => {
             source={props.image}
             style={{
               height: "100%",
-              width: "100%",
+              width: "90%",
+              padding: 15,
             }}
           />
         </Box>
