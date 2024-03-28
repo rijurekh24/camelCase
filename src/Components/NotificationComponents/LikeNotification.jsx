@@ -1,6 +1,6 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format, register } from "timeago.js";
 const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
   const navigate = useNavigate();
@@ -23,49 +23,60 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
     ][index];
   });
   return (
-    <Box py={1} width={"100%"}>
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        gap={2}
-        px={2}
-        py={1}
+    <Box
+      display={"flex"}
+      alignItems={"center"}
+      gap={2}
+      py={1}
+      width={"100%"}
+      sx={{
+        transition: "0.3s",
+        cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "backgroundColor.secondary",
+        },
+      }}
+    >
+      <Avatar
+        src={likedBy?.profile_pic}
         sx={{
-          transition: "0.3s",
-          cursor: "pointer",
-          "&:hover": {
-            backgroundColor: "backgroundColor.secondary",
-          },
+          backgroundColor: "black",
+          color: "primary.main",
         }}
+      ></Avatar>
+      <Box>
+        <Typography color={"textColor.main"}>
+          <Typography
+            component={"span"}
+            mr={1}
+            fontWeight={600}
+            onClick={() => {
+              closeDrawer();
+              navigate(`/posts/${likedBy?.username}`);
+            }}
+          >
+            {likedBy?.username}
+          </Typography>
+          liked your post
+        </Typography>
+        <Typography color={"textColor.secondary"}>
+          {format(date, "custom")}
+        </Typography>
+      </Box>
+      <Link
+        to={`/posts/${id}`}
+        style={{ marginLeft: "auto" }}
+        onClick={closeDrawer}
       >
         <Avatar
-          src={likedBy?.profile_pic}
-          sx={{ backgroundColor: "black", color: "primary.main" }}
-        ></Avatar>
-        <Box>
-          <Typography color={"textColor.main"}>
-            <Typography
-              component={"span"}
-              mr={1}
-              fontWeight={600}
-              onClick={() => {
-                closeDrawer();
-                navigate(`/profile/${likedBy?.username}`);
-              }}
-            >
-              {likedBy?.username}
-            </Typography>
-            liked your post
-          </Typography>
-          <Typography color={"textColor.secondary"}>
-            {format(date, "custom")}
-          </Typography>
-        </Box>
-        <Avatar
-          sx={{ borderRadius: 0, width: 45, height: 45, ml: "auto" }}
+          sx={{
+            borderRadius: 0,
+            width: 45,
+            height: 45,
+          }}
           src={image}
         />
-      </Box>
+      </Link>
     </Box>
   );
 };

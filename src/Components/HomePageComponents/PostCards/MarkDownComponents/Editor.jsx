@@ -10,11 +10,15 @@ const Editor = ({ value, setValue }) => {
     <Box height={"100%"} width={"100%"} data-color-mode="dark">
       <MDEditor
         height={"100%"}
+        placeholder
         value={value}
         onChange={setValue}
         visibleDragbar={false}
         previewOptions={{
           rehypePlugins: [[rehypeSanitize]],
+        }}
+        textareaProps={{
+          placeholder: "Enter Markdown text",
         }}
       />
     </Box>

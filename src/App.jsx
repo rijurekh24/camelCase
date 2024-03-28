@@ -18,6 +18,7 @@ import { authContext } from "./Context/AuthContext";
 import EmailVer from "./Pages/EmailVer";
 import ProfilePage from "./Pages/ProfilePage";
 import Navbar from "./Components/Navbar/Navbar";
+import Posts from "./Components/Posts";
 
 const AuthView = () => {
   const ctx = useContext(authContext);
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/" element={<AuthView />}>
             <Route element={<Home />} index />
             <Route path="profile/:username" element={<ProfilePage />} />
+            <Route path="posts/:postId" element={<Posts />} />
           </Route>
 
           <Route path="signin" element={<Signin />} />
