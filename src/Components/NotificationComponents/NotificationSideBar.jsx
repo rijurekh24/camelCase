@@ -64,6 +64,7 @@ export default function NotificationSideBar({ open, closeDrawer }) {
               likedBy={item?.data.liked_by}
               date={item?.date}
               id={item?._id}
+              closeDrawer={closeDrawer}
             />
           ))}
         </Box>

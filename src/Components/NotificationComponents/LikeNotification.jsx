@@ -1,7 +1,9 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { format, register } from "timeago.js";
-const LikeNotification = ({ image, likedBy, date, id }) => {
+const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
+  const navigate = useNavigate();
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -42,7 +44,18 @@ const LikeNotification = ({ image, likedBy, date, id }) => {
         ></Avatar>
         <Box>
           <Typography color={"textColor.main"}>
-            {likedBy?.username} liked your post
+            <Typography
+              component={"span"}
+              mr={1}
+              fontWeight={600}
+              onClick={() => {
+                closeDrawer();
+                navigate(`/profile/${likedBy?.username}`);
+              }}
+            >
+              {likedBy?.username}
+            </Typography>
+            liked your post
           </Typography>
           <Typography color={"textColor.secondary"}>
             {format(date, "custom")}
