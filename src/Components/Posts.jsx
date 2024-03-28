@@ -25,7 +25,7 @@ const Posts = () => {
   return (
     <Box>
       <Typography color={"textColor.main"}>{postData._id}</Typography>
-      <Box height={400} width={400}>
+      <Box height={400} width={{ xs: "100dvw", md: 400 }}>
         <Box
           component={"img"}
           bgcolor={"backgroundColor.main"}
