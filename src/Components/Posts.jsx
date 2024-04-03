@@ -17,6 +17,7 @@ const Posts = () => {
   const { postId } = useParams();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({});
+  const [clicked, setClicked] = useState();
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -36,6 +37,21 @@ const Posts = () => {
     ][index];
   });
 
+  const handleLike = (e) => {
+    if (clicked) {
+      setClicked(false);
+      // setLikeCount((prev) => prev - 1);
+    } else {
+      setClicked(true);
+      //setLikeCount((prev) => prev + 1);
+    }
+
+    // Api.post("/posts/like", { post_id: props.postId })
+    //   .then((response) => {})
+    //   .catch((err) => {
+    //     log(err.response.data);
+    //   });
+  };
   const fetchSinglePost = () => {
     setLoading(true);
     Api.get(`/posts/get?id=${postId}`)
@@ -63,6 +79,7 @@ const Posts = () => {
       bgcolor={"backgroundColor.secondary"}
       padding={1}
       gap={1}
+      flexDirection={{ xs: "column", sm: "row" }}
     >
       <Box
         sx={{
@@ -118,21 +135,18 @@ const Posts = () => {
           <IconButton
             aria-label="add to favorites"
             disableRipple
-            //   onClick={handleLike}
+            onClick={handleLike}
           >
             <Typography
               color={"textColor.secondary"}
               fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
             >
-              <i className="fa-regular fa-heart"></i>
-              {/* <i
-                  className={` ${
-                    clicked ? " fa-solid" : "fa-regular"
-                  } fa-heart`}
-                  style={{
-                    color: clicked ? "#DC381F" : "#999",
-                  }}
-                ></i> */}
+              <i
+                className={` ${clicked ? " fa-solid" : "fa-regular"} fa-heart`}
+                style={{
+                  color: clicked ? "#DC381F" : "#999",
+                }}
+              ></i>
             </Typography>
             <Box display={{ xs: "none", sm: "block" }}>
               <Typography
