@@ -462,7 +462,7 @@ const MarkDownPostCard = (props) => {
             </Box>
 
             {/* comment box */}
-            <Box display={"flex"} flex={1}>
+            <Box display={"flex"} flex={1} gap={1}>
               {props.dp ? (
                 <Avatar
                   src={props.dp}
