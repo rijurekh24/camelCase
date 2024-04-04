@@ -52,6 +52,9 @@ const CommentBox = ({ postId, fetchComment }) => {
                   background: "transparent",
                   boxShadow: 0,
                 },
+                "&::placeholder": {
+                  pl: 6,
+                },
               }}
             />
           </InputAdornment>

@@ -6,18 +6,22 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Api from "../Utils/api";
 import CommentBox from "./HomePageComponents/PostCards/CommentBox";
 import Comments from "./HomePageComponents/Modals/Comments";
 import { format, register } from "timeago.js";
+import { authContext } from "../Context/AuthContext";
 
 const Posts = () => {
   const { postId } = useParams();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({});
   const [clicked, setClicked] = useState();
+  const [likeCount, setLikeCount] = useState(postData.likes?.length);
+  const navigate = useNavigate();
+  const ctx = useContext(authContext);
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -40,24 +44,26 @@ const Posts = () => {
   const handleLike = (e) => {
     if (clicked) {
       setClicked(false);
-      // setLikeCount((prev) => prev - 1);
+      setLikeCount((prev) => prev - 1);
     } else {
       setClicked(true);
-      //setLikeCount((prev) => prev + 1);
+      setLikeCount((prev) => prev + 1);
     }
 
-    // Api.post("/posts/like", { post_id: props.postId })
-    //   .then((response) => {})
-    //   .catch((err) => {
-    //     log(err.response.data);
-    //   });
+    Api.post("/posts/like", { post_id: postData?._id })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        log(err.response.data);
+      });
   };
   const fetchSinglePost = () => {
     setLoading(true);
     Api.get(`/posts/get?id=${postId}`)
       .then((res) => {
         setPostData(res.data.post);
-        // console.log(res.data.post);
+        console.log(res.data.post);
         setLoading(false);
       })
       .catch((err) => {
@@ -70,6 +76,15 @@ const Posts = () => {
       fetchSinglePost();
     }
   }, [postId]);
+
+  // useEffect(() => {
+  //   if (postData.likes.some((e) => e.user._id === ctx.user._id)) {
+  //     setClicked(true);
+  //   } else {
+  //     setClicked(false);
+  //   }
+  // }, []);
+
   return (
     <Box
       sx={{ height: "calc(100dvh - 5rem)" }}
@@ -112,10 +127,15 @@ const Posts = () => {
         }}
       >
         <Box display="flex" gap={1} alignItems={"center"} mb={1}>
-          <Avatar></Avatar>
+          <Avatar src={postData.user?.profile_pic} />
           <Box>
-            <Typography color={"textColor.main"} fontSize={"1.2rem"}>
-              Rijurekh Ghosh
+            <Typography
+              color={"textColor.main"}
+              fontSize={"1.2rem"}
+              sx={{ cursor: "pointer" }}
+              onClick={() => navigate(`/profile/${postData.user?.username}`)}
+            >
+              {postData.user?.first_name} {postData.user?.last_name}
             </Typography>
             <Typography
               sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}

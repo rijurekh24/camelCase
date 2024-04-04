@@ -39,7 +39,10 @@ const SocketContext = ({ children }) => {
       user_id: ctx.user._id,
     }).then((res) => {
       setNotification(res.data.notifications);
-      localStorage.setItem("lnid", res.data.notifications[0]?._id);
+      localStorage.setItem(
+        `lnid_${ctx.user._id}`,
+        res.data.notifications[0]?._id
+      );
     });
   };
 
@@ -55,7 +58,7 @@ const SocketContext = ({ children }) => {
   }, [ctx.user]);
 
   useEffect(() => {
-    const lnid = localStorage.getItem("lnid") || 0;
+    const lnid = localStorage.getItem(`lnid_${ctx.user?._id}`) || 0;
     let val = 0;
 
     for (let i = 0; i < notification.length; i++) {
