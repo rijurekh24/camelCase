@@ -266,7 +266,7 @@ const MarkDownPostCard = (props) => {
             variant="body1"
             color="textColor.secondary"
             onClick={() => navigate(`/profile/${props.username}`)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer", width: 0 }}
           >
             @{props.username}
           </Typography>

@@ -265,8 +265,9 @@ const MediaPostCard = (props) => {
           <Typography
             variant="body1"
             color="textColor.secondary"
+            bgcolor={"red"}
             onClick={() => navigate(`/profile/${props.username}`)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer", width: 0 }}
           >
             @{props.username}
           </Typography>

@@ -52,7 +52,7 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
             fontWeight={600}
             onClick={() => {
               closeDrawer();
-              navigate(`/posts/${likedBy?.username}`);
+              navigate(`/profile/${likedBy?.username}`);
             }}
           >
             {likedBy?.username}

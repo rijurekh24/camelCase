@@ -52,7 +52,7 @@ const Posts = () => {
 
     Api.post("/posts/like", { post_id: postData?._id })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => {
         log(err.response.data);
@@ -63,7 +63,7 @@ const Posts = () => {
     Api.get(`/posts/get?id=${postId}`)
       .then((res) => {
         setPostData(res.data.post);
-        console.log(res.data.post);
+        // console.log(res.data.post);
         setLoading(false);
       })
       .catch((err) => {
@@ -77,13 +77,13 @@ const Posts = () => {
     }
   }, [postId]);
 
-  // useEffect(() => {
-  //   if (postData.likes.some((e) => e.user._id === ctx.user._id)) {
-  //     setClicked(true);
-  //   } else {
-  //     setClicked(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (postData && postData.likes?.some((e) => e._id === ctx.user._id)) {
+      setClicked(true);
+    } else {
+      setClicked(false);
+    }
+  }, [postData]);
 
   return (
     <Box
