@@ -27,8 +27,8 @@ const CommentBox = ({ postId, fetchComment }) => {
       value={comment}
       onChange={handleInputChange}
       sx={{
-        // ml: 1,
-        p: 1,
+        py: 1,
+        px: 2,
         color: "textColor.secondary",
         width: "100%",
         backgroundColor: "backgroundColor.main",

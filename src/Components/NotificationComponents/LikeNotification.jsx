@@ -27,6 +27,7 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
     <Box
       display={"flex"}
       alignItems={"center"}
+      justifyContent={"space-between"}
       gap={2}
       py={1}
       width={"100%"}
@@ -38,57 +39,57 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
         },
       }}
     >
-      <Avatar
-        src={likedBy?.profile_pic}
-        sx={{
-          backgroundColor: "black",
-          color: "primary.main",
-        }}
-      ></Avatar>
-      <Box>
-        <Typography color={"textColor.main"}>
-          <Typography
-            component={"span"}
-            mr={1}
-            fontWeight={600}
-            onClick={() => {
-              closeDrawer();
-              navigate(`/profile/${likedBy?.username}`);
-            }}
-          >
-            {likedBy?.username}
+      <Box display={"flex"} alignItems={"center"} gap={1} pl={1}>
+        <Avatar
+          src={likedBy?.profile_pic}
+          sx={{
+            backgroundColor: "black",
+            color: "primary.main",
+          }}
+        ></Avatar>
+        <Box>
+          <Typography color={"textColor.main"}>
+            <Typography
+              component={"span"}
+              mr={1}
+              fontWeight={600}
+              onClick={() => {
+                closeDrawer();
+                navigate(`/profile/${likedBy?.username}`);
+              }}
+            >
+              {likedBy?.username}
+            </Typography>
+            liked your post
           </Typography>
-          liked your post
-        </Typography>
-        <Typography color={"textColor.secondary"}>
-          {format(date, "custom")}
-        </Typography>
+          <Typography color={"textColor.secondary"}>
+            {format(date, "custom")}
+          </Typography>
+        </Box>
       </Box>
-      <Link
-        to={`/posts/${id}`}
-        style={{ marginLeft: "auto" }}
-        onClick={closeDrawer}
-      >
-        {image.includes("cloudinary") ? (
-          <Avatar
-            sx={{
-              borderRadius: 0,
-              width: 45,
-              height: 45,
-            }}
-            src={image}
-          />
-        ) : (
-          <Avatar
-            sx={{
-              borderRadius: 0,
-              width: 45,
-              height: 45,
-            }}
-            src={Markdownimage}
-          />
-        )}
-      </Link>
+      <Box pr={1}>
+        <Link to={`/posts/${id}`} onClick={closeDrawer}>
+          {image.includes("cloudinary") ? (
+            <Avatar
+              sx={{
+                borderRadius: 0,
+                width: 45,
+                height: 45,
+              }}
+              src={image}
+            />
+          ) : (
+            <Avatar
+              sx={{
+                borderRadius: 0,
+                width: 45,
+                height: 45,
+              }}
+              src={Markdownimage}
+            />
+          )}
+        </Link>
+      </Box>
     </Box>
   );
 };

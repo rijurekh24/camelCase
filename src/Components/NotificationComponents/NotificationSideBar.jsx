@@ -18,7 +18,7 @@ export default function NotificationSideBar({ open, closeDrawer }) {
       sx={{ zIndex: "10000" }}
       PaperProps={{
         sx: {
-          px: 2,
+          // px: 2,
           width: { xs: 270, md: 400 },
           backgroundColor: "backgroundColor.main",
         },
