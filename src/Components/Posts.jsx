@@ -13,6 +13,7 @@ import CommentBox from "./HomePageComponents/PostCards/CommentBox";
 import Comments from "./HomePageComponents/Modals/Comments";
 import { format, register } from "timeago.js";
 import { authContext } from "../Context/AuthContext";
+import MDEditor from "@uiw/react-md-editor";
 
 const Posts = () => {
   const { postId } = useParams();
@@ -63,7 +64,7 @@ const Posts = () => {
     Api.get(`/posts/get?id=${postId}`)
       .then((res) => {
         setPostData(res.data.post);
-        // console.log(res.data.post);
+        console.log(res.data.post);
         setLoading(false);
       })
       .catch((err) => {
@@ -96,27 +97,41 @@ const Posts = () => {
       gap={1}
       flexDirection={{ xs: "column", sm: "row" }}
     >
-      <Box
-        sx={{
-          width: "100%",
-          height: "100%",
-          bgcolor: "#000",
-        }}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        flex={1}
-      >
+      {postData.type === "Media" ? (
         <Box
-          component={"img"}
-          src={postData.img}
           sx={{
             width: "100%",
-            objectFit: "contain",
             height: "100%",
+            bgcolor: "#000",
           }}
-        ></Box>
-      </Box>
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          flex={1}
+        >
+          <Box
+            component={"img"}
+            src={postData.img}
+            sx={{
+              width: "100%",
+              objectFit: "contain",
+              height: "100%",
+            }}
+          />
+        </Box>
+      ) : (
+        <Box display={"flex"} flex={1} height={"100%"} maxWidth={"100%"}>
+          <MDEditor.Markdown
+            source={postData.img}
+            style={{
+              maxHeight: "100%",
+              width: "100%",
+              padding: 10,
+              overflowY: "scroll",
+            }}
+          />
+        </Box>
+      )}
 
       <Box
         display={"flex"}

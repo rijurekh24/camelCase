@@ -2,6 +2,7 @@ import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { format, register } from "timeago.js";
+import Markdownimage from "../../assets/Images/MD.jpg";
 const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
   const navigate = useNavigate();
   register("custom", (number, index) => {
@@ -68,14 +69,25 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
         style={{ marginLeft: "auto" }}
         onClick={closeDrawer}
       >
-        <Avatar
-          sx={{
-            borderRadius: 0,
-            width: 45,
-            height: 45,
-          }}
-          src={image}
-        />
+        {image.includes("cloudinary") ? (
+          <Avatar
+            sx={{
+              borderRadius: 0,
+              width: 45,
+              height: 45,
+            }}
+            src={image}
+          />
+        ) : (
+          <Avatar
+            sx={{
+              borderRadius: 0,
+              width: 45,
+              height: 45,
+            }}
+            src={Markdownimage}
+          />
+        )}
       </Link>
     </Box>
   );

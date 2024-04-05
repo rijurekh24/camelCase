@@ -9,7 +9,7 @@ import { socketContext } from "../../Context/SocketContext";
 
 export default function NotificationSideBar({ open, closeDrawer }) {
   const sCtx = useContext(socketContext);
-
+  console.log(sCtx.notification);
   return (
     <Drawer
       anchor="right"
@@ -18,6 +18,7 @@ export default function NotificationSideBar({ open, closeDrawer }) {
       sx={{ zIndex: "10000" }}
       PaperProps={{
         sx: {
+          px: 2,
           width: { xs: 270, md: 400 },
           backgroundColor: "backgroundColor.main",
         },
