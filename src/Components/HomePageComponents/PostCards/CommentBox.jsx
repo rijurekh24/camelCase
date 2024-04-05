@@ -1,11 +1,10 @@
 import { Button, InputAdornment, InputBase } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Api from "../../../Utils/api";
 
-const CommentBox = ({ postId, fetchComment }) => {
+const CommentBox = ({ postId, fetchComment, inputRef }) => {
   const [comment, setComment] = useState("");
-
   const handleInputChange = (e) => {
     setComment(e.target.value);
   };
@@ -26,6 +25,7 @@ const CommentBox = ({ postId, fetchComment }) => {
       placeholder="add a comment"
       value={comment}
       onChange={handleInputChange}
+      inputRef={inputRef}
       sx={{
         py: 1,
         px: 2,

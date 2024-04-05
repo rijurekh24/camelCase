@@ -69,7 +69,7 @@ const LikeNotification = ({ image, likedBy, date, id, closeDrawer }) => {
       </Box>
       <Box pr={1}>
         <Link to={`/posts/${id}`} onClick={closeDrawer}>
-          {image.includes("cloudinary") ? (
+          {image?.includes("cloudinary") ? (
             <Avatar
               sx={{
                 borderRadius: 0,

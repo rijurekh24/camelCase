@@ -6,7 +6,7 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Api from "../Utils/api";
 import CommentBox from "./HomePageComponents/PostCards/CommentBox";
@@ -23,6 +23,8 @@ const Posts = () => {
   const [likeCount, setLikeCount] = useState(postData.likes?.length);
   const navigate = useNavigate();
   const ctx = useContext(authContext);
+  const inputRef = useRef(null);
+
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -59,12 +61,18 @@ const Posts = () => {
         log(err.response.data);
       });
   };
+
+  const handleCommentFocus = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   const fetchSinglePost = () => {
     setLoading(true);
     Api.get(`/posts/get?id=${postId}`)
       .then((res) => {
         setPostData(res.data.post);
-        console.log(res.data.post);
         setLoading(false);
       })
       .catch((err) => {
@@ -128,6 +136,8 @@ const Posts = () => {
               width: "100%",
               padding: 10,
               overflowY: "scroll",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#76ABAE #0d1117",
             }}
           />
         </Box>
@@ -195,7 +205,11 @@ const Posts = () => {
               </Typography>
             </Box>
           </IconButton>
-          <IconButton aria-label="comment" disableRipple>
+          <IconButton
+            aria-label="comment"
+            disableRipple
+            onClick={handleCommentFocus}
+          >
             <Typography
               color={"textColor.secondary"}
               fontSize={{ xs: "1.5rem", sm: "1.3rem" }}
@@ -310,7 +324,11 @@ const Posts = () => {
         </Box>
         <Box>
           {/* <CommentBox postId={postId} fetchComment={fetchComment} /> */}
-          <CommentBox postId={postData._id} fetchComment={fetchSinglePost} />
+          <CommentBox
+            postId={postData._id}
+            fetchComment={fetchSinglePost}
+            inputRef={inputRef}
+          />
         </Box>
       </Box>
     </Box>
