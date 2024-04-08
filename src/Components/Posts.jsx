@@ -345,7 +345,7 @@ const Posts = () => {
             </>
           )}
         </Box>
-        <Box>
+        <Box mt={1}>
           {/* <CommentBox postId={postId} fetchComment={fetchComment} /> */}
           <CommentBox
             postId={postData._id}
