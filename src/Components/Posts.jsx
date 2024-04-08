@@ -305,7 +305,30 @@ const Posts = () => {
                       name={item.commentator.first_name}
                       date={item.date}
                       dp={item.commentator.profile_pic}
+                      commentId={item._id}
+                      postId={postId}
+                      fetchComment={fetchSinglePost}
                     />
+                    <Box
+                      sx={{
+                        pl: { xs: 3, md: 4 },
+                        borderLeft: "1px solid #eee3",
+                      }}
+                    >
+                      {item.replies.map((inItem, idx) => (
+                        <Comments
+                          key={idx}
+                          comment={inItem.comment}
+                          username={inItem.commentator.username}
+                          name={inItem.commentator.first_name}
+                          date={inItem.date}
+                          dp={inItem.commentator.profile_pic}
+                          commentId={item._id}
+                          postId={postId}
+                          fetchComment={fetchSinglePost}
+                        />
+                      ))}
+                    </Box>
                   </Box>
                 ))
               ) : (
