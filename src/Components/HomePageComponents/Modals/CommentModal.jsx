@@ -25,7 +25,6 @@ const CommentModal = ({ open, onClose, postId }) => {
     setLoading(true);
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setComments(res.data.post.comments);
-      console.log(res.data.post.comments);
       setImg(res.data.post.img);
       setPost(res.data.post);
       setLoading(false);
