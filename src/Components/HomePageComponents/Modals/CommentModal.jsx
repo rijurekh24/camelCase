@@ -36,7 +36,6 @@ const CommentModal = ({ open, onClose, postId }) => {
     if (open) {
       fetchComment();
     } else {
-      // Reset expandedReplies state when the modal is closed
       setExpandedReplies({});
     }
   }, [open, postId]);

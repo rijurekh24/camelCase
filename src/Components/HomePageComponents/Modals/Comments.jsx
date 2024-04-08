@@ -90,7 +90,7 @@ const Comments = ({
                 onClick={() => navigate(`/profile/${username}`)}
                 component={"span"}
               >
-                @{username}
+                {username}
               </Typography>
               <Typography
                 component={"span"}

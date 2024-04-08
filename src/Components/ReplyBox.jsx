@@ -11,13 +11,13 @@ const ReplyBox = ({ postId, fetchComment, commentId, username }) => {
   };
 
   const handleClick = () => {
-    const trimmedComment = comment.trim().replace(`@${username}`, "");
-    if (!trimmedComment) {
-      return;
-    }
+    // const trimmedComment = comment.trim().replace(`@${username}`, "");
+    // if (!trimmedComment) {
+    //   return;
+    // }
     Api.post("/posts/add-comment", {
       post_id: postId,
-      comment: trimmedComment,
+      comment: comment,
       isReply: true,
       replied_to: commentId,
     })
