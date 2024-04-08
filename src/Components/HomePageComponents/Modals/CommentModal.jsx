@@ -181,7 +181,7 @@ const CommentModal = ({ open, onClose, postId }) => {
                               name={inItem.commentator.first_name}
                               date={inItem.date}
                               dp={inItem.commentator.profile_pic}
-                              commentId={inItem._id}
+                              commentId={item._id}
                               postId={postId}
                               fetchComment={fetchComment}
                             />
