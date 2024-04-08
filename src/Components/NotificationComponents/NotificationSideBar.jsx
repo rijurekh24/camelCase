@@ -9,7 +9,7 @@ import { socketContext } from "../../Context/SocketContext";
 
 export default function NotificationSideBar({ open, closeDrawer }) {
   const sCtx = useContext(socketContext);
-  console.log(sCtx.notification);
+  // console.log(sCtx.notification);
   return (
     <Drawer
       anchor="right"

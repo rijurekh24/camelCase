@@ -25,6 +25,7 @@ const CommentModal = ({ open, onClose, postId }) => {
     setLoading(true);
     Api.get(`/posts/get?id=${postId}`).then((res) => {
       setComments(res.data.post.comments);
+      console.log(res.data.post.comments);
       setImg(res.data.post.img);
       setPost(res.data.post);
       setLoading(false);
@@ -34,8 +35,20 @@ const CommentModal = ({ open, onClose, postId }) => {
   useEffect(() => {
     if (open) {
       fetchComment();
+    } else {
+      // Reset expandedReplies state when the modal is closed
+      setExpandedReplies({});
     }
   }, [open, postId]);
+
+  const [expandedReplies, setExpandedReplies] = useState({});
+
+  const handleToggleReplies = (commentId) => {
+    setExpandedReplies({
+      ...expandedReplies,
+      [commentId]: !expandedReplies[commentId],
+    });
+  };
 
   return (
     <Dialog
@@ -148,6 +161,9 @@ const CommentModal = ({ open, onClose, postId }) => {
                         name={item.commentator.first_name}
                         date={item.date}
                         dp={item.commentator.profile_pic}
+                        commentId={item._id}
+                        postId={postId}
+                        fetchComment={fetchComment}
                       />
                       <Box
                         sx={{
@@ -155,16 +171,36 @@ const CommentModal = ({ open, onClose, postId }) => {
                           borderLeft: "1px solid #eee3",
                         }}
                       >
-                        {item.replies.map((inItem, idx) => (
-                          <Comments
-                            key={idx}
-                            comment={inItem.comment}
-                            username={inItem.commentator.username}
-                            name={inItem.commentator.first_name}
-                            date={inItem.date}
-                            dp={inItem.commentator.profile_pic}
-                          />
-                        ))}
+                        {item.replies
+                          .slice(0, expandedReplies[item._id] ? undefined : 3)
+                          .map((inItem, idx) => (
+                            <Comments
+                              key={idx}
+                              comment={inItem.comment}
+                              username={inItem.commentator.username}
+                              name={inItem.commentator.first_name}
+                              date={inItem.date}
+                              dp={inItem.commentator.profile_pic}
+                              commentId={inItem._id}
+                              postId={postId}
+                              fetchComment={fetchComment}
+                            />
+                          ))}
+                        {item.replies.length > 3 &&
+                          !expandedReplies[item._id] && (
+                            <Typography
+                              variant="button"
+                              color="primary"
+                              sx={{
+                                cursor: "pointer",
+                                pl: 1,
+                                fontSize: "1.2rem",
+                              }}
+                              onClick={() => handleToggleReplies(item._id)}
+                            >
+                              ...
+                            </Typography>
+                          )}
                       </Box>
                     </Box>
                   ))

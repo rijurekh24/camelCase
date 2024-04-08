@@ -1,9 +1,22 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { format, register } from "timeago.js";
 import { useNavigate } from "react-router-dom";
+import { MentionsInput, Mention } from "react-mentions";
+import { useState } from "react";
+import ReplyBox from "../../ReplyBox";
 
-const Comments = ({ username, comment, name, date, dp }) => {
+const Comments = ({
+  username,
+  comment,
+  name,
+  date,
+  dp,
+  commentId,
+  postId,
+  fetchComment,
+}) => {
   const navigate = useNavigate();
+  const [hide, setHide] = useState(false);
   register("custom", (number, index) => {
     return [
       ["just now", "right now"],
@@ -22,72 +35,108 @@ const Comments = ({ username, comment, name, date, dp }) => {
       ["%syr", "in %syr"],
     ][index];
   });
+  const showReplyBox = () => {
+    setHide(!hide);
+  };
 
   return (
-    <Box display={"flex"} gap={1} alignItems={"center"} mb={1}>
-      <Box>
-        {dp ? (
-          <Avatar
-            src={dp}
-            sx={{
-              width: 30,
-              height: 30,
-              bgColor: "grey",
-              border: "2px solid",
-              borderColor: "borderColor.main",
-              borderRadius: "50%",
-              color: "primary.main",
-              backgroundColor: "#111",
-              fontSize: "0.9rem",
-            }}
-          ></Avatar>
-        ) : (
-          <Avatar
-            sx={{
-              width: 30,
-              height: 30,
-              bgColor: "grey",
-              border: "2px solid",
-              borderColor: "borderColor.main",
-              borderRadius: "50%",
-              color: "primary.main",
-              backgroundColor: "#111",
-              fontSize: "0.9rem",
-            }}
-          >
-            {name ? name.charAt(0) : ""}
-          </Avatar>
-        )}
-      </Box>
-      <Box>
-        <Box display={"flex"} gap={1}>
-          <Typography
-            sx={{
-              color: "textColor.secondary",
-              wordBreak: "break-all",
-              fontSize: "0.9rem",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate(`/profile/${username}`)}
-          >
-            @{username}
-            <Typography
-              component={"span"}
-              sx={{ color: "textColor.main", pl: 1, fontSize: "0.9rem" }}
+    <Box>
+      <Box display={"flex"} gap={1} alignItems={"center"} mb={1}>
+        <Box>
+          {dp ? (
+            <Avatar
+              src={dp}
+              sx={{
+                width: 30,
+                height: 30,
+                bgColor: "grey",
+                border: "2px solid",
+                borderColor: "borderColor.main",
+                borderRadius: "50%",
+                color: "primary.main",
+                backgroundColor: "#111",
+                fontSize: "0.9rem",
+              }}
+            ></Avatar>
+          ) : (
+            <Avatar
+              sx={{
+                width: 30,
+                height: 30,
+                bgColor: "grey",
+                border: "2px solid",
+                borderColor: "borderColor.main",
+                borderRadius: "50%",
+                color: "primary.main",
+                backgroundColor: "#111",
+                fontSize: "0.9rem",
+              }}
             >
-              {comment}
+              {name ? name.charAt(0) : ""}
+            </Avatar>
+          )}
+        </Box>
+        <Box>
+          <Box display={"flex"} gap={1}>
+            <Typography
+              sx={{
+                color: "textColor.secondary",
+                wordBreak: "break-all",
+                fontSize: "0.9rem",
+              }}
+            >
+              <Typography
+                sx={{ cursor: "pointer" }}
+                onClick={() => navigate(`/profile/${username}`)}
+                component={"span"}
+              >
+                @{username}
+              </Typography>
+              <Typography
+                component={"span"}
+                sx={{ color: "textColor.main", pl: 1, fontSize: "0.9rem" }}
+              >
+                {comment}
+              </Typography>
             </Typography>
-          </Typography>
-        </Box>
+          </Box>
 
-        <Box display={"flex"} gap={2} sx={{ wordBreak: "break-all" }}>
-          <Typography sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}>
-            {format(date, "custom")}
-          </Typography>
-          <Typography sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}>
-            reply
-          </Typography>
+          <Box display={"flex"} gap={2} sx={{ wordBreak: "break-all" }}>
+            <Typography
+              sx={{ color: "textColor.secondary", fontSize: "0.7rem" }}
+            >
+              {format(date, "custom")}
+            </Typography>
+            <Box>
+              <Typography
+                sx={{
+                  color: "textColor.secondary",
+                  fontSize: "0.7rem",
+                  cursor: "pointer",
+                }}
+                onClick={showReplyBox}
+              >
+                reply
+              </Typography>
+            </Box>
+          </Box>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          pl: { xs: 3, md: 4 },
+          borderLeft: "1px solid #eee3",
+        }}
+      >
+        {hide && (
+          <ReplyBox
+            postId={postId}
+            commentId={commentId}
+            isReply={true}
+            fetchComment={fetchComment}
+            username={username}
+          />
+        )}
       </Box>
     </Box>
   );

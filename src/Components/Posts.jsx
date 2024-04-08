@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Api from "../Utils/api";
 import CommentBox from "./HomePageComponents/PostCards/CommentBox";
 import Comments from "./HomePageComponents/Modals/Comments";
