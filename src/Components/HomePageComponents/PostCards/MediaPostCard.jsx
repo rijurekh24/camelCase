@@ -297,12 +297,16 @@ const MediaPostCard = (props) => {
       </CardContent>
       {props.image && (
         <Box
+          onClick={() => {
+            navigate(`/posts/${props.postId}`);
+          }}
           sx={{
             height: "23rem",
             backgroundColor: "#1b2129",
             display: "flex",
             justifyContent: "center",
             width: "100%",
+            cursor: "pointer",
           }}
         >
           {props.image.match(/\.(jpeg|jpg|gif|png)$/) != null ? (

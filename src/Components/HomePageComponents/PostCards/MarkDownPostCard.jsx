@@ -299,7 +299,11 @@ const MarkDownPostCard = (props) => {
 
       {props.image && (
         <Box
+          // onClick={() => {
+          //   navigate(`/posts/${props.postId}`);
+          // }}
           sx={{
+            cursor: "pointer",
             maxHeight: "30rem",
             display: "flex",
             justifyContent: "center",
