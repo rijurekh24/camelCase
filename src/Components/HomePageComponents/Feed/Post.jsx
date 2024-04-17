@@ -1,10 +1,17 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Button, Divider, IconButton, Typography } from "@mui/material";
-import CodeIcon from "@mui/icons-material/Code";
+import {
+  Button,
+  Divider,
+  IconButton,
+  Typography,
+  Popover,
+  Avatar,
+  Box,
+  TextField,
+} from "@mui/material";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PollIcon from "@mui/icons-material/Poll";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { Avatar, Box, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import PostModal from "./PostModal";
 import MarkDownModal from "../PostCards/MarkDownComponents/MarkDownModal";
@@ -12,11 +19,19 @@ import { authContext } from "../../../Context/AuthContext";
 import Api from "../../../Utils/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EmojiPicker from "emoji-picker-react";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 
 const Post = () => {
   const [textInput, setTextInput] = useState("");
   const ctx = useContext(authContext);
   const toastId = useRef(null);
+
+  // emoji box open
+  const [openEmojiBox, setOpenEmojiBox] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  //media upload modal
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -25,6 +40,7 @@ const Post = () => {
     setModalOpen(false);
   };
 
+  //markdown upload modal
   const [mdModalOpen, setMdModalOpen] = useState(false);
   const openMdModal = () => {
     setMdModalOpen(true);
@@ -35,6 +51,10 @@ const Post = () => {
 
   const handleInputChange = (event) => {
     setTextInput(event.target.value);
+  };
+  const handleEmojiClick = (emoji) => {
+    const emojiString = emoji.emoji;
+    setTextInput(textInput + emojiString);
   };
 
   const handleSend = () => {
@@ -82,9 +102,35 @@ const Post = () => {
         marginTop: "2%",
       }}
     >
+      <Popover
+        open={openEmojiBox}
+        anchorEl={anchorEl}
+        onClose={() => setOpenEmojiBox(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <EmojiPicker
+          onEmojiClick={handleEmojiClick}
+          height={350}
+          emojiStyle={"facebook"}
+        />
+      </Popover>
       <PostModal open={modalOpen} handleClose={closeModal} />
       <MarkDownModal open={mdModalOpen} handleClose={closeMdModal} />
-      <Box display={"flex"} width={"100%"} gap={2} mb={2}>
+      <Box
+        display={"flex"}
+        width={"100%"}
+        gap={2}
+        mb={2}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
         {ctx.profile.profile_pic ? (
           <Avatar
             src={ctx.profile.profile_pic}
@@ -142,11 +188,42 @@ const Post = () => {
               fontSize: "1rem",
             },
             disableUnderline: true,
-            endAdornment: !isTextInputEmptyOrSpaces && (
-              <Send
-                sx={{ color: "textColor.main", cursor: "pointer" }}
-                onClick={handleSend}
-              />
+            endAdornment: (
+              <>
+                {!isTextInputEmptyOrSpaces && (
+                  <Send
+                    sx={{
+                      color: "textColor.secondary",
+                      cursor: "pointer",
+                      mr: 1,
+                    }}
+                    onClick={handleSend}
+                  />
+                )}
+                <Button
+                  onClick={(e) => {
+                    setAnchorEl(e.currentTarget);
+                    setOpenEmojiBox(!openEmojiBox);
+                  }}
+                  sx={{
+                    minHeight: 0,
+                    minWidth: 0,
+                    padding: 0,
+                    fontSize: "0.9rem",
+                    ml: 1,
+                    textTransform: "none",
+                    background: "transparent",
+                    boxShadow: 0,
+                    color: "textColor.secondary",
+                    ":hover": {
+                      background: "transparent",
+                      boxShadow: 0,
+                    },
+                  }}
+                >
+                  <EmojiEmotionsIcon />
+                </Button>
+              </>
             ),
           }}
         />

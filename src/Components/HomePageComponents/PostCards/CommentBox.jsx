@@ -108,7 +108,7 @@ const CommentBox = ({ postId, fetchComment, inputRef }) => {
         onClose={() => setOpen(false)}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "left",
+          horizontal: "right",
         }}
         transformOrigin={{
           vertical: "center",
