@@ -129,13 +129,15 @@ const Comments = ({
         }}
       >
         {hide && (
-          <ReplyBox
-            postId={postId}
-            commentId={commentId}
-            isReply={true}
-            fetchComment={fetchComment}
-            username={username}
-          />
+          <>
+            <ReplyBox
+              postId={postId}
+              commentId={commentId}
+              isReply={true}
+              fetchComment={fetchComment}
+              username={username}
+            />
+          </>
         )}
       </Box>
     </Box>

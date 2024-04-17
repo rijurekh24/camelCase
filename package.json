@@ -18,6 +18,7 @@
     "@mui/material": "^5.15.11",
     "@uiw/react-md-editor": "^4.0.4",
     "axios": "^1.6.7",
+    "emoji-picker-react": "^4.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^5.0.5",
