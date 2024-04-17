@@ -110,7 +110,7 @@ const ReplyBox = ({ postId, fetchComment, commentId, username }) => {
         onClose={() => setOpen(false)}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "left",
+          horizontal: "right",
         }}
         transformOrigin={{
           vertical: "center",
@@ -119,8 +119,14 @@ const ReplyBox = ({ postId, fetchComment, commentId, username }) => {
       >
         <EmojiPicker
           onEmojiClick={handleEmojiClick}
+          skinTonesDisabled={true}
+          searchDisabled={true}
           height={350}
+          suggestedEmojisMode={"recent"}
           emojiStyle={"facebook"}
+          style={{
+            "--epr-emoji-size": "25px",
+          }}
         />
       </Popover>
     </>

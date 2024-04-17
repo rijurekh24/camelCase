@@ -117,8 +117,14 @@ const Post = () => {
       >
         <EmojiPicker
           onEmojiClick={handleEmojiClick}
+          skinTonesDisabled={true}
+          searchDisabled={true}
           height={350}
+          suggestedEmojisMode={"recent"}
           emojiStyle={"facebook"}
+          style={{
+            "--epr-emoji-size": "25px",
+          }}
         />
       </Popover>
       <PostModal open={modalOpen} handleClose={closeModal} />

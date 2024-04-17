@@ -117,8 +117,14 @@ const CommentBox = ({ postId, fetchComment, inputRef }) => {
       >
         <EmojiPicker
           onEmojiClick={handleEmojiClick}
+          skinTonesDisabled={true}
+          searchDisabled={true}
           height={350}
+          suggestedEmojisMode={"recent"}
           emojiStyle={"facebook"}
+          style={{
+            "--epr-emoji-size": "25px",
+          }}
         />
       </Popover>
     </>
