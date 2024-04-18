@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EmojiPicker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import CreatePollModal from "../Modals/CreatePollModal";
 
 const Post = () => {
   const [textInput, setTextInput] = useState("");
@@ -47,6 +48,15 @@ const Post = () => {
   };
   const closeMdModal = () => {
     setMdModalOpen(false);
+  };
+
+  //create poll and upload modal
+  const [pollModalOpen, setPollModalOpen] = useState(false);
+  const openPollModal = () => {
+    setPollModalOpen(true);
+  };
+  const closePollModal = () => {
+    setPollModalOpen(false);
   };
 
   const handleInputChange = (event) => {
@@ -129,6 +139,7 @@ const Post = () => {
       </Popover>
       <PostModal open={modalOpen} handleClose={closeModal} />
       <MarkDownModal open={mdModalOpen} handleClose={closeMdModal} />
+      <CreatePollModal open={pollModalOpen} handleClose={closePollModal} />
       <Box
         display={"flex"}
         width={"100%"}
@@ -290,6 +301,7 @@ const Post = () => {
           </Typography>
         </Button>
         <Button
+          onClick={openPollModal}
           disableRipple
           sx={{
             color: "textColor.main",
