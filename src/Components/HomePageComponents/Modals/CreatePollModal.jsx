@@ -228,7 +228,6 @@ function CreatePollModal({ open, handleClose }) {
             sx={{
               backgroundColor: isButtonDisabled ? "gray" : "primary.main",
               color: isButtonDisabled ? "textColor.main" : "#000",
-              color: "textColor.main",
               padding: "10px",
               cursor: isButtonDisabled ? "not-allowed" : "pointer",
               //   borderRadius: "15px",
