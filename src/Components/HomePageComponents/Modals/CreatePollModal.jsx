@@ -12,6 +12,9 @@ import {
 } from "@mui/material";
 import { authContext } from "../../../Context/AuthContext";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Api from "../../../Utils/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -29,24 +32,25 @@ const style = {
 
 function CreatePollModal({ open, handleClose }) {
   const ctx = useContext(authContext);
-  const [caption, setCaption] = useState("");
-  const [options, setOptions] = useState(["", ""]);
+  const [question, setQuestion] = useState("");
+  const [options, setOptions] = useState([{ option: "" }, { option: "" }]);
   const [duration, setDuration] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const toastId = React.useRef(null);
 
   const handleTextChange = (event) => {
-    setCaption(event.target.value);
+    setQuestion(event.target.value);
   };
 
   const handleOptionChange = (index, value) => {
     const newOptions = [...options];
-    newOptions[index] = value;
+    newOptions[index].option = value;
     setOptions(newOptions);
   };
 
   const handleAddOption = () => {
     if (options.length < 5) {
-      setOptions([...options, ""]);
+      setOptions([...options, { option: "" }]);
     }
   };
 
@@ -62,13 +66,60 @@ function CreatePollModal({ open, handleClose }) {
     setDuration(event.target.value);
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    handleClose();
+    toastId.current = toast.loading("Creating poll...");
+    const formattedOptions = options.map((option) => ({
+      option: option.option,
+    }));
+    Api.post("/posts/create-poll", {
+      user: ctx.user._id,
+      question,
+      options: formattedOptions,
+      duration,
+    })
+      .then((res) => {
+        Api.post("/posts/create-new", {
+          username: ctx.user.username,
+          user: ctx.user._id,
+          type: "poll",
+          poll: res.data.id,
+        })
+          .then((res) => {
+            ctx.fetchPost();
+            toast.update(toastId.current, {
+              render: "Poll Created...",
+              type: "success",
+              isLoading: false,
+              autoClose: 2000,
+              closeButton: true,
+              pauseOnHover: true,
+              draggable: false,
+              style: {
+                backgroundColor: "#222831",
+                color: "white",
+              },
+            });
+            setQuestion("");
+            setOptions([{ option: "" }, { option: "" }]);
+            setDuration("");
+          })
+          .catch((err) => {
+            console.log(err.res.data);
+          });
+      })
+      .catch((err) => {
+        console.log(err.res.data);
+      });
+  };
 
   React.useEffect(() => {
-    const isQuestionEmpty = caption.trim() === "";
-    const areOptionsEmpty = options.some((option) => option.trim() === "");
-    setIsButtonDisabled(isQuestionEmpty || areOptionsEmpty);
-  }, [caption, options]);
+    const isQuestionEmpty = question.trim() === "";
+    const areOptionsEmpty = options.some(
+      (option) => option.option.trim() === ""
+    );
+    setIsButtonDisabled(isQuestionEmpty || areOptionsEmpty || !duration);
+  }, [question, options, duration]);
 
   return (
     <Modal
@@ -148,7 +199,7 @@ function CreatePollModal({ open, handleClose }) {
             autoComplete="off"
             autoFocus
             multiline
-            value={caption}
+            value={question}
             onChange={handleTextChange}
             sx={{
               mb: 2,
@@ -172,7 +223,7 @@ function CreatePollModal({ open, handleClose }) {
                       width: "100%",
                       mb: 1,
                     }}
-                    value={option}
+                    value={option.option}
                     onChange={(e) => handleOptionChange(index, e.target.value)}
                     InputProps={{
                       endAdornment: (
