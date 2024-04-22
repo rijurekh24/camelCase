@@ -21,6 +21,7 @@ import LikeModal from "../Modals/LikeModal";
 import CommentModal from "../Modals/CommentModal";
 import CommentBox from "./CommentBox";
 import DeletePost from "./DeletePost";
+import Poll from "./PollComponets/Poll";
 
 const PollPostCard = (props) => {
   const navigate = useNavigate();
@@ -288,13 +289,16 @@ const PollPostCard = (props) => {
           </Typography>
         }
       />
-      {props.question && (
+      {/* {props.question && (
         <CardContent>
           <Typography variant="body2" color="textColor.main">
             {props.question}
           </Typography>
         </CardContent>
-      )}
+      )} */}
+      <Box>
+        <Poll question={props.question} options={props.options} />
+      </Box>
       <CardActions>
         <Box width={"100%"}>
           <Box>
