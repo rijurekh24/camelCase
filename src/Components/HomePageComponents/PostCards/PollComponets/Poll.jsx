@@ -1,6 +1,5 @@
 import {
   Avatar,
-  AvatarGroup,
   Box,
   Button,
   FormControlLabel,
@@ -14,7 +13,9 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Api from "../../../../Utils/api";
+import { authContext } from "../../../../Context/AuthContext";
 
 const PollRadio = (props) => {
   return (
@@ -28,7 +29,10 @@ const PollRadio = (props) => {
 };
 
 const Poll = (props) => {
-  const options = ["option 1", "option 2", "option 3"];
+  const options = props.options.map((opt) => opt.option);
+  const [pollSelectedData, setPollSelectedData] = useState();
+  const ctx = useContext(authContext);
+
   const participants = [
     {
       name: "Arnab Chatterjee",
@@ -52,7 +56,39 @@ const Poll = (props) => {
     },
   ];
 
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
   const [open, setOpen] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [totalVotes, setTotalVotes] = useState(0);
+
+  useEffect(() => {
+    if (props.poll && props.poll.voters.includes(ctx.user._id)) {
+      setHasVoted(true);
+    }
+    // Calculate total votes
+    const votesCount = props.options.reduce(
+      (total, option) => total + option.votes,
+      0
+    );
+    setTotalVotes(votesCount);
+  }, [props.poll, ctx.user._id, props.options]);
+
+  const handleOptionChange = (event) => {
+    setSelectedOptionIndex(parseInt(event.target.value));
+  };
+
+  const handleVote = () => {
+    Api.post("/posts/vote-poll/", {
+      option: selectedOptionIndex,
+      user: ctx.user._id,
+      poll: props.pollId,
+    }).then((res) => {
+      console.log(res.data);
+      setPollSelectedData(res.data.option);
+      ctx.fetchPost();
+      setHasVoted(true);
+    });
+  };
 
   return (
     <Box
@@ -62,7 +98,6 @@ const Poll = (props) => {
       color={"textColor.main"}
       position={"relative"}
       overflow={"hidden"}
-      maxHeight={"16rem"}
     >
       <Box
         width={"100%"}
@@ -114,40 +149,66 @@ const Poll = (props) => {
       )}
 
       <Typography fontWeight={600} fontSize={"1.1rem"} color={"textColor.main"}>
-        {props.question}
+        Question: {props.question}
       </Typography>
 
-      <RadioGroup sx={{ mt: 1 }}>
-        {props.options.map((opt, idx) => (
-          <FormControlLabel
-            key={idx}
-            value={opt.option}
-            control={<PollRadio />}
-            label={opt.option}
-            componentsProps={{
-              typography: {
-                sx: { color: "#fff", fontWeight: 400 },
-              },
-            }}
-          />
-        ))}
-      </RadioGroup>
+      {!hasVoted ? (
+        <RadioGroup
+          sx={{ mt: 1 }}
+          value={selectedOptionIndex}
+          onChange={handleOptionChange}
+        >
+          {props.options.map((opt, idx) => (
+            <FormControlLabel
+              key={idx}
+              value={idx}
+              control={<PollRadio />}
+              label={opt.option}
+              componentsProps={{
+                typography: {
+                  sx: { color: "#fff", fontWeight: 400 },
+                },
+              }}
+            />
+          ))}
+        </RadioGroup>
+      ) : (
+        <Box>
+          {props.options.map((opt, idx) => (
+            <Box display={"flex"} gap={2} width={"100%"} my={1} key={idx}>
+              <Box width={50} height={50}>
+                <Typography>
+                  {Math.floor((opt.votes / totalVotes) * 100)}%
+                </Typography>
+              </Box>
+              <Box width={"70%"}>
+                <Typography mb={1}>{opt.option}</Typography>
+                {(opt.votes / totalVotes) * 100 != 0 ? (
+                  <Box
+                    width={`${(opt.votes / totalVotes) * 100}%`}
+                    height={"0.5rem"}
+                    bgcolor={"green"}
+                    borderRadius={"15px"}
+                  ></Box>
+                ) : null}
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      )}
 
       <Box display={"flex"} gap={1} alignItems={"center"} mt={2}>
         <Typography fontSize={"0.9rem"} color={"textColor.main"}>
-          Total Votes: {participants.length}
+          Total Votes: {totalVotes}
         </Typography>
         <FiberManualRecordIcon
           sx={{ fontSize: "5px", color: "text.disabled" }}
         />
-
-        <Typography fontSize={"0.9rem"} color={"textColor.main"}>
-          5d Left
-        </Typography>
-
-        <Button variant="contained" sx={{ ml: "auto" }}>
-          Vote
-        </Button>
+        {!hasVoted && (
+          <Button variant="contained" sx={{ ml: "auto" }} onClick={handleVote}>
+            Vote
+          </Button>
+        )}
       </Box>
     </Box>
   );

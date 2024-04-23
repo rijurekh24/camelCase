@@ -297,7 +297,13 @@ const PollPostCard = (props) => {
         </CardContent>
       )} */}
       <Box>
-        <Poll question={props.question} options={props.options} />
+        <Poll
+          question={props.question}
+          options={props.options}
+          pollId={props.poll?._id}
+          poll={props.poll}
+          postId={props.postId}
+        />
       </Box>
       <CardActions>
         <Box width={"100%"}>

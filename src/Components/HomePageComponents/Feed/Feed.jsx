@@ -12,7 +12,7 @@ const Feed = () => {
     ctx.fetchPost();
   }, []);
 
-  console.log(ctx.postData);
+  // console.log(ctx.postData);
   return (
     <Box
       display={"flex"}
