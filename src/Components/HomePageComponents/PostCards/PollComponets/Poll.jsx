@@ -1,12 +1,10 @@
 import {
-  Avatar,
   Box,
   Button,
   FormControlLabel,
   IconButton,
   Radio,
   RadioGroup,
-  Stack,
   Typography,
 } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -75,7 +73,6 @@ const Poll = (props) => {
       user: ctx.user._id,
       poll: props.pollId,
     }).then((res) => {
-      setPollSelectedData(res.data.option);
       ctx.fetchPost();
       setHasVoted(true);
     });
@@ -135,11 +132,11 @@ const Poll = (props) => {
       ) : (
         <Box>
           {props.options.map((opt, idx) => (
-            <Box display={"flex"} gap={2} width={"100%"} my={2} key={idx}>
-              <Typography>
+            <Box display={"flex"} gap={1} width={"100%"} my={2} key={idx}>
+              <Typography width={50}>
                 {Math.floor((opt.votes / totalVotes) * 100)}%
               </Typography>
-              <Box width={"100%"}>
+              <Box width={"70%"}>
                 <Typography mb={1}>{opt.option}</Typography>
                 <Box
                   width={`${(opt.votes / totalVotes) * 100}%`}
