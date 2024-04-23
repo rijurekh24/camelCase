@@ -33,45 +33,37 @@ const Poll = (props) => {
   const [pollSelectedData, setPollSelectedData] = useState();
   const ctx = useContext(authContext);
 
-  const participants = [
-    {
-      name: "Arnab Chatterjee",
-      img: "http://res.cloudinary.com/dc1xi4aeb/image/upload/v1711487442/kgy6byipnifdvcsvmyde.jpg",
-      voted: 0,
-    },
-    {
-      name: "Rijurekh Ghosh ",
-      img: "http://res.cloudinary.com/dc1xi4aeb/image/upload/v1711562335/mim7zjylcbsxjwg1loxx.jpg",
-      voted: 1,
-    },
-    {
-      name: "Shiman dey",
-      img: "http://res.cloudinary.com/dc1xi4aeb/image/upload/v1711570828/rzzda74agczeyhdhpoxb.jpg",
-      voted: 1,
-    },
-    {
-      name: "Aritra Bose",
-      img: "http://res.cloudinary.com/dc1xi4aeb/image/upload/v1711316016/cg8nljdzbutpmcs1tdbd.jpg",
-      voted: 2,
-    },
-  ];
-
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
   const [open, setOpen] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
   const [totalVotes, setTotalVotes] = useState(0);
+  const [highestPercentageIndex, setHighestPercentageIndex] = useState(null);
 
   useEffect(() => {
     if (props.poll && props.poll.voters.includes(ctx.user._id)) {
       setHasVoted(true);
     }
-    // Calculate total votes
     const votesCount = props.options.reduce(
       (total, option) => total + option.votes,
       0
     );
     setTotalVotes(votesCount);
-  }, [props.poll, ctx.user._id, props.options]);
+
+    let maxPercentage = 0;
+    let highestIndex = null;
+    let multipleHighest = false;
+    props.options.forEach((opt, idx) => {
+      const percentage = (opt.votes / totalVotes) * 100;
+      if (percentage > maxPercentage) {
+        maxPercentage = percentage;
+        highestIndex = idx;
+        multipleHighest = false;
+      } else if (percentage === maxPercentage) {
+        multipleHighest = true;
+      }
+    });
+    setHighestPercentageIndex(multipleHighest ? null : highestIndex);
+  }, [props.poll, ctx.user._id, props.options, totalVotes]);
 
   const handleOptionChange = (event) => {
     setSelectedOptionIndex(parseInt(event.target.value));
@@ -83,7 +75,6 @@ const Poll = (props) => {
       user: ctx.user._id,
       poll: props.pollId,
     }).then((res) => {
-      console.log(res.data);
       setPollSelectedData(res.data.option);
       ctx.fetchPost();
       setHasVoted(true);
@@ -99,37 +90,6 @@ const Poll = (props) => {
       position={"relative"}
       overflow={"hidden"}
     >
-      <Box
-        width={"100%"}
-        sx={{ transition: "0.3s ease-out" }}
-        position={"absolute"}
-        height={"100%"}
-        overflow={"auto"}
-        top={0}
-        left={0}
-        ml={open ? "0" : "-100%"}
-        bgcolor={"primary.light"}
-        color={"textColor.main"}
-        zIndex={99}
-      >
-        <Stack p={2} gap={2} mt={3}>
-          {participants.map((p, i) => (
-            <Box key={i} display={"flex"} gap={1} alignItems={"center"}>
-              <Avatar
-                key={i}
-                alt={p.name}
-                sx={{ height: 27, width: 27 }}
-                src={p.img}
-              />
-              <Typography fontSize={"0.9rem"}>
-                <span style={{ fontWeight: 500 }}>{p.name}</span> voted for{" "}
-                {options[p.voted]}
-              </Typography>
-            </Box>
-          ))}
-        </Stack>
-      </Box>
-
       {open && (
         <Box
           display={"flex"}
@@ -175,28 +135,25 @@ const Poll = (props) => {
       ) : (
         <Box>
           {props.options.map((opt, idx) => (
-            <Box display={"flex"} gap={2} width={"100%"} my={1} key={idx}>
-              <Box width={50} height={50}>
-                <Typography>
-                  {Math.floor((opt.votes / totalVotes) * 100)}%
-                </Typography>
-              </Box>
-              <Box width={"70%"}>
+            <Box display={"flex"} gap={2} width={"100%"} my={2} key={idx}>
+              <Typography>
+                {Math.floor((opt.votes / totalVotes) * 100)}%
+              </Typography>
+              <Box width={"100%"}>
                 <Typography mb={1}>{opt.option}</Typography>
-                {(opt.votes / totalVotes) * 100 != 0 ? (
-                  <Box
-                    width={`${(opt.votes / totalVotes) * 100}%`}
-                    height={"0.5rem"}
-                    bgcolor={"green"}
-                    borderRadius={"15px"}
-                  ></Box>
-                ) : null}
+                <Box
+                  width={`${(opt.votes / totalVotes) * 100}%`}
+                  height={"0.5rem"}
+                  borderRadius={"15px"}
+                  bgcolor={
+                    idx === highestPercentageIndex ? "#7090e8" : "#27ae60"
+                  }
+                ></Box>
               </Box>
             </Box>
           ))}
         </Box>
       )}
-
       <Box display={"flex"} gap={1} alignItems={"center"} mt={2}>
         <Typography fontSize={"0.9rem"} color={"textColor.main"}>
           Total Votes: {totalVotes}
