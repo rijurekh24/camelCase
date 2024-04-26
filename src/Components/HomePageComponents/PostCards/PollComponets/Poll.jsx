@@ -44,6 +44,7 @@ const Poll = (props) => {
       props.poll.voters.hasOwnProperty(ctx.user._id)
     ) {
       setHasVoted(true);
+      setSelectedOptionIndex(props.poll.voters[ctx.user._id]);
     }
 
     const votesCount = props.options.reduce(
@@ -142,7 +143,12 @@ const Poll = (props) => {
                 {Math.floor((opt.votes / totalVotes) * 100)}%
               </Typography>
               <Box width={"80%"}>
-                <Typography mb={1}>{opt.option}</Typography>
+                <Typography mb={1}>
+                  {opt.option}{" "}
+                  {hasVoted && selectedOptionIndex === idx && (
+                    <i class="fa-solid fa-circle-check"></i>
+                  )}
+                </Typography>
                 <Box
                   width={`${(opt.votes / totalVotes) * 100}%`}
                   height={"0.5rem"}
