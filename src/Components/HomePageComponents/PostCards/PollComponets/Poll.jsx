@@ -141,7 +141,7 @@ const Poll = (props) => {
               <Typography width={50}>
                 {Math.floor((opt.votes / totalVotes) * 100)}%
               </Typography>
-              <Box width={"95%"}>
+              <Box width={"80%"}>
                 <Typography mb={1}>{opt.option}</Typography>
                 <Box
                   width={`${(opt.votes / totalVotes) * 100}%`}
