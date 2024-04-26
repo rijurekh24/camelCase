@@ -38,9 +38,14 @@ const Poll = (props) => {
   const [highestPercentageIndex, setHighestPercentageIndex] = useState(null);
 
   useEffect(() => {
-    if (props.poll && props.poll.voters.includes(ctx.user._id)) {
+    if (
+      props.poll &&
+      props.poll.voters &&
+      props.poll.voters.hasOwnProperty(ctx.user._id)
+    ) {
       setHasVoted(true);
     }
+
     const votesCount = props.options.reduce(
       (total, option) => total + option.votes,
       0
@@ -131,7 +136,7 @@ const Poll = (props) => {
         </RadioGroup>
       ) : (
         <Box>
-          {props.options.map((opt, idx) => (
+          {props.options?.map((opt, idx) => (
             <Box display={"flex"} gap={1} width={"100%"} my={2} key={idx}>
               <Typography width={50}>
                 {Math.floor((opt.votes / totalVotes) * 100)}%

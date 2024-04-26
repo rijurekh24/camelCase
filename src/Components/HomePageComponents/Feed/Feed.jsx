@@ -12,7 +12,7 @@ const Feed = () => {
     ctx.fetchPost();
   }, []);
 
-  // console.log(ctx.postData);
+  console.log(ctx.postData);
   return (
     <Box
       display={"flex"}
@@ -43,7 +43,7 @@ const Feed = () => {
               key={item._id}
               name={`${item.user.first_name} ${item.user.last_name}`}
               username={item.user.username}
-              options={item.poll.options}
+              options={item.poll?.options}
               question={item.poll.question}
               voters={item.poll.voters}
               poll={item.poll}
