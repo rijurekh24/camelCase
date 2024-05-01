@@ -303,6 +303,7 @@ const PollPostCard = (props) => {
           pollId={props.poll?._id}
           poll={props.poll}
           postId={props.postId}
+          postDate={props.postDate}
         />
       </Box>
       <CardActions>

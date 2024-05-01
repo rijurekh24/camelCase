@@ -51,6 +51,7 @@ const Feed = () => {
               postId={item._id}
               likes={item.likes}
               dp={item.user.profile_pic}
+              postDate={item.date}
             />
           ) : (
             <MarkDownPostCard
