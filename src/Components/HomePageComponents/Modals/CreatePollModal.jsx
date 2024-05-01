@@ -63,7 +63,12 @@ function CreatePollModal({ open, handleClose }) {
   };
 
   const handleDurationChange = (event) => {
-    setDuration(event.target.value);
+    let value = event.target.value;
+    value = value.replace(/^0+/, "");
+    if (value === "" || parseInt(value) === 0) {
+      value = "";
+    }
+    setDuration(value);
   };
 
   const handleClick = () => {
