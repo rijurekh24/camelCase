@@ -118,12 +118,19 @@ const Poll = (props) => {
             fontWeight={600}
             fontSize={"1.1rem"}
             color={"textColor.main"}
+            mb={2}
           >
             Question: {props.question}
           </Typography>
           <Box>
             {props.options?.map((opt, idx) => (
-              <Box display={"flex"} gap={1} width={"100%"} my={2} key={idx}>
+              <Box
+                display={"flex"}
+                gap={1}
+                width={"100%"}
+                mb={(opt.votes / totalVotes) * 100 === 0 ? 0 : 3}
+                key={idx}
+              >
                 <Typography width={50}>
                   {Math.floor((opt.votes / totalVotes) * 100)}%
                 </Typography>
@@ -150,19 +157,14 @@ const Poll = (props) => {
             <Typography fontSize={"0.9rem"} color={"textColor.main"}>
               Total Votes: {totalVotes}
             </Typography>
-            <>
-              {/* <FiberManualRecordIcon
-                sx={{ fontSize: "5px", color: "textColor.main" }}
-              /> */}
-              <Typography
-                fontSize={"0.9rem"}
-                color={"red"}
-                ml={"auto"}
-                fontWeight={"bold"}
-              >
-                Final Result
-              </Typography>
-            </>
+            <Typography
+              fontSize={"0.9rem"}
+              color={"red"}
+              ml={"auto"}
+              fontWeight={"bold"}
+            >
+              Final Result
+            </Typography>
           </Box>
         </>
       )}
@@ -174,6 +176,7 @@ const Poll = (props) => {
             fontWeight={600}
             fontSize={"1.1rem"}
             color={"textColor.main"}
+            mb={2}
           >
             Question: {props.question}
           </Typography>
@@ -201,7 +204,13 @@ const Poll = (props) => {
           ) : (
             <Box>
               {props.options?.map((opt, idx) => (
-                <Box display={"flex"} gap={1} width={"100%"} my={2} key={idx}>
+                <Box
+                  display={"flex"}
+                  gap={1}
+                  width={"100%"}
+                  mb={(opt.votes / totalVotes) * 100 === 0 ? 0 : 3}
+                  key={idx}
+                >
                   <Typography width={50}>
                     {Math.floor((opt.votes / totalVotes) * 100)}%
                   </Typography>
